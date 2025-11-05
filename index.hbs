@@ -1,0 +1,16 @@
+{{!< default}}
+
+<main id="site-main" class="site-main full-width">
+    <div class="home-header">
+        <h1>Welcome to {{@site.title}}</h1>
+        <p>{{@site.description}}</p>
+    </div>
+
+    <div class="post-feed">
+        {{#foreach posts}}
+            {{> "post-card"}}
+        {{/foreach}}
+    </div>
+
+    {{pagination}}
+</main>

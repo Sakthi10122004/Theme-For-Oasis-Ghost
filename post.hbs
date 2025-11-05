@@ -1,0 +1,27 @@
+{{!< default}}
+
+<main id="site-main" class="site-main full-width">
+    <article class="article {{post_class}}">
+        <header class="article-header">
+            <h1 class="article-title">{{title}}</h1>
+            {{#if custom_excerpt}}
+                <p class="article-excerpt">{{custom_excerpt}}</p>
+            {{/if}}
+
+            <div class="article-meta">
+                <time datetime="{{date format="YYYY-MM-DD"}}">{{date format="DD MMM YYYY"}}</time>
+                <span class="byline-reading-time">{{reading_time}}</span>
+            </div>
+        </header>
+
+        <section class="gh-content">
+            {{content}}
+        </section>
+    </article>
+</main>
+
+{{#if comments}}
+    <section class="article-comments">
+        {{comments}}
+    </section>
+{{/if}}

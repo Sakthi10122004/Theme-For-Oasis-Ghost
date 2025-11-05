@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="{{@site.locale}}"{{#match @custom.color_scheme "Dark"}} class="dark-mode"{{else match @custom.color_scheme "Auto"}} class="auto-color"{{/match}}>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="HandheldFriendly" content="True" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    
+    <title>{{meta_title}}</title>
+    <link rel="stylesheet" href="{{asset "css/styles.css"}}" />
+    {{ghost_head}}
+</head>
+<body class="{{body_class}}">
+<div class="viewport">
+   <header class="site-header">
+  <div class="site-header-inner">
+
+    <div class="site-brand">
+      <a href="{{@site.url}}">
+        {{#if @site.logo}}
+          <img class="site-logo" src="{{@site.logo}}" alt="{{@site.title}}">
+        {{else}}
+          {{@site.title}}
+        {{/if}}
+      </a>
+    </div>
+
+    <nav class="site-nav">
+      {{navigation}}
+    </nav>
+
+    <div class="site-cta">
+      <a href="/join" class="btn-join">Join us</a>
+    </div>
+
+  </div>
+</header>
+
+
+    <main class="site-content">
+        {{{body}}}
+    </main>
+
+    <footer class="site-footer">
+        <section class="copyright">{{@site.title}} &copy; {{date format="YYYY"}}</section>
+        <nav class="site-footer-nav">
+            {{navigation type="secondary"}}
+        </nav>
+        <div class="gh-powered-by"><a href="https://ghost.org/" target="_blank">Powered by Ghost</a></div>
+    </footer>
+</div>
+{{ghost_foot}}
+</body>
+</html>
