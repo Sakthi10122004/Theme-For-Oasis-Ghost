@@ -1,16 +1,40 @@
 {{!< default}}
 
 <main id="site-main" class="site-main full-width">
-    <div class="home-header">
-        <h1>Welcome to {{@site.title}}</h1>
-        <p>{{@site.description}}</p>
-    </div>
 
-    <div class="post-feed">
-        {{#foreach posts}}
-            {{> "post-card"}}
-        {{/foreach}}
-    </div>
+    {{!-- Two Column Hero Section --}}
+    <section class="hero-content">
+        <div class="hero-left-card">
+          
+        </div>
 
-    {{pagination}}
+        <div class="hero-right-image">
+            <img src="{{@site.cover_image}}" alt="">
+            
+        </div>
+    </section>
+
+    {{!-- Headline Line --}}
+    <section class="hero-sub-text">
+        <h2>Turning nonprofit tech pain points into open-source breakthroughs.</h2>
+    </section>
+
+    {{!-- Stats Section --}}
+    <section class="stats-section">
+        <div class="stat-box">
+            <h3>120+</h3>
+            <p>NPO’s have connected with us</p>
+        </div>
+
+        <div class="stat-box">
+            <h3>200+</h3>
+            <p>Tech experts have attended our events</p>
+        </div>
+
+        <div class="stat-box">
+            <h3>12+</h3>
+            <p>NPO’s have been mapped to tech experts</p>
+        </div>
+    </section>
+
 </main>
