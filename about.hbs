@@ -1,0 +1,13 @@
+{{!< default}}
+<main id="site-main" class="site-main full-width">
+    <div class="about-header">
+        <h1>About {{@site.title}}</h1>
+    </div>
+
+    <div class="about-content">
+        {{#if @site.about}}
+            {{{@site.about}}}
+        {{else}}
+            <p>This is the about page for {{@site.title}}. More information will be added soon.</p>
+        {{/if}}
+    </div>
