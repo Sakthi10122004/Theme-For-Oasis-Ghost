@@ -1,55 +1,62 @@
 <!DOCTYPE html>
-<html lang="{{@site.locale}}"{{#match @custom.color_scheme "Dark"}} class="dark-mode"{{else match @custom.color_scheme "Auto"}} class="auto-color"{{/match}}>
+<html lang="{{@site.locale}}">
 <head>
     <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="HandheldFriendly" content="True" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{{meta_title}}</title>
     <link rel="stylesheet" href="{{asset "css/styles.css"}}" />
     {{ghost_head}}
 </head>
 <body class="{{body_class}}">
 <div class="viewport">
-   <header class="site-header">
+
+<header class="site-header glass-header">
   <div class="site-header-inner">
 
+    <!-- Logo (Left) -->
     <div class="site-brand">
-      <a href="{{@site.url}}">
+      <a href="{{@site.url}}" aria-label="{{@site.title}}">
         {{#if @site.logo}}
           <img class="site-logo" src="{{@site.logo}}" alt="{{@site.title}}">
         {{else}}
-          {{@site.title}}
+          <span class="site-title">{{@site.title}}</span>
         {{/if}}
       </a>
     </div>
 
-    <nav class="site-nav">
-  <div class="nav-pill">
-    {{navigation}}
-  </div>
-</nav>
+    <!-- Center Navigation (Glass Pill) -->
+    <nav class="site-nav" aria-label="Primary navigation">
+      <ul class="nav-pill">
+        {{navigation}}
+      </ul>
+    </nav>
 
+    <!-- Right CTA -->
     <div class="site-cta">
       <a href="/join" class="btn-join">Join us</a>
     </div>
 
+    <button class="search-btn" aria-label="Search">
+    <svg class="search-icon" viewBox="0 0 24 24">
+      <circle cx="11" cy="11" r="7" stroke="currentColor" stroke-width="2" fill="none"></circle>
+      <line x1="16" y1="16" x2="22" y2="22" stroke="currentColor" stroke-width="2" stroke-linecap="round"></line>
+    </svg>
+  </button>
+
   </div>
 </header>
 
+<main class="site-content">
+    {{{body}}}
+</main>
 
-    <main class="site-content">
-        {{{body}}}
-    </main>
+<footer class="site-footer">
+    <section class="copyright">{{@site.title}} &copy; {{date format="YYYY"}}</section>
+</footer>
 
-    <footer class="site-footer">
-        <section class="copyright">{{@site.title}} &copy; {{date format="YYYY"}}</section>
-        <nav class="site-footer-nav">
-            {{navigation type="secondary"}}
-        </nav>
-    </footer>
 </div>
+
+<script src="{{asset "js/script.js"}}"></script>
 {{ghost_foot}}
 </body>
 </html>

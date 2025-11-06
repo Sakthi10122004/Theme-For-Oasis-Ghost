@@ -1,39 +1,33 @@
 {{!< default}}
 
-<main id="site-main" class="site-main full-width">
+<main class="full-width">
 
-    {{!-- Two Column Hero Section --}}
-    <section class="hero-content">
-        <div class="hero-left-card">
-          
-        </div>
+    <section class="hero-section">
+        <img class="hero-image" src="{{@site.cover_image}}" alt="{{@site.title}}">
 
-        <div class="hero-right-image">
-            <img src="{{@site.cover_image}}" alt="">
-            
+        <div class="hero-text">
+            <span>{{@site.description}}</span>
         </div>
     </section>
 
-    {{!-- Headline Line --}}
     <section class="hero-sub-text">
         <h2>Turning nonprofit tech pain points into open-source breakthroughs.</h2>
     </section>
 
-    {{!-- Stats Section --}}
     <section class="stats-section">
         <div class="stat-box">
-            <h3>120+</h3>
-            <p>NPO’s have connected with us</p>
+            <h3><span class="count" data-target="120">0</span>+</h3>
+            <h4>NPO’s have connected with us</h4>
         </div>
 
         <div class="stat-box">
-            <h3>200+</h3>
-            <p>Tech experts have attended our events</p>
+            <h3><span class="count" data-target="200">0</span>+</h3>
+            <h4>Tech experts have attended our events</h4>
         </div>
 
         <div class="stat-box">
-            <h3>12+</h3>
-            <p>NPO’s have been mapped to tech experts</p>
+            <h3><span class="count" data-target="12">0</span>+</h3>
+            <h4>NPO’s have been mapped to tech experts</h4>
         </div>
     </section>
 
