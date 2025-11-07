@@ -1,34 +1,215 @@
 {{!< default}}
 
-<main class="full-width">
+<div class="hero-orbit">
+  <div class="orbit-content">
+    <h1 class="hero-title">
+      <span class="line">We turn</span>
+      <span class="line highlight">nonprofit pain points</span>
+      <span class="line">into <span class="glow">open-source magic</span></span>
+    </h1>
+    <p class="hero-desc">{{@site.description}}</p>
+    <a href="/join" class="hero-cta">Start your journey</a>
+  </div>
+  <div class="orbit-visual">
+    {{#if @site.cover_image}}
+      <img src="{{@site.cover_image}}" alt="Open source impact visual" class="floating-img">
+    {{else}}
+      <div class="floating-placeholder">Your cover image here</div>
+    {{/if}}
+  </div>
+</div>
 
-    <section class="hero-section">
-        <img class="hero-image" src="{{@site.cover_image}}" alt="{{@site.title}}">
+<section class="bbb-section">
+  <div class="bbb-item">
+    <h4>Bridge</h4>
+    <p>Bridging the worlds of Tech and social</p>
+  </div>
 
-        <div class="hero-text">
-            <span>{{@site.description}}</span>
+  <div class="bbb-item">
+    <h4>Build</h4>
+    <p>Building open source tools for good</p>
+  </div>
+
+  <div class="bbb-item">
+    <h4>Belong</h4>
+    <p>Belonging to a community that shares</p>
+  </div>
+</section>
+
+<section class="impact-wave">
+  <div class="wave-container">
+    <h2>We’re making waves</h2>
+    <div class="stats-orbit">
+      <div class="stat-orbit">
+        <span class="count" data-target="120">0</span>
+        <span class="plus">+</span>
+        <p>NPOs connected</p>
+      </div>
+      <div class="stat-orbit">
+        <span class="count" data-target="200">0</span>
+        <span class="plus">+</span>
+        <p>Experts mobilized</p>
+      </div>
+      <div class="stat-orbit">
+        <span class="count" data-target="12">0</span>
+        <span class="plus">+</span>
+        <p>Matches made</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="philosophy-constellation">
+  <h2 class="constellation-title">Our North Star</h2>
+  <div class="constellation">
+    <div class="star-card">
+      <div class="star-icon">✦</div>
+      <h3>Freedom First</h3>
+      <p>Escape vendor lock-in forever. Own your stack.</p>
+      <span class="meta">50% cost saved on average</span>
+    </div>
+    <div class="star-card">
+      <div class="star-icon">⃝</div>
+      <h3>Scale Without Fear</h3>
+      <p>Grow from 10 to 10,000 users — same tools.</p>
+    </div>
+    <div class="star-card">
+      <div class="star-icon">❁</div>
+      <h3>Community Powered</h3>
+      <p>200k+ global contributors have your back.</p>
+    </div>
+  </div>
+</section>
+
+<section class="pulse-section">
+  <div class="pulse-grid">
+    <div class="pulse-newsletter">
+      <h3>We build tech that works for good. Get stories, tools, and insights from the open-source movement, straight to your inbox.</h3>
+      <p>Join 8,000+ changemakers getting open-source insights</p>
+      <form class="pulse-form">
+        <input type="email" placeholder="you@nonprofit.org" required aria-label="Email address">
+        <button type="submit">Subscribe</button>
+      </form>
+    </div>
+    {{#get "posts" filter="tag:latest" limit="1" include="tags,feature_image"}}
+  {{#foreach posts}}
+  <div class="pulse-update">
+
+      <a href="/tags/latest/" class="update-badge">LATEST</a>
+
+      <h4><a href="{{url}}">{{title}}</a></h4>
+
+      {{#if custom_excerpt}}
+        <p>{{custom_excerpt}}</p>
+      {{else}}
+        <p>{{excerpt words="14"}}</p>
+      {{/if}}
+
+      {{#if feature_image}}
+        <div class="update-img">
+          <img src="{{img_url feature_image size="m"}}" alt="{{title}}">
         </div>
-    </section>
+      {{/if}}
 
-    <section class="hero-sub-text">
-        <h2>Turning nonprofit tech pain points into open-source breakthroughs.</h2>
-    </section>
+  </div>
+  {{/foreach}}
+{{/get}}
 
-    <section class="stats-section">
-        <div class="stat-box">
-            <h3><span class="count" data-target="120">0</span>+</h3>
-            <h4>NPO’s have connected with us</h4>
+</section>
+
+<section class="ecosystem-ring">
+  <p class="ring-quote">“It takes a village — and five open hearts — to start a movement.”</p>
+  <div class="ring-logos">
+    <img src="https://via.placeholder.com/140x36?text=TinkerHub" alt="TinkerHub Foundation">
+    <img src="https://via.placeholder.com/120x36?text=FOSS+UNITED" alt="FOSS United">
+    <img src="https://via.placeholder.com/130x36?text=aikyam+fellows" alt="Aikyam Fellows">
+    <img src="https://via.placeholder.com/110x36?text=reap+benefit" alt="Reap Benefit">
+    <img src="https://via.placeholder.com/150x36?text=Testbook+Foundation" alt="Testbook Foundation">
+    <img src="https://via.placeholder.com/100x36?text=ASPIRe" alt="ASPIRe">
+  </div>
+</section>
+
+<section class="stories-galaxy">
+  <h2>Impact Stories</h2>
+
+  <div class="swiper galaxy-swiper">
+    {{#get "posts" filter="tag:impact-stories" limit="9" include="tags,feature_image"}}
+      {{#if posts}}
+        <div class="swiper-wrapper">
+          {{#foreach posts}}
+            <div class="swiper-slide">
+              <a class="story-card" href="{{url}}">
+                {{#if feature_image}}
+                  <img src="{{img_url feature_image size="m"}}" alt="{{title}}">
+                {{/if}}
+                <h3>{{title}}</h3>
+                {{#if custom_excerpt}}
+                  <p>{{custom_excerpt}}</p>
+                {{else}}
+                  <p>{{excerpt words="18"}}</p>
+                {{/if}}
+              </a>
+            </div>
+          {{/foreach}}
         </div>
-
-        <div class="stat-box">
-            <h3><span class="count" data-target="200">0</span>+</h3>
-            <h4>Tech experts have attended our events</h4>
+      {{else}}
+        <div class="swiper-wrapper">
+          <div class="swiper-slide">
+            <div class="story-card">
+              <img src="https://via.placeholder.com/400x300?text=No+stories+yet" alt="">
+              <h3>Impact stories coming soon</h3>
+              <p>Add posts with the tag <strong>impact-stories</strong> to populate this slider.</p>
+            </div>
+          </div>
         </div>
+      {{/if}}
+    {{/get}}
 
-        <div class="stat-box">
-            <h3><span class="count" data-target="12">0</span>+</h3>
-            <h4>NPO’s have been mapped to tech experts</h4>
-        </div>
-    </section>
+    <div class="swiper-pagination"></div>
+  </div>
+</section>
 
-</main>
+
+<section class="toolbox">
+  <div class="expert-tool-wrapper">
+
+    <div class="tools-orbit">
+      <h3>Battle-tested tools</h3>
+
+      {{#get "posts" filter="tag:tools" limit="12" include="feature_image"}}
+      <div class="orbit-logos">
+        {{#foreach posts}}
+          <a href="{{url}}" class="tool-logo" title="{{title}}">
+            {{#if feature_image}}
+              <img src="{{img_url feature_image size="xs"}}" alt="{{title}}">
+            {{else}}
+              <span class="tool-text">{{title}}</span>
+            {{/if}}
+          </a>
+        {{/foreach}}
+      </div>
+      {{/get}}
+    </div>
+
+    <div class="experts-orbit">
+      <h3>OASIS verified experts</h3>
+
+      {{#get "posts" filter="tag:verified-experts" limit="20" include="authors,feature_image"}}
+      <div class="expert-avatars">
+        {{#foreach posts}}
+          <a href="{{url}}" class="avatar" title="{{title}}">
+            {{#if feature_image}}
+              <img src="{{img_url feature_image size="xs"}}" alt="{{title}}">
+            {{else}}
+              {{title.[0]}}
+            {{/if}}
+          </a>
+        {{/foreach}}
+      </div>
+      {{/get}}
+
+      <a href="/tag/verified-experts/" class="view-all">Meet all experts →</a>
+    </div>
+
+  </div>
+</section>

@@ -1,62 +1,56 @@
 <!DOCTYPE html>
 <html lang="{{@site.locale}}">
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>{{meta_title}}</title>
-    <link rel="stylesheet" href="{{asset "css/styles.css"}}" />
-    {{ghost_head}}
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>{{meta_title}}</title>
+  <link rel="stylesheet" href="{{asset "css/styles.css"}}" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+  {{ghost_head}}
 </head>
 <body class="{{body_class}}">
-<div class="viewport">
 
-<header class="site-header glass-header">
-  <div class="site-header-inner">
+<header class="nebula-header">
+  <div class="header-content">
 
-    <!-- Logo (Left) -->
-    <div class="site-brand">
-      <a href="{{@site.url}}" aria-label="{{@site.title}}">
-        {{#if @site.logo}}
-          <img class="site-logo" src="{{@site.logo}}" alt="{{@site.title}}">
-        {{else}}
-          <span class="site-title">{{@site.title}}</span>
-        {{/if}}
-      </a>
-    </div>
+    <!-- ✅ Proper site logo -->
+    <a href="{{@site.url}}" class="logo" aria-label="{{@site.title}}">
+      {{#if @site.logo}}
+        <img src="{{@site.logo}}" alt="{{@site.title}}">
+      {{else}}
+        {{@site.title}}
+      {{/if}}
+    </a>
 
-    <!-- Center Navigation (Glass Pill) -->
-    <nav class="site-nav" aria-label="Primary navigation">
-      <ul class="nav-pill">
-        {{navigation}}
-      </ul>
-    </nav>
+    <!-- ✅ Proper Ghost navigation -->
+    <nav class="nebula-nav-horizontal" aria-label="Main navigation">
+    {{navigation}}
+</nav>
 
-    <!-- Right CTA -->
-    <div class="site-cta">
-      <a href="/join" class="btn-join">Join us</a>
-    </div>
+    <a href="/join" class="join-cta">Join the movement</a>
 
-    <button class="search-btn" aria-label="Search">
-    <svg class="search-icon" viewBox="0 0 24 24">
-      <circle cx="11" cy="11" r="7" stroke="currentColor" stroke-width="2" fill="none"></circle>
-      <line x1="16" y1="16" x2="22" y2="22" stroke="currentColor" stroke-width="2" stroke-linecap="round"></line>
-    </svg>
-  </button>
+    <!-- Hamburger Menu Button -->
+    <button class="hamburger" aria-label="Toggle navigation menu">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
 
   </div>
 </header>
 
-<main class="site-content">
+
+  <main class="cosmic-flow">
     {{{body}}}
-</main>
+  </main>
 
-<footer class="site-footer">
-    <section class="copyright">{{@site.title}} &copy; {{date format="YYYY"}}</section>
-</footer>
+  <footer class="aurora-footer">
+    <p>&copy; {{date format="YYYY"}} {{@site.title}} — Open hearts, open source.</p>
+  </footer>
 
-</div>
-
-<script src="{{asset "js/script.js"}}"></script>
-{{ghost_foot}}
+  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+  <script src="{{asset "js/script.js"}}"></script>
+  {{ghost_foot}}
 </body>
 </html>
