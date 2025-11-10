@@ -1,0 +1,121 @@
+/* -------------------------
+   POST PAGE STYLING
+--------------------------*/
+
+/* Page container */
+.site-main.full-width {
+  max-width: 900px;
+  margin: 80px auto;
+  padding: 0 24px;
+}
+
+/* Article container */
+.article {
+  width: 100%;
+  line-height: 1.65;
+  color: #111;
+}
+
+/* Title */
+.article-title {
+  font-size: 2.6rem;
+  font-weight: 700;
+  margin-bottom: 10px;
+  line-height: 1.2;
+}
+
+/* Custom excerpt */
+.article-excerpt {
+  font-size: 1.2rem;
+  color: #444;
+  margin-bottom: 18px;
+}
+
+/* Meta row (date + reading time) */
+.article-meta {
+  display: flex;
+  gap: 14px;
+  align-items: center;
+  font-size: 0.95rem;
+  color: #777;
+  margin-bottom: 24px;
+}
+
+/* Feature Image (Optional) */
+.post-feature-image {
+  margin: 35px 0;
+}
+.post-feature-image img {
+  width: 100%;
+  border-radius: 14px;
+  display: block;
+}
+
+/* Content styling */
+.gh-content {
+  font-size: 1.15rem;
+  margin-top: 15px;
+}
+.gh-content p {
+  margin-bottom: 1.4em;
+}
+
+/* Headings inside post */
+.gh-content h2 {
+  margin-top: 2em;
+  font-size: 1.8rem;
+  font-weight: 700;
+}
+.gh-content h3 {
+  margin-top: 1.6em;
+  font-size: 1.45rem;
+  font-weight: 600;
+}
+
+/* Images inside post content */
+.gh-content img {
+  display: block;
+  margin: 28px auto;
+  border-radius: 12px;
+  max-width: 100%;
+  height: auto;
+}
+
+/* Links inside content */
+.gh-content a {
+  color: #ED3E29;
+  text-decoration: none;
+  font-weight: 600;
+}
+.gh-content a:hover {
+  text-decoration: underline;
+}
+
+/* Blockquotes */
+.gh-content blockquote {
+  border-left: 4px solid #ED3E29;
+  padding-left: 20px;
+  font-style: italic;
+  color: #555;
+  margin: 24px 0;
+}
+
+/* Lists */
+.gh-content ul, .gh-content ol {
+  margin-left: 24px;
+  margin-bottom: 1.4em;
+}
+
+/* Code blocks */
+.gh-content pre {
+  background: #f4f4f4;
+  padding: 14px;
+  border-radius: 8px;
+  overflow-x: auto;
+}
+
+/* Comments spacing */
+.article-comments {
+  margin-top: 60px;
+}
+

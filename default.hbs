@@ -5,6 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>{{meta_title}}</title>
   <link rel="stylesheet" href="{{asset "css/styles.css"}}" />
+  <link rel="stylesheet" href="{{asset "css/tag.css"}}" />
+   <link rel="stylesheet" href="{{asset "css/post.css"}}" />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
   {{ghost_head}}
@@ -45,9 +47,60 @@
     {{{body}}}
   </main>
 
-  <footer class="aurora-footer">
-    <p>&copy; {{date format="YYYY"}} {{@site.title}} — Open hearts, open source.</p>
-  </footer>
+ <footer class="aurora-footer">
+  <div class="footer-content">
+
+    <a href="{{@site.url}}" class="footer-logo">
+      {{#if @site.logo}}
+        <img src="{{@site.logo}}" alt="{{@site.title}}">
+      {{else}}
+        <span>{{@site.title}}</span>
+      {{/if}}
+    </a>
+
+    <p class="footer-tagline">Open hearts, open source.</p>
+
+    <div class="footer-social">
+
+      {{#if @site.twitter}}
+      <a href="{{@site.twitter}}" target="_blank" aria-label="Twitter">
+        <i class="ri-twitter-x-line"></i>
+      </a>
+      {{/if}}
+
+      {{#if @site.facebook}}
+      <a href="{{@site.facebook}}" target="_blank" aria-label="Facebook">
+        <i class="ri-facebook-circle-line"></i>
+      </a>
+      {{/if}}
+
+      {{#if @site.instagram}}
+      <a href="{{@site.instagram}}" target="_blank" aria-label="Instagram">
+        <i class="ri-instagram-line"></i>
+      </a>
+      {{/if}}
+
+      {{#if @site.youtube}}
+      <a href="{{@site.youtube}}" target="_blank" aria-label="YouTube">
+        <i class="ri-youtube-line"></i>
+      </a>
+      {{/if}}
+
+      {{#if @site.linkedin}}
+      <a href="{{@site.linkedin}}" target="_blank" aria-label="LinkedIn">
+        <i class="ri-linkedin-line"></i>
+      </a>
+      {{/if}}
+
+    </div>
+
+    <p class="footer-copy">
+      &copy; {{date format="YYYY"}} {{@site.title}} — Made with ❤️ for the community.
+    </p>
+
+  </div>
+</footer>
+
 
   <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
   <script src="{{asset "js/script.js"}}"></script>
