@@ -1,10 +1,24 @@
 {{!< default}}
+<<<<<<< HEAD
+<main id="site-main" class="site-main full-width">
+    <div class="about-header">
+        <h1>About {{@site.title}}</h1>
+    </div>
 
+    <div class="about-content">
+        {{#if @site.about}}
+            {{{@site.about}}}
+        {{else}}
+            <p>This is the about page for {{@site.title}}. More information will be added soon.</p>
+        {{/if}}
+    </div>
+=======
 
+<main id="site-main" class="site-main full-width">
     <!-- Hero Section: Story Title and Group Photo -->
     <section class="hero-section">
         <div class="hero-wrapper">
-            <h1 class="hero-titles">How Filter Coffee, FOSS, and a Few Restless Minds Started a Movement.</h1>
+            <h1 class="hero-title">How Filter Coffee, FOSS, and a Few Restless Minds Started a Movement.</h1>
             <div class="hero-flex">
                 <div class="hero-image">
                     <img src="/content/images/2025/11/team.jpg" alt="Group photo at OASIS event" class="full-width-img"> <!-- Replace with actual image path -->
@@ -47,17 +61,14 @@
                 </div>
             </div>
         </div>
-         {{!-- <div class="container">
-            <p>Being FOSS advocates we were well aware of the mature, high-quality, out-of-the-box, low-cost Free and Open Source (FOSS) technology that was available and this cued the 'wait a minute...' moment.</p>
-        </div> --}}
     </section>
 
     <!-- FOSS Advocacy Text -->
-    {{!-- <section class="foss-section">
+    <section class="foss-section">
         <div class="container">
             <p>Being FOSS advocates we were well aware of the mature, high-quality, out-of-the-box, low-cost Free and Open Source (FOSS) technology that was available and this cued the 'wait a minute...' moment.</p>
         </div>
-    </section> --}}
+    </section>
 
     <!-- Systemic Gap Section -->
     <section class="gap-section">
@@ -156,3 +167,108 @@
         </div>
     </div>
 </section>
+
+    {{!-- <!-- Who Can Join Section -->
+    <section class="join-section">
+        <div class="container">
+            <h2>Who can join the OASIS community?</h2>
+            <p>For nonprofits tired of wrestling with their tech, and for techies who want to do more than just ship code OASIS is the place where both sides finally meet.</p>
+            <button class="join-community-btn">JOIN THE COMMUNITY</button>
+            <div class="join-image">
+                <img src="/assets/images/group-outdoor.jpg" alt="Group outdoor photo" class="full-width-img"> <!-- Replace path -->
+            </div>
+            <div class="join-cards">
+                <div class="card">
+                    <h3>Tech Volunteers & Innovators</h3>
+                    <p>From solo developers to tech firms, open-source solutions that help nonprofits scale their impact.</p>
+                </div>
+                <div class="card">
+                    <h3>Social Sector Organisations</h3>
+                    <p>NGOs and non-profits ready to embrace open-source systems to scale their impact.</p>
+                </div>
+                <div class="card">
+                    <h3>Philanthropic Institutions</h3>
+                    <p>Foundations seeking scalable or grant-makers seeking tech capacity for their portfolios.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section 1 -->
+    <section class="testimonials-section">
+        <div class="container">
+            <h2>What people say?</h2>
+            <div class="testimonial">
+                <div class="stars">★★★★★</div>
+                <p>The OASIS community helped me understand the importance of FOSS (Fading in and out)</p>
+                <cite>- XYZ Foundation</cite>
+                <a href="#" class="view-more">View more</a>
+            </div>
+            <div class="ngo-partners">
+                <p>NGO partners</p>
+                <!-- Sliding logos: Implement with CSS/JS if needed -->
+                <div class="logos-slider">
+                    <!-- Add NGO logo images here, e.g., <img src="/assets/logos/ngo1.png" alt="NGO 1"> -->
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Join Section -->
+    <section class="why-join-section">
+        <div class="container">
+            <h2>Why join OASIS community?</h2>
+            <div class="why-join-grid">
+                <div class="why-card">
+                    <span class="icon">★</span>
+                    <h3>Tap Into Expertise</h3>
+                    <p>Work alongside leading minds in open-source and social innovation.</p>
+                </div>
+                <div class="why-card">
+                    <span class="icon">■</span>
+                    <h3>Build Real Connections</h3>
+                    <p>Link up with like-minded changemakers and technologists who get it.</p>
+                </div>
+                <div class="why-card">
+                    <span class="icon">☆</span>
+                    <h3>Unlock New Opportunities</h3>
+                    <p>that align technology with social good.</p>
+                </div>
+                <div class="why-card">
+                    <span class="icon">★</span>
+                    <h3>Access Valuable Resources</h3>
+                    <p>Use curated playbooks, case studies, and tools to amplify your impact.</p>
+                </div>
+                <div class="why-card">
+                    <span class="icon">○</span>
+                    <h3>Boost Your Visibility</h3>
+                    <p>and join the global movement of open-source change-makers.</p>
+                </div>
+                <div class="join-how">
+                    <h3>How to join OASIS community?</h3>
+                    <p>No long forms. No gatekeeping. Just good intent and open code, we promise.</p>
+                    <ul>
+                        <li>Take a minute to go through our Community Guidelines (hyperlink this), it's our shared playbook for responsible collaboration.</li>
+                        <li>Hit 'Join Now'. Tell us a bit about you</li>
+                        <li>That's it. Our team will get in touch to welcome you to the OASIS network.</li>
+                    </ul>
+                    <button class="join-now-btn">JOIN NOW</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section 2 -->
+    <section class="testimonials-section testimonials-section-alt">
+        <div class="container">
+            <h2>What people say?</h2>
+            <div class="testimonial">
+                <div class="stars">★★★★★</div>
+                <p>The OASIS community helped me understand the importance of FOSS (Fading in and out)</p>
+                <cite>- Tech Org</cite>
+                <a href="#" class="view-more">View more</a>
+            </div>
+        </div>
+    </section> --}}
+</main>
+>>>>>>> 54cea07 ( feat: Implemented about.css for about.hbs)
