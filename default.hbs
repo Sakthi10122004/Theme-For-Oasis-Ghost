@@ -7,6 +7,7 @@
   <link rel="stylesheet" href="{{asset "css/styles.css"}}" />
   <link rel="stylesheet" href="{{asset "css/tag.css"}}" />
    <link rel="stylesheet" href="{{asset "css/post.css"}}" />
+   <link rel="stylesheet" href="{{asset "css/community.css"}}" />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
   {{ghost_head}}
@@ -50,53 +51,73 @@
  <footer class="aurora-footer">
   <div class="footer-content">
 
-    <a href="{{@site.url}}" class="footer-logo">
-      {{#if @site.logo}}
-        <img src="{{@site.logo}}" alt="{{@site.title}}">
-      {{else}}
-        <span>{{@site.title}}</span>
-      {{/if}}
-    </a>
-
-    <p class="footer-tagline">Open hearts, open source.</p>
-
-    <div class="footer-social">
-
-      {{#if @site.twitter}}
-      <a href="{{@site.twitter}}" target="_blank" aria-label="Twitter">
-        <i class="ri-twitter-x-line"></i>
+    <div class="footer-main">
+      <a href="{{@site.url}}" class="footer-logo">
+        {{#if @site.logo}}
+          <img src="{{@site.logo}}" alt="{{@site.title}}">
+        {{else}}
+          <span>{{@site.title}}</span>
+        {{/if}}
       </a>
-      {{/if}}
 
-      {{#if @site.facebook}}
-      <a href="{{@site.facebook}}" target="_blank" aria-label="Facebook">
-        <i class="ri-facebook-circle-line"></i>
-      </a>
-      {{/if}}
+      <p class="footer-tagline">Open hearts, open source.</p>
 
-      {{#if @site.instagram}}
-      <a href="{{@site.instagram}}" target="_blank" aria-label="Instagram">
-        <i class="ri-instagram-line"></i>
-      </a>
-      {{/if}}
+      <div class="footer-social">
+        {{#if @site.twitter}}
+        <a href="{{@site.twitter}}" target="_blank" aria-label="Twitter">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+          </svg>
+        </a>
+        {{/if}}
 
-      {{#if @site.youtube}}
-      <a href="{{@site.youtube}}" target="_blank" aria-label="YouTube">
-        <i class="ri-youtube-line"></i>
-      </a>
-      {{/if}}
+        {{#if @site.facebook}}
+        <a href="{{@site.facebook}}" target="_blank" aria-label="Facebook">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+          </svg>
+        </a>
+        {{/if}}
 
-      {{#if @site.linkedin}}
-      <a href="{{@site.linkedin}}" target="_blank" aria-label="LinkedIn">
-        <i class="ri-linkedin-line"></i>
-      </a>
-      {{/if}}
+        {{#if @site.instagram}}
+        <a href="{{@site.instagram}}" target="_blank" aria-label="Instagram">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M12.017 0C8.396 0 7.996.014 6.79.067 5.584.12 4.832.278 4.227.534c-.61.26-1.126.597-1.64 1.11-.514.514-.85 1.03-1.11 1.64C1.213 4.888 1.055 5.64.998 6.846.945 8.052.93 8.452.93 12.073c0 3.621.015 4.021.068 5.227.057 1.206.215 1.958.471 2.563.26.61.597 1.126 1.11 1.64.514.514 1.03.85 1.64 1.11.605.256 1.357.414 2.563.471 1.206.057 1.606.072 5.227.072s4.021-.015 5.227-.068c1.206-.057 1.958-.215 2.563-.471.61-.26 1.126-.597 1.64-1.11.514-.514.85-1.03 1.11-1.64.256-.605.414-1.357.471-2.563.057-1.206.072-1.606.072-5.227s-.015-4.021-.068-5.227c-.057-1.206-.215-1.958-.471-2.563-.26-.61-.597-1.126-1.11-1.64-.514-.514-1.03-.85-1.64-1.11-.605-.256-1.357-.414-2.563-.471-1.206-.057-1.606-.072-5.227-.072zm0 1.718c3.573 0 3.993.014 5.403.067 1.326.052 2.055.28 2.527.468.608.242 1.04.562 1.496 1.018.456.456.776.888 1.018 1.496.188.472.416 1.201.468 2.527.053 1.41.067 1.83.067 5.403s-.014 3.993-.067 5.403c-.052 1.326-.28 2.055-.468 2.527-.242.608-.562 1.04-1.018 1.496-.456.456-.888.776-1.496 1.018-.472.188-1.201.416-2.527.468-1.41.053-1.83.067-5.403.067s-3.993-.014-5.403-.067c-1.326-.052-2.055-.28-2.527-.468-.608-.242-1.04-.562-1.496-1.018-.456-.456-.776-.888-1.018-1.496-.188-.472-.416-1.201-.468-2.527-.053-1.41-.067-1.83-.067-5.403s.014-3.993.067-5.403c.052-1.326.28-2.055.468-2.527.242-.608.562-1.04 1.018-1.496.456-.456.888-.776 1.496-1.018.472-.188 1.201-.416 2.527-.468 1.41-.053 1.83-.067 5.403-.067zm0 4.036c-3.674 0-6.643 2.969-6.643 6.643s2.969 6.643 6.643 6.643 6.643-2.969 6.643-6.643-2.969-6.643-6.643-6.643zm0 10.917c-2.357 0-4.274-1.917-4.274-4.274s1.917-4.274 4.274-4.274 4.274 1.917 4.274 4.274-1.917 4.274-4.274 4.274zm8.747-11.208c0 .86-.697 1.557-1.557 1.557s-1.557-.697-1.557-1.557.697-1.557 1.557-1.557 1.557.697 1.557 1.557z"/>
+          </svg>
+        </a>
+        {{/if}}
 
+        {{#if @site.youtube}}
+        <a href="{{@site.youtube}}" target="_blank" aria-label="YouTube">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+          </svg>
+        </a>
+        {{/if}}
+
+        {{#if @site.linkedin}}
+        <a href="{{@site.linkedin}}" target="_blank" aria-label="LinkedIn">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+          </svg>
+        </a>
+        {{/if}}
+
+        {{#if @site.github}}
+        <a href="{{@site.github}}" target="_blank" aria-label="GitHub">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+          </svg>
+        </a>
+        {{/if}}
+      </div>
     </div>
 
-    <p class="footer-copy">
-      &copy; {{date format="YYYY"}} {{@site.title}} — Made with ❤️ for the community.
-    </p>
+    <div class="footer-bottom">
+      <p class="footer-copy">
+        &copy; {{date format="YYYY"}} {{@site.title}} — Made with ❤️ for the community.
+      </p>
+    </div>
 
   </div>
 </footer>
