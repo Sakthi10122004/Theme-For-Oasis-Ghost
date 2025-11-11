@@ -1,12 +1,13 @@
 {
-    "name": "your-theme",
+    "name": "oasis-theme",
     "version": "1.0.0",
     "description": "A clean, full-width Ghost theme",
     "engines": {
         "ghost": ">=5.0.0"
     },
     "author": {
-        "email": "your-email@example.com"
+        "email": "your-email@example.com",
+        "name": "Oasis Theme Developer"
     },
     "license": "MIT",
     "repository": {

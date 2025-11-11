@@ -3,12 +3,12 @@
 <main class="tag-page">
 
   {{#tag}}
-  <header class="tag-header">
-    <h1>{{name}}</h1>
-    {{#if description}}
-      <p>{{description}}</p>
-    {{/if}}
-  </header>
+    <header class="tag-header">
+      <h1>{{name}}</h1>
+      {{#if description}}
+        <p>{{description}}</p>
+      {{/if}}
+    </header>
   {{/tag}}
 
   <section class="tag-post-list">
@@ -24,7 +24,7 @@
       </article>
     {{/foreach}}
 
-    {{pagination}}
+    {{!-- {{pagination}} --}}
   </section>
 
 </main>

@@ -1,320 +1,254 @@
-/* ========================================
-   OASIS Community Page – Professional Redesign
-   Ghost CMS Compatible
-   ======================================== */
+/* Inline CSS for 100% Working Demo - Uses #ED3E29 (Red) and White Theme */
+/* Assumes Swiper CSS is loaded externally; add <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"> in head if needed */
 
-:root {
-  --primary: #ED3E29;
-  --secondary: #ffffff;
-  --border: #ffffff;
-  --text: #222;
-  --bg: #fff;
-  --light: #ffffff;
-  --shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
-  --radius: 20px;
-  --transition: all 0.3s ease;
-}
-
-.oasis-community {
-  font-family: 'Inter', system-ui, -apple-system, sans-serif;
-  line-height: 1.7;
-  color: var(--text);
-  background: var(--light);
-  padding: 60px 0;
+.oasis-community.redesigned {
+  font-family: 'Arial', sans-serif;
+  line-height: 1.6;
+  color: #333;
 }
 
 .oasis-container {
-  max-width: 1240px;
+  max-width: 1200px;
   margin: 0 auto;
-  padding: 0 24px;
+  padding: 0 20px;
 }
 
-/* Typography */
-.oasis-title,
-.oasis-subtitle {
-  text-align: center;
-  font-weight: 700;
-  color: var(--text);
-  margin: 0 0 32px;
-}
-
-.oasis-title {
-  font-size: 48px;
-  line-height: 1.1;
-  margin-bottom: 16px;
-}
-
-.oasis-intro {
-  font-size: 20px;
-  color: #666;
-  text-align: center;
-  max-width: 800px;
-  margin: 0 auto 60px;
-  line-height: 1.6;
-}
-
-.oasis-subtitle {
-  font-size: 36px;
-  margin-top: 100px;
-  margin-bottom: 24px;
-}
-
-.oasis-lead {
-  font-size: 18px;
-  max-width: 760px;
-  margin: 0 auto 40px;
-  color: #444;
-  text-align: center;
-  line-height: 1.6;
-}
-
-/* Grid System */
-.oasis-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 40px;
-  align-items: start;
-}
-
-.oasis-hero {
-  padding: 80px 0 120px;
-  background: linear-gradient(135deg, var(--light) 0%, #f8f9fa 100%);
+/* Hero Section */
+.oasis-hero.redesigned-hero {
   position: relative;
+  background: white;
   overflow: hidden;
+  padding: 60px 0;
 }
 
-.oasis-hero::before {
-  content: '';
+.hero-overlay {
   position: absolute;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
-  background: radial-gradient(circle at 20% 80%, rgba(237, 62, 41, 0.03) 0%, transparent 50%),
-              radial-gradient(circle at 80% 20%, rgba(237, 62, 41, 0.02) 0%, transparent 50%);
-  pointer-events: none;
+  background: rgba(237, 62, 41, 0.05); /* Subtle red tint */
+  z-index: 1;
 }
 
 .oasis-hero-content {
   position: relative;
   z-index: 2;
-  max-width: 1400px;
-  margin: 0 auto;
-  padding: 0 24px;
+  text-align: center;
 }
 
-.oasis-hero-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 80px;
-  align-items: center;
-  margin-top: 60px;
+.hero-text {
+  margin-bottom: 40px;
 }
 
-.oasis-hero-cards {
-  display: flex;
-  flex-direction: column;
-  gap: 32px;
+.oasis-title {
+  font-size: 3rem;
+  color: #ED3E29;
+  margin: 0 0 20px;
+  font-weight: bold;
 }
 
-.oasis-hero-image {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.hero-image-container {
-  position: relative;
-  width: 100%;
-  max-width: 550px;
-  border-radius: var(--radius);
-  overflow: hidden;
-  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
-  transition: var(--transition);
-}
-
-.hero-image-container:hover {
-  transform: translateY(-8px) scale(1.02);
-  box-shadow: 0 32px 80px rgba(0, 0, 0, 0.2);
+.oasis-intro {
+  font-size: 1.2rem;
+  color: #666;
+  max-width: 600px;
+  margin: 0 auto 40px;
 }
 
 .hero-image {
   width: 100%;
   height: auto;
-  display: block;
-  border-radius: var(--radius);
-  transition: var(--transition);
+  border-radius: 12px;
+  box-shadow: 0 8px 32px rgba(237, 62, 41, 0.1);
+  max-height: 400px;
+  object-fit: cover;
 }
 
-.hero-image-container:hover .hero-image {
-  transform: scale(1.05);
-}
-
-.oasis-grid-3 {
+.oasis-cards-grid.redesigned-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 32px;
+  grid-template-columns: 1fr;
+  gap: 40px;
+  margin-top: 40px;
 }
 
-.testimonials-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 32px;
-  max-width: 1000px;
-  margin: 0 auto;
+@media (min-width: 768px) {
+  .oasis-cards-grid.redesigned-grid {
+    grid-template-columns: 1fr 1fr;
+  }
 }
 
-/* Cards */
-.oasis-card {
-  background: var(--bg);
-  border: 1.8px solid var(--border);
-  border-radius: var(--radius);
+.oasis-card.redesigned-card {
+  background: white;
   padding: 40px;
-  box-shadow: var(--shadow);
-  transition: var(--transition);
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+  border: 2px solid transparent;
+  transition: border-color 0.3s ease;
 }
 
-.oasis-card:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.1);
+.oasis-card.redesigned-card:hover {
+  border-color: #ED3E29;
 }
 
-/* Benefits */
-.benefits-list {
+.oasis-card h3 {
+  color: #ED3E29;
+  font-size: 1.8rem;
+  margin-bottom: 20px;
+}
+
+.benefits-list.redesigned-list {
   display: flex;
   flex-direction: column;
-  gap: 24px;
+  gap: 20px;
 }
 
 .benefit {
   display: flex;
-  gap: 16px;
   align-items: flex-start;
+  gap: 12px;
 }
 
-.benefit-dot {
-  width: 16px;
-  height: 16px;
-  background: var(--primary);
-  border-radius: 50%;
-  flex-shrink: 0;
-  margin-top: 6px;
+.benefit-icon.redesigned-icon {
+  font-size: 1.5rem;
+  color: #ED3E29;
+  font-weight: bold;
+  margin-top: 2px;
 }
 
 .benefit strong {
+  color: #333;
   display: block;
-  font-size: 18px;
-  margin-bottom: 4px;
-  color: var(--text);
 }
 
 .benefit p {
-  margin: 0;
-  color: #555;
-  font-size: 15px;
-  line-height: 1.5;
+  margin: 5px 0 0;
+  color: #666;
 }
 
-/* Join Steps */
-.join-steps {
+.join-steps.redesigned-steps {
   list-style: none;
-  counter-reset: step;
-  margin: 24px 0;
   padding: 0;
+  margin: 20px 0;
 }
 
 .join-steps li {
-  counter-increment: step;
+  padding: 10px 0;
   position: relative;
-  padding-left: 36px;
-  margin-bottom: 14px;
-  font-size: 16px;
-  color: #444;
+  padding-left: 25px;
 }
 
-.join-steps li::before {
-  content: counter(step);
+.join-steps li:before {
+  content: '→';
+  color: #ED3E29;
   position: absolute;
   left: 0;
-  top: 0;
-  width: 24px;
-  height: 24px;
-  background: var(--primary);
-  color: white;
   font-weight: bold;
-  font-size: 14px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
 }
 
-/* Buttons */
-.oasis-btn {
-  display: inline-block;
-  background: var(--primary);
+.oasis-btn.redesigned-btn {
+  background: #ED3E29;
   color: white;
-  font-weight: 600;
-  font-size: 16px;
-  padding: 16px 40px;
-  border-radius: 30px;
+  padding: 12px 24px;
+  border-radius: 6px;
   text-decoration: none;
-  text-align: center;
-  box-shadow: 0 4px 14px rgba(237, 62, 41, 0.3);
-  transition: var(--transition);
+  font-weight: bold;
+  transition: background 0.3s ease;
+  display: inline-block;
 }
 
-.oasis-btn:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 8px 20px rgba(237, 62, 41, 0.45);
+.oasis-btn.redesigned-btn:hover {
+  background: #d32f2f;
 }
 
-.oasis-btn-primary {
-  background: var(--primary);
-}
-
-.oasis-btn-secondary {
-  background: var(--secondary);
-  color: var(--primary);
-  border: 2px solid var(--primary);
-  box-shadow: 0 4px 14px rgba(237, 62, 41, 0.1);
-}
-
-.oasis-btn-secondary:hover {
-  background: var(--primary);
-  color: white;
-}
-
-/* Testimonials Section */
-.oasis-testimonials {
-  max-width: 1200px;
-  margin: 80px auto;
-  padding: 0 24px;
+/* Who Can Join */
+.oasis-who.redesigned-who {
+  padding: 80px 0;
+  background: white;
   text-align: center;
 }
 
 .oasis-subtitle {
-  font-size: 1.9rem;
-  font-weight: 700;
-  margin-bottom: 36px;
+  font-size: 2.5rem;
+  color: #ED3E29;
+  margin-bottom: 20px;
 }
 
-.oasis-swiper {
-  padding-bottom: 40px; /* space for dots */
+.oasis-lead {
+  font-size: 1.1rem;
+  color: #666;
+  max-width: 800px;
+  margin: 0 auto 60px;
 }
 
-.oasis-quote {
-  background: rgba(255,255,255,0.55);
-  backdrop-filter: blur(14px);
-  border: 1px solid rgba(255,255,255,0.4);
-  border-radius: 14px;
-  padding: 26px 30px;
-  text-align: left;
-  box-shadow: 0 4px 18px rgba(0,0,0,0.06);
-  height: 100%;
+.oasis-grid-3.redesigned-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 40px;
+}
+
+@media (min-width: 768px) {
+  .oasis-grid-3.redesigned-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.oasis-category.redesigned-category {
+  padding: 30px;
+  border-radius: 12px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+}
+
+.oasis-category.redesigned-category:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 25px rgba(237, 62, 41, 0.15);
+}
+
+.category-icon.redesigned-icon {
+  color: #ED3E29;
+  margin-bottom: 15px;
+}
+
+.oasis-category h3 {
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.oasis-category p {
+  color: #666;
+}
+
+/* Testimonials */
+.oasis-testimonials.redesigned-testimonials {
+  padding: 80px 0;
+  background: #ffffff;
+}
+
+.oasis-swiper.redesigned-swiper {
+  padding: 20px 0;
+}
+
+/* 3 Testimonials Layout */
+.testimonials-grid-3 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 32px;
+  max-width: 1100px;
+  margin: 0 auto 40px;
+}
+
+/* Same card style as your existing one */
+.oasis-quote.redesigned-quote {
+  background: #fff;
+  padding: 32px;
+  border-radius: 16px;
+  border: 1px solid rgba(237, 62, 41, 0.15);
+  box-shadow: 0 6px 25px rgba(237, 62, 41, 0.08);
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  text-align: center;
+  position: relative;
 }
 
 .oasis-quote .stars {
@@ -324,267 +258,130 @@
 }
 
 .oasis-quote p {
-  color: #111;
-  margin-bottom: 14px;
-  line-height: 1.55;
+  color: #333;
+  margin-bottom: 16px;
   font-size: 1.05rem;
 }
 
 .oasis-quote cite {
-  color: #444;
   font-weight: 600;
-  font-size: 0.95rem;
+  color: #ED3E29;
 }
 
-.swiper-pagination-bullet {
-  background: #ED3E29;
-  opacity: 0.6;
-}
-.swiper-pagination-bullet-active {
-  opacity: 1;
-}
-
-/* Categories */
-.oasis-category {
+/* Read more button */
+.testimonials-readmore {
   text-align: center;
-  padding: 40px 24px;
-  background: var(--bg);
-  border: 1.8px solid var(--border);
-  border-radius: var(--radius);
-  box-shadow: var(--shadow);
-  transition: var(--transition);
 }
 
-.oasis-category:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.1);
+.readmore-btn {
+  background: transparent;
+  border: 2px solid #ED3E29;
+  color: #ED3E29;
+  padding: 10px 26px;
+  border-radius: 6px;
+  font-weight: 600;
+  transition: 0.25s ease;
 }
 
-.category-icon {
-  width: 64px;
-  height: 64px;
-  background: var(--primary);
-  border-radius: 50%;
-  margin: 0 auto 24px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+.readmore-btn:hover {
+  background: #ED3E29;
+  color: #fff;
+  transform: translateY(-3px);
 }
 
-.category-icon svg {
-  width: 32px;
-  height: 32px;
+/* Responsive */
+@media (max-width: 900px) {
+  .testimonials-grid-3 {
+    grid-template-columns: 1fr;
+  }
 }
 
-.oasis-category h3 {
-  font-size: 22px;
-  margin: 0 0 16px;
-  color: var(--text);
-}
-
-.oasis-category p {
-  margin: 0;
-  color: #555;
-  font-size: 16px;
-  line-height: 1.5;
+.swiper-pagination.redesigned-pagination .swiper-pagination-bullet-active {
+  background: #ED3E29 !important;
 }
 
 /* Partners */
-.oasis-partners-section {
-  text-align: center;
-  margin: 80px auto;
-  max-width: 1400px;
-  padding: 0 24px;
+.oasis-partners-section.redesigned-partners {
+  padding: 80px 0;
+  background: white;
 }
 
-.oasis-subtitle {
-  font-size: 1.9rem;
-  font-weight: 700;
-  margin-bottom: 28px;
-}
-
-/* Marquee wrapper */
-.partners-marquee {
+.partners-marquee.redesigned-marquee {
   overflow: hidden;
-  position: relative;
-  width: 100%;
 }
 
-/* Scrolling track */
 .partners-track {
   display: flex;
-  gap: 48px;
-  animation: partners-scroll 22s linear infinite;
+  animation: marquee 20s linear infinite;
+  gap: 40px;
 }
 
-/* Logos */
-.partner-logo img {
-  height: 60px;
-  width: auto;
-  object-fit: contain;
-  opacity: 0.85;
-  transition: 0.3s ease;
-}
-
-.partner-logo img:hover {
-  opacity: 1;
-  transform: translateY(-4px);
-}
-
-/* Fallback text logo */
-.partner-text {
-  display: inline-block;
-  background: #eee;
-  padding: 12px 18px;
-  border-radius: 8px;
-  font-weight: 600;
-  color: #111;
-}
-
-/* Infinite slide animation */
-@keyframes partners-scroll {
+@keyframes marquee {
   0% { transform: translateX(0); }
   100% { transform: translateX(-50%); }
 }
 
-/* CTA Section */
-.oasis-cta {
-  margin-top: 100px;
-  background: linear-gradient(135deg, var(--primary) 0%, #ff6b5b 100%);
-  border-radius: var(--radius);
-  padding: 80px 40px;
+.partner-logo.redesigned-logo {
+  flex: 0 0 auto;
+  text-decoration: none;
+  border: 1px solid #eee;
+  border-radius: 8px;
+  padding: 10px;
+  transition: border-color 0.3s ease;
+}
+
+.partner-logo.redesigned-logo:hover {
+  border-color: #ED3E29;
+}
+
+.partner-logo img {
+  height: 60px;
+  width: auto;
+  object-fit: contain;
+}
+
+.partner-text {
+  color: #333;
+  font-weight: bold;
+  padding: 10px 20px;
+}
+
+/* CTA */
+.oasis-cta.redesigned-cta {
+  padding: 80px 0;
+  background: white;
   text-align: center;
-  color: white;
-  box-shadow: 0 12px 40px rgba(237, 62, 41, 0.2);
 }
 
 .cta-content h2 {
-  font-size: 36px;
-  margin: 0 0 16px;
-  font-weight: 700;
+  color: #ED3E29;
+  font-size: 2.5rem;
+  margin-bottom: 20px;
 }
 
 .cta-content p {
-  font-size: 18px;
-  margin: 0 0 32px;
-  opacity: 0.9;
+  color: #666;
+  margin-bottom: 40px;
+  font-size: 1.1rem;
 }
 
-/* Responsive */
-@media (max-width: 1024px) {
-  .oasis-grid-3 {
-    grid-template-columns: 1fr;
-    gap: 24px;
-  }
-
-  .testimonials-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .oasis-subtitle {
-    font-size: 32px;
-  }
+.oasis-btn.redesigned-cta-btn {
+  background: transparent;
+  color: #ED3E29;
+  border: 2px solid #ED3E29;
+  padding: 12px 30px;
 }
 
+.oasis-btn.redesigned-cta-btn:hover {
+  background: #ED3E29;
+  color: white;
+}
+
+/* Responsive Adjustments */
 @media (max-width: 768px) {
-  .oasis-hero {
-    padding: 60px 0 80px;
-  }
-
-  .oasis-hero-content {
-    padding: 0 20px;
-  }
-
-  .oasis-hero-grid {
-    grid-template-columns: 1fr;
-    gap: 40px;
-    margin-top: 40px;
-  }
-
-  .oasis-hero-image {
-    order: -1;
-  }
-
-  .hero-image-container {
-    max-width: 100%;
-  }
-
-  .oasis-title {
-    font-size: 36px;
-  }
-
-  .oasis-intro {
-    font-size: 18px;
-    margin-bottom: 40px;
-  }
-
-  .oasis-subtitle {
-    font-size: 28px;
-    margin-top: 80px;
-  }
-
-  .partners-logos {
-    gap: 32px;
-  }
-
-  .partners-logos img {
-    height: 56px;
-  }
-}
-
-@media (max-width: 600px) {
-  .oasis-community {
-    padding: 40px 0;
-  }
-
-  .oasis-container {
-    padding: 0 16px;
-  }
-
-  .oasis-card,
-  .oasis-quote,
-  .oasis-category,
-  .oasis-partners {
-    padding: 32px 24px;
-  }
-
-  .oasis-btn {
-    width: 100%;
-    padding: 18px;
-    font-size: 16px;
-  }
-
-  .oasis-title {
-    font-size: 32px;
-  }
-
-  .oasis-intro {
-    font-size: 16px;
-  }
-
-  .oasis-subtitle {
-    font-size: 24px;
-    margin-top: 60px;
-  }
-
-  .oasis-cta {
-    padding: 60px 24px;
-    margin-top: 80px;
-  }
-
-  .cta-content h2 {
-    font-size: 28px;
-  }
-
-  .cta-content p {
-    font-size: 16px;
-  }
-
-  .partners-logos {
-    gap: 24px;
-  }
-
-  .partners-logos img {
-    height: 48px;
-  }
+  .oasis-title { font-size: 2rem; }
+  .oasis-subtitle { font-size: 2rem; }
+  .oasis-cards-grid.redesigned-grid,
+  .oasis-grid-3.redesigned-grid { grid-template-columns: 1fr; }
+  .partners-track { gap: 20px; animation-duration: 15s; }
 }

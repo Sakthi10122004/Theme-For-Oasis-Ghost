@@ -1,7 +1,17 @@
 {{!< default}}
-
 <section class="error-page full-width">
-    <h1>404 — Page not found</h1>
-    <p>Sorry, we couldn't find the page you were looking for.</p>
-    <a href="{{@site.url}}" class="btn-primary">Go to Homepage</a>
+    <div class="content-wrapper">
+        <div class="icon-wrapper">
+            <svg class="error-icon" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="100" cy="100" r="80" fill="none" stroke="#ED3E29" stroke-width="4"/>
+                <path d="M70 130 Q100 150 130 130" fill="none" stroke="#ED3E29" stroke-width="4" stroke-linecap="round"/>
+                <circle cx="75" cy="80" r="8" fill="#ED3E29"/>
+                <circle cx="125" cy="80" r="8" fill="#ED3E29"/>
+            </svg>
+        </div>
+        <div class="error-number">404</div>
+        <h1>Page not found</h1>
+        <p>Sorry, we couldn't find the page you were looking for. It might have been moved or deleted.</p>
+        <a href="{{@site.url}}" class="btn-primary">Go to Homepage</a>
+    </div>
 </section>
