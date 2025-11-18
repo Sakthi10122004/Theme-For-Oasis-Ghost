@@ -1,387 +1,342 @@
-/* Inline CSS for 100% Working Demo - Uses #ED3E29 (Red) and White Theme */
-/* Assumes Swiper CSS is loaded externally; add <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"> in head if needed */
+/* ========== OASIS COMMUNITY - Clean, ready-to-paste CSS ========== */
 
-.oasis-community.redesigned {
-  font-family: 'Arial', sans-serif;
-  line-height: 1.6;
-  color: #333;
+/* Base */
+:root {
+  --accent: #ED3E29;
+  --accent-dark: #d6341f;
+  --muted: #666;
+  --bg: #fff;
+  --card-shadow: 0 12px 40px rgba(0,0,0,0.08);
+  --glass: rgba(255,255,255,0.9);
+  --radius-lg: 1.5rem;
+  --radius-md: 1rem;
+  --max-width: 1400px;
 }
 
-.oasis-container {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 20px;
-}
+* { box-sizing: border-box; }
+html,body { height:100%; margin:0; padding:0; font-family: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial; color:#111; background:var(--bg); -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale; }
+a { color: inherit; text-decoration: none; }
+img { display:block; max-width:100%; height:auto; }
 
-/* Hero Section */
+/* Container */
+.oasis-container { max-width: var(--max-width); margin: 0 auto; padding: 0 1.5rem; }
+
+/* ---------------- HERO ---------------- */
 .oasis-hero.redesigned-hero {
   position: relative;
-  background: white;
-  overflow: hidden;
-  padding: 60px 0;
+  padding: 4.5rem 0 2.5rem;
+  background: var(--bg);
+  overflow: visible;
+  text-align: center;
 }
 
 .hero-overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: rgba(237, 62, 41, 0.05); /* Subtle red tint */
+  position: absolute; inset: 0;
+  background: linear-gradient(135deg, rgba(237,62,41,0.03), transparent 60%);
+  pointer-events: none;
   z-index: 1;
 }
 
-.oasis-hero-content {
-  position: relative;
-  z-index: 2;
-  text-align: center;
-}
+.oasis-hero-content { position: relative; z-index: 2; max-width: 1200px; margin: 0 auto; }
+.hero-text { margin-bottom: 2.25rem; }
+.oasis-title { font-size: clamp(1.9rem, 3.8vw, 3.6rem); line-height: 1.05; margin: 0 0 0.75rem; font-weight: 700; color: #111; }
+.oasis-title .highlight { background: linear-gradient(90deg, var(--accent), #ff6b5b); -webkit-background-clip:text; background-clip:text; -webkit-text-fill-color:transparent; }
 
-.hero-text {
-  margin-bottom: 40px;
-}
+.oasis-intro { margin: 0 auto 1.5rem; max-width: 840px; font-size: clamp(1rem, 1.6vw, 1.2rem); color: var(--muted); line-height: 1.6; }
 
-.oasis-title {
-  font-size: 3rem;
-  color: #ED3E29;
-  margin: 0 0 20px;
-  font-weight: bold;
-}
-
-.oasis-intro {
-  font-size: 1.2rem;
-  color: #666;
-  max-width: 600px;
-  margin: 0 auto 40px;
-}
-
+.hero-image-container { margin: 0 auto; max-width: 1200px; }
 .hero-image {
   width: 100%;
-  height: auto;
-  border-radius: 12px;
-  box-shadow: 0 8px 32px rgba(237, 62, 41, 0.1);
-  max-height: 400px;
+  max-height: 520px;
   object-fit: cover;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--card-shadow);
+  border: 1px solid rgba(0,0,0,0.03);
 }
 
-.oasis-cards-grid.redesigned-grid {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 40px;
-  margin-top: 40px;
-}
+/* ---------------- WHO CAN JOIN ---------------- */
+.oasis-who.redesigned-who { padding: 3rem 0 2rem; background: var(--bg); text-align: center; }
+.oasis-subtitle { font-size: clamp(1.6rem, 3vw, 2.4rem); margin: 0 0 0.75rem; color: #111; font-weight:700; }
+.oasis-lead { margin: 0 auto 2rem; max-width: 1000px; color: var(--muted); line-height:1.6; font-size: clamp(1rem,1.6vw,1.1rem); }
 
-@media (min-width: 768px) {
-  .oasis-cards-grid.redesigned-grid {
-    grid-template-columns: 1fr 1fr;
-  }
-}
-
-.oasis-card.redesigned-card {
-  background: white;
-  padding: 40px;
-  border-radius: 12px;
-  box-shadow: 0 4px 20px rgba(0,0,0,0.05);
-  border: 2px solid transparent;
-  transition: border-color 0.3s ease;
-}
-
-.oasis-card.redesigned-card:hover {
-  border-color: #ED3E29;
-}
-
-.oasis-card h3 {
-  color: #ED3E29;
-  font-size: 1.8rem;
-  margin-bottom: 20px;
-}
-
-.benefits-list.redesigned-list {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-}
-
-.benefit {
-  display: flex;
-  align-items: flex-start;
-  gap: 12px;
-}
-
-.benefit-icon.redesigned-icon {
-  font-size: 1.5rem;
-  color: #ED3E29;
-  font-weight: bold;
-  margin-top: 2px;
-}
-
-.benefit strong {
-  color: #333;
-  display: block;
-}
-
-.benefit p {
-  margin: 5px 0 0;
-  color: #666;
-}
-
-.join-steps.redesigned-steps {
-  list-style: none;
-  padding: 0;
-  margin: 20px 0;
-}
-
-.join-steps li {
-  padding: 10px 0;
-  position: relative;
-  padding-left: 25px;
-}
-
-.join-steps li:before {
-  content: '→';
-  color: #ED3E29;
-  position: absolute;
-  left: 0;
-  font-weight: bold;
-}
-
-.oasis-btn.redesigned-btn {
-  background: #ED3E29;
-  color: white;
-  padding: 12px 24px;
-  border-radius: 6px;
-  text-decoration: none;
-  font-weight: bold;
-  transition: background 0.3s ease;
-  display: inline-block;
-}
-
-.oasis-btn.redesigned-btn:hover {
-  background: #d32f2f;
-}
-
-/* Who Can Join */
-.oasis-who.redesigned-who {
-  padding: 80px 0;
-  background: white;
-  text-align: center;
-}
-
-.oasis-subtitle {
-  font-size: 2.5rem;
-  color: #ED3E29;
-  margin-bottom: 20px;
-}
-
-.oasis-lead {
-  font-size: 1.1rem;
-  color: #666;
-  max-width: 800px;
-  margin: 0 auto 60px;
-}
-
+/* 3-column grid for categories */
 .oasis-grid-3.redesigned-grid {
   display: grid;
   grid-template-columns: 1fr;
-  gap: 40px;
+  gap: 1.25rem;
+  max-width: 1200px;
+  margin: 0 auto;
 }
-
 @media (min-width: 768px) {
-  .oasis-grid-3.redesigned-grid {
-    grid-template-columns: repeat(3, 1fr);
-  }
+  .oasis-grid-3.redesigned-grid { grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
 }
 
+/* category card */
 .oasis-category.redesigned-category {
-  padding: 30px;
-  border-radius: 12px;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  cursor: pointer;
-}
-
-.oasis-category.redesigned-category:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 8px 25px rgba(237, 62, 41, 0.15);
-}
-
-.category-icon.redesigned-icon {
-  color: #ED3E29;
-  margin-bottom: 15px;
-}
-
-.oasis-category h3 {
-  color: #333;
-  margin-bottom: 10px;
-}
-
-.oasis-category p {
-  color: #666;
-}
-
-/* Testimonials */
-.oasis-testimonials.redesigned-testimonials {
-  padding: 80px 0;
-  background: #ffffff;
-}
-
-.oasis-swiper.redesigned-swiper {
-  padding: 20px 0;
-}
-
-/* 3 Testimonials Layout */
-.testimonials-grid-3 {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 32px;
-  max-width: 1100px;
-  margin: 0 auto 40px;
-}
-
-/* Same card style as your existing one */
-.oasis-quote.redesigned-quote {
   background: #fff;
-  padding: 32px;
-  border-radius: 16px;
-  border: 1px solid rgba(237, 62, 41, 0.15);
-  box-shadow: 0 6px 25px rgba(237, 62, 41, 0.08);
+  padding: 1.75rem 1.25rem;
+  border-radius: 1.25rem;
+  box-shadow: var(--card-shadow);
+  border: 1px solid rgba(0,0,0,0.03);
+  transition: transform .24s ease, box-shadow .24s ease, border-color .24s ease;
+  text-align: left;
+}
+.oasis-category.redesigned-category:hover { transform: translateY(-8px); box-shadow: 0 24px 60px rgba(0,0,0,0.12); border-color: rgba(237,62,41,0.06); }
+.category-icon.redesigned-icon { width: 4.6rem; height: 4.6rem; border-radius: 0.75rem; display:flex; align-items:center; justify-content:center; margin-bottom:1rem; color: var(--accent); background: rgba(237,62,41,0.04); }
+.oasis-category h3 { margin:0 0 .5rem; font-size:1.05rem; font-weight:700; color:#111; }
+.oasis-category p { margin:0; color:var(--muted); font-size:.98rem; line-height:1.5; }
+
+/* ---------------- CARDS GRID (Why Join / How to Join) ---------------- */
+.oasis-cards-grid.redesigned-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+  max-width: 1200px;
+  margin: 2rem auto 0;
+  align-items: start;
+}
+
+/* Desktop: two columns, left wider */
+@media (min-width: 768px) {
+  .oasis-cards-grid.redesigned-grid { grid-template-columns: 1.2fr 0.8fr; gap: 2rem; }
+}
+
+.oasis-card.redesigned-card {
+  background: #fff;
+  padding: 2rem;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--card-shadow);
+  border: 1px solid rgba(237,62,41,0.07);
+  transition: transform .24s ease, box-shadow .24s ease, border-color .24s ease;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+}
+.oasis-card.redesigned-card:hover { transform: translateY(-8px); box-shadow: 0 28px 70px rgba(0,0,0,0.12); border-color: rgba(237,62,41,0.14); }
+
+.oasis-card h3 { margin:0 0 1rem; font-size:1.35rem; color:#111; font-weight:700; }
+
+/* Benefits list */
+.benefit {
+  display: flex;
+  flex-direction: column;   /* stack title + text */
+  align-items: center;      /* center everything */
   text-align: center;
-  position: relative;
+  gap: 0.35rem;
+  padding: 1rem 1.2rem;
+  border-radius: 0.75rem;
+  transition: background 0.25s ease;
 }
 
-.oasis-quote .stars {
+.benefit:hover {
+  background: rgba(237, 62, 41, 0.05);
+}
+
+.benefit-icon.redesigned-icon {
+  font-size: 1.4rem;
+  color: #ED3E29;
+  font-weight: 700;
+  margin: 0 auto;   /* centers the arrow */
+}
+
+.benefit-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;  /* center title + text */
+  text-align: center;
+}
+
+.benefit-content strong {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #111;
+  margin-bottom: 0.25rem;
+}
+
+.benefit-content p {
+  margin: 0;
+  color: #666;
+  font-size: 1rem;
+}
+
+
+/* How to join card specifics */
+.oasis-card.oasis-how.redesigned-card { background: linear-gradient(180deg,#fff,#fff); }
+.join-steps.redesigned-steps { list-style:none; padding:1.6rem; margin: 1.5rem 0 0; display:flex; flex-direction:column; gap:0.90rem; }
+.join-steps.redesigned-steps li { display:flex; align-items:center; gap:.8rem; padding:.8rem 1rem; border-radius:.8rem; background: rgba(237,62,41,0.03); font-weight:500; color:#333; }
+.join-steps.redesigned-steps li::before { content:"→"; color:var(--accent); font-weight:700; }
+
+/* Ready to join full width under both cards */
+.full-width-join { margin-top: 1.25rem; width: 100%; }
+.oasis-join .oasis-btn { margin-top: 1rem; }
+
+/* CTA Button */
+.oasis-btn.redesigned-btn {
+  display:inline-block; width:100%; text-align:center; padding: 0.95rem 1rem; background: var(--accent); color:#fff; border-radius: .85rem; font-weight:700; border: none; cursor:pointer; box-shadow: 0 8px 30px rgba(237,62,41,0.12);
+}
+.oasis-btn.redesigned-btn:hover { background: var(--accent-dark); transform: translateY(-3px); }
+
+/* ---------------- TESTIMONIALS ---------------- */
+/* Two columns side by side */
+.testimonials-two-column {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  margin-top: 3rem;
+}
+
+/* Column container */
+.testimonial-column {
+  background: #fff;
+  padding: 2rem;
+  border-radius: 1.5rem;
+  border: 1px solid rgba(237, 62, 41, 0.15);
+  box-shadow: 0 12px 40px rgba(0,0,0,0.08);
+  transition: 0.3s ease;
+}
+
+.testimonial-column:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 20px 45px rgba(237, 62, 41, 0.15);
+}
+
+/* Subheadings */
+.testimonial-subheading {
+  text-align: center;
+  font-size: 1.6rem;
+  color: #ED3E29;
+  margin-bottom: 1.5rem;
+  font-weight: 700;
+}
+
+/* Inside grid */
+.testimonials-grid {
+  display: grid;
+  gap: 1.5rem;
+}
+
+.oasis-quote.redesigned-quote {
+  background: #fff;
+  border-radius: 1rem;
+  padding: 1.5rem;
+  border: 1px solid rgba(237, 62, 41, 0.1);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.05);
+}
+
+.stars {
   color: #ED3E29;
   font-size: 1.2rem;
-  margin-bottom: 12px;
+  margin-bottom: 0.5rem;
 }
 
-.oasis-quote p {
-  color: #333;
-  margin-bottom: 16px;
-  font-size: 1.05rem;
-}
-
-.oasis-quote cite {
-  font-weight: 600;
-  color: #ED3E29;
-}
-
-/* Read more button */
-.testimonials-readmore {
-  text-align: center;
-}
-
-.readmore-btn {
-  background: transparent;
-  border: 2px solid #ED3E29;
-  color: #ED3E29;
-  padding: 10px 26px;
-  border-radius: 6px;
-  font-weight: 600;
-  transition: 0.25s ease;
-}
-
-.readmore-btn:hover {
-  background: #ED3E29;
-  color: #fff;
-  transform: translateY(-3px);
+/* Read more small button */
+.readmore-btn.small {
+  display: block;
+  width: fit-content;
+  margin: 1.5rem auto 0;
+  padding: 0.8rem 1.8rem;
+  font-size: 0.95rem;
 }
 
 /* Responsive */
-@media (max-width: 900px) {
-  .testimonials-grid-3 {
+@media (max-width: 768px) {
+  .testimonials-two-column {
     grid-template-columns: 1fr;
+    gap: 2rem;
   }
 }
 
-.swiper-pagination.redesigned-pagination .swiper-pagination-bullet-active {
-  background: #ED3E29 !important;
+
+/* ---------------- PARTNERS MARQUEE ---------------- */
+.oasis-partners-section.redesigned-partners { padding:3.5rem 0; text-align:center; background:var(--bg); }
+.partners-marquee.redesigned-marquee { overflow:hidden; position:relative; margin:1.75rem auto 0; max-width:1200px; }
+.partners-track { display:flex; gap:2.25rem; align-items:center; padding:1rem 0; animation: marquee 30s linear infinite; }
+@keyframes marquee { 0% { transform: translateX(0);} 100% { transform: translateX(-50%);} }
+
+.partner-logo.redesigned-logo { display:flex; align-items:center; justify-content:center; background:#fff; padding:1rem; border-radius: .85rem; box-shadow: var(--card-shadow); border: 1px solid rgba(0,0,0,0.03); transition: transform .18s ease, border-color .18s ease; }
+.partner-logo.redesigned-logo:hover { transform: translateY(-6px); border-color: rgba(237,62,41,0.06); }
+.partner-logo img { height:3.6rem; width:auto; object-fit:contain; }
+
+/* ---------------- FINAL CTA ---------------- */
+.oasis-cta.redesigned-cta { padding: 3.5rem 0 4.5rem; text-align:center; background:var(--bg); }
+.cta-content h2 { margin:0 0 0.75rem; font-size: clamp(1.8rem, 3.2vw, 2.8rem); color:#111; font-weight:700; }
+.cta-content p { margin:0 auto 1.5rem; color:var(--muted); max-width:900px; line-height:1.6; }
+.oasis-btn.redesigned-cta-btn { display:inline-block; padding:1rem 2rem; border-radius:1rem; font-weight:700; border:2px solid var(--accent); background:var(--accent); color:#fff; }
+.oasis-btn.redesigned-cta-btn:hover { background:transparent; color:var(--accent); transform: translateY(-3px); }
+
+/* ---------------- Utilities & Responsiveness ---------------- */
+@media (min-width: 1200px) {
+  .oasis-container { padding: 0 2rem; }
 }
 
-/* Partners */
-.oasis-partners-section.redesigned-partners {
-  padding: 80px 0;
-  background: white;
+@media (max-width: 1024px) {
+  .hero-image { max-height: 420px; border-radius: 1.25rem; }
+  .oasis-intro { font-size: 1rem; }
 }
 
-.partners-marquee.redesigned-marquee {
-  overflow: hidden;
-}
-
-.partners-track {
-  display: flex;
-  animation: marquee 20s linear infinite;
-  gap: 40px;
-}
-
-@keyframes marquee {
-  0% { transform: translateX(0); }
-  100% { transform: translateX(-50%); }
-}
-
-.partner-logo.redesigned-logo {
-  flex: 0 0 auto;
-  text-decoration: none;
-  border: 1px solid #eee;
-  border-radius: 8px;
-  padding: 10px;
-  transition: border-color 0.3s ease;
-}
-
-.partner-logo.redesigned-logo:hover {
-  border-color: #ED3E29;
-}
-
-.partner-logo img {
-  height: 60px;
-  width: auto;
-  object-fit: contain;
-}
-
-.partner-text {
-  color: #333;
-  font-weight: bold;
-  padding: 10px 20px;
-}
-
-/* CTA */
-.oasis-cta.redesigned-cta {
-  padding: 80px 0;
-  background: white;
-  text-align: center;
-}
-
-.cta-content h2 {
-  color: #ED3E29;
-  font-size: 2.5rem;
-  margin-bottom: 20px;
-}
-
-.cta-content p {
-  color: #666;
-  margin-bottom: 40px;
-  font-size: 1.1rem;
-}
-
-.oasis-btn.redesigned-cta-btn {
-  background: transparent;
-  color: #ED3E29;
-  border: 2px solid #ED3E29;
-  padding: 12px 30px;
-}
-
-.oasis-btn.redesigned-cta-btn:hover {
-  background: #ED3E29;
-  color: white;
-}
-
-/* Responsive Adjustments */
 @media (max-width: 768px) {
-  .oasis-title { font-size: 2rem; }
-  .oasis-subtitle { font-size: 2rem; }
-  .oasis-cards-grid.redesigned-grid,
+  .oasis-hero.redesigned-hero { padding: 2.25rem 0 1rem; }
   .oasis-grid-3.redesigned-grid { grid-template-columns: 1fr; }
-  .partners-track { gap: 20px; animation-duration: 15s; }
+  .oasis-cards-grid.redesigned-grid { grid-template-columns: 1fr; }
+  .full-width-join { margin-top: 1rem; }
+  .partners-track { animation-duration: 50s; }
+}
+
+@media (max-width: 480px) {
+  .hero-image { max-height: 300px; }
+  .oasis-title { font-size: 1.6rem; }
+  .oasis-intro { font-size: 0.95rem; }
+  .benefit-content p { font-size: 0.92rem; }
+}
+
+/* small touch ups */
+.oasis-card.redesigned-card p, .oasis-card.redesigned-card li { color: var(--muted); }
+
+
+/* ====== FIX GAP — COMPACT "WHY JOIN OASIS?" CARD (Option 1) ====== */
+
+/* Reduce padding of the card */
+.oasis-card.oasis-benefits.redesigned-card {
+    padding: 0.0rem 1.5rem !important;
+}
+
+/* Reduce spacing between benefit items */
+.benefits-list.redesigned-list {
+    gap: 0.30rem !important;
+}
+
+/* Make each benefit row shorter */
+.benefit {
+    padding: 0.6rem 0.8rem !important;
+    gap: 0.0rem !important;
+}
+
+/* Reduce arrow icon size */
+.benefit-icon.redesigned-icon {
+    font-size: 1rem !important;
+    margin-bottom: 0.15rem;
+}
+
+/* Make headings smaller */
+.benefit-content strong {
+    font-size: 1.05rem !important;
+    margin-bottom: 0.1rem !important;
+}
+
+/* Reduce description font size */
+.benefit-content p {
+    font-size: 0.92rem !important;
+    line-height: 1.35 !important;
+}
+
+/* Reduce header size of the card */
+.oasis-card.oasis-benefits.redesigned-card h3 {
+    font-size: 1.25rem !important;
+    margin-bottom: 0.75rem !important;
+}
+
+/* Slightly reduce spacing in grid so gap becomes smaller */
+.oasis-cards-grid.redesigned-grid {
+    gap: 1.25rem !important;
 }

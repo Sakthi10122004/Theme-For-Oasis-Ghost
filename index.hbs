@@ -3,12 +3,12 @@
 <div class="hero-orbit">
   <div class="orbit-content">
     <h1 class="hero-title">
-      <span class="line">We turn</span>
-      <span class="line highlight">nonprofit pain points</span>
-      <span class="line">into <span class="glow">open-source magic</span></span>
+      <span class="line">Turning</span>
+      <span class="line highlight">nonprofit tech pain points</span>
+      <span class="line">into <span class="glow">open-source breakthroughs.</span></span>
     </h1>
     <p class="hero-desc">{{@site.description}}</p>
-    <a href="/join" class="hero-cta">Start your journey</a>
+    <a href="/#/portal/account" class="hero-cta">Start your journey</a>
   </div>
   <div class="orbit-visual">
     {{#if @site.cover_image}}
@@ -19,66 +19,83 @@
   </div>
 </div>
 
-<section class="bbb-section">
-  <div class="bbb-item">
-    <h4>Bridge</h4>
-    <p>Bridging the worlds of Tech and social</p>
-  </div>
-
-  <div class="bbb-item">
-    <h4>Build</h4>
-    <p>Building open source tools for good</p>
-  </div>
-
-  <div class="bbb-item">
-    <h4>Belong</h4>
-    <p>Belonging to a community that shares</p>
-  </div>
-</section>
-
 <section class="impact-wave">
   <div class="wave-container">
     <h2>We’re making waves</h2>
     <div class="stats-orbit">
       <div class="stat-orbit">
-        <span class="count" data-target="120">0</span>
-        <span class="plus">+</span>
-        <p>NPOs connected</p>
+        <div class="count-wrap">
+          <span class="count" data-target="120">0</span>
+          <span class="plus">+</span>
+        </div>
+        <p>NPO’s have reached out to us</p>
       </div>
       <div class="stat-orbit">
-        <span class="count" data-target="200">0</span>
-        <span class="plus">+</span>
-        <p>Experts mobilized</p>
+        <div class="count-wrap">
+          <span class="count" data-target="200">0</span>
+          <span class="plus">+</span>
+        </div>
+        <p>Tech vendors have attended our events</p>
       </div>
       <div class="stat-orbit">
-        <span class="count" data-target="12">0</span>
-        <span class="plus">+</span>
-        <p>Matches made</p>
+        <div class="count-wrap">
+          <span class="count" data-target="12">0</span>
+          <span class="plus">+</span>
+        </div>
+        <p>NPO’s have been mapped to tech vendors</p>
       </div>
     </div>
   </div>
 </section>
 
+
+<section class="bbb-section">
+  <div class="bbb-item">
+    <h4>BRIDGE</h4>
+    <p>Bridging the worlds of Tech and social</p>
+    <div class="bbb-img">
+      <img src="https://via.placeholder.com/300x180?text=Bridge" alt="Bridge illustration">
+    </div>
+  </div>
+
+  <div class="bbb-item">
+    <h4>BUILD</h4>
+    <p>Building open source tools for good</p>
+    <div class="bbb-img">
+      <img src="https://via.placeholder.com/300x180?text=Build" alt="Build illustration">
+    </div>
+  </div>
+
+  <div class="bbb-item">
+    <h4>BELONG</h4>
+    <p>Belonging to a community that shares</p>
+    <div class="bbb-img">
+      <img src="https://via.placeholder.com/300x180?text=Belong" alt="Belong illustration">
+    </div>
+  </div>
+</section>
+
+
 <section class="philosophy-constellation">
-  <h2 class="constellation-title">Our North Star</h2>
+  <h2 class="constellation-title">FOSS philosophy</h2>
   <div class="constellation">
     <div class="star-card">
       <div class="star-icon">✦</div>
       <h3>Freedom from Lock-In</h3>
-      <p>Own Your Tech, Not Rent It <br> from pricey, closed systems to open tools your team controls, no subscriptions, no dependence.</p>
-      <span class="meta">50% average cost savings on software+maintenance</span>
+      <p>Own Your Tech, Not Rent It<br>from pricey, closed systems to open tools your team controls, no subscriptions, no dependence.</p>
+      <span class="meta">50 % average cost savings on software + maintenance</span>
     </div>
     <div class="star-card">
-      <div class="star-icon">⃝</div>
+      <div class="star-icon-circle">⃝</div>
       <h3>Flexibility That Scales</h3>
-      <p>Adapt Tools to Your Mission <br> Modify, remix, or expand open-source systems to fit your programs as they grow, from 10 users to 10,000.</p>
-      <span class="meta">Scalable, adaptable, open, tech that grows with your mission.</span>
+      <p>Adapt Tools to Your Mission<br>Modify, remix, or expand open-source systems to fit your programs as they grow, from 10 users to 10 000.</p>
+      <span class="meta">Scalable, adaptable, open tech that grows with your mission.</span>
     </div>
     <div class="star-card">
       <div class="star-icon">❁</div>
       <h3>Community That Sustains</h3>
-      <p>Built by Many, For Everyone <br> Get constant improvements, peer support, and long-term reliability through global open-source communities.</p>
-      <span class="meta">Supported by 200k+ users worldwide</span>
+      <p>Built by Many, For Everyone<br>Get constant improvements, peer support, and long-term reliability through global open-source communities.</p>
+      <span class="meta">Supported by 200 k + users worldwide</span>
     </div>
   </div>
 </section>
@@ -88,39 +105,40 @@
     <div class="pulse-newsletter">
       <h3>We’re building tech that works for good. From grassroots innovation to open-source breakthroughs, our newsletter curates real stories, useful tools, and lessons from the field.</h3>
       <p>Join the movement, stay in the loop.</p>
-      <form data-members-form="subscribe" class="pulse-form" >
+      <form data-members-form="subscribe" class="pulse-form">
         <input data-members-email type="email" placeholder="you@nonprofit.org" required aria-label="Email address">
         <button type="submit">Subscribe</button>
-        {{!-- <p class="loading">⏲️ Please hold while we check our collection.</p>
-        <p class="error">❗Something's gone wrong. Please try again.</p>
-        <p class="success">🎸 Success! Check your inbox for our email.</p> --}}
       </form>
     </div>
+
     {{#get "posts" filter="tag:latest" limit="1" include="tags,feature_image"}}
-  {{#foreach posts}}
-  <div class="pulse-update">
+      {{#foreach posts}}
+      <div class="pulse-update">
+        <a href="/tag/latest/" class="update-badge">LATEST</a>
 
-      <a href="/tag/latest/" class="update-badge">LATEST</a>
+        <div class="update-content">
+          {{#if feature_image}}
+          <div class="update-img">
+            <img src="{{img_url feature_image size="m"}}" alt="{{title}}">
+          </div>
+          {{/if}}
 
-      <h4><a href="{{url}}">{{title}}</a></h4>
-
-      {{#if custom_excerpt}}
-        <p>{{custom_excerpt}}</p>
-      {{else}}
-        <p>{{excerpt words="15"}}</p>
-      {{/if}}
-
-      {{#if feature_image}}
-        <div class="update-img">
-          <img src="{{img_url feature_image size="m"}}" alt="{{title}}">
+          <div class="update-text">
+            <h4><a href="{{url}}">{{title}}</a></h4>
+            {{#if custom_excerpt}}
+              <p>{{custom_excerpt}}</p>
+            {{else}}
+              <p>{{excerpt words="18"}}</p>
+            {{/if}}
+            <a href="{{slug}}" class="read-more">Read more →</a>
+          </div>
         </div>
-      {{/if}}
-      <a href="{{slug}}" class="read-more">Read more →</a>
+      </div>
+      {{/foreach}}
+    {{/get}}
   </div>
-  {{/foreach}}
-{{/get}}
-
 </section>
+
 
 <section class="ecosystem-ring">
   <p class="ring-quote">“It takes a village — and five open hearts — to start a movement.”</p>
@@ -134,90 +152,86 @@
   </div>
 </section>
 
-<section class="stories-galaxy">
-  <h2>Impact Stories</h2>
-
-  <div class="swiper galaxy-swiper">
+<section class="stories-galaxy redesigned-stories">
+  <h2>IMPACT STOTIES</h2>
+  <div class="impact-scroll">
     {{#get "posts" filter="tag:impact-stories" limit="10" include="tags,feature_image"}}
       {{#if posts}}
-        <div class="swiper-wrapper">
-          {{#foreach posts}}
-            <div class="swiper-slide">
-              <a class="story-card" href="{{url}}">
-                {{#if feature_image}}
-                  <img src="{{img_url feature_image size="m"}}" alt="{{title}}">
-                {{/if}}
-                <h3>{{title}}</h3>
-                {{#if custom_excerpt}}
-                  <p>{{custom_excerpt}}</p>
-                {{else}}
-                  <p>{{excerpt words="18"}}</p>
-                {{/if}}
-              </a>
+        {{#foreach posts}}
+          <a href="{{url}}" class="impact-card">
+            {{#if feature_image}}
+              <img src="{{img_url feature_image size="l"}}" alt="{{title}}">
+            {{/if}}
+            <div class="impact-overlay">
+              <span>{{title}} →</span>
             </div>
-          {{/foreach}}
-        </div>
+          </a>
+        {{/foreach}}
       {{else}}
-        <div class="swiper-wrapper">
-          <div class="swiper-slide">
-            <div class="story-card">
-              <img src="https://via.placeholder.com/400x300?text=No+stories+yet" alt="">
-              <h3>Impact stories coming soon</h3>
-              <p>Add posts with the tag <strong>impact-stories</strong> to populate this slider.</p>
-            </div>
-          </div>
+        <div class="impact-placeholder">
+          <p>No impact stories yet. Add posts with the <strong>impact-stories</strong> tag.</p>
         </div>
       {{/if}}
     {{/get}}
-
-    <div class="swiper-pagination"></div>
   </div>
+  <a href="/tag/impact-stories/" class="view-all">View all stories →</a>
 </section>
+
+
 
 
 <section class="toolbox">
   <div class="expert-tool-wrapper">
 
-    <div class="tools-orbit">
-      <h3>Battle-tested tools</h3>
+   <div class="tools-orbit">
+  <h3>Don't know which tool to choose?</h3>
 
-      {{#get "posts" filter="tag:tools" limit="12" include="feature_image"}}
-      <div class="orbit-logos">
-        {{#foreach posts}}
-          <a href="{{url}}" class="tool-logo" title="{{title}}">
-            {{#if feature_image}}
-              <img src="{{img_url feature_image size="xs"}}" alt="{{title}}">
-            {{else}}
-              <span class="tool-text">{{title}}</span>
-            {{/if}}
-          </a>
-        {{/foreach}}
-      </div>
-      {{/get}}
+  {{#get "posts" filter="tag:tools" limit="3" include="feature_image"}}
+  <div class="scroll-inner">
+    <div class="auto-scroll">
+      {{#foreach posts}}
+        <a href="{{url}}" class="tool-logo">
+          {{#if feature_image}}
+            <img src="{{img_url feature_image size="xs"}}">
+          {{else}}
+            <span class="tool-text">{{title}}</span>
+          {{/if}}
+        </a>
+      {{/foreach}}
     </div>
+  </div>
+  {{/get}}
 
-    <div class="experts-orbit">
-      <h3>OASIS verified experts</h3>
+  <a href="/tag/tools/" class="view-all">View all tools →</a>
+</div>
 
-      {{#get "posts" filter="tag:verified-experts" limit="3" include="authors,feature_image"}}
-      <div class="expert-avatars">
-        {{#foreach posts}}
-          <a href="{{url}}" class="avatar" title="{{title}}">
-            {{#if feature_image}}
-              <img src="{{img_url feature_image size="xs"}}" alt="{{title}}">
-            {{else}}
-              {{title.[0]}}
-            {{/if}}
-          </a>
-        {{/foreach}}
-      </div>
-      {{/get}}
 
-      <a href="/tag/verified-experts/" class="view-all">Meet all experts →</a>
+   <div class="experts-orbit">
+  <h3>OASIS verified experts</h3>
+
+  {{#get "posts" filter="tag:verified-experts" limit="3" include="feature_image"}}
+  <div class="scroll-inner">
+    <div class="auto-scroll">
+      {{#foreach posts}}
+        <a href="{{url}}" class="avatar">
+          {{#if feature_image}}
+            <img src="{{img_url feature_image size="xs"}}">
+          {{else}}
+            {{title.[0]}}
+          {{/if}}
+        </a>
+      {{/foreach}}
     </div>
+  </div>
+  {{/get}}
+
+  <a href="/tag/verified-experts/" class="view-all">Meet all experts →</a>
+</div>
+
 
   </div>
 </section>
+
 
 <script>
 document.addEventListener("DOMContentLoaded", function () {
@@ -226,20 +240,28 @@ document.addEventListener("DOMContentLoaded", function () {
   const defaultText = button.textContent;
 
   const observer = new MutationObserver(() => {
+
+    // Remove previous color states
+    button.classList.remove("state-checking", "state-success", "state-error");
+
     if (form.classList.contains("loading")) {
       button.textContent = "Checking...";
+      button.classList.add("state-checking");
       button.disabled = true;
     }
     else if (form.classList.contains("success")) {
       button.textContent = "Done!";
+      button.classList.add("state-success");
       button.disabled = true;
     }
     else if (form.classList.contains("error")) {
       button.textContent = "Try Again";
+      button.classList.add("state-error");
       button.disabled = false;
 
       setTimeout(() => {
         button.textContent = defaultText;
+        button.classList.remove("state-error");
       }, 2000);
     }
     else {
@@ -249,5 +271,44 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 
   observer.observe(form, { attributes: true, attributeFilter: ["class"] });
+});
+
+document.addEventListener("DOMContentLoaded", () => {
+  const scrollContainer = document.querySelector(".impact-scroll");
+  if (scrollContainer) {
+    // duplicate cards for seamless loop
+    scrollContainer.innerHTML += scrollContainer.innerHTML;
+  }
+});
+
+document.addEventListener("DOMContentLoaded", () => {
+  const counters = document.querySelectorAll(".count");
+
+  const animateCount = (counter) => {
+    const target = +counter.getAttribute("data-target");
+    const speed = 25;
+    let count = 0;
+    const update = () => {
+      count += target / 100;
+      if (count < target) {
+        counter.textContent = Math.floor(count);
+        requestAnimationFrame(update);
+      } else {
+        counter.textContent = target;
+      }
+    };
+    update();
+  };
+
+  const observer = new IntersectionObserver((entries, obs) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        animateCount(entry.target.querySelector(".count"));
+        obs.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.5 });
+
+  document.querySelectorAll(".stat-orbit").forEach((el) => observer.observe(el));
 });
 </script>

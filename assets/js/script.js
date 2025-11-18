@@ -44,3 +44,16 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 });
+
+document.addEventListener("DOMContentLoaded", function () {
+  // Dropdown toggle for mobile
+  document.querySelectorAll(".nav-dropdown > .nav-link").forEach(link => {
+    link.addEventListener("click", function (e) {
+      if (window.innerWidth <= 768) {
+        e.preventDefault();
+        const parent = this.closest(".nav-dropdown");
+        parent.classList.toggle("open");
+      }
+    });
+  });
+});
