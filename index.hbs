@@ -54,7 +54,7 @@
     <h4>BRIDGE</h4>
     <p>Bridging the worlds of Tech and social</p>
     <div class="bbb-img">
-      <img src="https://via.placeholder.com/300x180?text=Bridge" alt="Bridge illustration">
+      <img src="{{asset 'images/bridge.jpg'}}" alt="Bridge illustration">
     </div>
   </div>
 
@@ -62,7 +62,7 @@
     <h4>BUILD</h4>
     <p>Building open source tools for good</p>
     <div class="bbb-img">
-      <img src="https://via.placeholder.com/300x180?text=Build" alt="Build illustration">
+      <img src="{{asset 'images/build.jpg'}}" alt="Build illustration">
     </div>
   </div>
 
@@ -70,7 +70,7 @@
     <h4>BELONG</h4>
     <p>Belonging to a community that shares</p>
     <div class="bbb-img">
-      <img src="https://via.placeholder.com/300x180?text=Belong" alt="Belong illustration">
+      <img src="{{asset 'images/belong.jpg'}}" alt="Belong illustration">
     </div>
   </div>
 </section>
@@ -142,18 +142,47 @@
 
 <section class="ecosystem-ring">
   <p class="ring-quote">“It takes a village — and five open hearts — to start a movement.”</p>
+
   <div class="ring-logos">
-    <img src="https://via.placeholder.com/140x36?text=TinkerHub" alt="TinkerHub Foundation">
-    <img src="https://via.placeholder.com/120x36?text=FOSS+UNITED" alt="FOSS United">
-    <img src="https://via.placeholder.com/130x36?text=aikyam+fellows" alt="Aikyam Fellows">
-    <img src="https://via.placeholder.com/110x36?text=reap+benefit" alt="Reap Benefit">
-    <img src="https://via.placeholder.com/150x36?text=Testbook+Foundation" alt="Testbook Foundation">
-    <img src="https://via.placeholder.com/100x36?text=ASPIRe" alt="ASPIRe">
+
+    <a href="https://aikyamfellows.org" target="_blank">
+      <img src="{{asset 'images/alliance/aikyam.png'}}" alt="Aikyam Fellows">
+    </a>
+
+    <a href="https://aspire.ashoka.org" target="_blank">
+      <img src="{{asset 'images/alliance/ashoka.png'}}" alt="Ashoka">
+    </a>
+
+    <a href="https://fossunited.org" target="_blank">
+      <img src="{{asset 'images/alliance/fossunited.png'}}" alt="FOSS United">
+    </a>
+
+    <a href="https://github.com" target="_blank">
+      <img src="{{asset 'images/alliance/github.png'}}" alt="GitHub">
+    </a>
+
+    <a href="https://reapbenefit.org" target="_blank">
+      <img src="{{asset 'images/alliance/reap_benefit.png'}}" alt="Reap Benefit">
+    </a>
+
+    <a href="https://samagatha.org" target="_blank">
+      <img src="{{asset 'images/alliance/samagata.png'}}" alt="Samagata">
+    </a>
+
+    <a href="https://www.tech4goodcommunity.com" target="_blank">
+      <img src="{{asset 'images/alliance/t4gc.png'}}" alt="T4GC">
+    </a>
+
+    <a href="https://tinkerhub.org" target="_blank">
+      <img src="{{asset 'images/alliance/tinkerhub.png'}}" alt="TinkerHub">
+    </a>
+
   </div>
 </section>
 
+
 <section class="stories-galaxy redesigned-stories">
-  <h2>IMPACT STOTIES</h2>
+  <h2>Impact Stories</h2>
   <div class="impact-scroll">
     {{#get "posts" filter="tag:impact-stories" limit="10" include="tags,feature_image"}}
       {{#if posts}}

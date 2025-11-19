@@ -76,6 +76,50 @@
   overflow: hidden;
 }
 
+/* Mobile responsive for BBB section */
+@media (max-width: 992px) {
+  .bbb-section {
+    height: auto;
+    padding: 60px 20px;
+  }
+  .bbb-item {
+    padding: 30px 15px;
+  }
+  .bbb-item h4 {
+    font-size: 1.8rem;
+  }
+  .bbb-item p {
+    font-size: 1rem;
+  }
+  .bbb-img {
+    width: 100%;
+    max-width: 250px;
+    height: 160px;
+  }
+}
+
+@media (max-width: 768px) {
+  .bbb-section {
+    grid-template-columns: 1fr;
+    gap: 20px;
+    padding: 50px 15px;
+  }
+  .bbb-item {
+    padding: 25px 15px;
+  }
+  .bbb-item h4 {
+    font-size: 1.6rem;
+  }
+  .bbb-item p {
+    font-size: 0.95rem;
+  }
+  .bbb-img {
+    width: 100%;
+    max-width: 200px;
+    height: 140px;
+  }
+}
+
 .bbb-section::before {
   content: '';
   position: absolute;
@@ -169,6 +213,59 @@
   justify-content: center;
   gap: 7rem;
   flex-wrap: wrap;
+}
+
+/* Mobile responsive for impact-wave */
+@media (max-width: 768px) {
+  .impact-wave {
+    padding: 4rem 5%;
+  }
+  .wave-container h2 {
+    font-size: 2rem;
+    margin-bottom: 2rem;
+  }
+  .stats-orbit {
+    gap: 2rem;
+  }
+  .stat-orbit {
+    padding: 1.5rem 1rem;
+    min-width: 140px;
+  }
+  .count {
+    font-size: 2.5rem;
+  }
+  .plus {
+    font-size: 1.5rem;
+  }
+  .stat-orbit p {
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .impact-wave {
+    padding: 3rem 5%;
+  }
+  .wave-container h2 {
+    font-size: 1.8rem;
+    margin-bottom: 1.5rem;
+  }
+  .stats-orbit {
+    gap: 1.5rem;
+  }
+  .stat-orbit {
+    padding: 1rem 0.75rem;
+    min-width: 120px;
+  }
+  .count {
+    font-size: 2rem;
+  }
+  .plus {
+    font-size: 1.2rem;
+  }
+  .stat-orbit p {
+    font-size: 0.85rem;
+  }
 }
 .stat-orbit {
   background: white;
@@ -311,7 +408,7 @@
 /* Meta (highlight line) */
 .meta {
   display: inline-block;
-  font-size: 0.95rem;
+  font-size: 0.75rem;
   font-weight: 600;
   color: #ED3E29;
   background: rgba(237, 62, 41, 0.08);
@@ -332,6 +429,13 @@
   .constellation {
     gap: 2rem;
   }
+  .philosophy-constellation {
+    padding: 5rem 5%;
+  }
+  .constellation-title {
+    font-size: 2.2rem;
+    margin-bottom: 2.5rem;
+  }
 }
 
 @media (max-width: 768px) {
@@ -347,11 +451,24 @@
   .star-icon-circle {
     font-size: 2rem;
   }
+  .star-card h3 {
+    font-size: 1.3rem;
+  }
+  .star-card p {
+    font-size: 1rem;
+  }
+  .meta {
+    font-size: 0.5rem;
+  }
 }
 
 @media (max-width: 480px) {
   .philosophy-constellation {
     padding: 4rem 1.2rem;
+  }
+  .constellation-title {
+    font-size: 1.8rem;
+    margin-bottom: 2rem;
   }
   .star-card {
     padding: 1.8rem 1.2rem;
@@ -363,7 +480,7 @@
     font-size: 0.95rem;
   }
   .meta {
-    font-size: 0.85rem;
+    font-size: 0.40rem;
   }
 }
 
@@ -501,51 +618,228 @@
 
 /* Responsive Adjustments */
 @media (max-width: 768px) {
+  .pulse-section {
+    padding: 4rem 5%;
+  }
   .pulse-grid {
     grid-template-columns: 1fr;
+    gap: 2rem;
   }
-
+  .pulse-newsletter {
+    padding: 1.5rem;
+  }
+  .pulse-newsletter h3 {
+    font-size: 1.2rem;
+  }
+  .pulse-newsletter p {
+    font-size: 0.95rem;
+  }
+  .pulse-form {
+    flex-direction: column;
+    gap: 1rem;
+  }
+  .pulse-form input {
+    padding: 0.75rem;
+    font-size: 0.95rem;
+  }
+  .pulse-form button {
+    padding: 0.75rem 1rem;
+    font-size: 0.95rem;
+  }
+  .pulse-update {
+    padding: 1.5rem;
+  }
   .update-content {
     flex-direction: column;
+    gap: 15px;
   }
-
   .update-img {
     width: 100%;
-    height: 220px;
+    height: 200px;
+  }
+  .update-text h4 a {
+    font-size: 1.1rem;
+  }
+  .update-text p {
+    font-size: 0.95rem;
+  }
+  .read-more {
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .pulse-section {
+    padding: 3rem 5%;
+  }
+  .pulse-newsletter {
+    padding: 1.2rem;
+  }
+  .pulse-newsletter h3 {
+    font-size: 1.1rem;
+  }
+  .pulse-newsletter p {
+    font-size: 0.9rem;
+  }
+  .pulse-form input {
+    padding: 0.7rem;
+    font-size: 0.9rem;
+  }
+  .pulse-form button {
+    padding: 0.7rem 0.9rem;
+    font-size: 0.9rem;
+  }
+  .pulse-update {
+    padding: 1.2rem;
+  }
+  .update-img {
+    height: 180px;
+  }
+  .update-text h4 a {
+    font-size: 1rem;
+  }
+  .update-text p {
+    font-size: 0.9rem;
+  }
+  .read-more {
+    font-size: 0.85rem;
   }
 }
 
 /* ===============================
    ECOSYSTEM RING
    =============================== */
+/* Infinite loop container */
+/* ===============================
+   ECOSYSTEM RING (FINAL VERSION)
+   =============================== */
+
 .ecosystem-ring {
-  padding: 6rem 5%;
   text-align: center;
+  padding: 3rem 0 4rem;
   background: #fff;
 }
+
 .ring-quote {
+  font-size: 1.25rem;
+  color: #444;
   font-style: italic;
-  font-size: 1.2rem;
-  color: #555;
-  margin-bottom: 2rem;
-  max-width: 600px;
-  margin-left:auto; margin-right:auto;
+  margin-bottom: 2.5rem;
 }
+
+/* Outer container */
 .ring-logos {
-  display:flex; justify-content:center; flex-wrap:wrap;
-  gap:1.5rem; align-items:center;
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  display: flex;
+
+  /* Infinite loop speed */
+  --scroll-speed: 28s;
+
+  /* Start infinite loop */
+  animation: ringLoop var(--scroll-speed) linear infinite;
 }
-.ring-logos img {
-  height:32px;
-  filter:grayscale(100%);
-  opacity:0.8;
-  transition:0.3s;
+
+/* Fade edges */
+.ring-logos::before,
+.ring-logos::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  width: 12%;
+  height: 100%;
+  z-index: 10;
+  pointer-events: none;
 }
-.ring-logos img:hover {
-  filter:grayscale(0);
-  opacity:1;
-  transform:scale(1.05);
+
+.ring-logos::before {
+  left: 0;
+  background: linear-gradient(to right, #fff 0%, transparent 100%);
 }
+
+.ring-logos::after {
+  right: 0;
+  background: linear-gradient(to left, #fff 0%, transparent 100%);
+}
+
+/* Seamless infinite loop */
+@keyframes ringLoop {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+/* STOP animation on hover */
+.ring-logos:hover {
+  animation-play-state: paused;
+}
+
+/* Each logo container */
+.ring-logos a {
+  flex-shrink: 0;
+  width: 150px;
+  height: 60px;
+  background: #ffffff;
+  border-radius: 14px;
+  margin: 0 1.75rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  padding: 10px;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.07);
+  border: 1px solid rgba(0,0,0,0.08);
+  position: relative;
+  transition: 0.3s ease;
+}
+
+/* Logo sizing */
+.ring-logos a img {
+  max-width: 85%;
+  max-height: 85%;
+  object-fit: contain;
+  filter: grayscale(0.4);
+  transition: 0.3s ease;
+}
+
+/* Hover effects */
+.ring-logos a:hover img {
+  filter: grayscale(0);
+}
+
+.ring-logos a:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 25px #ED3E29;
+}
+
+/* Show name under logo on hover */
+.ring-logos a::after {
+  content: attr(data-name);
+  position: absolute;
+  bottom: -28px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #ED3E29;
+  opacity: 0;
+  transition: 0.25s ease;
+  white-space: nowrap;
+}
+
+.ring-logos a:hover::after {
+  opacity: 1;
+}
+
+/* Mobile tweaks */
+@media (max-width: 600px) {
+  .ring-logos a {
+    width: 120px;
+    height: 55px;
+    margin: 0 1.2rem;
+  }
+}
+
 
 /* ===============================
    IMPACT STORIES AUTO-SCROLL
@@ -983,39 +1277,4 @@
   60%  { transform: translateX(-140px); }   /* pause */
   80%  { transform: translateX(-280px); }   /* move */
   100% { transform: translateX(-280px); }   /* pause */
-}
-
-/* Logo card */
-.tool-logo {
-  min-width: 110px;
-  height: 70px;
-  padding: 10px;
-  border-radius: 16px;
-  background: #ffffff;
-  border: 1px solid #eee;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  box-shadow: 0 3px 10px rgba(0,0,0,0.06);
-}
-
-.tool-logo img {
-  max-height: 45px;
-  object-fit: contain;
-}
-
-/* Expert avatars */
-.avatar {
-  min-width: 65px;
-  height: 65px;
-  border-radius: 50%;
-  overflow: hidden;
-  background: #fff;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-}
-
-.avatar img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
 }
