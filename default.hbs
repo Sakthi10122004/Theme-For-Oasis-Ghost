@@ -4,6 +4,9 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="theme-color" content="#ED3E29">
+  {{!-- Use custom setting so Ghost stops warning --}}
+<meta name="x-color-scheme" content="{{@custom.color_scheme}}">
+
   <title>{{meta_title}}</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <link rel="stylesheet" href="{{asset "css/styles.css"}}" />
@@ -15,6 +18,7 @@
   <link rel="stylesheet" href="{{asset "css/post.css"}}" />
   <link rel="stylesheet" href="{{asset "css/error.css"}}" />
   <link rel="stylesheet" href="{{asset "css/community.css"}}" />
+  <link rel="stylesheet" href="{{asset "css/ghost-dropdown.css"}}" />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
   {{ghost_head}} 
@@ -38,17 +42,16 @@
       <ul>
         {{navigation}}
         
+<button class="gh-search-icon" aria-label="search" data-ghost-search style="display: inline-flex; justify-content: center; align-items: center; width: 32px; height: 32px; padding: 0; border: 0; color: inherit; background-color: transparent; cursor: pointer; outline: none;">
+    <svg width="20" height="20" fill="none" viewBox="0 0 24 24"><path d="M14.949 14.949a1 1 0 0 1 1.414 0l6.344 6.344a1 1 0 0 1-1.414 1.414l-6.344-6.344a1 1 0 0 1 0-1.414Z" fill="currentColor"/><path d="M10 3a7 7 0 1 0 0 14 7 7 0 0 0 0-14Zm-9 7a9 9 0 1 1 18 0 9 9 0 0 1-18 0Z" fill="currentColor"/></svg>
+</button>
+
         {{#if @member}}
           <!-- Profile Icon -->
           <li class="nav-item">
-            <a href="#/portal/account" class="profile-icon">
-              {{#if @member.avatar_image}}
-                <img src="{{@member.avatar_image}}" alt="Profile">
-              {{else}}
-                <div class="profile-initial">{{@member.email.[0]}}</div>
-              {{/if}}
-            </a>
+             <a class="profile-icon" href="#/portal/account" data-portal="account">Account</a>
           </li>
+
 
         {{else}}
           <!-- Join Us (Logged Out) -->
@@ -121,6 +124,11 @@
 
 <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 <script src="{{asset "js/script.js"}}"></script>
+
+<!-- jQuery (required by ghost-dynamic-dropdown) -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<script src="{{asset "js/ghost-dropdown.js"}}"></script>
 {{ghost_foot}}
 </body>
 </html>

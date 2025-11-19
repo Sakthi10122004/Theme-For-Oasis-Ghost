@@ -5,6 +5,12 @@
     padding: 0;
 }
 
+:root {
+    /* Ghost required font variables */
+    --gh-font-heading: Lora, serif;
+    --gh-font-body: Nunito Sans, sans-serif;
+}
+
 html {
     scroll-behavior: smooth;
 }
@@ -151,8 +157,6 @@ button {
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 2.625rem;
-    height: 2.625rem;
     border-radius: 50%;
     overflow: hidden;
     background: #ED3E29;
@@ -160,18 +164,11 @@ button {
     font-weight: 700;
     font-size: 1rem;
     transition: all 0.3s ease;
-    flex-shrink: 0;
 }
 
 .profile-icon:hover {
     transform: translateY(-2px);
     box-shadow: 0 4px 16px rgba(237, 62, 41, 0.4);
-}
-
-.profile-icon img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
 }
 
 /* Hamburger Menu */
@@ -637,4 +634,20 @@ button {
     .mobile-cta {
         display: block;
     }
+}
+
+/* Ensure main menu items stay visible */
+.nebula-nav-horizontal ul > li {
+    opacity: 1 !important;
+}
+
+/* required by Ghost 2.0 to validate the theme */
+.kg-width-wide {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.kg-width-full {
+    width: 100%;
+    margin: 0;
 }

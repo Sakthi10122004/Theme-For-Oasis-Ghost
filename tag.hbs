@@ -4,10 +4,18 @@
 
   {{#tag}}
     <header class="tag-header">
-      <h1>{{name}}</h1>
+
+      {{!-- Custom title for tools --}}
+      {{#match slug "=" "tools"}}
+        <h1>Our Suite of Tools</h1>
+      {{else}}
+        <h1>{{name}}</h1>
+      {{/match}}
+
       {{#if description}}
         <p>{{description}}</p>
       {{/if}}
+
     </header>
   {{/tag}}
 
@@ -23,8 +31,6 @@
         </a>
       </article>
     {{/foreach}}
-
-    {{!-- {{pagination}} --}}
   </section>
 
 </main>

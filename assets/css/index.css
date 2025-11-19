@@ -713,132 +713,224 @@
 /* ===============================
    ECOSYSTEM RING (FINAL VERSION)
    =============================== */
-
 .ecosystem-ring {
-  text-align: center;
-  padding: 3rem 0 4rem;
-  background: #fff;
-}
+            text-align: center;
+            padding: 5rem 2rem;
+            background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
+            position: relative;
+            overflow: hidden;
+        }
 
-.ring-quote {
-  font-size: 1.25rem;
-  color: #444;
-  font-style: italic;
-  margin-bottom: 2.5rem;
-}
+        .ecosystem-ring::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent 0%, rgba(237, 62, 41, 0.3) 50%, transparent 100%);
+        }
 
-/* Outer container */
-.ring-logos {
-  position: relative;
-  width: 100%;
-  overflow: hidden;
-  display: flex;
+        .ring-quote {
+            font-size: 1.5rem;
+            color: #2d3748;
+            font-style: italic;
+            margin-bottom: 3rem;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 1.6;
+            position: relative;
+            padding: 0 2rem;
+        }
 
-  /* Infinite loop speed */
-  --scroll-speed: 28s;
+        .ring-quote::before,
+        .ring-quote::after {
+            content: '"';
+            font-size: 3rem;
+            color: rgba(237, 62, 41, 0.2);
+            position: absolute;
+            top: -1rem;
+        }
 
-  /* Start infinite loop */
-  animation: ringLoop var(--scroll-speed) linear infinite;
-}
+        .ring-quote::before {
+            left: 0;
+        }
 
-/* Fade edges */
-.ring-logos::before,
-.ring-logos::after {
-  content: "";
-  position: absolute;
-  top: 0;
-  width: 12%;
-  height: 100%;
-  z-index: 10;
-  pointer-events: none;
-}
+        .ring-quote::after {
+            right: 0;
+        }
 
-.ring-logos::before {
-  left: 0;
-  background: linear-gradient(to right, #fff 0%, transparent 100%);
-}
+        .ring-logos {
+            position: relative;
+            width: 100%;
+            overflow: hidden;
+            padding: 1.5rem 0;
+        }
 
-.ring-logos::after {
-  right: 0;
-  background: linear-gradient(to left, #fff 0%, transparent 100%);
-}
+        .ring-logos::before,
+        .ring-logos::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            width: 150px;
+            height: 100%;
+            z-index: 2;
+        }
 
-/* Seamless infinite loop */
-@keyframes ringLoop {
-  from { transform: translateX(0); }
-  to   { transform: translateX(-50%); }
-}
+        .ring-logos::before {
+            left: 0;
+            background: linear-gradient(90deg, rgba(248, 250, 252, 0.9) 0%, transparent 100%);
+        }
 
-/* STOP animation on hover */
-.ring-logos:hover {
-  animation-play-state: paused;
-}
+        .ring-logos::after {
+            right: 0;
+            background: linear-gradient(270deg, rgba(248, 250, 252, 0.9) 0%, transparent 100%);
+        }
 
-/* Each logo container */
-.ring-logos a {
-  flex-shrink: 0;
-  width: 150px;
-  height: 60px;
-  background: #ffffff;
-  border-radius: 14px;
-  margin: 0 1.75rem;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+        .ring-track {
+            display: flex;
+            width: max-content;
+            animation: scrollLoop 40s linear infinite;
+        }
 
-  padding: 10px;
-  box-shadow: 0 6px 20px rgba(0,0,0,0.07);
-  border: 1px solid rgba(0,0,0,0.08);
-  position: relative;
-  transition: 0.3s ease;
-}
+        @keyframes scrollLoop {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
 
-/* Logo sizing */
-.ring-logos a img {
-  max-width: 85%;
-  max-height: 85%;
-  object-fit: contain;
-  filter: grayscale(0.4);
-  transition: 0.3s ease;
-}
+        .ring-logos a {
+            flex-shrink: 0;
+            width: 180px;
+            height: 80px;
+            margin: 0 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: white;
+            border-radius: 16px;
+            padding: 15px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+            border: 1px solid rgba(0, 0, 0, 0.05);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            overflow: hidden;
+        }
 
-/* Hover effects */
-.ring-logos a:hover img {
-  filter: grayscale(0);
-}
+        .ring-logos a::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(237, 62, 41, 0.05) 0%, transparent 100%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
 
-.ring-logos a:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 10px 25px #ED3E29;
-}
+        .ring-logos a img {
+            max-width: 85%;
+            max-height: 85%;
+            filter: grayscale(0.5);
+            transition: all 0.4s ease;
+            z-index: 1;
+            position: relative;
+        }
 
-/* Show name under logo on hover */
-.ring-logos a::after {
-  content: attr(data-name);
-  position: absolute;
-  bottom: -28px;
-  left: 50%;
-  transform: translateX(-50%);
-  font-size: 0.85rem;
-  font-weight: 600;
-  color: #ED3E29;
-  opacity: 0;
-  transition: 0.25s ease;
-  white-space: nowrap;
-}
+        .ring-logos a:hover {
+            transform: translateY(-8px) scale(1.05);
+            box-shadow: 0 15px 30px rgba(237, 62, 41, 0.25);
+            border-color: rgba(237, 62, 41, 0.2);
+        }
 
-.ring-logos a:hover::after {
-  opacity: 1;
-}
+        .ring-logos a:hover::before {
+            opacity: 1;
+        }
 
-/* Mobile tweaks */
-@media (max-width: 600px) {
-  .ring-logos a {
-    width: 120px;
-    height: 55px;
-    margin: 0 1.2rem;
-  }
-}
+        .ring-logos a:hover img {
+            filter: grayscale(0);
+            transform: scale(1.1);
+        }
+
+        /* Pause on hover */
+        .ring-logos:hover .ring-track {
+            animation-play-state: paused;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .ecosystem-ring {
+                padding: 3rem 1rem;
+            }
+            
+            .ring-quote {
+                font-size: 1.25rem;
+                padding: 0 1rem;
+            }
+            
+            .ring-logos a {
+                width: 140px;
+                height: 70px;
+                margin: 0 1rem;
+            }
+            
+            .ring-logos::before,
+            .ring-logos::after {
+                width: 60px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .ring-quote {
+                font-size: 1.1rem;
+            }
+            
+            .ring-logos a {
+                width: 120px;
+                height: 60px;
+                margin: 0 0.75rem;
+            }
+        }
+
+        /* Decorative elements */
+        .floating-shapes {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .shape {
+            position: absolute;
+            border-radius: 50%;
+            opacity: 0.1;
+            background: rgba(237, 62, 41, 0.3);
+        }
+
+        .shape-1 {
+            width: 80px;
+            height: 80px;
+            top: 10%;
+            left: 5%;
+            animation: float 15s infinite ease-in-out;
+        }
+
+        .shape-2 {
+            width: 120px;
+            height: 120px;
+            bottom: 15%;
+            right: 8%;
+            animation: float 20s infinite ease-in-out reverse;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(180deg); }
+        }
 
 
 /* ===============================

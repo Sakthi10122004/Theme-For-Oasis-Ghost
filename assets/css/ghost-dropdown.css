@@ -1,0 +1,119 @@
+/* ================================
+   OASIS DROPDOWN — MODERN STYLING
+   ================================ */
+
+/* Parent item with arrow */
+.menu-item-has-children {
+    position: relative;
+    padding-right: 12px !important;
+}
+
+/* Arrow icon */
+.menu-item-has-children svg {
+    width: 14px;
+    height: 14px;
+    position: absolute;
+    right: -4px;
+    top: 50%;
+    transform: translateY(-50%);
+    opacity: 0.7;
+    transition: 0.25s ease;
+}
+
+.menu-item-has-children:hover svg {
+    opacity: 1;
+    transform: translateY(-50%) rotate(180deg);
+}
+
+/* Dropdown container */
+ul.ghost-submenu {
+    background: #ffffff;
+    padding: 14px 0;
+    border-radius: 16px;
+    width: 220px;
+
+    position: absolute;
+    top: 60px;
+    left: 0;
+
+    visibility: hidden;
+    opacity: 0;
+    transform: translateY(5px);
+
+    transition: all 0.25s ease;
+    box-shadow: 0 12px 35px rgba(0, 0, 0, 0.08);
+    border: 1px solid rgba(0,0,0,0.06);
+    z-index: 999;
+}
+
+/* Hover shows dropdown */
+.menu-item-has-children:hover ul.ghost-submenu {
+    visibility: visible;
+    opacity: 1;
+    transform: translateY(0px);
+}
+
+/* Items inside dropdown */
+ul.ghost-submenu li {
+    list-style: none;
+    padding: 6px 18px;
+}
+
+ul.ghost-submenu li a {
+    display: block;
+    font-weight: 600;
+    color: #111;
+    padding: 8px 10px;
+    border-radius: 10px;
+    transition: 0.2s ease;
+}
+
+/* Hover effect */
+ul.ghost-submenu li a:hover {
+    background: rgba(237, 62, 41, 0.08);
+    color: #ED3E29;
+}
+
+/* ================================
+   MOBILE DROPDOWN
+   ================================ */
+
+@media (max-width: 768px) {
+
+    .menu-item-has-children {
+        width: 100%;
+        padding-right: 0 !important;
+    }
+
+    .menu-item-has-children svg {
+        right: 10px;
+        top: 22px;
+        transform: rotate(0deg);
+    }
+
+    /* Mobile submenu styling */
+    ul.ghost-submenu {
+        position: relative;
+        box-shadow: none;
+        border-radius: 10px;
+
+        width: 100%;
+        padding: 5px 0 10px 20px;
+
+        opacity: 1 !important;
+        visibility: visible !important;
+
+        transform: translateY(0) !important;
+        display: none;
+    }
+
+    /* When JavaScript toggles .open */
+    .menu-item-has-children.open > ul.ghost-submenu {
+        display: block;
+    }
+
+    /* Mobile items */
+    ul.ghost-submenu li a {
+        padding: 6px 0;
+    }
+}
