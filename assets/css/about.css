@@ -68,67 +68,48 @@
 }
 
 /* Ultra Enhanced Hero Image */
+/* REMOVE social column from layout */
+.redesigneds-hero .redesigneds-social {
+  display: none !important;
+}
+
+/* EXPAND hero layout to use full width */
+.heros-wrapper {
+  grid-template-columns: 1fr; /* Single column now */
+  max-width: 1600px;
+  margin: 0 auto;
+}
+
+/* Hero left (image+subtitle) should take full width */
+.heros-left {
+  width: 100%;
+}
+
+/* FULL-WIDTH PREMIUM HERO IMAGE */
 .heros-image {
-  position: relative;
+  width: 100%;
   display: flex;
   justify-content: center;
-  align-items: center;
-  perspective: 1200px;
 }
 
 .full-width-imgs {
-  width: 100%;
-  max-width: 1100px; /* Much bigger image */
-  height: 750px; /* Increased height */
+  width: 100%;          /* full width */
+  max-width: 1600px;    /* bigger image */
+  height: 620px;        /* reduced height from 750px */
   border-radius: 40px;
   object-fit: cover;
+
+  /* keep all your effects */
   box-shadow:
     0 50px 100px rgba(0, 0, 0, 0.18),
     0 25px 50px rgba(237, 62, 41, 0.15),
     inset 0 2px 0 rgba(255, 255, 255, 0.9);
+
   border: 5px solid rgba(237, 62, 41, 0.2);
   background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
   transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
-  transform-style: preserve-3d;
   animation: imageFloat 8s ease-in-out infinite;
-  position: relative;
-  overflow: hidden;
   filter: brightness(1.05) contrast(1.1);
-}
-
-.full-width-imgs::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: -150%;
-  width: 150%;
-  height: 100%;
-  background: linear-gradient(
-    90deg,
-    transparent,
-    rgba(255, 255, 255, 0.8),
-    transparent
-  );
-  transition: left 1.2s ease;
-  z-index: 2;
-}
-
-.full-width-imgs:hover::before {
-  left: 150%;
-}
-
-.full-width-imgs:hover {
-  transform: 
-    translateY(-15px) 
-    scale(1.04) 
-    rotateX(3deg) 
-    rotateY(3deg);
-  box-shadow:
-    0 80px 160px rgba(0, 0, 0, 0.25),
-    0 40px 80px rgba(237, 62, 41, 0.2),
-    0 0 0 2px rgba(237, 62, 41, 0.15);
-  border-color: rgba(237, 62, 41, 0.3);
-  filter: brightness(1.1) contrast(1.15);
 }
 
 @keyframes imageFloat {
@@ -161,166 +142,10 @@
   }
 }
 
-/* Ultra Enhanced Social Section */
-.redesigneds-social {
-  display: flex;
-  flex-direction: column;
-  gap: 14px;
-  padding: 25px;
-  background: linear-gradient(135deg, #ffffff 0%, #fafafa 100%);
-  border-radius: 28px;
-  box-shadow:
-    0 20px 40px rgba(0, 0, 0, 0.1),
-    0 8px 20px rgba(237, 62, 41, 0.08),
-    inset 0 2px 0 rgba(255, 255, 255, 0.95);
-  border: 3px solid rgba(237, 62, 41, 0.12);
-  transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-  position: relative;
-  backdrop-filter: blur(25px);
-  transform: translateY(25px);
-  opacity: 0;
-  animation: socialSlideIn 1s ease-out 0.4s forwards;
+/* Make subtitle shift slightly upward since space increased */
+.heros-subtitle {
+  margin-top: 20px;
 }
-
-@keyframes socialSlideIn {
-  to {
-    transform: translateY(0);
-    opacity: 1;
-  }
-}
-
-.redesigneds-social::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 5px;
-  background: linear-gradient(90deg, #ED3E29, #ff6b5b, #ff8a7a, #ED3E29);
-  border-radius: 28px 28px 0 0;
-  animation: gradientFlow 4s ease-in-out infinite;
-  background-size: 200% 100%;
-}
-
-@keyframes gradientFlow {
-  0%, 100% {
-    background-position: -200% 0;
-  }
-  50% {
-    background-position: 200% 0;
-  }
-}
-
-.redesigneds-social:hover {
-  transform: translateY(-8px) scale(1.03);
-  box-shadow:
-    0 30px 60px rgba(0, 0, 0, 0.15),
-    0 15px 30px rgba(237, 62, 41, 0.12),
-    inset 0 2px 0 rgba(255, 255, 255, 0.95);
-  border-color: rgba(237, 62, 41, 0.2);
-}
-
-/* Enhanced Social Items */
-.socials-item {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  color: #4a4a4a;
-  font-size: 0.92rem;
-  font-weight: 600;
-  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-  padding: 12px 16px;
-  border-radius: 14px;
-  background: rgba(237, 62, 41, 0.03);
-  border: 2px solid transparent;
-  opacity: 0;
-  transform: translateX(-25px);
-  animation: socialItemSlide 0.7s ease-out forwards;
-}
-
-.socials-item:nth-child(1) { animation-delay: 0.6s; }
-.socials-item:nth-child(2) { animation-delay: 0.7s; }
-.socials-item:nth-child(3) { animation-delay: 0.8s; }
-.socials-item:nth-child(4) { animation-delay: 0.9s; }
-.socials-item:nth-child(5) { animation-delay: 1.0s; }
-
-@keyframes socialItemSlide {
-  to {
-    opacity: 1;
-    transform: translateX(0);
-  }
-}
-
-.socials-item:hover {
-  background: rgba(237, 62, 41, 0.1);
-  transform: translateX(8px) scale(1.03);
-  color: #ED3E29;
-  border-color: rgba(237, 62, 41, 0.15);
-  box-shadow: 0 6px 16px rgba(237, 62, 41, 0.15);
-}
-
-.socials-item span {
-  color: #ED3E29;
-  font-weight: 700;
-  transition: all 0.4s ease;
-}
-
-.socials-item:hover span {
-  color: #d32f2f;
-  transform: scale(1.08);
-}
-
-/* Premium Social Icons */
-.socials-icon {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 44px;
-  height: 44px;
-  border-radius: 50%;
-  background: linear-gradient(135deg, #ED3E29 0%, #d32f2f 100%);
-  color: white;
-  box-shadow: 
-    0 8px 20px rgba(237, 62, 41, 0.35),
-    inset 0 2px 0 rgba(255, 255, 255, 0.4);
-  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-  position: relative;
-  overflow: hidden;
-}
-
-.socials-icon::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.6), transparent);
-  transition: left 0.8s ease;
-}
-
-.socials-icon:hover::before {
-  left: 100%;
-}
-
-.socials-icon:hover {
-  transform: scale(1.18) rotate(12deg);
-  box-shadow: 
-    0 12px 28px rgba(237, 62, 41, 0.5),
-    inset 0 2px 0 rgba(255, 255, 255, 0.5);
-  background: linear-gradient(135deg, #d32f2f 0%, #ED3E29 100%);
-}
-
-.socials-icon svg {
-  width: 19px;
-  height: 19px;
-  transition: all 0.4s ease;
-}
-
-.socials-icon:hover svg {
-  transform: scale(1.25);
-}
-
 /* Premium Hero Content */
 .heros-content {
   text-align: center;
@@ -340,7 +165,7 @@
 }
 
 .heros-title {
-  font-size: 4.5rem; /* Larger title */
+  font-size: 2.5rem; /* Larger title */
   font-weight: 900;
   color: #ED3E29;
   line-height: 1.05;
