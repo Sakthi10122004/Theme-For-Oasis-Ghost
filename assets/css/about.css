@@ -28,8 +28,12 @@
   position: relative;
   background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 50%, #ffffff 100%);
   overflow: hidden;
-  padding: 80px 0 60px; /* Reduced padding */
+  /* Reduced padding to bring content up */
+  padding: 40px 0 30px; 
   border-bottom: 1px solid rgba(237, 62, 41, 0.08);
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .heros-overlay {
@@ -44,14 +48,8 @@
 }
 
 @keyframes gradientShift {
-  0%, 100% {
-    opacity: 0.8;
-    transform: scale(1);
-  }
-  50% {
-    opacity: 1;
-    transform: scale(1.02);
-  }
+  0%, 100% { opacity: 0.8; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.02); }
 }
 
 .heros-wrapper {
@@ -59,179 +57,187 @@
   z-index: 2;
   width: 100%;
   margin: 0 auto;
-  padding: 0 20px;
-  display: grid;
-  grid-template-columns: 1.4fr 0.6fr; /* More space for image */
+  padding: 0;
+  display: flex;
+  flex-direction: column; /* Stack elements vertically */
   align-items: center;
-  gap: 50px;
-  max-width: 1600px; /* Increased max-width */
+  gap: 25px; /* Reduced gap between elements */
+  max-width: 1400px;
 }
 
-/* Ultra Enhanced Hero Image */
-/* REMOVE social column from layout */
+/* Hide the Social Column as requested */
 .redesigneds-hero .redesigneds-social {
   display: none !important;
 }
 
-/* EXPAND hero layout to use full width */
-.heros-wrapper {
-  grid-template-columns: 1fr; /* Single column now */
-  max-width: 1600px;
-  margin: 0 auto;
-}
-
-/* Hero left (image+subtitle) should take full width */
-.heros-left {
-  width: 100%;
-}
-
-/* FULL-WIDTH PREMIUM HERO IMAGE */
-.heros-image {
-  width: 100%;
-  display: flex;
-  justify-content: center;
-}
-
-.full-width-imgs {
-  width: 100%;          /* full width */
-  max-width: 1600px;    /* bigger image */
-  height: 620px;        /* reduced height from 750px */
-  border-radius: 40px;
-  object-fit: cover;
-
-  /* keep all your effects */
-  box-shadow:
-    0 50px 100px rgba(0, 0, 0, 0.18),
-    0 25px 50px rgba(237, 62, 41, 0.15),
-    inset 0 2px 0 rgba(255, 255, 255, 0.9);
-
-  border: 5px solid rgba(237, 62, 41, 0.2);
-  background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
-  transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
-  animation: imageFloat 8s ease-in-out infinite;
-  filter: brightness(1.05) contrast(1.1);
-}
-
-@keyframes imageFloat {
-  0%, 100% {
-    transform: 
-      translateY(0px) 
-      rotateX(0deg) 
-      rotateY(0deg);
-    box-shadow:
-      0 50px 100px rgba(0, 0, 0, 0.18),
-      0 25px 50px rgba(237, 62, 41, 0.15);
-  }
-  25% {
-    transform: 
-      translateY(-12px) 
-      rotateX(1deg) 
-      rotateY(-1deg);
-    box-shadow:
-      0 60px 120px rgba(0, 0, 0, 0.2),
-      0 30px 60px rgba(237, 62, 41, 0.18);
-  }
-  75% {
-    transform: 
-      translateY(-8px) 
-      rotateX(-1deg) 
-      rotateY(1deg);
-    box-shadow:
-      0 55px 110px rgba(0, 0, 0, 0.19),
-      0 28px 56px rgba(237, 62, 41, 0.16);
-  }
-}
-
-/* Make subtitle shift slightly upward since space increased */
-.heros-subtitle {
-  margin-top: 20px;
-}
-/* Premium Hero Content */
+/* 1. HERO CONTENT (Title & Intro) */
 .heros-content {
   text-align: center;
   width: 100%;
-  margin-bottom: 60px; /* Reduced margin */
-  grid-column: 1 / -1;
+  margin-bottom: 10px; /* Minimal margin to pull image up */
   opacity: 0;
   transform: translateY(40px);
   animation: titleSlideUp 1.2s ease-out 0.2s forwards;
 }
 
 @keyframes titleSlideUp {
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+  to { opacity: 1; transform: translateY(0); }
 }
 
 .heros-title {
-  font-size: 2.5rem; /* Larger title */
+  font-size: 2.8rem; /* Balanced size */
   font-weight: 900;
   color: #ED3E29;
-  line-height: 1.05;
-  margin-bottom: 20px; /* Reduced margin */
+  line-height: 1.1;
+  margin-bottom: 15px;
   letter-spacing: -0.03em;
   text-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
   background: linear-gradient(135deg, #ED3E29 0%, #d32f2f 45%, #ED3E29 100%);
   -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
   background-clip: text;
+  -webkit-text-fill-color: transparent;
   background-size: 250% 100%;
   animation: titleShine 4s ease-in-out infinite;
 }
 
+.heros-intro {
+  font-size: 1.1rem;
+  color: #555;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
 @keyframes titleShine {
+  0%, 100% { background-position: -250% 0; }
+  50% { background-position: 250% 0; }
+}
+
+/* 2. HERO IMAGE CONTAINER */
+.heros-main {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.heros-left {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.heros-image {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  perspective: 1200px; /* Essential for 3D float effect */
+}
+
+/* THE KEY FIX: Dynamic Height */
+.full-width-imgs {
+  width: 100%;
+  max-width: 1200px; 
+  /* Use Viewport Height (vh) instead of fixed px. 
+     45vh means "45% of the screen height". 
+     This guarantees it fits with the title. */
+  height: 50vh; 
+  min-height: 320px; /* Don't get too small */
+  max-height: 550px; /* Don't get too big */
+  
+  border-radius: 30px;
+  object-fit: cover;
+  
+  /* Retaining all your premium effects */
+  box-shadow:
+    0 30px 80px rgba(0, 0, 0, 0.15),
+    0 20px 40px rgba(237, 62, 41, 0.12),
+    inset 0 2px 0 rgba(255, 255, 255, 0.9);
+  border: 4px solid rgba(237, 62, 41, 0.15);
+  background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+  transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+  transform-style: preserve-3d;
+  animation: imageFloat 8s ease-in-out infinite;
+  filter: brightness(1.05) contrast(1.1);
+  will-change: transform; /* Performance optimization */
+}
+
+/* Retaining the Float Animation Exactly */
+@keyframes imageFloat {
   0%, 100% {
-    background-position: -250% 0;
+    transform: translateY(0px) rotateX(0deg) rotateY(0deg);
+    box-shadow: 0 50px 100px rgba(0, 0, 0, 0.18), 0 25px 50px rgba(237, 62, 41, 0.15);
   }
-  50% {
-    background-position: 250% 0;
+  25% {
+    transform: translateY(-10px) rotateX(1deg) rotateY(-1deg);
+    box-shadow: 0 60px 120px rgba(0, 0, 0, 0.2), 0 30px 60px rgba(237, 62, 41, 0.18);
+  }
+  75% {
+    transform: translateY(-6px) rotateX(-1deg) rotateY(1deg);
+    box-shadow: 0 55px 110px rgba(0, 0, 0, 0.19), 0 28px 56px rgba(237, 62, 41, 0.16);
   }
 }
 
+.full-width-imgs:hover {
+  transform: translateY(-12px) scale(1.02) rotateX(2deg) rotateY(2deg);
+  box-shadow: 0 70px 140px rgba(0, 0, 0, 0.22), 0 35px 70px rgba(237, 62, 41, 0.18);
+  border-color: rgba(237, 62, 41, 0.3);
+}
+
+/* 3. HERO SUBTITLE */
 .heros-subtitle {
-  padding-top: 30px; /* Reduced padding */
-  font-size: 1.4rem;
+  margin-top: 25px; /* Closer to image */
+  font-size: 1.25rem; /* Slightly reduced for better fit */
   color: #6b7280;
   font-weight: 500;
-  line-height: 1.6;
+  line-height: 1.5;
+  text-align: center;
   max-width: 800px;
-  margin: 0 auto;
   position: relative;
   opacity: 0;
-  animation: subtitleFadeIn 1.2s ease-out 1s forwards;
+  animation: subtitleFadeIn 1.2s ease-out 0.8s forwards; /* Faster delay */
 }
 
 @keyframes subtitleFadeIn {
-  to {
-    opacity: 1;
-  }
+  to { opacity: 1; }
 }
 
 .heros-subtitle::after {
   content: '';
   position: absolute;
-  bottom: -25px; /* Adjusted position */
+  bottom: -15px;
   left: 50%;
   transform: translateX(-50%);
-  width: 140px;
-  height: 5px;
+  width: 100px;
+  height: 4px;
   background: linear-gradient(90deg, transparent, #ED3E29, transparent);
   border-radius: 3px;
   animation: linePulse 2.5s ease-in-out infinite;
 }
 
 @keyframes linePulse {
-  0%, 100% {
-    transform: translateX(-50%) scaleX(1);
-    opacity: 1;
-  }
-  50% {
-    transform: translateX(-50%) scaleX(1.3);
-    opacity: 0.7;
-  }
+  0%, 100% { transform: translateX(-50%) scaleX(1); opacity: 1; }
+  50% { transform: translateX(-50%) scaleX(1.3); opacity: 0.7; }
 }
 
+/* ========================================
+   RESPONSIVE ADJUSTMENTS
+======================================== */
+
+@media (max-width: 1024px) {
+  .heros-title { font-size: 2.2rem; }
+  .full-width-imgs { height: 40vh; } /* Smaller on tablets */
+}
+
+@media (max-width: 768px) {
+  .redesigneds-hero { padding: 30px 0; }
+  .heros-title { font-size: 1.8rem; margin-bottom: 10px; }
+  .full-width-imgs { 
+    height: 35vh; /* Even smaller on mobile to fit title */
+    min-height: 250px;
+    border-radius: 20px;
+  }
+  .heros-subtitle { font-size: 1rem; margin-top: 20px; }
+}
 /* ========================================
    TIMELINE SECTION – Premium Enhanced
 ======================================== */
