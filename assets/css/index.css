@@ -23,7 +23,7 @@
   font-size: clamp(2rem, 4.5vw, 4rem);
   line-height: 1.1;
   margin-bottom: 1.5rem;
-  font-weight: 600;
+  font-weight: 550;
 }
 
 .line {
@@ -474,6 +474,23 @@
   gap: 7rem;
   flex-wrap: wrap;
 }
+
+.stat-orbit {
+  background: white;
+  padding: 2rem 1.5rem;
+  border-radius: 20px;
+  min-width: 180px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.05);
+  transition: transform 0.3s, border 0.3s, box-shadow 0.3s;
+  border: 2px solid transparent;
+}
+
+.stat-orbit:hover {
+  transform: translateY(-4px);
+  border: 2px solid #ED3E29; /* highlight color */
+  box-shadow: 0 8px 25px rgba(237, 62, 41, 0.15);
+}
+
 
 /* Mobile responsive for impact-wave */
 @media (max-width: 768px) {
