@@ -633,6 +633,8 @@
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.06);
   padding: 2.5rem 2rem;
   width: 340px;
+  display: flex;
+  flex-direction: column;
   transition: transform 0.35s ease, box-shadow 0.35s ease;
   position: relative;
 }
@@ -642,22 +644,30 @@
   box-shadow: 0 15px 40px rgba(237, 62, 41, 0.15);
 }
 
-/* Top icon (✦ ❁) */
-.star-icon {
+/* Force meta badge to bottom and perfectly aligned */
+.meta-wrapper {
+  margin-top: auto;           /* pushes the meta to the bottom */
+  padding-top: 1.5rem;
+  display: flex;
+  justify-content: center;
+}
+
+.star-card:hover .meta {
+  background: #ED3E29;
+  color: #fff;
+}
+
+/* Top icons */
+.star-icon,
+.star-icon-circle {
   font-size: 1.5rem;
   color: #ED3E29;
-  margin-bottom: 0.4rem;
-  display: inline-block;
+  margin-bottom: 0.8rem;
   transition: transform 0.3s ease;
 }
 
-
 .star-icon-circle {
   font-size: 1.1rem;
-  color: #ED3E29;
-  margin-bottom: 1rem;
-  display: inline-block;
-  transition: transform 0.3s ease;
 }
 
 .star-card:hover .star-icon,
@@ -680,97 +690,42 @@
   color: #555;
   line-height: 1.6;
   margin: 0 0 1.2rem;
+  flex-grow: 1;               /* allows text to take available space */
 }
 
-/* Meta (highlight line) */
+/* Meta badge */
 .meta {
-  display: inline-block;
   font-size: 0.75rem;
   font-weight: 600;
   color: #ED3E29;
   background: rgba(237, 62, 41, 0.08);
-  padding: 6px 14px;
+  padding: 8px 16px;
   border-radius: 30px;
   letter-spacing: 0.2px;
+  transition: background 0.3s ease, color 0.3s ease;
 }
 
-/* Subtle glow hover on meta */
-.star-card:hover .meta {
-  background: #ED3E29;
-  color: #fff;
-  transition: background 0.3s ease;
-}
-
-/* === Responsive Design === */
+/* Responsive */
 @media (max-width: 1024px) {
-  .constellation {
-    gap: 2rem;
-  }
-
-  .philosophy-constellation {
-    padding: 5rem 5%;
-  }
-
-  .constellation-title {
-    font-size: 2.2rem;
-    margin-bottom: 2.5rem;
-  }
+  .constellation { gap: 2rem; }
+  .philosophy-constellation { padding: 5rem 5%; }
+  .constellation-title { font-size: 2.2rem; margin-bottom: 2.5rem; }
 }
 
 @media (max-width: 768px) {
-  .constellation-title {
-    font-size: 2rem;
-  }
-
+  .constellation-title { font-size: 2rem; }
   .star-card {
     width: 100%;
     max-width: 420px;
     padding: 2rem 1.5rem;
   }
-
-  .star-icon,
-  .star-icon-circle {
-    font-size: 2rem;
-  }
-
-  .star-card h3 {
-    font-size: 1.3rem;
-  }
-
-  .star-card p {
-    font-size: 1rem;
-  }
-
-  .meta {
-    font-size: 0.5rem;
-  }
 }
 
 @media (max-width: 480px) {
-  .philosophy-constellation {
-    padding: 4rem 1.2rem;
-  }
-
-  .constellation-title {
-    font-size: 1.8rem;
-    margin-bottom: 2rem;
-  }
-
-  .star-card {
-    padding: 1.8rem 1.2rem;
-  }
-
-  .star-card h3 {
-    font-size: 1.2rem;
-  }
-
-  .star-card p {
-    font-size: 0.95rem;
-  }
-
-  .meta {
-    font-size: 0.40rem;
-  }
+  .philosophy-constellation { padding: 4rem 1.2rem; }
+  .constellation-title { font-size: 1.8rem; margin-bottom: 2rem; }
+  .star-card { padding: 1.8rem 1.2rem; }
+  .star-card h3 { font-size: 1.25rem; }
 }
 
 /* ===============================
