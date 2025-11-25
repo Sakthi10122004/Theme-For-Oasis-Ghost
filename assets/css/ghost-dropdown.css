@@ -31,18 +31,15 @@ ul.ghost-submenu {
     padding: 14px 0;
     border-radius: 16px;
     width: 220px;
-
     position: absolute;
     top: 60px;
     left: 0;
-
     visibility: hidden;
     opacity: 0;
     transform: translateY(5px);
-
     transition: all 0.25s ease;
     box-shadow: 0 12px 35px rgba(0, 0, 0, 0.08);
-    border: 1px solid rgba(0,0,0,0.06);
+    border: 1px solid rgba(0, 0, 0, 0.06);
     z-index: 999;
 }
 
@@ -75,45 +72,193 @@ ul.ghost-submenu li a:hover {
 }
 
 /* ================================
-   MOBILE DROPDOWN
+   TABLET STYLES (769px - 1024px)
    ================================ */
+@media (max-width: 1024px) and (min-width: 769px) {
+    .menu-item-has-children {
+        padding-right: 10px !important;
+    }
+    
+    .menu-item-has-children svg {
+        width: 12px;
+        height: 12px;
+        right: -2px;
+    }
+    
+    ul.ghost-submenu {
+        width: 200px;
+        top: 55px;
+        padding: 12px 0;
+    }
+    
+    ul.ghost-submenu li {
+        padding: 5px 16px;
+    }
+    
+    ul.ghost-submenu li a {
+        padding: 7px 8px;
+        font-size: 0.95rem;
+    }
+}
 
+/* ================================
+   MOBILE STYLES (768px and below)
+   ================================ */
 @media (max-width: 768px) {
-
     .menu-item-has-children {
         width: 100%;
         padding-right: 0 !important;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.05);
     }
 
+    .menu-item-has-children:last-child {
+        border-bottom: none;
+    }
+
+    /* Mobile dropdown arrow */
+    .menu-item-has-children > a::after {
+        content: '›';
+        font-size: 1.3rem;
+        font-weight: 300;
+        transition: transform 0.3s ease;
+        margin-left: auto;
+        padding-left: 1rem;
+    }
+
+    .menu-item-has-children.open > a::after {
+        transform: rotate(90deg);
+    }
+
+    /* Hide SVG arrows on mobile */
     .menu-item-has-children svg {
-        right: 10px;
-        top: 22px;
-        transform: rotate(0deg);
+        display: none;
     }
 
     /* Mobile submenu styling */
     ul.ghost-submenu {
         position: relative;
         box-shadow: none;
-        border-radius: 10px;
-
+        border-radius: 0;
+        border: none;
         width: 100%;
-        padding: 5px 0 10px 20px;
-
+        padding: 0;
+        margin: 0;
         opacity: 1 !important;
         visibility: visible !important;
-
         transform: translateY(0) !important;
         display: none;
+        background: rgba(237, 62, 41, 0.03);
+        border-left: 3px solid rgba(237, 62, 41, 0.2);
     }
 
     /* When JavaScript toggles .open */
     .menu-item-has-children.open > ul.ghost-submenu {
         display: block;
+        animation: slideDown 0.3s ease-out;
     }
 
     /* Mobile items */
+    ul.ghost-submenu li {
+        padding: 0;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.03);
+    }
+
+    ul.ghost-submenu li:last-child {
+        border-bottom: none;
+    }
+
     ul.ghost-submenu li a {
-        padding: 6px 0;
+        padding: 0.875rem 1rem 0.875rem 1.5rem;
+        font-size: 0.95rem;
+        border-radius: 0;
+        margin: 0;
+        font-weight: 500;
+        color: #555;
+        display: flex;
+        align-items: center;
+    }
+
+    ul.ghost-submenu li a:hover {
+        background: rgba(237, 62, 41, 0.08);
+        color: #ED3E29;
+    }
+}
+
+/* ================================
+   SMALL MOBILE STYLES (480px and below)
+   ================================ */
+@media (max-width: 480px) {
+    .menu-item-has-children {
+        padding: 0.875rem 0 !important;
+    }
+
+    ul.ghost-submenu li a {
+        padding: 0.75rem 1rem 0.75rem 1.25rem;
+        font-size: 0.9rem;
+    }
+}
+
+/* ================================
+   ANIMATIONS
+   ================================ */
+@keyframes slideDown {
+    0% {
+        opacity: 0;
+        max-height: 0;
+        transform: translateY(-10px);
+    }
+    100% {
+        opacity: 1;
+        max-height: 500px;
+        transform: translateY(0);
+    }
+}
+
+/* ================================
+   TOUCH DEVICE OPTIMIZATIONS
+   ================================ */
+@media (hover: none) and (pointer: coarse) {
+    .menu-item-has-children:hover ul.ghost-submenu {
+        visibility: hidden;
+        opacity: 0;
+        transform: translateY(5px);
+    }
+    
+    /* Ensure hover states don't interfere with touch */
+    .menu-item-has-children:hover svg {
+        transform: translateY(-50%) rotate(0deg);
+        opacity: 0.7;
+    }
+}
+
+/* ================================
+   ACCESSIBILITY IMPROVEMENTS
+   ================================ */
+.menu-item-has-children:focus-within ul.ghost-submenu {
+    visibility: visible;
+    opacity: 1;
+    transform: translateY(0px);
+}
+
+.menu-item-has-children:focus-within svg {
+    transform: translateY(-50%) rotate(180deg);
+    opacity: 1;
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+    .menu-item-has-children svg,
+    ul.ghost-submenu,
+    ul.ghost-submenu li a {
+        transition: none;
+    }
+    
+    @keyframes slideDown {
+        0% {
+            opacity: 0;
+        }
+        100% {
+            opacity: 1;
+        }
     }
 }

@@ -37,37 +37,32 @@
       {{/if}}
     </a>
 
-    <!-- Navigation -->
+        <!-- Desktop Navigation -->
     <nav class="nebula-nav-horizontal" aria-label="Main navigation">
       <ul>
         {{navigation}}
-        
-<button class="gh-search-icon" aria-label="search" data-ghost-search style="display: inline-flex; justify-content: center; align-items: center; width: 32px; height: 32px; padding: 0; border: 0; color: inherit; background-color: transparent; cursor: pointer; outline: none;">
-    <svg width="20" height="20" fill="none" viewBox="0 0 24 24"><path d="M14.949 14.949a1 1 0 0 1 1.414 0l6.344 6.344a1 1 0 0 1-1.414 1.414l-6.344-6.344a1 1 0 0 1 0-1.414Z" fill="currentColor"/><path d="M10 3a7 7 0 1 0 0 14 7 7 0 0 0 0-14Zm-9 7a9 9 0 1 1 18 0 9 9 0 0 1-18 0Z" fill="currentColor"/></svg>
-</button>
-
-        {{#if @member}}
-          <!-- Profile Icon -->
-          <li class="nav-item">
-             <a class="profile-icon" href="#/portal/account" data-portal="account">Account</a>
-          </li>
-
-
-        {{else}}
-          <!-- Join Us (Logged Out) -->
-          <li class="nav-item">
-            <a href="#/portal/signup" class="join-cta">Join us</a>
-          </li>
-        {{/if}}
       </ul>
+
+      <!-- Mobile only extra items inside nav -->
+      <div class="mobile-extra-items">
+        {{!-- <button class="gh-search-icon" data-ghost-search></button>
+        <a href="#/portal/signup" class="join-cta mobile-join">Join us</a> --}}
+      </div>
     </nav>
+
+    <!-- Desktop Right Side -->
+    <div class="header-right-items">
+      <button class="gh-search-icon" aria-label="search" data-ghost-search>
+        🔍︎
+      </button>
+      <a href="#/portal/signup" class="join-cta">Join us</a>
+    </div>
 
     <!-- Hamburger -->
     <button class="hamburger" aria-label="Toggle navigation menu">
-      <span></span>
-      <span></span>
-      <span></span>
+      <span></span><span></span><span></span>
     </button>
+
 
   </div>
 </header>
@@ -98,19 +93,19 @@
 
       <a href="https://twitter.com" target="_blank" aria-label="Twitter">
         <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24">
-          <path d="M22.46 6c-.77.35-1.6.57-2.46.67a4.26 4.26 0 0 0 1.88-2.35 8.38 8.38 0 0 1-2.7 1.03A4.21 4.21 0 0 0 16 4c-2.33 0-4.22 1.89-4.22 4.21 0 .33.04.66.1.97A11.93 11.93 0 0 1 3.15 5.15a4.22 4.22 0 0 0-.57 2.12c0 1.46.75 2.75 1.9 3.5a4.2 4.2 0 0 1-1.9-.52v.05c0 2.04 1.46 3.73 3.4 4.12-.36.1-.75.15-1.15.15-.28 0-.55-.02-.82-.08.55 1.72 2.15 2.97 4.05 3a8.46 8.46 0 0 1-5.25 1.82c-.34 0-.68-.02-1.02-.06A11.94 11.94 0 0 0 8.29 21c7.73 0 11.95-6.4 11.95-11.94 0-.18-.01-.36-.02-.53A8.65 8.65 0 0 0 22.46 6z"/>
+          <path d="M22.46 6c-.77.35-1.6.57-2.46.67a4.26 4.26 0 0 0 1.88-2.35a8.38 8.38 0 0 1-2.7 1.03A4.21 4.21 0 0 0 16 4c-2.33 0-4.22 1.89-4.22 4.21c0 .33.04.66.1.97A11.93 11.93 0 0 1 3.15 5.15a4.22 4.22 0 0 0-.57 2.12c0 1.46.75 2.75 1.9 3.5a4.2 4.2 0 0 1-1.9-.52v.05c0 2.04 1.46 3.73 3.4 4.12c-.36.1-.75.15-1.15.15c-.28 0-.55-.02-.82-.08c.55 1.72 2.15 2.97 4.05 3a8.46 8.46 0 0 1-5.25 1.82c-.34 0-.68-.02-1.02-.06A11.94 11.94 0 0 0 8.29 21c7.73 0 11.95-6.4 11.95-11.94c0-.18-.01-.36-.02-.53A8.65 8.65 0 0 0 22.46 6z"/>
         </svg>
       </a>
 
       <a href="https://facebook.com" target="_blank" aria-label="Facebook">
         <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24">
-          <path d="M22 12a10 10 0 1 0-11.5 9.9v-7h-2v-3h2v-2c0-2 1.2-3.2 3-3.2.9 0 1.8 0 2 .1v2.2h-1.4c-1.1 0-1.4.7-1.4 1.3V12h3l-.5 3h-2.5v7A10 10 0 0 0 22 12z"/>
+          <path d="M22 12a10 10 0 1 0-11.5 9.9v-7h-2v-3h2v-2c0-2 1.2-3.2 3-3.2c.9 0 1.8 0 2 .1v2.2h-1.4c-1.1 0-1.4.7-1.4 1.3V12h3l-.5 3h-2.5v7A10 10 0 0 0 22 12z"/>
         </svg>
       </a>
 
       <a href="https://instagram.com" target="_blank" aria-label="Instagram">
         <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24">
-          <path d="M7 2C4.2 2 2 4.2 2 7v10c0 2.8 2.2 5 5 5h10c2.8 0 5-2.2 5-5V7c0-2.8-2.2-5-5-5H7zm10 2c1.7 0 3 1.3 3 3v10c0 1.7-1.3 3-3 3H7c-1.7 0-3-1.3-3-3V7c0-1.7 1.3-3 3-3h10zm-5 3.3A4.7 4.7 0 1 0 16.7 12 4.7 4.7 0 0 0 12 7.3zm0 7.7a3 3 0 1 1 3-3 3 3 0 0 1-3 3zm4.8-8.9a1.1 1.1 0 1 1-1.1-1.1 1.1 1.1 0 0 1 1.1 1.1z"/>
+          <path d="M7 2C4.2 2 2 4.2 2 7v10c0 2.8 2.2 5 5 5h10c2.8 0 5-2.2 5-5V7c0-2.8-2.2-5-5-5H7zm10 2c1.7 0 3 1.3 3 3v10c0 1.7-1.3 3-3 3H7c-1.7 0-3-1.3-3-3V7c0-1.7 1.3-3 3-3h10zm-5 3.3A4.7 4.7 0 1 0 16.7 12A4.7 4.7 0 0 0 12 7.3zm0 7.7a3 3 0 1 1 3-3a3 3 0 0 1-3 3zm4.8-8.9a1.1 1.1 0 1 1-1.1-1.1a1.1 1.1 0 0 1 1.1 1.1z"/>
         </svg>
       </a>
 

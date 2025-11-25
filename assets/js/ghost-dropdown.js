@@ -1,12 +1,11 @@
 /**
- * ghost-dynamic-dropdown 1.1.0 (https://github.com/themeix/ghost-dynamic-dropdown)
- * A simple script for dynamic dorpdown & mega menu for Ghost Blogging Platform.
+ * ghost-dynamic-dropdown 1.2.0 (https://github.com/themeix/ghost-dynamic-dropdown)
+ * A simple script for dynamic dropdown & mega menu for Ghost Blogging Platform.
  * Copyright 2022 Themeix (https://themeix.com)
  * Released under MIT License
  * Released on:  Jul 25, 2021
+ * Updated for mobile support: Dec 2024
  */
-
-
 
 (function ($) {
     "use strict";
@@ -21,64 +20,50 @@
         // Find Dropdown parent element
         $(`${targetElement} li`).each(function (index, element) {
             if ($(this).text().includes(mLparentDetecttext)) {
-                mLparentIndex.push(index); // Make dropdown parent array index
+                mLparentIndex.push(index);
                 mLparentLen++;
 
                 $(this).push(element);
                 if (!$(this).hasClass('menu-item-has-children')) {
-                    $(this).addClass(mLhasSubmenu); // Add claas in dropdown   element
+                    $(this).addClass(mLhasSubmenu);
                 }
-                $(this).append(`<ul class="${mLsubmenu}"></ul>`); // Append submenu element
+                $(this).append(`<ul class="${mLsubmenu}"></ul>`);
             }
         });
 
-
-
         let elIndex;
-        // Code last multilevel 
         let lastMlElementText = $(`.${mLhasSubmenu}`).last().text();
-        // console.log(lastMlElement);
 
-        // Using loop to reach dropdown parent element
         for (let i = 0; i < mLparentLen; i++) {
+            elIndex = 0;
 
-            elIndex = 0 // Initial elemet value
-
-            // Find subitem element
             $(`${targetElement} li`).each(function (index, element) {
-                let mLsubitem = $(this).text().includes(mLchildDetectText); // Find subitem element
-
+                let mLsubitem = $(this).text().includes(mLchildDetectText);
 
                 if (mLsubitem) {
-
-                    if (elIndex + 1 >= mLparentIndex[i + 1] + 1) { // Each loop will be break
-                        return false; //Stoped each loop 
+                    if (elIndex + 1 >= mLparentIndex[i + 1] + 1) {
+                        return false;
                     }
 
                     if (elIndex <= mLparentIndex[i + 1] || elIndex >= mLparentIndex[mLparentIndex.length - 1]) {
-
-                        if (!mLparentIndex.includes(index)) { //Check if not index already insert 
-                            mLdomArrayElement.push(element); // Incert subitem element in dom array
-                            mLparentIndex.push(index); // incert subitem index in indexPush array
+                        if (!mLparentIndex.includes(index)) {
+                            mLdomArrayElement.push(element);
+                            mLparentIndex.push(index);
                         }
                     }
-
                 }
-                elIndex++; // increase element index value
+                elIndex++;
             });
 
-
-            $(`.${mLhasSubmenu} ul.${mLsubmenu}:eq(${i})`).append(mLdomArrayElement); // Append related subitem dom element into submenu 
-
-            mLdomArrayElement = []; // Make dom array element empty. 
+            $(`.${mLhasSubmenu} ul.${mLsubmenu}:eq(${i})`).append(mLdomArrayElement);
+            mLdomArrayElement = [];
         }
 
-        let lastMlElementIndex = 0; // Find subitem element
+        let lastMlElementIndex = 0;
         let lastChildIndex = 0, lastChildElementText;
 
-
         $(`${targetElement} li`).each(function (index, element) {
-            let lastMlElement = $(this).text().includes(lastMlElementText); // Find subitem element
+            let lastMlElement = $(this).text().includes(lastMlElementText);
 
             if (lastMlElement) {
                 if (!$(this).hasClass('mLlastPrentElement')) {
@@ -86,7 +71,6 @@
                     lastChildElementText = $(this).parent().children('li').last().text();
                     lastMlElementIndex = index;
                 }
-
             }
 
             if ($(this).text().includes(lastChildElementText)) {
@@ -104,85 +88,129 @@
 
         remove_text(mLhasSubmenu, mLparentDetecttext);
         remove_text('subitem', mLchildDetectText);
-
     }
 
     function remove_text(textClass, replacedText) {
-
         const mLhasSubmenuEL = $(`.${textClass}`);
         mLhasSubmenuEL.each(function () {
             if ($(this).find("> a:first").text().includes(replacedText)) {
-                let textFull = $(this).find("> a:first").text(); // Find has child inner text
+                let textFull = $(this).find("> a:first").text();
                 $(this).find("> a:first").text(textFull.replaceAll(replacedText, ""));
             }
         });
     }
 
+    // Mobile dropdown functionality
+    function initMobileDropdown() {
+        // Close all dropdowns
+        function closeAllDropdowns() {
+            $('.menu-item-has-children').removeClass('open');
+            $('.ghost-submenu').slideUp(200);
+        }
 
-    function megamenu(hasMegaMenuClasses = "menu-item-has-megamenu", col = 3, item_slice = 4, hasMegaMenuDetectText = "[has_megamenu]", submenuUlClasses = "ghost-submenu") {
-        let megaMenuEl = $(`.${hasMegaMenuClasses} li`);
-        $(`.${hasMegaMenuClasses} .${submenuUlClasses}`).addClass('row');
-        let titleText = [];
-        let titleIndex = 0;
-        megaMenuEl.each(function (index, element) {
-            if ($(this).text().includes("[title]")) {
-                titleIndex++;
-                $(this).addClass("megamenu-title");
-                titleText.push($(this).text())
-                $(".megamenu-title").empty();
+        // Updated mobile click function with tapped logic
+        let tapped = false;
+        $(document).on('click', '.menu-item-has-children > a', function(e) {
+            if (window.innerWidth <= 768) {
+                if (!$(this).parent().hasClass("open")) {
+                    e.preventDefault();
+                    $(this).parent().toggleClass("open");
+                    return;
+                } 
             }
         });
 
-        for (let i = 0; i < megaMenuEl.length; i += item_slice) {
-            megaMenuEl.slice(i, i + item_slice).wrapAll(`<div class='col-md-${col}'></div>`);
-            // console.log(titleText[i]);
-            // console.log(titleText);
-        }
+        // Close dropdowns when clicking outside
+        $(document).on('click', function(e) {
+            if (window.innerWidth <= 768 && !$(e.target).closest('.menu-item-has-children').length) {
+                closeAllDropdowns();
+            }
+        });
 
-        for (let i = 0; i < titleText.length; i++) {
-            $(`.${submenuUlClasses} > div:eq(${i})`).prepend(`<h6 class="megamenu-title-text text-danger">${titleText[i]}</h6>`);
-            $(".megamenu-title-text").text(titleText[i].replaceAll("[title]", ""));
+        // Handle window resize
+        $(window).on('resize', function() {
+            if (window.innerWidth > 768) {
+                // Reset mobile states on desktop
+                $('.menu-item-has-children').removeClass('open');
+                $('.ghost-submenu').removeAttr('style');
+            }
+        });
+    }
+
+    // Mobile menu functionality
+    function initMobileMenu() {
+        const $hamburger = $('.hamburger');
+        const $mobileNav = $('.nebula-nav-horizontal');
+        const $body = $('body');
+
+        if ($hamburger.length && $mobileNav.length) {
+            // Toggle mobile menu
+            $hamburger.on('click', function(e) {
+                e.stopPropagation();
+                $(this).toggleClass('active');
+                $mobileNav.toggleClass('active');
+                $body.css('overflow', $mobileNav.hasClass('active') ? 'hidden' : '');
+            });
+
+            // Close menu when clicking on a link (except dropdown parents)
+            $mobileNav.on('click', 'a', function(e) {
+                if (!$(this).parent().hasClass('menu-item-has-children')) {
+                    $mobileNav.removeClass('active');
+                    $hamburger.removeClass('active');
+                    $body.css('overflow', '');
+                }
+            });
+
+            // Close menu when clicking outside
+            $(document).on('click', function(e) {
+                if (!$mobileNav.is(e.target) && $mobileNav.has(e.target).length === 0 && !$hamburger.is(e.target)) {
+                    $mobileNav.removeClass('active');
+                    $hamburger.removeClass('active');
+                    $body.css('overflow', '');
+                }
+            });
+
+            // Handle escape key
+            $(document).on('keydown', function(e) {
+                if (e.key === 'Escape' && $mobileNav.hasClass('active')) {
+                    $mobileNav.removeClass('active');
+                    $hamburger.removeClass('active');
+                    $body.css('overflow', '');
+                }
+            });
         }
-        remove_text(hasMegaMenuClasses, hasMegaMenuDetectText);
     }
 
     function ghost_dropdown(options) {
-
         // Default options
         let defultOptions = {
             targetElement: ".nebula-nav-horizontal ul li",
             hasChildrenClasses: "menu-item-has-children",
             hasChildDetectText: "[has_child]",
             hasChildrenIcon: "<svg width='19' height='10' viewBox='0 0 19 10' fill='none' xmlns='http://www.w3.org/2000/svg'><path d='M1.74805 1.52002L9.54883 9.00002L17.3496 1.52002' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/></svg>",
-            hasMegaMenuDetectText: "[has_megamenu]",
-            hasMegaMenuClasses: "menu-item-has-megamenu",
             submenuUlClasses: "ghost-submenu",
             subitemDetectText: "[subitem]",
             subitemLiClasses: "subitem"
         }
 
-        //Marge defaultOptions 
+        // Merge defaultOptions 
         options = {
             ...defultOptions,
             ...options
         }
 
-
         // Target Element
         let targetElement = options.targetElement;
 
-        //Default value 
+        // Default value 
         let hasChildrenClasses = options.hasChildrenClasses;
         let hasChildDetectText = options.hasChildDetectText;
-        let hasMegaMenuClasses = options.hasMegaMenuClasses;
-        let hasMegaMenuDetectText = options.hasMegaMenuDetectText;
         let hasChildrenIcon = options.hasChildrenIcon;
         let submenuUlClasses = options.submenuUlClasses;
         let subitemDetectText = options.subitemDetectText;
         let subitemLiClasses = options.subitemLiClasses;
 
-
-        // Declare neccesary variable
+        // Declare necessary variable
         let parentEl = $(targetElement);
         let childEL = $(targetElement);
         let parentLen = 0;
@@ -193,84 +221,60 @@
 
         $(`${targetElement}`).parent().addClass('ghost-dropdown-menu');
 
-        let that;
         // Find Dropdown parent element
         parentEl.each(function (index, element) {
             if ($(this).text().indexOf(hasChildDetectText) >= 0) {
-                parentIndex.push(index); // Make dropdown parent array index
+                parentIndex.push(index);
                 parentLen++;
 
                 $(this).push(element);
-                $(this).addClass(hasChildrenClasses); // Add claas in dropdown   element
-
-                $(this).append(`<ul class='${submenuUlClasses}'></ul>`); // Append submenu element
-
+                $(this).addClass(hasChildrenClasses);
+                $(this).append(`<ul class='${submenuUlClasses}'></ul>`);
                 $(targetElement).css("opacity", "1");
-            }
-
-            if ($(this).text().includes(hasMegaMenuDetectText)) {
-                $(this).addClass(hasMegaMenuClasses);
-                that = $(this);
             }
         });
 
         $(targetElement).css("opacity", "1");
-
         $(`.${hasChildrenClasses}`).append(hasChildrenIcon);
-
-        if(!$(hasChildrenClasses).length){
-            $(targetElement).css("opacity", "1");
-        }
 
         // Using loop to reach dropdown parent element
         for (let i = 0; i < parentLen; i++) {
-
-            elIndex = 0 // Initial elemet value
+            elIndex = 0;
 
             // Find subitem element
             childEL.each(function (index, element) {
-                let subitem = $(this).text().includes(subitemDetectText); // Find subitem element
+                let subitem = $(this).text().includes(subitemDetectText);
 
                 if (subitem) {
-
-                    if (elIndex >= parentIndex[i + 1]) { // Each loop will be break
-                        return false; //Stoped each loop 
+                    if (elIndex >= parentIndex[i + 1]) {
+                        return false;
                     }
 
                     if (elIndex <= parentIndex[i + 1] || elIndex >= parentIndex[parentIndex.length - 1]) {
-
-                        if (!indexPush.includes(index)) { //Check if not index already insert 
-                            $(this).addClass(subitemLiClasses); // Add class in subitem element
-                            let st = $(this).children().text(); // Find subitem inner text
-                            $(this).children().text(st.replaceAll(subitemDetectText, "")); // Replace subitem inner text
-
-                            domArrayElement.push(element); // Incert subitem element in dom array
-                            indexPush.push(index); // incert subitem index in indexPush array
-
+                        if (!indexPush.includes(index)) {
+                            $(this).addClass(subitemLiClasses);
+                            let st = $(this).children().text();
+                            $(this).children().text(st.replaceAll(subitemDetectText, ""));
+                            domArrayElement.push(element);
+                            indexPush.push(index);
                         }
                     }
-
                 }
-                elIndex++; // increase element index value
+                elIndex++;
             });
 
-
-            $(`.${hasChildrenClasses} ul.${submenuUlClasses}:eq(${i})`).append(domArrayElement); // Append related subitem dom element into submenu 
-
-            domArrayElement = []; // Make dom array element empty. 
-
+            $(`.${hasChildrenClasses} ul.${submenuUlClasses}:eq(${i})`).append(domArrayElement);
+            domArrayElement = [];
         }
         remove_text(hasChildrenClasses, hasChildDetectText);
-
 
         if (options.multi_level) {
             multiLevel();
         }
-        if (options.mega_menu) {
-            megamenu(hasMegaMenuClasses, 3, 4, hasMegaMenuDetectText, submenuUlClasses);
-        }
        
-
+        // Initialize mobile functionality
+        initMobileDropdown();
+        initMobileMenu();
     }
 
     $(document).ready(function () {
@@ -285,8 +289,14 @@
             multi_level: true,
             mega_menu: false
         });
-
     });
 
+    $hamburger.on('click', function(e) {
+    e.stopPropagation();
+    $(this).toggleClass('active');
+    $mobileNav.toggleClass('active');
+    $('body').toggleClass('menu-open'); // lock scroll
+});
 
-}(jQuery));
+
+}(jQuery));1
