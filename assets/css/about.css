@@ -1076,11 +1076,12 @@ background-clip: text;
 }
 
 .cta-content p {
-  font-size: 1.35rem;
+  font-size: 1rem;
   line-height: 1.75;
   margin-bottom: 45px;
   color: rgba(255, 255, 255, 0.95);
 }
+
 
 .cta-buttons {
   display: flex;
@@ -1132,6 +1133,14 @@ background-clip: text;
   box-shadow: 
     0 15px 35px rgba(255, 255, 255, 0.25),
     0 8px 20px rgba(255, 255, 255, 0.15);
+}
+
+.cta-content p1 {
+  
+  font-size: 1.30rem;
+  line-height: 1.75;
+  margin-bottom: 45px;
+  color: rgba(0, 0, 0, 0.95);
 }
 
 /* ========================================
