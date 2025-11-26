@@ -1,4 +1,6 @@
-/* ===== GLOBAL RESET & TYPOGRAPHY ===== */
+/* ==============================================
+   1. GLOBAL RESET & TYPOGRAPHY
+   ============================================== */
 *,
 *::before,
 *::after {
@@ -11,34 +13,34 @@
   /* Ghost required font variables */
   --gh-font-heading: Lora, serif;
   --gh-font-body: Nunito Sans, sans-serif;
+  --header-height: 90px; /* Variable for consistent spacing */
 }
 
 html {
   scroll-behavior: smooth;
 }
 
-/* Base Typography Setup */
 body {
-  font-family: 'Nunito Sans', sans-serif; /* Body font */
+  font-family: 'Nunito Sans', sans-serif;
   color: #111;
   line-height: 1.6;
   background: #ffffff;
   overflow-x: hidden;
 }
 
-/* Headings → Montserrat */
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
+/* Prevent scrolling when mobile menu is open */
+body.menu-open {
+  overflow: hidden;
+}
+
+/* Headings */
+h1, h2, h3, h4, h5, h6 {
   font-family: 'Montserrat', sans-serif !important;
   font-weight: 700;
   color: #111;
 }
 
-/* Sub-headings & Emphasis → Montserrat */
+/* Sub-headings & Emphasis */
 .subtitle,
 .section-title,
 .card-title,
@@ -51,7 +53,6 @@ strong {
   font-family: 'Montserrat', sans-serif !important;
   font-weight: 600;
 }
-
 
 a {
   text-decoration: none;
@@ -72,7 +73,9 @@ button {
   font-family: inherit;
 }
 
-/* ===== HEADER STYLES ===== */
+/* ==============================================
+   2. HEADER CONTAINER & LAYOUT
+   ============================================== */
 .nebula-header {
   position: fixed;
   top: 1rem;
@@ -88,6 +91,7 @@ button {
   border-radius: 80px;
   padding: 0.875rem 1.875rem;
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
 }
 
 .header-content {
@@ -109,7 +113,15 @@ button {
   color: #111;
 }
 
-/* Navigation */
+/* ==============================================
+   3. NAVIGATION (DESKTOP DEFAULT)
+   ============================================== */
+.nebula-nav-horizontal {
+  flex-grow: 1;
+  display: flex;
+  justify-content: center;
+}
+
 .nebula-nav-horizontal ul {
   display: flex;
   align-items: center;
@@ -121,6 +133,7 @@ button {
 
 .nebula-nav-horizontal li {
   list-style: none;
+  position: relative; /* For dropdown positioning */
 }
 
 .nebula-nav-horizontal a {
@@ -131,6 +144,7 @@ button {
   border-radius: 50px;
   transition: all 0.3s ease;
   position: relative;
+  display: block;
 }
 
 .nebula-nav-horizontal a:hover,
@@ -139,21 +153,47 @@ button {
   background: rgba(237, 62, 41, 0.1);
 }
 
-.nebula-nav-horizontal {
-  flex-grow: 1;
-  display: flex;
-  justify-content: center;
+/* Desktop Submenu / Dropdown Handling */
+.nebula-nav-horizontal li ul {
+  display: none; /* Hidden by default */
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background: #fff;
+  min-width: 200px;
+  border-radius: 10px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  padding: 8px 0;
+  flex-direction: column;
+  gap: 0;
+  z-index: 999;
 }
 
-/* ===== HEADER RIGHT ITEMS ===== */
+/* Show dropdown on hover (Desktop only) */
+@media (min-width: 769px) {
+  .nebula-nav-horizontal li:hover > ul {
+    display: flex;
+  }
+  
+  .nebula-nav-horizontal li ul a {
+    border-radius: 0;
+    padding: 10px 16px;
+    font-size: 0.95rem;
+  }
+}
+
+/* ==============================================
+   4. HEADER RIGHT ACTIONS & HAMBURGER
+   ============================================== */
 .header-right-items {
   display: flex;
   align-items: center;
   gap: 1rem;
-  margin-left: auto; /* This pushes everything to the right */
+  margin-left: auto;
 }
 
-/* Search Icon Styles */
+/* Search Icon */
 .gh-search-icon {
   display: flex;
   align-items: center;
@@ -212,9 +252,9 @@ button {
   box-shadow: 0 4px 16px rgba(237, 62, 41, 0.4);
 }
 
-/* Hamburger Menu */
+/* Hamburger Menu Toggle */
 .hamburger {
-  display: none;
+  display: none; /* Hidden on desktop */
   flex-direction: column;
   justify-content: space-between;
   width: 1.875rem;
@@ -246,74 +286,148 @@ button {
   transform: rotate(-45deg) translate(0.5rem, -0.5rem);
 }
 
-/* Mobile Menu */
-.mobile-menu {
-  display: none;
-  position: absolute;
-  top: 100%;
-  left: 0;
-  right: 0;
-  background: rgba(255, 255, 255, 0.95);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  border: 1px solid rgba(255, 255, 255, 0.3);
-  border-radius: 0 0 20px 20px;
-  padding: 1rem;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
-  z-index: 999;
+/* ==============================================
+   5. RESPONSIVE NAVIGATION (TABLET & MOBILE)
+   ============================================== */
+@media (max-width: 768px) {
+  /* Hide Desktop Elements */
+  .header-right-items {
+    display: none !important;
+  }
+
+  /* Show Hamburger */
+  .hamburger {
+    display: flex;
+  }
+
+  /* Adjust Header container */
+  .nebula-header {
+    border-radius: 20px;
+    padding: 0.75rem 1.25rem;
+  }
+
+  /* Mobile Menu Logic 
+     Hidden by default, fixed full screen when .active
+  */
+  .nebula-nav-horizontal {
+    display: none; /* Hidden */
+  }
+
+  .nebula-nav-horizontal.active {
+    display: flex !important;
+    position: fixed;
+    top: calc(var(--header-height) + 10px); /* Just below header */
+    left: 0;
+    width: 100%;
+    height: calc(100vh - var(--header-height));
+    background: rgba(255, 255, 255, 0.98);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    overflow-y: auto; /* Enable scrolling inside menu */
+    padding: 1rem 1.5rem 4rem; /* Bottom padding for scroll space */
+    z-index: 999;
+    flex-direction: column;
+    justify-content: flex-start;
+    border-top: 1px solid rgba(0,0,0,0.05);
+  }
+
+  /* Reset List Layout for Column */
+  .nebula-nav-horizontal.active ul {
+    flex-direction: column;
+    gap: 0;
+    width: 100%;
+    align-items: flex-start;
+  }
+
+  /* List Items */
+  .nebula-nav-horizontal.active ul li {
+    width: 100%;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+    margin: 0;
+    display: flex; /* Enables wrapping for dropdown */
+    flex-wrap: wrap;
+  }
+
+  /* Links Styling */
+  .nebula-nav-horizontal.active ul li a {
+    width: 100%;
+    padding: 1rem 0;
+    font-size: 1.1rem;
+    text-align: left;
+    border-radius: 0;
+    background: transparent !important;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  /* Submenu Handling on Mobile */
+  /* HIDDEN BY DEFAULT */
+  .nebula-nav-horizontal.active li ul,
+  .nebula-nav-horizontal.active ul.ghost-submenu {
+    display: none; /* <--- CHANGED FROM BLOCK to NONE */
+    position: relative;
+    top: 0;
+    left: 0;
+    width: 100%;
+    box-shadow: none;
+    border: none;
+    background: #e0e0e0; /* Light gray background for contrast */
+    padding: 0.5rem 0;
+    border-radius: 8px;
+    margin-bottom: 10px;
+  }
+
+  /* SHOW SUBMENU ON INTERACTION (Hover/Tap or .open class) */
+  .nebula-nav-horizontal.active li:hover > ul,
+  .nebula-nav-horizontal.active li.open > ul {
+    display: none !important;
+    animation: fadeIn 0.3s ease;
+  }
+  
+  .nebula-nav-horizontal.active li ul li {
+    border-bottom: none;
+  }
+
+  .nebula-nav-horizontal.active li ul a {
+    padding: 0.75rem 1rem 0.75rem 2rem; /* Indentation for hierarchy */
+    font-size: 1rem;
+    color: #444;
+    font-weight: 500;
+  }
+
+  /* Mobile CTA / Extra Items injection */
+  .mobile-extra-items {
+    display: flex;
+    flex-direction: column;
+    margin-top: 2rem;
+    gap: 1rem;
+    padding-top: 1.5rem;
+    border-top: 2px solid rgba(0,0,0,0.05);
+    width: 100%;
+  }
+
+  .mobile-join {
+    text-align: center;
+    width: 100%;
+    padding: 0.9rem;
+  }
 }
 
-.mobile-menu ul {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
+/* Simple fade animation for dropdown */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-5px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
-.mobile-menu a {
-  font-weight: 600;
-  color: #111;
-  padding: 0.5rem 1rem;
-  border-radius: 50px;
-  transition: all 0.3s ease;
-}
-
-.mobile-menu a:hover {
-  color: #ED3E29;
-  background: rgba(237, 62, 41, 0.1);
-}
-
-/* Mobile CTA in Navigation */
-.mobile-cta {
-  display: none;
-}
-
-.nav-item {
-  list-style: none;
-}
-
-/* ===== MAIN CONTENT ===== */
+/* ==============================================
+   6. MAIN CONTENT & UTILITIES
+   ============================================== */
 .cosmic-flow {
-  padding-top: 6rem;
+  padding-top: 7rem;
   min-height: 100vh;
 }
 
-/* ===== FOOTER STYLES ===== */
-
-/* Large Desktop */
-@media (min-width: 1440px) {
-  .nebula-header {
-    max-width: 1400px;
-  }
-
-  .footer-content {
-    max-width: 1400px;
-  }
-}
-
-/* Utility Classes */
 .sr-only {
   position: absolute;
   width: 1px;
@@ -333,111 +447,12 @@ button {
 }
 
 /* Loading States */
-.loading-state {
-  display: none;
-}
-
+.loading-state { display: none; }
 .form-loading .loading-state,
 .form-success .success-state,
-.form-error .error-state {
-  display: block;
-}
+.form-error .error-state { display: block; }
 
-/* Navigation Dropdown */
-.nav-list {
-  display: flex;
-  align-items: center;
-  gap: 1.8rem;
-  list-style: none;
-  margin: 0;
-  padding: 0;
-}
-
-.nav-item {
-  position: relative;
-}
-
-.nav-link {
-  color: #111;
-  font-weight: 600;
-  padding: 8px 14px;
-  border-radius: 6px;
-  transition: 0.3s;
-}
-
-.nav-link:hover {
-  color: #ED3E29;
-}
-
-/* Dropdown Menu */
-.nav-dropdown .dropdown-menu {
-  position: absolute;
-  top: 100%;
-  left: 0;
-  background: #fff;
-  min-width: 200px;
-  border-radius: 10px;
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
-  border: 1px solid rgba(0, 0, 0, 0.05);
-  padding: 8px 0;
-  display: none;
-  z-index: 999;
-}
-
-/* Show dropdown on hover (desktop) */
-@media (min-width: 769px) {
-  .nav-dropdown:hover>.dropdown-menu {
-    display: block;
-  }
-}
-
-/* Dropdown Links */
-.dropdown-menu li {
-  list-style: none;
-}
-
-.dropdown-link {
-  display: block;
-  padding: 10px 16px;
-  color: #333;
-  font-weight: 500;
-  text-decoration: none;
-  transition: 0.3s;
-}
-
-.dropdown-link:hover {
-  background: rgba(237, 62, 41, 0.07);
-  color: #ED3E29;
-}
-
-/* Mobile dropdown behavior */
-@media (max-width: 768px) {
-  .nav-list {
-    flex-direction: column;
-    gap: 0.5rem;
-  }
-
-  .nav-dropdown .dropdown-menu {
-    position: relative;
-    top: 0;
-    left: 0;
-    box-shadow: none;
-    border: none;
-    padding-left: 20px;
-  }
-
-  .nav-dropdown>.nav-link::after {
-    content: "▾";
-    margin-left: 6px;
-    font-size: 0.75rem;
-  }
-
-  .nav-dropdown.open>.dropdown-menu {
-    display: block;
-  }
-}
-
-/* Stack the two cards vertically */
+/* Benefits Stack */
 .benefits-stack {
   display: flex;
   flex-direction: column;
@@ -446,13 +461,11 @@ button {
   margin: 3rem auto;
 }
 
-/* Ensure both cards share the same clean look */
 .benefits-stack .oasis-card {
   padding: 2rem 2.2rem;
   border-radius: 1.5rem;
 }
 
-/* Mobile still clean */
 @media (max-width: 600px) {
   .benefits-stack {
     gap: 1.5rem;
@@ -460,60 +473,13 @@ button {
   }
 }
 
-/* Mobile nav clean fix */
-@media (max-width: 768px) {
-  .nebula-nav-horizontal {
-    display: none;
-  }
+/* Ghost CMS Width Utilities */
+.kg-width-wide { max-width: 1200px; margin: 0 auto; }
+.kg-width-full { width: 100%; margin: 0; }
 
-  .nebula-nav-horizontal.active {
-    display: block !important;
-    position: absolute;
-    top: 100%;
-    left: 0;
-    right: 0;
-    background: rgba(255, 255, 255, 0.97);
-    backdrop-filter: blur(20px);
-    border-radius: 0 0 20px 20px;
-    padding: 1.5rem 1.2rem;
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
-    z-index: 999;
-  }
-
-  .nebula-nav-horizontal.active ul {
-    flex-direction: column;
-    gap: 1.2rem;
-  }
-
-  .hamburger {
-    display: flex;
-  }
-
-  .mobile-cta {
-    display: block;
-  }
-}
-
-/* Ensure main menu items stay visible */
-.nebula-nav-horizontal ul>li {
-  opacity: 1 !important;
-}
-
-/* required by Ghost 2.0 to validate the theme */
-.kg-width-wide {
-  max-width: 1200px;
-  margin: 0 auto;
-}
-
-.kg-width-full {
-  width: 100%;
-  margin: 0;
-}
-
-/* ============================================
-   STACKED FOOTER STYLES
-   ============================================ */
-
+/* ==============================================
+   7. FOOTER STYLES
+   ============================================== */
 .stack-footer {
   background: linear-gradient(to bottom, #fafafa, #ffffff);
   padding: 30px 20px 25px;
@@ -532,12 +498,7 @@ button {
   width: 60%;
   max-width: 400px;
   height: 1px;
-  background: linear-gradient(
-    to right,
-    transparent,
-    #ED3E29 50%,
-    transparent
-  );
+  background: linear-gradient(to right, transparent, #ED3E29 50%, transparent);
   opacity: 0.4;
 }
 
@@ -550,7 +511,6 @@ button {
   margin: 0 auto;
 }
 
-/* Logo Section */
 .footer-logo {
   width: 140px;
   height: auto;
@@ -566,7 +526,6 @@ button {
   opacity: 1;
 }
 
-/* Copyright Text */
 .footer-copy {
   font-size: 0.9rem;
   color: #666;
@@ -576,7 +535,6 @@ button {
   margin: 0;
 }
 
-/* Social Links */
 .footer-social {
   display: flex;
   gap: 16px;
@@ -623,12 +581,6 @@ button {
   box-shadow: 0 6px 16px rgba(237, 62, 41, 0.35);
 }
 
-.footer-social a > * {
-  position: relative;
-  z-index: 1;
-}
-
-/* Email Link */
 .footer-mail {
   color: #ED3E29;
   font-weight: 600;
@@ -666,239 +618,29 @@ button {
   transform: scale(1);
 }
 
-/* Divider (optional, add between sections) */
-.footer-divider {
-  width: 80px;
-  height: 2px;
-  background: linear-gradient(
-    to right,
-    transparent,
-    #ED3E29,
-    transparent
-  );
-  margin: 2px 0;
-  opacity: 0.3;
+/* Footer Responsive */
+@media (min-width: 1440px) {
+  .nebula-header, .footer-content { max-width: 1400px; }
 }
 
-/* ============================================
-   RESPONSIVE DESIGN
-   ============================================ */
-
 @media (max-width: 768px) {
-  .stack-footer {
-    padding: 28px 24px 22px;
-  }
-
-  .footer-inner {
-    gap: 5px;
-  }
-
-  .footer-logo {
-    width: 120px;
-  }
+  .stack-footer { padding: 28px 24px 22px; }
+  .footer-inner { gap: 5px; }
+  .footer-logo { width: 120px; }
 }
 
 @media (max-width: 480px) {
-  .stack-footer {
-    padding: 25px 20px 20px;
-  }
-
-  .stack-footer::before {
-    width: 80%;
-  }
-
-  .footer-inner {
-    gap: 5px;
-  }
-
-  .footer-logo {
-    width: 100px;
-  }
-
-  .footer-copy {
-    font-size: 0.85rem;
-    line-height: 1.2;
-  }
-
-  .footer-social {
-    gap: 12px;
-  }
-
-  .footer-social a {
-    width: 36px;
-    height: 36px;
-    font-size: 16px;
-  }
-
-  .footer-mail {
-    font-size: 0.9rem;
-    padding: 5px 12px;
-  }
+  .stack-footer { padding: 25px 20px 20px; }
+  .stack-footer::before { width: 80%; }
+  .footer-inner { gap: 5px; }
+  .footer-logo { width: 100px; }
+  .footer-copy { font-size: 0.85rem; line-height: 1.2; }
+  .footer-social { gap: 12px; }
+  .footer-social a { width: 36px; height: 36px; font-size: 16px; }
+  .footer-mail { font-size: 0.9rem; padding: 5px 12px; }
 }
 
-/* Accessibility - Reduced Motion */
 @media (prefers-reduced-motion: reduce) {
-  .footer-logo,
-  .footer-social a,
-  .footer-mail {
-    transition: none;
-  }
-
-  .footer-logo:hover {
-    transform: none;
-  }
-
-  .footer-social a:hover {
-    transform: none;
-  }
-}
-
-/* MOBILE MENU CLEAN FIX */
-@media (max-width: 768px) {
-
-  .nebula-nav-horizontal {
-    display: none;
-  }
-
-  .nebula-nav-horizontal.active {
-    display: block !important;
-    width: 100%;
-    margin-top: 1.2rem;
-  }
-
-  .nebula-nav-horizontal.active ul {
-    flex-direction: column;
-    gap: 0;
-  }
-
-  .mobile-extra-items {
-    display: flex;
-    flex-direction: column;
-    margin-top: 1.5rem;
-    gap: 0.75rem;
-    padding-top: 1rem;
-    border-top: 1px solid rgba(0,0,0,0.1);
-  }
-
-  .mobile-join {
-    text-align: center;
-    width: 100%;
-    padding: 0.75rem 1rem;
-  }
-
-  .header-right-items {
-    display: none !important;
-  }
-
-  .mobile-menu-gap {
-    height: 0 !important;
-    margin: 0 !important;
-    padding: 0 !important;
-  }
-
-  .nebula-nav-horizontal.active ul li a {
-    padding: 1rem 0.5rem;
-    width: 100%;
-    display: block;
-  }
-}
-
-/* FULL SCREEN MOBILE MENU FIX */
-@media (max-width: 768px) {
-
-  .nebula-nav-horizontal.active {
-    position: fixed !important;
-    top: 90px; /* below header */
-    left: 0;
-    width: 100%;
-    height: calc(100vh - 90px);
-    overflow-y: auto;
-    background: #ffffff;
-    padding: 0 1.2rem 2rem;
-    border-radius: 0;
-    z-index: 9999;
-  }
-
-  .nebula-nav-horizontal.active ul {
-    margin: 0;
-    padding: 0;
-    width: 100%;
-  }
-
-  /* Remove image/text from showing behind */
-  body.menu-open {
-    overflow: hidden !important;
-  }
-
-  /* Add neat spacing to items */
-  .nebula-nav-horizontal.active ul li {
-    margin: 0;
-    padding: 0.8rem 0;
-    border-bottom: 1px solid rgba(0,0,0,0.05);
-  }
-
-  .nebula-nav-horizontal.active ul li:last-child {
-    border-bottom: none;
-  }
-}
-
-
-
-/* ==============================================
-   ULTIMATE CLEAN MOBILE NAV FIX (NON-DESKTOP SAFE)
-   ============================================== */
-@media (max-width: 768px) {
-
-  /* Force left alignment for ALL menu items */
-  .nebula-nav-horizontal.active ul li a {
-    display: flex !important;
-    justify-content: flex-start !important;
-    text-align: left !important;
-    padding: 0.9rem 1rem !important;
-    width: 100% !important;
-    font-size: 1.05rem !important;
-    font-weight: 600 !important;
-    background: none !important;
-    border-radius: 0 !important;
-  }
-
-  /* Parent with dropdown styling */
-  .menu-item-has-children > a {
-    font-weight: 700 !important;
-    margin-bottom: 0 !important;
-  }
-
-  /* Remove large spacing created by earlier padding & borders */
-  .nebula-nav-horizontal.active ul li {
-    padding: 0 !important;
-    margin: 0 !important;
-    border-bottom: none !important;
-  }
-
-  /* Submenu container fix */
-  ul.ghost-submenu {
-    background: transparent !important;
-    margin: 0 !important;
-    padding: 0 !important;
-    border: none !important;
-  }
-
-  /* Submenu spacing & indentation */
-  ul.ghost-submenu li a {
-    padding: 0.65rem 1rem 0.65rem 2.3rem !important;
-    font-size: 1rem !important;
-    font-weight: 500 !important;
-    margin: 0 !important;
-  }
-
-  /* Remove unwanted pink highlight when open */
-  .menu-item-has-children.open > a {
-    background: none !important;
-  }
-
-  /* Fix submenu gap above first child */
-  .menu-item-has-children.open ul.ghost-submenu li:first-child {
-    margin-top: 0 !important;
-    padding-top: 0 !important;
-  }
+  .footer-logo, .footer-social a, .footer-mail { transition: none; }
+  .footer-logo:hover, .footer-social a:hover { transform: none; }
 }
