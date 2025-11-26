@@ -184,6 +184,14 @@ ul.ghost-submenu li a:hover {
     }
 }
 
+/* FIX: Force dropdown items to stack vertically */
+.ghost-submenu,
+.ghost-submenu li,
+.ghost-submenu li a {
+    display: block !important;
+    flex-direction: column !important;
+}
+
 /* ================================
    SMALL MOBILE STYLES (480px and below)
    ================================ */
