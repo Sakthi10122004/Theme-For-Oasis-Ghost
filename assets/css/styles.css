@@ -344,8 +344,6 @@ button {
     width: 100%;
     border-bottom: 1px solid rgba(0, 0, 0, 0.05);
     margin: 0;
-    display: flex; /* Enables wrapping for dropdown */
-    flex-wrap: wrap;
   }
 
   /* Links Styling */
@@ -362,27 +360,15 @@ button {
   }
   
   /* Submenu Handling on Mobile */
-  /* HIDDEN BY DEFAULT */
   .nebula-nav-horizontal.active li ul,
   .nebula-nav-horizontal.active ul.ghost-submenu {
-    display: none; /* <--- CHANGED FROM BLOCK to NONE */
     position: relative;
     top: 0;
-    left: 0;
-    width: 100%;
     box-shadow: none;
     border: none;
-    background: #e0e0e0; /* Light gray background for contrast */
-    padding: 0.5rem 0;
-    border-radius: 8px;
-    margin-bottom: 10px;
-  }
-
-  /* SHOW SUBMENU ON INTERACTION (Hover/Tap or .open class) */
-  .nebula-nav-horizontal.active li:hover > ul,
-  .nebula-nav-horizontal.active li.open > ul {
-    display: none !important;
-    animation: fadeIn 0.3s ease;
+    background: transparent;
+    padding: 0 0 0.5rem 0;
+    display: block; /* Always show submenus or use JS to toggle */
   }
   
   .nebula-nav-horizontal.active li ul li {
@@ -390,9 +376,9 @@ button {
   }
 
   .nebula-nav-horizontal.active li ul a {
-    padding: 0.75rem 1rem 0.75rem 2rem; /* Indentation for hierarchy */
+    padding: 0.6rem 0 0.6rem 1.5rem; /* Indentation */
     font-size: 1rem;
-    color: #444;
+    color: #555;
     font-weight: 500;
   }
 
@@ -412,12 +398,6 @@ button {
     width: 100%;
     padding: 0.9rem;
   }
-}
-
-/* Simple fade animation for dropdown */
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(-5px); }
-  to { opacity: 1; transform: translateY(0); }
 }
 
 /* ==============================================
