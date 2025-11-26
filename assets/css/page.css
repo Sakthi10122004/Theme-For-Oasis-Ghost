@@ -1,0 +1,321 @@
+/* -------------------------------------------------
+   BASE LAYOUT
+--------------------------------------------------- */
+.page-wrapper {
+    padding: 3rem 0;
+    background: #fafafa;
+}
+
+/* -------------------------------------------------
+   HEADER
+--------------------------------------------------- */
+.page-header {
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+.page-title {
+    font-size: clamp(2.2rem, 4vw, 3.2rem);
+    font-weight: 800;
+    background: linear-gradient(135deg, #1a1a1a, #ED3E29);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: .75rem;
+}
+
+.page-subtitle {
+    color: #666;
+    max-width: 650px;
+    margin: 0 auto;
+    line-height: 1.6;
+}
+
+/* -------------------------------------------------
+   FEATURE IMAGE
+--------------------------------------------------- */
+.page-feature-image {
+    margin: 0 auto 2rem;
+    max-width: 1000px;
+}
+
+.page-feature-image img {
+    width: 100%;
+    border-radius: 16px;
+    box-shadow: 0px 8px 25px rgba(0,0,0,0.08);
+}
+
+.page-feature-image figcaption {
+    margin-top: .75rem;
+    text-align: center;
+    color: #666;
+    font-size: .9rem;
+    font-style: italic;
+}
+
+/* -------------------------------------------------
+   GENERAL CONTENT
+--------------------------------------------------- */
+.page-content {
+    font-size: 1.08rem;
+    line-height: 1.75;
+    color: #333;
+    max-width: 750px;
+    margin: 1.5rem auto;
+}
+
+.page-content p {
+    margin-bottom: 1.25rem;
+}
+
+.page-content h1,
+.page-content h2,
+.page-content h3,
+.page-content h4,
+.page-content h5,
+.page-content h6 {
+    font-weight: 700;
+    margin: 2rem 0 1rem;
+    color: #1a1a1a;
+}
+
+.page-content hr {
+    border: none;
+    border-top: 2px solid #eee;
+    margin: 2rem 0;
+}
+
+.page-content a {
+    color: #ED3E29;
+    border-bottom: 1px solid transparent;
+    transition: .3s;
+}
+
+.page-content a:hover {
+    color: #C83325;
+    border-bottom-color: #ED3E29;
+}
+
+.page-content img {
+    width: 100%;
+    border-radius: 12px;
+    margin: 1.5rem 0;
+}
+
+.page-content blockquote {
+    border-left: 4px solid #ED3E29;
+    padding: 1rem 1.5rem;
+    background: #fff4f4;
+    margin: 2rem 0;
+    font-style: italic;
+    border-radius: 6px;
+}
+
+.page-content ol,
+.page-content ul {
+    margin-left: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+/* -------------------------------------------------
+   GHOST CARDS / EMBEDS
+--------------------------------------------------- */
+.kg-gallery-card,
+.kg-bookmark-card,
+.kg-callout-card,
+.kg-toggle-card,
+.kg-video-card,
+.kg-audio-card {
+    margin: 2rem 0;
+}
+
+.kg-bookmark-container {
+    border: 1px solid #eee;
+    border-radius: 12px;
+    overflow: hidden;
+    transition: .3s;
+}
+
+.kg-bookmark-container:hover {
+    border-color: #ED3E29;
+}
+
+.kg-callout-card {
+    border-radius: 12px !important;
+    padding: 1rem 1.5rem !important;
+}
+
+.kg-toggle-card {
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+.kg-button-card a {
+    background: #ED3E29;
+    color: #fff;
+    padding: .75rem 1.5rem;
+    border-radius: 8px;
+    display: inline-block;
+    transition: .3s;
+}
+
+.kg-button-card a:hover {
+    background: #C83325;
+}
+
+/* -------------------------------------------------
+   FILE CARDS GRID SYSTEM - CENTERED & FULL WIDTH
+--------------------------------------------------- */
+
+/* Reset dynamic-content for normal text flow */
+.dynamic-content {
+    display: block !important;
+}
+
+/* When file cards exist, make container full-width and centered */
+.page-content:has(.kg-file-card) {
+    max-width: 100% !important;
+    padding: 0 4rem !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+}
+
+/* Centered 3-column grid */
+.page-content:has(.kg-file-card) .dynamic-content {
+    display: grid !important;
+    grid-template-columns: repeat(3, minmax(280px, 1fr)) !important;
+    gap: 2.5rem !important;
+    justify-items: center !important;   /* Center each card */
+    justify-content: center !important; /* Center the whole grid */
+    width: 100% !important;
+}
+
+/* Ensure file cards take full grid cell width */
+.kg-file-card {
+    width: 100% !important;
+    display: flex !important;
+    flex-direction: column !important;
+}
+
+/* Force normal content to span full width when in grid mode */
+.page-content:has(.kg-file-card) .dynamic-content > *:not(.kg-file-card) {
+    grid-column: 1 / -1 !important;
+    max-width: 750px !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+}
+
+/* -------------------------------------------------
+   FILE CARD STYLING
+--------------------------------------------------- */
+.kg-file-card {
+    padding: 2rem !important;
+    background: #ffffff !important;
+    border-radius: 18px !important;
+    border: 1px solid #eee !important;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.05) !important;
+    transition: 0.3s ease !important;
+    text-align: center !important;
+    align-items: center !important;
+}
+
+.kg-file-card:hover {
+    transform: translateY(-6px) !important;
+    border-color: #ED3E29 !important;
+    box-shadow: 0 15px 45px rgba(237,62,41,0.2) !important;
+}
+
+.kg-file-card-icon {
+    width: 80px !important;
+    height: 80px !important;
+    border-radius: 20px !important;
+    background: #fff4f4 !important;
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    margin-bottom: 1.25rem !important;
+}
+
+.kg-file-card-icon svg {
+    width: 40px !important;
+    height: 40px !important;
+    stroke: #ED3E29 !important;
+}
+
+.kg-file-card-title {
+    font-size: 1.1rem !important;
+    font-weight: 700 !important;
+    margin-bottom: 0.5rem !important;
+    color: #222 !important;
+}
+
+.kg-file-card-caption {
+    font-size: 0.9rem !important;
+    color: #777 !important;
+    margin-bottom: 1rem !important;
+}
+
+.kg-file-card-filename {
+    display: none !important;
+}
+
+.kg-file-card a::after {
+    content: "PDF Document" !important;
+    display: block !important;
+    margin-top: .75rem !important;
+    font-size: .85rem !important;
+    color: #666 !important;
+}
+
+.kg-file-card-metadata {
+    margin-top: 1.25rem !important;
+    padding: 0.75rem 1rem !important;
+    background: #ED3E29 !important;
+    color: #fff !important;
+    font-size: 0.9rem !important;
+    font-weight: 600 !important;
+    border-radius: 10px !important;
+    cursor: pointer !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 8px !important;
+}
+
+.kg-file-card-metadata svg {
+    stroke: #fff !important;
+    width: 18px !important;
+    height: 18px !important;
+}
+
+/* Hide filename inside Ghost file cards */
+.kg-file-card a span,
+.kg-file-card a strong,
+.kg-file-card a em {
+    display: none !important;
+}
+
+/* -------------------------------------------------
+   RESPONSIVE DESIGN
+--------------------------------------------------- */
+@media (max-width: 1200px) {
+    .page-content:has(.kg-file-card) .dynamic-content {
+        grid-template-columns: repeat(2, minmax(280px, 1fr)) !important;
+    }
+}
+
+@media (max-width: 768px) {
+    .page-content:has(.kg-file-card) {
+        padding: 0 2rem !important;
+    }
+    
+    .page-content:has(.kg-file-card) .dynamic-content {
+        grid-template-columns: 1fr !important;
+        gap: 2rem !important;
+    }
+}
+
+@media (max-width: 480px) {
+    .page-content:has(.kg-file-card) {
+        padding: 0 1rem !important;
+    }
+}
