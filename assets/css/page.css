@@ -293,6 +293,136 @@
 .kg-file-card a em {
     display: none !important;
 }
+/* Fix inside layout so thumbnail, title, and label align properly */
+.kg-file-card a {
+    display: flex !important;
+    align-items: center !important;
+    gap: 1.5rem !important;
+}
+
+.kg-file-card-icon canvas {
+    width: 100% !important;
+    border-radius: 12px !important;
+    box-shadow: 0 4px 14px rgba(0,0,0,0.15);
+}
+/* Make the icon container behave like a real thumbnail area */
+.kg-file-card-icon {
+    width: 90px !important; /* larger thumbnail size */
+    height: 120px !important;
+    border-radius: 10px !important;
+    background: #f7f7f7 !important;
+    overflow: hidden !important;
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    margin-right: 1rem !important;
+}
+
+/* Ensure the generated preview fits perfectly */
+.kg-file-card-icon canvas,
+.kg-file-card-icon img {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important;
+    border-radius: 10px !important;
+}
+/* Hide file size metadata (example: "4 MB") */
+.kg-file-card-metadata {
+    display: none !important;
+}
+/* ==========================================
+   CLEAN VERTICAL DOCUMENT CARD LAYOUT
+========================================== */
+
+/* The whole card */
+.kg-file-card {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+
+    background: #ffffff !important;
+    border-radius: 20px !important;
+    border: 1px solid #eee !important;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.06) !important;
+
+    padding: 1.5rem !important;
+    transition: .3s ease !important;
+    overflow: hidden !important;
+}
+
+/* Hover effect */
+.kg-file-card:hover {
+    transform: translateY(-5px);
+    border-color: #ED3E29 !important;
+    box-shadow: 0 15px 35px rgba(237,62,41,0.15) !important;
+}
+
+
+
+/* ==========================================
+   IMAGE PREVIEW — FULL WIDTH TOP
+========================================== */
+
+.kg-file-card-icon {
+    width: 100% !important;
+    height: 230px !important;  /* adjust height */
+    border-radius: 14px !important;
+    overflow: hidden !important;
+
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+
+    background: #f7f7f7 !important;
+    margin-bottom: 1.2rem !important;
+}
+
+/* When PDF.js thumbnail (canvas) is injected */
+.kg-file-card-icon canvas,
+.kg-file-card-icon img {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important;
+}
+
+
+
+/* ==========================================
+   TITLE BELOW IMAGE — CENTERED
+========================================== */
+
+.kg-file-card-title {
+    text-align: center !important;
+    font-size: 1.2rem !important;
+    font-weight: 700 !important;
+    color: #222 !important;
+    margin: 0 !important;
+}
+
+/* Remove Ghost’s default inline spacing */
+.kg-file-card a {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    width: 100% !important;
+    gap: 0 !important;
+}
+
+
+
+/* ==========================================
+   REMOVE ALL UNWANTED EXTRAS
+========================================== */
+
+.kg-file-card-filename,
+.kg-file-card-caption,
+.kg-file-card-metadata,
+.kg-file-card a strong,
+.kg-file-card a em,
+.kg-file-card a span {
+    display: none !important;
+}
+
 
 /* -------------------------------------------------
    RESPONSIVE DESIGN
