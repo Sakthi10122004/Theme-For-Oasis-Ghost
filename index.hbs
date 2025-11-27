@@ -221,51 +221,117 @@
 <section class="toolbox">
   <div class="expert-tool-wrapper">
 
-   <div class="tools-orbit">
-  <h3>Don't know which tool to choose?</h3>
+    <div class="tools-orbit">
+      <div class="orbit-header">
+        <h3>Don't know which tool to choose?</h3>
+      </div>
 
-  {{#get "posts" filter="tag:tools" limit="3" include="feature_image"}}
-  <div class="scroll-inner">
-    <div class="auto-scroll">
-      {{#foreach posts}}
-        <a href="{{url}}" class="tool-logo">
-          {{#if feature_image}}
-            <img src="{{img_url feature_image size="xs"}}">
-          {{else}}
-            <span class="tool-text">{{title}}</span>
-          {{/if}}
-        </a>
-      {{/foreach}}
+      {{#get "posts" filter="tag:tools" limit="3" include="feature_image"}}
+      <div class="marquee-window">
+        <div class="marquee-track">
+          
+          {{#foreach posts}}
+            <a href="{{url}}" class="tool-card" title="{{title}}">
+              {{#if feature_image}}
+                <img src="{{img_url feature_image size="xs"}}" alt="{{title}}">
+              {{else}}
+                <span class="tool-text">{{title}}</span>
+              {{/if}}
+            </a>
+          {{/foreach}}
+
+          {{#foreach posts}}
+            <a href="{{url}}" class="tool-card" title="{{title}}">
+              {{#if feature_image}}
+                <img src="{{img_url feature_image size="xs"}}" alt="{{title}}">
+              {{else}}
+                <span class="tool-text">{{title}}</span>
+              {{/if}}
+            </a>
+          {{/foreach}}
+
+          {{#foreach posts}}
+            <a href="{{url}}" class="tool-card" title="{{title}}">
+              {{#if feature_image}}
+                <img src="{{img_url feature_image size="xs"}}" alt="{{title}}">
+              {{else}}
+                <span class="tool-text">{{title}}</span>
+              {{/if}}
+            </a>
+          {{/foreach}}
+
+           {{#foreach posts}}
+            <a href="{{url}}" class="tool-card" title="{{title}}">
+              {{#if feature_image}}
+                <img src="{{img_url feature_image size="xs"}}" alt="{{title}}">
+              {{else}}
+                <span class="tool-text">{{title}}</span>
+              {{/if}}
+            </a>
+          {{/foreach}}
+
+        </div>
+      </div>
+      {{/get}}
+
+      <a href="/tag/tools/" class="view-all-btn">View all tools</a>
     </div>
-  </div>
-  {{/get}}
 
-  <a href="/tag/tools/" class="view-all">View all tools →</a>
-</div>
+    <div class="experts-orbit">
+      <div class="orbit-header">
+        <h3>OASIS verified experts</h3>
+      </div>
 
+      {{#get "posts" filter="tag:verified-experts" limit="3" include="feature_image"}}
+      <div class="marquee-window">
+        <div class="marquee-track reverse-scroll">
+          
+          {{#foreach posts}}
+            <a href="{{url}}" class="expert-card" title="{{title}}">
+              {{#if feature_image}}
+                <img src="{{img_url feature_image size="xs"}}" alt="{{title}}">
+              {{else}}
+                <span class="expert-initial">{{title.[0]}}</span>
+              {{/if}}
+            </a>
+          {{/foreach}}
 
-   <div class="experts-orbit">
-  <h3>OASIS verified experts</h3>
+          {{#foreach posts}}
+            <a href="{{url}}" class="expert-card" title="{{title}}">
+              {{#if feature_image}}
+                <img src="{{img_url feature_image size="xs"}}" alt="{{title}}">
+              {{else}}
+                <span class="expert-initial">{{title.[0]}}</span>
+              {{/if}}
+            </a>
+          {{/foreach}}
 
-  {{#get "posts" filter="tag:verified-experts" limit="3" include="feature_image"}}
-  <div class="scroll-inner">
-    <div class="auto-scroll">
-      {{#foreach posts}}
-        <a href="{{url}}" class="avatar">
-          {{#if feature_image}}
-            <img src="{{img_url feature_image size="xs"}}">
-          {{else}}
-            {{title.[0]}}
-          {{/if}}
-        </a>
-      {{/foreach}}
+          {{#foreach posts}}
+            <a href="{{url}}" class="expert-card" title="{{title}}">
+              {{#if feature_image}}
+                <img src="{{img_url feature_image size="xs"}}" alt="{{title}}">
+              {{else}}
+                <span class="expert-initial">{{title.[0]}}</span>
+              {{/if}}
+            </a>
+          {{/foreach}}
+
+          {{#foreach posts}}
+            <a href="{{url}}" class="expert-card" title="{{title}}">
+              {{#if feature_image}}
+                <img src="{{img_url feature_image size="xs"}}" alt="{{title}}">
+              {{else}}
+                <span class="expert-initial">{{title.[0]}}</span>
+              {{/if}}
+            </a>
+          {{/foreach}}
+
+        </div>
+      </div>
+      {{/get}}
+
+      <a href="/tag/verified-experts/" class="view-all-btn">Meet all experts</a>
     </div>
-  </div>
-  {{/get}}
-
-  <a href="/tag/verified-experts/" class="view-all">Meet all experts →</a>
-</div>
-
 
   </div>
 </section>
