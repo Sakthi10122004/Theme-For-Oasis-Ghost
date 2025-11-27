@@ -631,7 +631,16 @@
   margin: 1rem auto 0;
   opacity: 0.9;
 }
-
+.constellation-sub-title 
+{
+  font-size: 1.2rem;
+  color: #111;
+  margin-bottom: 4rem;
+  max-width: 700px;
+  margin-left: auto;
+  margin-right: auto;
+  line-height: 1.6;
+}
 
 /* Layout for cards */
 .constellation {
@@ -1413,219 +1422,245 @@
 
 
 
-/* === Toolbox + Verified Experts Section === */
-/* === TOOLBOX + VERIFIED EXPERTS SECTION === */
+/* ==============================================
+   TOOLBOX & EXPERTS SECTION - ANIMATED
+   ============================================== */
+
 .toolbox {
-  padding: 6rem 5%;
-  background: #fff;
+  padding: 5rem 2rem;
+  background: #fdfdfd; /* Very subtle grey for contrast */
   border-top: 1px solid rgba(0, 0, 0, 0.05);
+  overflow: hidden; /* Prevents horizontal scrollbar issues */
 }
 
 .expert-tool-wrapper {
   display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  gap: 60px;
+  justify-content: center;
+  align-items: stretch;
+  gap: 40px;
   max-width: 1200px;
   margin: 0 auto;
-  flex-wrap: wrap;
 }
 
-/* === TOOLS SECTION === */
-.tools-orbit {
-  flex: 1;
-  background: #ffffff;
-  border: 2px solid rgba(237, 62, 41, 0.25);
-  /* Soft OASIS red border */
-  border-radius: 20px;
-  padding: 40px 30px;
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.04);
-  text-align: center;
-  transition: all 0.3s ease;
-}
-
-.tools-orbit:hover {
-  transform: translateY(-6px);
-  border-color: #ED3E29;
-  /* Stronger red on hover */
-  box-shadow: 0 10px 28px rgba(237, 62, 41, 0.12);
-}
-
-.tools-orbit h3 {
-  font-size: 1.8rem;
-  font-weight: 700;
-  color: #ED3E29;
-  margin-bottom: 1.8rem;
-}
-
-/* Tools logo grid */
-.orbit-logos {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 28px;
-  margin-bottom: 20px;
-}
-
-.tool-logo {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 90px;
-  height: 70px;
-  border-radius: 14px;
-  background: #fff;
-  border: 1.5px solid rgba(0, 0, 0, 0.05);
-  transition: all 0.3s ease;
-  overflow: hidden;
-}
-
-.tool-logo:hover {
-  border-color: #ED3E29;
-  transform: translateY(-4px);
-  box-shadow: 0 8px 20px rgba(237, 62, 41, 0.15);
-}
-
-.tool-logo img {
-  max-height: 38px;
-  width: auto;
-  object-fit: contain;
-  filter: grayscale(40%);
-  opacity: 0.9;
-  transition: all 0.3s ease;
-}
-
-.tool-logo:hover img {
-  filter: grayscale(0);
-  opacity: 1;
-  transform: scale(1.08);
-}
-
-.tool-text {
-  font-size: 0.9rem;
-  font-weight: 600;
-  color: #444;
-}
-
-/* === EXPERTS SECTION === */
+/* === SHARED CARD STYLES === */
+.tools-orbit,
 .experts-orbit {
   flex: 1;
   background: #ffffff;
-  border: 2px solid rgba(237, 62, 41, 0.25);
-  /* Same border */
-  border-radius: 20px;
-  padding: 40px 30px;
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.04);
+  border-radius: 24px;
+  padding: 50px 30px;
   text-align: center;
-  transition: all 0.3s ease;
+  position: relative;
+  /* Clean shadow instead of borders */
+  box-shadow: 
+    0 10px 40px -10px rgba(0, 0, 0, 0.08),
+    0 0 0 1px rgba(0,0,0,0.03); 
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  overflow: hidden; /* Keeps marquee inside the rounded corners */
 }
 
+.tools-orbit:hover,
 .experts-orbit:hover {
-  transform: translateY(-6px);
-  border-color: #ED3E29;
-  box-shadow: 0 10px 28px rgba(237, 62, 41, 0.12);
+  transform: translateY(-5px);
+  box-shadow: 
+    0 20px 50px -10px rgba(237, 62, 41, 0.1),
+    0 0 0 1px rgba(237, 62, 41, 0.2);
 }
 
+/* Typography */
+.orbit-header {
+  margin-bottom: 35px;
+}
+
+.tools-orbit h3,
 .experts-orbit h3 {
-  font-size: 1.8rem;
-  font-weight: 700;
+  font-size: 1.75rem;
+  font-weight: 800;
   color: #ED3E29;
-  margin-bottom: 1.8rem;
+  margin-bottom: 8px;
+  letter-spacing: -0.5px;
 }
 
-/* Expert avatar layout */
-.expert-avatars {
+
+/* === MARQUEE ANIMATION CONTAINER === */
+.marquee-window {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  padding: 20px 0 40px; /* Space for shadows */
+  mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
+  -webkit-mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
+}
+
+.marquee-track {
   display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  gap: 16px;
-  margin-bottom: 20px;
+  gap: 20px;
+  width: max-content; /* Ensure track is as wide as content */
+  animation: scroll 30s linear infinite;
 }
 
-/* Expert avatar style */
-.avatar {
-  width: 64px;
-  height: 64px;
+/* Pause animation on hover */
+.marquee-window:hover .marquee-track {
+  animation-play-state: paused;
+}
+
+/* Keyframes for sliding left */
+@keyframes scroll {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); } /* Move half way (since we duplicated content) */
+}
+
+/* === TOOL ITEMS === */
+.tool-card {
+ flex-shrink: 0;
+  width: 70px;
+  height: 70px;
   border-radius: 50%;
-  background: #f7f7f7;
-  color: #000;
-  font-weight: 700;
-  font-size: 1.1rem;
+  background: #f4f4f4;
+  overflow: hidden;
+  border: 2px solid #fff;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.08);
   display: flex;
   align-items: center;
   justify-content: center;
   text-decoration: none;
-  transition: transform 0.25s ease, box-shadow 0.25s ease;
-  overflow: hidden;
-  border: 2px solid #fff;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s ease;
 }
 
-.avatar img {
+.tool-card:hover {
+  transform: scale(1.1);
+  border-color: #ED3E29;
+  box-shadow: 0 10px 25px rgba(237, 62, 41, 0.15);
+  z-index: 2;
+}
+
+.tool-card img {
+  width: 50%;
+  height: auto;
+  object-fit: contain;
+  filter: grayscale(100%);
+  opacity: 0.7;
+  transition: all 0.3s ease;
+}
+
+.tool-card:hover img {
+  filter: grayscale(0);
+  opacity: 1;
+}
+
+.tool-text {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: #ED3E29;
+  padding: 5px;
+}
+
+/* === EXPERT ITEMS === */
+.expert-card {
+  flex-shrink: 0;
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  background: #f4f4f4;
+  overflow: hidden;
+  border: 2px solid #fff;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.expert-card:hover {
+  transform: scale(1.15);
+  border-color: #ED3E29;
+  box-shadow: 0 8px 20px rgba(237, 62, 41, 0.2);
+}
+
+.expert-card img {
   width: 100%;
   height: 100%;
-  border-radius: 50%;
   object-fit: cover;
 }
 
-.avatar:hover {
-  transform: translateY(-4px) scale(1.05);
-  box-shadow: 0 8px 18px rgba(237, 62, 41, 0.3);
-}
-
-/* === View All Link === */
-.view-all {
-  display: inline-block;
-  margin-top: 10px;
-  font-weight: 600;
+.expert-initial {
+  font-weight: 800;
   color: #ED3E29;
+  font-size: 1.2rem;
+}
+
+/* === BUTTONS === */
+.view-all-btn {
+  display: inline-block;
+  padding: 10px 24px;
+  border-radius: 50px;
+  font-weight: 600;
+  font-size: 0.95rem;
   text-decoration: none;
-  transition: color 0.3s ease;
+  transition: all 0.3s ease;
+  margin-top: 10px;
+  
+  /* Outline Style Default */
+  border: 2px solid #eee;
+  color: #555;
+  background: transparent;
 }
 
-.view-all:hover {
-  text-decoration: underline;
-  color: #c12d1b;
+.view-all-btn:hover {
+  border-color: #ED3E29;
+  color: #ED3E29;
+  transform: translateY(-2px);
 }
 
-/* === RESPONSIVE DESIGN === */
-@media (max-width: 992px) {
+.view-all-btn.red-btn {
+  background: rgba(237, 62, 41, 0.05);
+  color: #ED3E29;
+  border-color: transparent;
+}
+
+.view-all-btn.red-btn:hover {
+  background: #ED3E29;
+  color: #fff;
+  box-shadow: 0 5px 15px rgba(237, 62, 41, 0.3);
+}
+
+/* === RESPONSIVE === */
+@media (max-width: 900px) {
   .expert-tool-wrapper {
     flex-direction: column;
-    align-items: center;
-    gap: 40px;
+    gap: 30px;
   }
-
-  .tools-orbit,
-  .experts-orbit {
+  
+  .tools-orbit, .experts-orbit {
     width: 100%;
-    max-width: 650px;
+    padding: 40px 20px;
   }
-}
 
-@media (max-width: 600px) {
-
-  .tools-orbit h3,
-  .experts-orbit h3 {
+  .tools-orbit h3, .experts-orbit h3 {
     font-size: 1.5rem;
   }
-
-  .tool-logo {
-    width: 80px;
-    height: 60px;
-  }
-
-  .avatar {
-    width: 56px;
-    height: 56px;
-  }
-
-  .view-all {
-    font-size: 0.9rem;
-  }
 }
 
+@media (max-width: 480px) {
+  .toolbox {
+    padding: 3rem 1rem;
+  }
+  
+  .marquee-track {
+    gap: 15px;
+  }
+  
+  .tool-card {
+    width: 70px;
+    height: 70px;
+  }
+  
+  .expert-card {
+    width: 60px;
+    height: 60px;
+  }
+}
 /* Larger Side-by-Side Hero Layout */
 .hero-orbit {
   display: grid;

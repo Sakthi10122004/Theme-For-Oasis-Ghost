@@ -367,18 +367,6 @@ background-clip: text;
   position: relative;
 }
 
-/* .card-inner::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  border-radius: 28px;
-  height: 7px;
-  background: linear-gradient(90deg, #ED3E29, #ff6b5b, transparent);
-} */
-
-
 .timeline-card:hover .card-inner {
   transform: translateY(-10px);
   box-shadow: 0 35px 80px rgba(0,0,0,0.18);
@@ -430,12 +418,14 @@ background-clip: text;
 }
 
 .oasis-reveal h3 {
+  color: white;
   font-size: 2.8rem;
   font-weight: 900;
   margin-top: 10px;
 }
 
 .oasis-reveal p {
+  color: white;
   font-size: 1.2rem;
   opacity: 0.9;
 }
@@ -1074,14 +1064,6 @@ background-clip: text;
   color: white;
   text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
-
-.cta-content p {
-  font-size: 1rem;
-  line-height: 1.75;
-  margin-bottom: 45px;
-  color: rgba(255, 255, 255, 0.95);
-}
-
 
 .cta-buttons {
   display: flex;
