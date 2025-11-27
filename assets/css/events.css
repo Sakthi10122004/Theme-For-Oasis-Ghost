@@ -1,0 +1,94 @@
+.events-page {
+  padding: 4rem 0;
+}
+
+.events-header {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.events-header h1 {
+  font-size: 3rem;
+  font-weight: 800;
+  color: #7a1d16;
+}
+
+.events-section {
+  max-width: 1200px;
+  margin: 0 auto 4rem;
+  padding: 0 2rem;
+}
+
+.events-title {
+  font-size: 1.8rem;
+  margin-bottom: 2rem;
+  font-weight: 700;
+}
+
+/* ---- EVENT ROW LAYOUT ---- */
+
+.event-row {
+  display: grid;
+  grid-template-columns: 160px 1fr 120px;
+  gap: 2rem;
+  align-items: center;
+
+  background: #fff;
+  border-radius: 16px;
+  padding: 1.5rem 2rem;
+  margin-bottom: 2rem;
+
+  border: 1px solid #eee;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.05);
+}
+
+.event-poster {
+  width: 160px;
+  height: 120px;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.event-poster img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.event-info {
+  line-height: 1.8;
+}
+
+.event-title {
+  font-size: 1.3rem;
+  font-weight: 800;
+  margin-bottom: .4rem;
+}
+
+.event-meta {
+  color: #444;
+  font-size: .95rem;
+}
+
+.event-btn {
+  background: #ED3E29;
+  color: #fff;
+  padding: .6rem 1.4rem;
+  border-radius: 30px;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+/* ----- MOBILE RESPONSIVE ----- */
+
+@media (max-width: 768px) {
+  .event-row {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+
+  .event-poster {
+    width: 100%;
+    height: 200px;
+  }
+}

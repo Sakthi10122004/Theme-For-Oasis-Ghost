@@ -1,0 +1,101 @@
+{{!< default}}
+
+<main class="events-page">
+
+  <header class="events-header">
+    <h1>Events</h1>
+  </header>
+
+  <!-- UPCOMING -->
+  <section class="events-section">
+    <h2 class="events-title">Upcoming Events</h2>
+    <div id="upcoming-events"></div>
+  </section>
+
+  <!-- PAST -->
+  <section class="events-section">
+    <h2 class="events-title">Impact We’ve Already Made</h2>
+    <div id="past-events"></div>
+  </section>
+
+  <!-- ALL EVENTS (HIDDEN DATA SOURCE) -->
+  <div id="all-events" style="display:none;">
+    {{#get "posts" filter="tag:event" limit="all"}}
+      {{#foreach posts}}
+        <article class="event-row"
+          data-title="{{title}}"
+          data-url="{{url}}"
+          data-image="{{img_url feature_image}}"
+          data-raw="{{excerpt}}">
+        </article>
+      {{/foreach}}
+    {{/get}}
+  </div>
+
+</main>
+
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+
+  const today = new Date();
+  today.setHours(0,0,0,0);   // ✅ normalize today
+
+  const upcomingBox = document.getElementById("upcoming-events");
+  const pastBox = document.getElementById("past-events");
+
+  const events = document.querySelectorAll("#all-events .event-row");
+
+  events.forEach(event => {
+
+    const raw = event.dataset.raw;
+    if (!raw) return;
+
+    // ✅ FIXED NON-GREEDY, LINE-BASED MATCHING
+    const dateMatch  = raw.match(/^Date:\s*(\d{2}-\d{2}-\d{4})$/m);
+    const timeMatch  = raw.match(/^Time:\s*(.+)$/m);
+    const placeMatch = raw.match(/^Place:\s*(.+)$/m);
+
+    if (!dateMatch) return;
+
+    const eventDateStr = dateMatch[1].trim();
+    const [dd, mm, yyyy] = eventDateStr.split("-");
+    const eventDate = new Date(`${yyyy}-${mm}-${dd}`);
+    eventDate.setHours(0,0,0,0);   // ✅ normalize event date
+
+    const title = event.dataset.title;
+    const url = event.dataset.url;
+    const image = event.dataset.image || "";
+    const time = timeMatch ? timeMatch[1].trim() : "—";
+    const place = placeMatch ? placeMatch[1].trim() : "—";
+
+    const card = document.createElement("article");
+    card.className = "event-row";
+
+    card.innerHTML = `
+      <div class="event-poster">
+        ${image ? `<img src="${image}" alt="${title}">` : ""}
+      </div>
+
+      <div class="event-info">
+        <h3 class="event-title">${title}</h3>
+        <p class="event-meta"><strong>Date: </strong>${eventDateStr}</p>
+        <p class="event-meta"><strong>Time: </strong>${time}</p>
+        <p class="event-meta"><strong>Venue: </strong>${place}</p>
+      </div>
+
+      <div class="event-action">
+        <a href="${url}" class="event-btn">View</a>
+      </div>
+    `;
+
+    if (eventDate >= today) {
+      upcomingBox.appendChild(card);
+    } else {
+      pastBox.appendChild(card);
+    }
+
+  });
+});
+</script>
+
