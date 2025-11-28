@@ -1,6 +1,6 @@
 /* ============================================
-   TAG PAGE – Full Image Visibility Version
-   ============================================ */
+   TAG PAGE – DEFAULT LAYOUT (YOUR EXISTING)
+============================================ */
 
 .tag-page {
   font-family: 'Nunito Sans', sans-serif;
@@ -17,11 +17,12 @@
 }
 
 .tag-header h1 {
-  font-family: 'Lora', serif;
-  font-size: 2.8rem;
-  color: #ED3E29;
-  font-weight: 700;
-  margin-bottom: 15px;
+  font-size: clamp(2.2rem, 4vw, 3.2rem);
+  font-weight: 800;
+  background: linear-gradient(135deg, #1a1a1a, #ED3E29);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-bottom: .75rem;
 }
 
 .tag-header p {
@@ -63,16 +64,16 @@
   display: block;
 }
 
-/* Image — FULL Image Visible */
+/* Image */
 .tag-post-image {
   width: 100%;
-  height: auto;            /* 👈 FULL IMAGE VISIBLE */
-  max-height: 220px;       /* 👈 keep small & clean */
-  object-fit: contain;     /* 👈 NO CROPPING */
-  background: #fafafa;     /* 👈 looks clean for odd aspect ratios */
+  height: auto;
+  max-height: 220px;
+  object-fit: contain;
+  background: #fafafa;
   border-radius: 12px;
   margin-bottom: 16px;
-  padding: 8px;            /* 👈 keeps consistent space */
+  padding: 8px;
   border: 1px solid #eee;
   transition: transform .30s ease;
 }
@@ -88,7 +89,6 @@
   font-weight: 700;
   color: #222;
   margin: 10px 0 6px;
-  transition: color 0.25s ease;
 }
 
 .tag-post-card:hover .tag-post-title {
@@ -106,4 +106,92 @@
 @media (max-width: 768px) {
   .tag-post-list { grid-template-columns: 1fr; }
   .tag-post-image { max-height: 180px; }
+}
+
+
+/* ============================================
+   VERIFIED EXPERTS SPECIAL LAYOUT
+============================================ */
+
+.verified-wrapper {
+  max-width: 1300px;
+  margin: 0 auto;
+  padding: 3rem 24px 80px;
+}
+
+.verified-header {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.verified-header h1 {
+  font-size: clamp(2.2rem, 4vw, 3.2rem);
+  font-weight: 800;
+  background: linear-gradient(135deg, #1a1a1a, #ED3E29);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-bottom: .5rem;
+}
+
+.verified-header p {
+  color: #666;
+  max-width: 650px;
+  margin: 0 auto;
+  line-height: 1.6;
+}
+
+/* Grid */
+.verified-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 32px;
+}
+
+/* Card */
+.verified-card {
+  background: #fff;
+  border-radius: 18px;
+  overflow: hidden;
+  box-shadow: 0 10px 28px rgba(0,0,0,0.08);
+  transition: .3s ease;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+}
+
+.verified-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 16px 45px rgba(237,62,41,0.18);
+}
+
+/* Image */
+.verified-image img {
+  width: 100%;
+  height: 260px;
+  object-fit: cover;
+}
+
+/* Info */
+.verified-info {
+  padding: 1.4rem 1.2rem 1.8rem;
+}
+
+.verified-name {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #1a1a1a;
+  margin-bottom: .5rem;
+}
+
+.verified-specialisation {
+  font-size: 1rem;
+  color: #555;
+  font-weight: 500;
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  .verified-image img {
+    height: 220px;
+  }
 }

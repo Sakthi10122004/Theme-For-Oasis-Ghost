@@ -8,38 +8,39 @@
 
   <!-- UPCOMING -->
   <section class="events-section">
-    <h2 class="events-title">Upcoming Events</h2>
+    <u><h2 class="events-title">Upcoming Events</h2></u>
     <div id="upcoming-events"></div>
   </section>
 
   <!-- PAST -->
   <section class="events-section">
-    <h2 class="events-title">Impact We’ve Already Made</h2>
+    <u><h2 class="events-title">Impact We’ve Already Stirred</h2></u>
     <div id="past-events"></div>
   </section>
 
   <!-- ALL EVENTS (HIDDEN DATA SOURCE) -->
   <div id="all-events" style="display:none;">
-    {{#get "posts" filter="tag:event" limit="all"}}
-      {{#foreach posts}}
-        <article class="event-row"
-          data-title="{{title}}"
-          data-url="{{url}}"
-          data-image="{{img_url feature_image}}"
-          data-raw="{{excerpt}}">
-        </article>
-      {{/foreach}}
-    {{/get}}
-  </div>
+  {{#get "posts" filter="tag:event" limit="all"}}
+    {{#foreach posts}}
+      <article class="event-row"
+        data-title="{{title}}"
+        data-url="{{url}}"
+        data-image="{{img_url feature_image}}"
+        data-raw="{{excerpt}}">
+      </article>
+    {{/foreach}}
+  {{/get}}
+</div>
+
 
 </main>
 
 
 <script>
-document.addEventListener("DOMContentLoaded", function () {
+(function () {
 
   const today = new Date();
-  today.setHours(0,0,0,0);   // ✅ normalize today
+  today.setHours(0,0,0,0);
 
   const upcomingBox = document.getElementById("upcoming-events");
   const pastBox = document.getElementById("past-events");
@@ -48,40 +49,40 @@ document.addEventListener("DOMContentLoaded", function () {
 
   events.forEach(event => {
 
-    const raw = event.dataset.raw;
-    if (!raw) return;
+    const raw = event.dataset.raw || "";
+    if (!raw.includes("Date:")) return;
 
-    // ✅ FIXED NON-GREEDY, LINE-BASED MATCHING
-    const dateMatch  = raw.match(/^Date:\s*(\d{2}-\d{2}-\d{4})$/m);
-    const timeMatch  = raw.match(/^Time:\s*(.+)$/m);
-    const placeMatch = raw.match(/^Place:\s*(.+)$/m);
+
+    const dateMatch  = raw.match(/Date:\s*(\d{2}-\d{2}-\d{4})/);
+    const timeMatch  = raw.match(/Time:\s*(.+)/);
+    const placeMatch = raw.match(/Place:\s*(.+)/);
 
     if (!dateMatch) return;
 
-    const eventDateStr = dateMatch[1].trim();
+    const eventDateStr = dateMatch[1];
     const [dd, mm, yyyy] = eventDateStr.split("-");
     const eventDate = new Date(`${yyyy}-${mm}-${dd}`);
-    eventDate.setHours(0,0,0,0);   // ✅ normalize event date
+    eventDate.setHours(0,0,0,0);
 
     const title = event.dataset.title;
     const url = event.dataset.url;
     const image = event.dataset.image || "";
-    const time = timeMatch ? timeMatch[1].trim() : "—";
-    const place = placeMatch ? placeMatch[1].trim() : "—";
+    const time = timeMatch ? timeMatch[1] : "—";
+    const place = placeMatch ? placeMatch[1] : "—";
 
     const card = document.createElement("article");
     card.className = "event-row";
 
     card.innerHTML = `
       <div class="event-poster">
-        ${image ? `<img src="${image}" alt="${title}">` : ""}
+        <img src="${image}" alt="${title}">
       </div>
 
       <div class="event-info">
         <h3 class="event-title">${title}</h3>
-        <p class="event-meta"><strong>Date: </strong>${eventDateStr}</p>
-        <p class="event-meta"><strong>Time: </strong>${time}</p>
-        <p class="event-meta"><strong>Venue: </strong>${place}</p>
+        <p><strong>Date:</strong> ${eventDateStr}</p>
+        <p><strong>Time:</strong> ${time}</p>
+        <p><strong>Venue:</strong> ${place}</p>
       </div>
 
       <div class="event-action">
@@ -96,6 +97,15 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
   });
-});
-</script>
 
+  /* EMPTY STATES */
+  if (!upcomingBox.children.length) {
+    upcomingBox.innerHTML = `<p class="no-events-msg">No Upcoming Events</p>`;
+  }
+
+  if (!pastBox.children.length) {
+    pastBox.innerHTML = `<p class="no-events-msg">No Past Events Yet</p>`;
+  }
+
+})();
+</script>

@@ -1,36 +1,107 @@
 {{!< default}}
 
-<main class="tag-page">
+{{!-- ================================
+     VERIFIED EXPERTS TAG ONLY
+================================ --}}
 
-  {{#tag}}
+{{#if tag}}
+  {{#match tag.slug "=" "verified-experts"}}
+
+  <main class="verified-wrapper">
+
+    <header class="verified-header">
+      <h1>{{tag.name}}</h1>
+      {{#if tag.description}}
+        <p>{{tag.description}}</p>
+      {{/if}}
+    </header>
+
+    <section class="verified-grid">
+      {{#foreach posts}}
+
+        <article class="verified-card">
+
+          <div class="verified-image">
+            {{#if feature_image}}
+              <img src="{{img_url feature_image size="m"}}" alt="{{title}}">
+            {{/if}}
+          </div>
+
+          <div class="verified-info" data-raw="{{excerpt}}">
+            <h3 class="verified-name">{{title}}</h3>
+            <p class="verified-specialisation"></p>
+          </div>
+
+        </article>
+
+      {{/foreach}}
+    </section>
+
+  </main>
+
+  {{!-- ================================
+       DEFAULT TAG LAYOUT
+  ================================ --}}
+
+  {{else}}
+
+  <main class="tag-page">
+
     <header class="tag-header">
 
       {{!-- Custom title for tools --}}
-      {{#match slug "=" "tools"}}
+      {{#match tag.slug "=" "tools"}}
         <h1>Our Suite of Tools</h1>
       {{else}}
-        <h1>{{name}}</h1>
+        <h1>{{tag.name}}</h1>
       {{/match}}
 
-      {{#if description}}
-        <p>{{description}}</p>
+      {{#if tag.description}}
+        <p>{{tag.description}}</p>
       {{/if}}
 
     </header>
-  {{/tag}}
 
-  <section class="tag-post-list">
-    {{#foreach posts}}
-      <article class="tag-post-card">
-        <a href="{{url}}">
-          {{#if feature_image}}
-            <img src="{{img_url feature_image size="m"}}" alt="{{title}}" class="tag-post-image">
-          {{/if}}
-          <h2 class="tag-post-title">{{title}}</h2>
-          <p class="tag-post-excerpt">{{excerpt words="20"}}</p>
-        </a>
-      </article>
-    {{/foreach}}
-  </section>
+    <section class="tag-post-list">
+      {{#foreach posts}}
+        <article class="tag-post-card">
+          <a href="{{url}}">
+            {{#if feature_image}}
+              <img src="{{img_url feature_image size="m"}}" alt="{{title}}" class="tag-post-image">
+            {{/if}}
+            <h2 class="tag-post-title">{{title}}</h2>
+            <p class="tag-post-excerpt">{{excerpt words="20"}}</p>
+          </a>
+        </article>
+      {{/foreach}}
+    </section>
 
-</main>
+  </main>
+
+  {{/match}}
+{{/if}}
+
+{{!-- ================================
+     JS FOR SPECIALISATION FIELD
+================================ --}}
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+
+  document.querySelectorAll(".verified-info").forEach(function(box) {
+
+    const raw = (box.dataset.raw || "").trim();
+
+    const match = raw.match(/Specialisation:\s*(.+)/i);
+
+    const value = match ? match[1].trim() : "—";
+    const target = box.querySelector(".verified-specialisation");
+
+    if (target) {
+      target.innerText = "Specialisation: " + value;
+    }
+
+  });
+
+});
+</script>
+

@@ -1,94 +1,132 @@
+/* ================================
+   FIX MAIN EVENTS PAGE CONTAINER
+================================ */
+
 .events-page {
-  padding: 4rem 0;
+  max-width: 1200px;   /* ✅ centers everything */
+  margin: 0 auto;
+  padding: 0 1.5rem 4rem;
 }
 
-.events-header {
-  text-align: center;
+/* ================================
+   2 COLUMN GRID FIX
+================================ */
+
+#upcoming-events,
+#past-events {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 2rem;
+  margin-top: 2rem;
   margin-bottom: 3rem;
+  width: 100%;
 }
 
 .events-header h1 {
-  font-size: 3rem;
-  font-weight: 800;
-  color: #7a1d16;
+    font-size: clamp(2.2rem, 4vw, 3.2rem);
+    font-weight: 800;
+    background: linear-gradient(135deg, #1a1a1a, #ED3E29);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: .75rem;
+    text-align: center;        /* ✅ CENTERED */
 }
 
-.events-section {
-  max-width: 1200px;
-  margin: 0 auto 4rem;
-  padding: 0 2rem;
-}
+
+/* ================================
+   EVENT TITLE STYLING
+================================ */
 
 .events-title {
-  font-size: 1.8rem;
-  margin-bottom: 2rem;
+  font-size: 1.4rem;
   font-weight: 700;
+  color: #1a1a1a;
+  margin-bottom: 0.5rem;
+  line-height: 1.3;
+  letter-spacing: 0.2px;
 }
 
-/* ---- EVENT ROW LAYOUT ---- */
+/* Optional subtle hover effect if card is clickable */
+.event-row:hover .events-title {
+  color: #ED3E29;
+}
+
+
+/* ================================
+   EVENT CARD FIX
+================================ */
 
 .event-row {
-  display: grid;
-  grid-template-columns: 160px 1fr 120px;
-  gap: 2rem;
+  display: flex;
   align-items: center;
-
   background: #fff;
   border-radius: 16px;
-  padding: 1.5rem 2rem;
-  margin-bottom: 2rem;
-
-  border: 1px solid #eee;
-  box-shadow: 0 8px 20px rgba(0,0,0,0.05);
+  padding: 1.8rem;
+  gap: 1.5rem;
+  box-shadow: 0 12px 30px rgba(0,0,0,0.08);
+  transition: .3s ease;
+  width: 100%;   /* ✅ IMPORTANT */
 }
 
-.event-poster {
-  width: 160px;
-  height: 120px;
-  border-radius: 12px;
-  overflow: hidden;
+.event-row:hover {
+  transform: translateY(-6px);
 }
 
+/* Image */
 .event-poster img {
-  width: 100%;
-  height: 100%;
+  width: 150px;
+  height: 110px;
   object-fit: cover;
+  border-radius: 12px;
 }
 
+/* Info */
 .event-info {
-  line-height: 1.8;
+  flex: 1;
 }
 
-.event-title {
-  font-size: 1.3rem;
-  font-weight: 800;
-  margin-bottom: .4rem;
-}
-
-.event-meta {
-  color: #444;
-  font-size: .95rem;
+/* Button */
+.event-action {
+  margin-left: auto;
 }
 
 .event-btn {
   background: #ED3E29;
   color: #fff;
-  padding: .6rem 1.4rem;
-  border-radius: 30px;
+  padding: 10px 22px;
+  border-radius: 999px;
   text-decoration: none;
   font-weight: 600;
 }
 
-/* ----- MOBILE RESPONSIVE ----- */
+/* ================================
+   MOBILE FIX
+================================ */
 
-@media (max-width: 768px) {
-  .event-row {
+@media (max-width: 900px) {
+  #upcoming-events,
+  #past-events {
     grid-template-columns: 1fr;
-    text-align: center;
   }
 
-  .event-poster {
-    width: 100%;
-    height: 200px;
+  .event-row {
+    flex-direction: column;
   }
+
+  .event-action {
+    margin-top: 1rem;
+  }
+
+  .event-poster img {
+    width: 100%;
+    height: auto;
+  }
+}
+
+.no-events-msg {
+  text-align: center;
+  padding: 2rem;
+  font-size: 1.1rem;
+  color: #888;
+  font-weight: 500;
 }
