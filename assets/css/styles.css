@@ -598,6 +598,53 @@ button {
   transform: scale(1);
 }
 
+/* 1. Ensure the main footer container allows positioning */
+.stack-footer {
+  position: relative; /* This is required! */
+  /* Keep your existing padding/background styles here */
+}
+
+/* 2. Position the Address/Build Text */
+.footer-address {
+  position: absolute;  /* Takes it out of the centered stack */
+  bottom: 25px;        /* Adjust distance from bottom */
+  right: 30px;         /* Adjust distance from right */
+  margin: 0;           /* Remove old margins */
+  
+  font-size: 1rem;
+  color: #888;
+  text-align: right;
+  z-index: 10;
+}
+
+.footer-address a {
+  color: #ED3E29; /* OASIS Red */
+  text-decoration: none;
+  font-weight: 700;
+  transition: all 0.3s ease;
+}
+
+.footer-address a:hover {
+  color: #c12d1b;
+  text-decoration: underline;
+}
+
+/* 3. Mobile Responsiveness 
+   On mobile, absolute positioning creates overlap issues. 
+   We reset it to sit at the bottom of the stack normally. 
+*/
+@media (max-width: 900px) {
+  .footer-address {
+    position: relative; /* Reset to normal flow */
+    bottom: auto;
+    right: auto;
+    width: 100%;
+    text-align: center; /* Center it back for mobile */
+    margin-top: 25px;
+    padding-bottom: 10px;
+  }
+}
+
 /* Footer Responsive */
 @media (min-width: 1440px) {
   .nebula-header, .footer-content { max-width: 1400px; }
