@@ -22,12 +22,9 @@
   </div>
 </section>
 
-  <!-- Systemic Gap Section -->
-  <!-- PREMIUM HORIZONTAL TIMELINE 2025 EDITION -->
-<section class="gaps-section redesigneds-gap premium-timeline">
+ <section class="gaps-section redesigneds-gap premium-timeline">
   <div class="containers">
 
-    <!-- Header -->
     <header class="gaps-header">
       <div class="sections-icon">
         <svg width="64" height="64" viewBox="0 0 24 24" fill="currentColor">
@@ -39,72 +36,60 @@
       </h2>
     </header>
 
-    <!-- Premium Horizontal Timeline -->
-    <div class="timeline-wrapper">
-      <div class="timeline-track">
+    <div class="timeline-static-wrapper">
+      
+      <div class="timeline-connector"></div>
 
-        <!-- Card 1: Quote -->
-        <div class="timeline-card quote">
-          <div class="card-inner">
-            <blockquote class="big-quote">
-              “When the world’s biggest servers hum on open-source code,
+      <div class="timeline-static-track">
+
+        <div class="static-card quote-card">
+          <div class="card-dot"></div>
+          <div class="card-content">
+            <span class="step-label">The Irony</span>
+            <blockquote class="mini-quote">
+              “Big servers run on open-source, yet nonprofits run on Google Sheets.”
             </blockquote>
-            <p>it’s ironic that nonprofits still run on Google Sheets.”</p>
           </div>
         </div>
 
-        <!-- Card 2: 2021 -->
-        <div class="timeline-card">
-          {{!-- <div class="year-badge">2021</div> --}}
-          <div class="card-inner">
-            <p>Experiments had already started by <strong>FOSS United</strong>, <strong>Tech4Good</strong>, <strong>Reap Benefit</strong>, <strong>Aikyam Fellows</strong> and <strong>TinkerHub</strong>  tech volunteering, open-source pilots, and NGO partnerships.</p>
+        <div class="static-card">
+          <div class="card-dot"></div>
+          <div class="card-content">
+            <span class="step-label">2021: The Spark</span>
+            <p>Experiments began. <strong>FOSS United</strong>, <strong>Tech4Good</strong>, and <strong>TinkerHub</strong> started piloting open-source tech volunteering.</p>
           </div>
         </div>
 
-        <!-- Card 3: Coffee Chats -->
-        <div class="timeline-card">
-          <div class="card-inner">
-            <p>Scattered efforts turned into <strong>caffeine-fueled chats</strong> at <strong>JP Nagar office</strong> a growing circle united by one mission: real tech muscle for the social sector.</p>
+        <div class="static-card">
+          <div class="card-dot"></div>
+          <div class="card-content">
+            <span class="step-label">The Gathering</span>
+            <p>Scattered efforts turned into <strong>caffeine-fueled chats</strong> at JP Nagar. A circle united by one mission: real tech muscle.</p>
           </div>
         </div>
 
-        <!-- Card 4: Realization -->
-        <div class="timeline-card">
-          <div class="card-inner">
-            <p>Over endless <em>filter coffee</em>, we realized: quick fixes won’t work. The social sector needs a <strong>systemic, open-source revolution</strong> not just tools, but infrastructure.</p>
+        <div class="static-card">
+          <div class="card-dot"></div>
+          <div class="card-content">
+            <span class="step-label">The Realization</span>
+            <p>Quick fixes won’t work. We need a <strong>systemic revolution</strong>. Not just tools, but Digital Infrastructure.</p>
           </div>
         </div>
 
-        <!-- Final Card: OASIS -->
-        <div class="timeline-card final">
-          <div class="card-inner">
-            <p>...</p>
-            <div class="oasis-reveal">
-              <h3>OASIS</h3>
-              <p>Open-source Alliance for<br>Social Innovation & Sustainability</p>
-            </div>
+        <div class="static-card final-destination">
+          <div class="card-dot pulse-dot"></div>
+          <div class="card-content oasis-theme">
+            <span class="step-label text-white">The Solution</span>
+            <h3>OASIS</h3>
+            <p>Open-source Alliance for Social Innovation & Sustainability</p>
           </div>
         </div>
 
       </div>
-
-      <!-- Navigation Arrows (Desktop Only) -->
-      <button class="nav-arrow prev" aria-label="Previous">←</button>
-      <button class="nav-arrow next" aria-label="Next">→</button>
     </div>
 
   </div>
 </section>
-
-{{!-- javaScript for Gap-section --}}
-<script>
-document.querySelector('.next')?.addEventListener('click', () => {
-  document.querySelector('.timeline-track').scrollBy({ left: 380, behavior: 'smooth' });
-});
-document.querySelector('.prev')?.addEventListener('click', () => {
-  document.querySelector('.timeline-track').scrollBy({ left: -380, behavior: 'smooth' });
-});
-</script>
 
 
   <!-- Board Section -->
@@ -120,7 +105,7 @@ document.querySelector('.prev')?.addEventListener('click', () => {
         <div class="boards-member redesigneds-member">
           <img src="{{asset 'images/Kailash.png'}}" alt="Kailash Nath" class="members-img" loading="lazy">
           <h3>Kailash Nath</h3>
-          <p>Co-founder, Zerodha</p>
+          <p>CTO, Zerodha Co-founder, Rainmatter and Samagata Foundation</p>
         </div>
         <div class="boards-member redesigneds-member">
           <img src="{{asset 'images/Shemeer.png'}}" alt="Sameer Babu" class="members-img" loading="lazy">
@@ -135,7 +120,7 @@ document.querySelector('.prev')?.addEventListener('click', () => {
         <div class="boards-member redesigneds-member">
           <img src="{{asset 'images/Akhila.jpeg'}}" alt="Akhila Somanath" class="members-img" loading="lazy">
           <h3>Akhila Somanath</h3>
-          <p>Co-Founder, Tech4Good Community</p>
+          <p>Co-founder, Tech4Good Community</p>
         </div>
         <div class="boards-member redesigneds-member">
           <img src="{{asset 'images/Moosa.png'}}" alt="Moosa MP" class="members-img" loading="lazy">
@@ -162,7 +147,7 @@ document.querySelector('.prev')?.addEventListener('click', () => {
         <div class="boards-member redesigneds-member">
           <img src="{{asset 'images/Kailash.png'}}" alt="Kailash Nath" class="members-img" loading="lazy">
           <h3>Kailash Nath</h3>
-          <p>Co-founder, Zerodha</p>
+          <p>CTO, Zerodha Co-founder, Rainmatter and Samagata Foundation</p>
         </div>
         <div class="boards-member redesigneds-member">
           <img src="{{asset 'images/Shemeer.png'}}" alt="Sameer Babu" class="members-img" loading="lazy">
@@ -177,7 +162,7 @@ document.querySelector('.prev')?.addEventListener('click', () => {
         <div class="boards-member redesigneds-member">
           <img src="{{asset 'images/Akhila.jpeg'}}" alt="Akhila Somanath" class="members-img" loading="lazy">
           <h3>Akhila Somanath</h3>
-          <p>Co-Founder, Tech4Good Community</p>
+          <p>Co-founder, Tech4Good Community</p>
         </div>
         <div class="boards-member redesigneds-member">
           <img src="{{asset 'images/Moosa.png'}}" alt="Moosa MP" class="members-img" loading="lazy">
