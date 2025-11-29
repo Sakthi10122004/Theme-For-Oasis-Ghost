@@ -245,19 +245,15 @@
   }
   .heros-subtitle { font-size: 1rem; margin-top: 20px; }
 }
-/* ========================================
-   TIMELINE SECTION – Premium Enhanced
-======================================== */
-
 /* =========================================
    FULL-WIDTH HORIZONTAL TIMELINE SECTION
 ========================================= */
 
 .redesigneds-gap.premium-timeline {
-  width: 100vw;                /* FORCE FULL WIDTH */
-  margin-left: calc(-50vw + 50%); /* BREAK OUT OF CONTAINER */
-  padding: 60px 0;
-  background: #ffffff; /* PURE WHITE */
+  width: 100vw;
+  margin-left: calc(-50vw + 50%);
+  padding: 80px 0;
+  background: #ffffff;
   position: relative;
   overflow: hidden;
 }
@@ -266,10 +262,7 @@
 .redesigneds-gap.premium-timeline::before {
   content: '';
   position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 3px;
+  top: 0; left: 0; right: 0; height: 3px;
   background: linear-gradient(90deg, transparent, #ED3E29, transparent);
   opacity: 0.5;
 }
@@ -277,17 +270,22 @@
 /* Section Header */
 .gaps-header {
   text-align: center;
-  margin-bottom: 60px;
+  margin-bottom: 70px;
+  padding: 0 20px;
+}
+
+.sections-icon {
+  color: #ED3E29;
+  margin-bottom: 15px;
 }
 
 .sections-title {
-  font-size: 3.2rem;
+  font-size: clamp(2rem, 4vw, 3.2rem);
   font-weight: 900;
   letter-spacing: -0.02em;
   background: linear-gradient(90deg, #1a1a1a, #ED3E29);
   -webkit-background-clip: text;
-background-clip: text;
-
+  background-clip: text;
   -webkit-text-fill-color: transparent;
   margin-bottom: 20px;
 }
@@ -295,176 +293,217 @@ background-clip: text;
 .sections-title::after {
   content: '';
   display: block;
-  width: 180px;
-  height: 6px;
-  margin: 16px auto 0;
+  width: 120px;
+  height: 5px;
+  margin: 20px auto 0;
   border-radius: 4px;
   background: #ED3E29;
-  box-shadow: 0 0 25px rgba(237,62,41,0.4);
+  box-shadow: 0 0 20px rgba(237,62,41,0.3);
 }
 
 /* ================================
-   TIMELINE STATIC WRAPPER
+   TIMELINE WRAPPER (GRID)
 ================================ */
 
 .timeline-static-wrapper {
   position: relative;
-  width: 100%;
   max-width: 1300px;
-  margin: 60px auto 0;
-  padding: 20px 0;
+  margin: 0 auto;
+  padding: 40px 20px;
 }
 
-/* The horizontal line running through */
+/* --- THE CONNECTING LINE (Desktop) --- */
 .timeline-connector {
   position: absolute;
-  top: 30px; /* Aligns with the dots */
-  left: 50px;
-  right: 50px;
+  top: 65px; /* Perfect alignment with dots */
+  left: 70px;
+  right: 70px;
   height: 4px;
   background: #e0e0e0;
   border-radius: 4px;
   z-index: 0;
 }
 
-/* Progress bar effect (Optional: makes half the line red) */
+/* Gradient Overlay on Line */
 .timeline-connector::after {
   content: '';
   position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
+  top: 0; left: 0; width: 100%; height: 100%;
   background: linear-gradient(90deg, #ED3E29 0%, rgba(237, 62, 41, 0.1) 100%);
-  opacity: 0.3;
+  opacity: 0.4;
   border-radius: 4px;
 }
 
-/* The Flex Container */
+/* --- TRACK CONTAINER --- */
 .timeline-static-track {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr); /* 5 Equal Columns */
+  gap: 25px;
   position: relative;
   z-index: 1;
-  gap: 20px;
+  /* CHANGED: Center alignment allows the 5th card to be taller */
+  align-items: center; 
 }
 
 /* ================================
-   STATIC CARDS
+   TIMELINE CARDS
 ================================ */
 
 .static-card {
-  flex: 1;
   position: relative;
-  padding-top: 50px; /* Space for the dot */
-  transition: transform 0.3s ease;
+  padding-top: 60px; /* Space for the top dot */
+  transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
 .static-card:hover {
-  transform: translateY(-10px);
+  transform: translateY(-12px);
 }
 
-/* The Dot on the line */
+/* THE DOT */
 .card-dot {
   position: absolute;
-  top: 20px; /* Aligns with connector */
+  top: 25px; /* Aligns with connector line */
   left: 50%;
   transform: translateX(-50%);
   width: 24px;
   height: 24px;
   background: #fff;
-  border: 4px solid #ED3E29;
+  border: 5px solid #ED3E29;
   border-radius: 50%;
   z-index: 2;
-  box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.8);
+  box-shadow: 0 0 0 5px rgba(255, 255, 255, 1);
   transition: all 0.3s ease;
 }
 
 .static-card:hover .card-dot {
   background: #ED3E29;
-  box-shadow: 0 0 0 6px rgba(237, 62, 41, 0.2);
+  box-shadow: 0 0 0 6px rgba(237, 62, 41, 0.25);
+  transform: translateX(-50%) scale(1.1);
 }
 
-/* Card Content Box */
+/* CARD CONTENT BOX */
 .card-content {
-  background: #ffffff;
-  padding: 30px 20px;
-  border-radius: 16px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
-  border: 1px solid rgba(0, 0, 0, 0.04);
-  text-align: center;
-  height: 100%;
-  min-height: 220px; /* Uniform height */
+  /* Pink Gradient for first 4 cards */
+  background: linear-gradient(135deg, #fff5f4 0%, #ffffff 100%);
+  border-color: rgba(237, 62, 41, 0.08);
+  padding: 35px 25px;
+  border-radius: 20px;
+  
+  /* CHANGED: Fixed height for first 4 cards to ensure they match exactly */
+  height: 300px; 
+  
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.05);
+  border: 1px solid rgba(237, 62, 41, 0.05);
   display: flex;
   flex-direction: column;
   align-items: center;
+  text-align: center;
+  justify-content: flex-start; /* Aligns content to top */
+  position: relative;
+  overflow: hidden;
   transition: all 0.3s ease;
 }
 
-.static-card:hover .card-content {
-  box-shadow: 0 20px 40px rgba(237, 62, 41, 0.15);
-  border-color: rgba(237, 62, 41, 0.3);
+/* Decorative Top Border */
+.card-content::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; width: 100%; height: 4px;
+  background: #ED3E29;
+  opacity: 0;
+  transition: opacity 0.3s;
 }
 
-/* Typography inside cards */
+.static-card:hover .card-content {
+  box-shadow: 0 25px 50px rgba(237, 62, 41, 0.12);
+  border-color: rgba(237, 62, 41, 0.2);
+  background: #fff; /* Turns pure white on hover */
+}
+
+.static-card:hover .card-content::before {
+  opacity: 1;
+}
+
+/* Typography */
 .step-label {
-  display: block;
-  font-size: 0.85rem;
+  font-size: 0.8rem;
   text-transform: uppercase;
-  letter-spacing: 1px;
+  letter-spacing: 1.5px;
   color: #ED3E29;
-  font-weight: 700;
+  font-weight: 800;
   margin-bottom: 15px;
+  display: block;
 }
 
 .static-card p {
   font-size: 0.95rem;
-  color: #555;
   line-height: 1.6;
+  color: #555;
   margin: 0;
 }
 
-.mini-quote {
-  font-family: 'Georgia', serif;
-  font-size: 1.1rem;
-  font-style: italic;
-  color: #222;
-  line-height: 1.4;
+.static-card strong {
+  color: #111;
+  font-weight: 700;
 }
 
 /* ================================
-   THE FINAL OASIS CARD
+   SPECIAL CARDS
 ================================ */
 
-.final-destination {
-  flex: 1.2; /* Slightly wider */
+.mini-quote {
+  font-family: 'Georgia', serif;
+  font-size: 1.15rem;
+  font-style: italic;
+  color: #222;
+  line-height: 1.5;
+  position: relative;
+  margin: 0;
+  padding: 0;
+  border: none;
 }
 
-.card-content.oasis-theme {
-  background: #ED3E29;
+/* --- FINAL OASIS CARD (BIGGER) --- */
+.final-destination {
+  /* No special flex needed here, alignment handled by track */
+}
+
+.final-destination .card-content.oasis-theme {
+  background: #ED3E29; /* Solid Red override */
   color: white;
   border: none;
   justify-content: center;
+  
+  /* CHANGED: Make the 5th card taller */
+  height: 360px;
+  /* Optional: Make it slightly wider visually via scale, or just let grid handle width */
+  transform: scale(1.05); 
+  z-index: 5;
+  box-shadow: 0 30px 60px rgba(237, 62, 41, 0.25);
 }
 
-.oasis-theme h3 {
-  font-size: 2.2rem;
-  font-weight: 800;
-  color: #fff;
-  margin: 10px 0;
+.final-destination:hover .card-content.oasis-theme {
+  transform: scale(1.08) translateY(-5px);
 }
 
-.oasis-theme p {
-  color: rgba(255, 255, 255, 0.9);
-  font-size: 0.9rem;
+.final-destination h3 {
+  color: white;
+  font-size: 2rem;
+  font-weight: 900;
+  margin: 5px 0 10px;
+  letter-spacing: 1px;
+}
+
+.final-destination p {
+  color: rgba(255,255,255,0.9);
+  font-size: 0.95rem;
 }
 
 .text-white {
-  color: rgba(255, 255, 255, 0.8) !important;
+  color: rgba(255, 255, 255, 0.85) !important;
 }
 
-/* Pulsing Dot for Final Card */
+/* Pulse Animation for Final Dot */
 .pulse-dot {
   background: #ED3E29;
   border-color: #fff;
@@ -472,16 +511,47 @@ background-clip: text;
 }
 
 @keyframes pulse {
-  0% { box-shadow: 0 0 0 0 rgba(237, 62, 41, 0.7); }
-  70% { box-shadow: 0 0 0 10px rgba(237, 62, 41, 0); }
+  0% { box-shadow: 0 0 0 0 rgba(237, 62, 41, 0.6); }
+  70% { box-shadow: 0 0 0 12px rgba(237, 62, 41, 0); }
   100% { box-shadow: 0 0 0 0 rgba(237, 62, 41, 0); }
 }
 
 /* ================================
-   RESPONSIVE (VERTICAL STACK ON MOBILE)
+   RESPONSIVE (Tablet & Mobile)
 ================================ */
-@media (max-width: 900px) {
-  /* Hide the horizontal connector */
+
+@media (max-width: 1024px) {
+  .timeline-static-track {
+    grid-template-columns: repeat(3, 1fr); /* 3 Columns */
+    gap: 30px;
+  }
+  
+  .final-destination {
+    grid-column: span 3; /* Full width */
+  }
+  
+  /* Reset height constraint on tablet so they don't break layout */
+  .card-content, .final-destination .card-content.oasis-theme {
+    height: auto;
+    min-height: 280px;
+    transform: none;
+  }
+  
+  .final-destination:hover .card-content.oasis-theme {
+    transform: translateY(-5px);
+  }
+}
+
+@media (max-width: 768px) {
+  /* Switch to Vertical Stack */
+  .timeline-static-track {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    padding-left: 0;
+  }
+
+  /* Vertical Line */
   .timeline-connector {
     top: 0;
     left: 20px;
@@ -493,12 +563,7 @@ background-clip: text;
   
   .timeline-connector::after { display: none; }
 
-  .timeline-static-track {
-    flex-direction: column;
-    gap: 40px;
-    padding-left: 0;
-  }
-
+  /* Card Layout Adjustments */
   .static-card {
     width: 100%;
     padding-top: 0;
@@ -510,26 +575,38 @@ background-clip: text;
     transform: translateX(5px); /* Move right instead of up */
   }
 
+  /* Dot Placement */
   .card-dot {
     top: 25px; /* Align with top of card */
     left: 22px; /* Align with vertical line */
     transform: none;
+    width: 20px;
+    height: 20px;
+    border-width: 3px;
   }
 
+  /* Content Alignment */
   .card-content {
-    text-align: left;
     align-items: flex-start;
+    text-align: left;
+    height: auto; /* Reset fixed height for mobile */
     min-height: auto;
   }
+  
+  .mini-quote {
+    text-align: left;
+  }
 
-  /* Adjust Final Card for Mobile */
+  /* Reset Tablet Span */
   .final-destination {
     margin-top: 10px;
   }
   
-  .card-content.oasis-theme {
+  .final-destination .card-content {
     align-items: flex-start;
     text-align: left;
+    height: auto;
+    transform: none;
   }
 }
 /* ========================================
