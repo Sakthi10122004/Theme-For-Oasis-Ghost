@@ -52,7 +52,6 @@
     const raw = event.dataset.raw || "";
     if (!raw.includes("Date:")) return;
 
-
     const dateMatch  = raw.match(/Date:\s*(\d{2}-\d{2}-\d{4})/);
     const timeMatch  = raw.match(/Time:\s*(.+)/);
     const placeMatch = raw.match(/Place:\s*(.+)/);
@@ -70,6 +69,8 @@
     const time = timeMatch ? timeMatch[1] : "—";
     const place = placeMatch ? placeMatch[1] : "—";
 
+    const isUpcoming = eventDate >= today;
+
     const card = document.createElement("article");
     card.className = "event-row";
 
@@ -81,7 +82,11 @@
       <div class="event-info">
         <h3 class="event-title">${title}</h3>
         <p><strong>Date:</strong> ${eventDateStr}</p>
-        <p><strong>Time:</strong> ${time}</p>
+
+        ${isUpcoming 
+          ? `<p><strong>Time:</strong> ${time}</p>` 
+          : ``}
+
         <p><strong>Venue:</strong> ${place}</p>
       </div>
 
@@ -90,7 +95,7 @@
       </div>
     `;
 
-    if (eventDate >= today) {
+    if (isUpcoming) {
       upcomingBox.appendChild(card);
     } else {
       pastBox.appendChild(card);
