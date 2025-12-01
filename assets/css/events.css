@@ -3,7 +3,7 @@
 ================================ */
 
 .events-page {
-  max-width: 1200px;   /* ✅ centers everything */
+  max-width: 1200px;
   margin: 0 auto;
   padding: 0 1.5rem 4rem;
 }
@@ -23,13 +23,15 @@
 }
 
 .events-header h1 {
-    font-size: clamp(2.2rem, 4vw, 3.2rem);
-    font-weight: 800;
-    background: linear-gradient(135deg, #1a1a1a, #ED3E29);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    margin-bottom: .75rem;
-    text-align: center;        /* ✅ CENTERED */
+  font-size: clamp(2.2rem, 4vw, 3.2rem);
+  font-weight: 800;
+  background: linear-gradient(135deg, #1a1a1a, #ED3E29);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-bottom: .75rem;
+  text-align: center;
+  /* ✅ CENTERED */
 }
 
 
@@ -63,9 +65,10 @@
   border-radius: 16px;
   padding: 1.8rem;
   gap: 1.5rem;
-  box-shadow: 0 12px 30px rgba(0,0,0,0.08);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
   transition: .3s ease;
-  width: 100%;   /* ✅ IMPORTANT */
+  width: 100%;
+  /* ✅ IMPORTANT */
 }
 
 .event-row:hover {
@@ -104,6 +107,7 @@
 ================================ */
 
 @media (max-width: 900px) {
+
   #upcoming-events,
   #past-events {
     grid-template-columns: 1fr;

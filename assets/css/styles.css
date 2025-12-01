@@ -306,11 +306,8 @@ button {
     padding: 0.75rem 1.25rem;
   }
 
-  /* Mobile Menu Logic 
-     Hidden by default, fixed full screen when .active
-  */
   .nebula-nav-horizontal {
-    display: none; /* Hidden */
+    display: none;
   }
 
   .nebula-nav-horizontal.active {

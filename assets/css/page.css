@@ -3,7 +3,7 @@
 --------------------------------------------------- */
 .page-wrapper {
     padding: 3rem 0;
-    background: #fafafa;
+    background: #ffffff;
 }
 
 /* -------------------------------------------------
@@ -19,6 +19,7 @@
     font-weight: 800;
     background: linear-gradient(135deg, #1a1a1a, #ED3E29);
     -webkit-background-clip: text;
+    background-clip: text;
     -webkit-text-fill-color: transparent;
     margin-bottom: .75rem;
 }
@@ -41,7 +42,7 @@
 .page-feature-image img {
     width: 100%;
     border-radius: 16px;
-    box-shadow: 0px 8px 25px rgba(0,0,0,0.08);
+    box-shadow: 0px 8px 25px rgba(0, 0, 0, 0.08);
 }
 
 .page-feature-image figcaption {
@@ -81,7 +82,7 @@
 
 .page-content hr {
     border: none;
-    border-top: 2px solid #eee;
+    border-top: 2px solid #ffffff;
     margin: 2rem 0;
 }
 
@@ -186,8 +187,10 @@
     display: grid !important;
     grid-template-columns: repeat(3, minmax(280px, 1fr)) !important;
     gap: 2.5rem !important;
-    justify-items: center !important;   /* Center each card */
-    justify-content: center !important; /* Center the whole grid */
+    justify-items: center !important;
+    /* Center each card */
+    justify-content: center !important;
+    /* Center the whole grid */
     width: 100% !important;
 }
 
@@ -199,7 +202,7 @@
 }
 
 /* Force normal content to span full width when in grid mode */
-.page-content:has(.kg-file-card) .dynamic-content > *:not(.kg-file-card) {
+.page-content:has(.kg-file-card) .dynamic-content>*:not(.kg-file-card) {
     grid-column: 1 / -1 !important;
     max-width: 750px !important;
     margin-left: auto !important;
@@ -214,7 +217,7 @@
     background: #ffffff !important;
     border-radius: 18px !important;
     border: 1px solid #eee !important;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.05) !important;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05) !important;
     transition: 0.3s ease !important;
     text-align: center !important;
     align-items: center !important;
@@ -223,7 +226,7 @@
 .kg-file-card:hover {
     transform: translateY(-6px) !important;
     border-color: #ED3E29 !important;
-    box-shadow: 0 15px 45px rgba(237,62,41,0.2) !important;
+    box-shadow: 0 15px 45px rgba(237, 62, 41, 0.2) !important;
 }
 
 .kg-file-card-icon {
@@ -294,6 +297,7 @@
 .kg-file-card a em {
     display: none !important;
 }
+
 /* Fix inside layout so thumbnail, title, and label align properly */
 .kg-file-card a {
     display: flex !important;
@@ -304,11 +308,13 @@
 .kg-file-card-icon canvas {
     width: 100% !important;
     border-radius: 12px !important;
-    box-shadow: 0 4px 14px rgba(0,0,0,0.15);
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.15);
 }
+
 /* Make the icon container behave like a real thumbnail area */
 .kg-file-card-icon {
-    width: 90px !important; /* larger thumbnail size */
+    width: 90px !important;
+    /* larger thumbnail size */
     height: 120px !important;
     border-radius: 10px !important;
     background: #f7f7f7 !important;
@@ -327,10 +333,12 @@
     object-fit: cover !important;
     border-radius: 10px !important;
 }
+
 /* Hide file size metadata (example: "4 MB") */
 .kg-file-card-metadata {
     display: none !important;
 }
+
 /* ==========================================
    CLEAN VERTICAL DOCUMENT CARD LAYOUT
 ========================================== */
@@ -344,7 +352,7 @@
     background: #ffffff !important;
     border-radius: 20px !important;
     border: 1px solid #eee !important;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.06) !important;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.06) !important;
 
     padding: 1.5rem !important;
     transition: .3s ease !important;
@@ -355,7 +363,7 @@
 .kg-file-card:hover {
     transform: translateY(-5px);
     border-color: #ED3E29 !important;
-    box-shadow: 0 15px 35px rgba(237,62,41,0.15) !important;
+    box-shadow: 0 15px 35px rgba(237, 62, 41, 0.15) !important;
 }
 
 
@@ -366,7 +374,8 @@
 
 .kg-file-card-icon {
     width: 100% !important;
-    height: 230px !important;  /* adjust height */
+    height: 230px !important;
+    /* adjust height */
     border-radius: 14px !important;
     overflow: hidden !important;
 
@@ -438,7 +447,7 @@
     .page-content:has(.kg-file-card) {
         padding: 0 2rem !important;
     }
-    
+
     .page-content:has(.kg-file-card) .dynamic-content {
         grid-template-columns: 1fr !important;
         gap: 2rem !important;

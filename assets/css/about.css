@@ -24,9 +24,6 @@
    HERO SECTION – Ultra Attractive Layout
 ======================================== */
 
-/* ========================================
-   HERO SECTION – "Above the Fold" Optimized
-======================================== */
 
 .redesigneds-hero {
   position: relative;
@@ -461,11 +458,6 @@
   margin: 0;
   padding: 0;
   border: none;
-}
-
-/* --- FINAL OASIS CARD (BIGGER) --- */
-.final-destination {
-  /* No special flex needed here, alignment handled by track */
 }
 
 .final-destination .card-content.oasis-theme {
@@ -1344,20 +1336,6 @@
     display: none;
   }
 
-  /* .boards-section.redesigneds-board {
-    padding: 60px 0;
-  }
-
-  .boards-carousel-wrapper {
-    padding: 60px 0;
-  }
-
-  .boards-member.redesigneds-member {
-    min-width: 320px;
-    max-width: 340px;
-    padding: 35px 28px;
-  } */
-
   .redesigneds-team {
     padding: 60px 0;
   }
@@ -1458,44 +1436,6 @@
     padding: 14px 28px;
     font-size: 1.05rem;
   }
-
-  /* .boards-member.redesigneds-member {
-    min-width: 280px;
-    max-width: 300px;
-    padding: 30px 24px;
-  }
-
-  .members-img {
-    width: 110px;
-    height: 110px;
-  }
-
-  .boards-member.redesigneds-member h3 {
-    font-size: 1.3rem;
-  }
-
-  .boards-member.redesigneds-member p {
-    font-size: 0.95rem;
-  }
-
-  .carousel-btn {
-    width: 52px;
-    height: 52px;
-    font-size: 1.1rem;
-  }
-
-  .prev {
-    left: 10px;
-  }
-
-  .next {
-    right: 10px;
-  } */
-
-  /* .boards-description {
-    padding: 28px 32px;
-    font-size: 1.05rem;
-  } */
 
   .teams-grid {
     grid-template-columns: 1fr;
@@ -1677,55 +1617,6 @@
   .card-inner p {
     font-size: 1rem;
   }
-
-  /* .boards-section.redesigneds-board {
-    padding: 40px 0;
-  }
-
-  .boards-carousel-wrapper {
-    padding: 40px 0;
-  }
-
-  .boards-member.redesigneds-member {
-    min-width: 240px;
-    max-width: 260px;
-    padding: 24px 20px;
-    border-radius: 20px;
-  }
-
-  .members-img {
-    width: 90px;
-    height: 90px;
-    margin-bottom: 18px;
-  }
-
-  .boards-member.redesigneds-member h3 {
-    font-size: 1.15rem;
-    margin-bottom: 10px;
-  }
-
-  .boards-member.redesigneds-member p {
-    font-size: 0.88rem;
-  }
-
-  .carousel-btn {
-    width: 45px;
-    height: 45px;
-    font-size: 1rem;
-  }
-
-  .prev {
-    left: 5px;
-  }
-
-  .next {
-    right: 5px;
-  }
-
-  .boards-description {
-    padding: 22px 24px;
-    font-size: 0.98rem;
-  } */
 
   .redesigneds-team {
     padding: 40px 0;
