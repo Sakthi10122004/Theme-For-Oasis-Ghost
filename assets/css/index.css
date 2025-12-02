@@ -1593,19 +1593,19 @@
 
 /* === BUTTONS === */
 .view-all-btn {
-  display: inline-block;
-  padding: 10px 24px;
-  border-radius: 50px;
-  font-weight: 600;
+  display: block;
+  width: fit-content;
+  margin: 2rem auto 0;
+  padding: 0.8rem 1.8rem;
   font-size: 0.95rem;
+  background: transparent;
+  color: var(--accent, #ed3e29);
+  border: 1px solid var(--accent, #ed3e29);
+  border-radius: 999px;
+  font-weight: 600;
+  cursor: pointer;
   text-decoration: none;
   transition: all 0.3s ease;
-  margin-top: 10px;
-  
-  /* Outline Style Default */
-  border: 2px solid #eee;
-  color: #555;
-  background: transparent;
 }
 
 .view-all-btn:hover {

@@ -529,22 +529,26 @@ button {
   height: 40px;
   border-radius: 50%;
   background: #f8f8f8;
-  color: #666;
+  color: #080000;
   text-decoration: none;
   font-size: 18px;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   position: relative;
+  overflow: hidden;     /* ✅ keep glow inside */
+  z-index: 0;
 }
 
+/* Glow background */
 .footer-social a::before {
   content: '';
   position: absolute;
   inset: 0;
   border-radius: 50%;
-  background: #ED3E29;
+  background: #ed3e29;  /* ✅ visible hover color */
   opacity: 0;
   transform: scale(0.8);
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: -1;          /* ✅ keeps icon visible */
 }
 
 .footer-social a:hover::before {
@@ -553,10 +557,11 @@ button {
 }
 
 .footer-social a:hover {
-  color: #fff;
+  color: #ffffff;      /* ✅ icon stays visible */
   transform: translateY(-4px);
   box-shadow: 0 6px 16px rgba(237, 62, 41, 0.35);
 }
+
 
 .footer-mail {
   color: #ED3E29;

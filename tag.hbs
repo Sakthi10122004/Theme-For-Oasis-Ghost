@@ -50,11 +50,41 @@
     <header class="tag-header">
 
       {{!-- Custom title for tools --}}
-      {{#match tag.slug "=" "tools"}}
-        <h1>Our Suite of Tools</h1>
+ {{!-- Custom title for specific tags --}}
+
+{{#match tag.slug "=" "tools"}}
+  <h1>Our Suite of Tools</h1>
+
+{{else}}
+  {{#match tag.slug "=" "tech-experts-says"}}
+    <h1>Tech Experts Says</h1>
+
+  {{else}}
+    {{#match tag.slug "=" "npo-says"}}
+      <h1>NPO Says</h1>
+
+    {{else}}
+      {{#match tag.slug "=" "npo"}}
+        <h1>NPO</h1>
+
+        {{else}}
+          {{#match tag.slug "=" "verified-experts"}}
+            <h1>Verified Experts</h1>
+
       {{else}}
-        <h1>{{tag.name}}</h1>
+        {{#match tag.slug "=" "impact-stories"}}
+          <h1>Impact Stories</h1>
+
+        {{else}}
+          <h1>{{tag.name}}</h1>
+        {{/match}}
       {{/match}}
+    {{/match}}
+  {{/match}}
+{{/match}}
+{{/match}}
+
+
 
       {{#if tag.description}}
         <p>{{tag.description}}</p>

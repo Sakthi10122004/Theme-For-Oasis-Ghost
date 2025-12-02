@@ -190,56 +190,71 @@
       </div>
     </section>
 
-    <!-- Testimonials Section -->
-    <section class="oasis-testimonials redesigned-testimonials">
-      <div class="section-container">
-        <h2 class="oasis-subtitle">What The Oasis Community Has To Say</h2>
+{{!-- Testimonials Section --}}
+<section class="oasis-testimonials redesigned-testimonials">
+  <div class="section-container">
+    <h2 class="oasis-subtitle">What The Oasis Community Has To Say</h2>
 
-        <div class="testimonials-two-column">
-          <!-- NPO Says -->
-          <div class="testimonial-column">
-            <h3 class="testimonial-subheading">NPOs</h3>
-            <div class="testimonials-grid">
-              {{#get "posts" filter="tag:npo-says" order="published_at desc" limit="3"}}
-                {{#foreach posts}}
+    <div class="testimonials-two-column">
+
+      {{!-- ===== LEFT COLUMN: NPOs ===== --}}
+      <div class="testimonial-column">
+        <h3 class="testimonial-subheading">NPOs</h3>
+
+        <div class="testimonial-slider" data-slider>
+          <div class="testimonial-track" data-slider-track>
+            {{#get "posts" filter="tag:npo-says" order="published_at desc" limit="5"}}
+              {{#foreach posts}}
+                <div class="testimonial-slide" data-slider-slide>
                   <blockquote class="oasis-quote redesigned-quote">
                     <div class="stars">★★★★★</div>
                     {{#if custom_excerpt}}
                       <p>"{{custom_excerpt}}"</p>
                     {{else}}
-                      <p>"{{excerpt words="25"}}"</p>
+                      <p>"{{excerpt words="6"}}"</p>
                     {{/if}}
                     <cite>— {{title}}</cite>
                   </blockquote>
-                {{/foreach}}
-              {{/get}}
-            </div>
-            <a href="/tag/npo-says/" class="readmore-btn small">Read More</a>
+                </div>
+              {{/foreach}}
+            {{/get}}
           </div>
 
-          <!-- Tech Vendor Says -->
-          <div class="testimonial-column">
-            <h3 class="testimonial-subheading">Tech Experts</h3>
-            <div class="testimonials-grid">
-              {{#get "posts" filter="tag:tech-experts-says" order="published_at desc" limit="3"}}
-                {{#foreach posts}}
+        </div>
+
+        <a href="/tag/npo-says/" class="readmore-btn small">Read More</a>
+      </div>
+
+      {{!-- ===== RIGHT COLUMN: Tech Experts ===== --}}
+      <div class="testimonial-column">
+        <h3 class="testimonial-subheading">Tech Experts</h3>
+
+        <div class="testimonial-slider" data-slider>
+          <div class="testimonial-track" data-slider-track>
+            {{#get "posts" filter="tag:tech-experts-says" order="published_at desc" limit="5"}}
+              {{#foreach posts}}
+                <div class="testimonial-slide" data-slider-slide>
                   <blockquote class="oasis-quote redesigned-quote">
                     <div class="stars">★★★★★</div>
                     {{#if custom_excerpt}}
                       <p>"{{custom_excerpt}}"</p>
                     {{else}}
-                      <p>"{{excerpt words="25"}}"</p>
+                      <p>"{{excerpt words="6"}}"</p>
                     {{/if}}
                     <cite>— {{title}}</cite>
                   </blockquote>
-                {{/foreach}}
-              {{/get}}
-            </div>
-            <a href="/tag/tech-experts-says/" class="readmore-btn small">Read More</a>
+                </div>
+              {{/foreach}}
+            {{/get}}
           </div>
         </div>
+
+        <a href="/tag/tech-experts-says/" class="readmore-btn small">Read More</a>
       </div>
-    </section>
+
+    </div>
+  </div>
+</section>
 
     <!-- Partners Section -->
     <section class="oasis-partners-section redesigned-partners">
@@ -288,3 +303,101 @@
 
   </div>
 </main>
+
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+  const sliders = document.querySelectorAll('[data-slider]');
+
+  sliders.forEach(function (slider) {
+    const track = slider.querySelector('[data-slider-track]');
+    const slides = Array.from(slider.querySelectorAll('[data-slider-slide]'));
+    const prevBtn = slider.querySelector('[data-slider-prev]');
+    const nextBtn = slider.querySelector('[data-slider-next]');
+    const dotsContainer = slider.querySelector('[data-slider-dots]');
+
+    if (!track || slides.length === 0) return;
+
+    // If only one slide, no controls / no sliding
+    if (slides.length === 1 && dotsContainer) {
+      if (prevBtn) prevBtn.style.display = 'none';
+      if (nextBtn) nextBtn.style.display = 'none';
+      dotsContainer.style.display = 'none';
+      return;
+    }
+
+    let currentIndex = 0;
+    const totalSlides = slides.length;
+    let autoTimer = null;
+    const AUTO_DELAY = 5000; // ms
+
+    /* ----- Create dots ----- */
+    let dots = [];
+    if (dotsContainer) {
+      dotsContainer.innerHTML = '';
+      slides.forEach((_, idx) => {
+        const dot = document.createElement('span');
+        dot.classList.add('slider-dot');
+        if (idx === 0) dot.classList.add('is-active');
+        dot.addEventListener('click', () => goToSlide(idx));
+        dotsContainer.appendChild(dot);
+        dots.push(dot);
+      });
+    }
+
+    /* ----- Update UI ----- */
+    function updateUI() {
+      track.style.transform = 'translateX(-' + (currentIndex * 100) + '%)';
+      if (dots && dots.length) {
+        dots.forEach((d, i) => {
+          d.classList.toggle('is-active', i === currentIndex);
+        });
+      }
+    }
+
+    function goToSlide(index) {
+      currentIndex = (index + totalSlides) % totalSlides;
+      updateUI();
+    }
+
+    function nextSlide() {
+      goToSlide(currentIndex + 1);
+    }
+
+    function prevSlide() {
+      goToSlide(currentIndex - 1);
+    }
+
+    /* ----- Auto-slide ----- */
+    function startAuto() {
+      stopAuto();
+      autoTimer = setInterval(nextSlide, AUTO_DELAY);
+    }
+
+    function stopAuto() {
+      if (autoTimer) {
+        clearInterval(autoTimer);
+        autoTimer = null;
+      }
+    }
+
+    /* ----- Events ----- */
+    if (nextBtn) nextBtn.addEventListener('click', function () {
+      nextSlide();
+      startAuto(); // reset timer on manual navigation
+    });
+
+    if (prevBtn) prevBtn.addEventListener('click', function () {
+      prevSlide();
+      startAuto();
+    });
+
+    // Pause on hover (desktop)
+    slider.addEventListener('mouseenter', stopAuto);
+    slider.addEventListener('mouseleave', startAuto);
+
+    // Init
+    updateUI();
+    startAuto();
+  });
+});
+</script>

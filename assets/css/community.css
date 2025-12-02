@@ -55,7 +55,7 @@ img { display:block; max-width:100%; height:auto; }
 /* ---------------- HERO ---------------- */
 .oasis-hero.redesigned-hero {
   position: relative;
-  padding: 5rem 0 3rem;
+  padding: 1.8rem 0 3rem;
   background: var(--bg);
   overflow: visible;
   text-align: center;
@@ -125,10 +125,15 @@ img { display:block; max-width:100%; height:auto; }
 }
 
 .oasis-subtitle { 
-  font-size: clamp(1.8rem, 3.2vw, 2.6rem); 
-  margin: 0 0 1rem; 
-  color: #111; 
-  font-weight: 700; 
+  font-size: clamp(2rem, 3vw, 2.5rem);
+    font-weight: 800;
+    background: linear-gradient(135deg, #1a1a1a, #ED3E29);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: .75rem;
+    /* --- Addition to center the text --- */
+    text-align: center;
 }
 
 .oasis-lead { 
@@ -422,65 +427,61 @@ img { display:block; max-width:100%; height:auto; }
   box-shadow: 0 12px 30px rgba(237,62,41,0.2);
 }
 
-/* ---------------- TESTIMONIALS ---------------- */
+/* ---------------- TESTIMONIALS SLIDER VERSION ---------------- */
+/* ===== TESTIMONIALS SECTION WRAPPER ===== */
 .oasis-testimonials.redesigned-testimonials { 
-  padding: var(--section-padding); 
-  background: var(--bg-alt);
+  padding: var(--section-padding, 4rem 1.5rem);
+  background: var(--bg-alt, #f7f7f9);
 }
 
-/* Two columns side by side */
+.oasis-testimonials .section-container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* Title */
+.oasis-testimonials .oasis-subtitle {
+  text-align: center;
+  font-size: 2rem;
+  margin-bottom: 2rem;
+}
+
+/* ===== TWO COLUMN LAYOUT ===== */
 .testimonials-two-column {
   display: grid;
   grid-template-columns: 1fr;
   gap: 3rem;
-  max-width: 1200px;
-  margin: 3rem auto 0;
+  margin-top: 2rem;
 }
 
 @media (min-width: 768px) {
   .testimonials-two-column {
     grid-template-columns: 1fr 1fr;
-    gap: 3rem;
   }
 }
 
-/* Column container */
+/* Column card */
 .testimonial-column {
   background: #fff;
   padding: 2.5rem;
-  border-radius: var(--radius-lg);
+  border-radius: 18px;
   border: 1px solid rgba(237, 62, 41, 0.15);
-  box-shadow: var(--card-shadow);
-  transition: 0.3s ease;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.03);
   position: relative;
   overflow: hidden;
-}
-
-.testimonial-column::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(237, 62, 41, 0.03), transparent);
-  transition: left 0.6s ease;
-}
-
-.testimonial-column:hover::before {
-  left: 100%;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .testimonial-column:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 20px 45px rgba(237, 62, 41, 0.15);
+  transform: translateY(-4px);
+  box-shadow: 0 20px 45px rgba(0,0,0,0.07);
 }
 
-/* Subheadings */
+/* Column heading */
 .testimonial-subheading {
   text-align: center;
-  font-size: 1.5rem;
-  color: var(--accent);
+  font-size: 1.4rem;
+  color: var(--accent, #ed3e29);
   margin-bottom: 2rem;
   font-weight: 700;
   position: relative;
@@ -494,23 +495,17 @@ img { display:block; max-width:100%; height:auto; }
   transform: translateX(-50%);
   width: 60px;
   height: 3px;
-  background: var(--accent);
-  border-radius: 2px;
+  background: var(--accent, #ed3e29);
+  border-radius: 999px;
 }
 
-/* Inside grid */
-.testimonials-grid {
-  display: grid;
-  gap: 1.5rem;
-}
-
+/* ===== Testimonial Card ===== */
 .oasis-quote.redesigned-quote {
   background: #fff;
-  border-radius: var(--radius-md);
+  border-radius: 14px;
   padding: 1.75rem;
   border: 1px solid rgba(237, 62, 41, 0.1);
   box-shadow: 0 8px 20px rgba(0,0,0,0.05);
-  transition: all 0.3s ease;
   position: relative;
   overflow: hidden;
 }
@@ -518,23 +513,18 @@ img { display:block; max-width:100%; height:auto; }
 .oasis-quote.redesigned-quote::before {
   content: '"';
   position: absolute;
-  top: 10px;
-  left: 15px;
+  top: 5px;
+  left: 10px;
   font-size: 4rem;
-  color: rgba(237, 62, 41, 0.1);
+  color: rgba(237, 62, 41, 0.07);
   font-family: serif;
   line-height: 1;
   z-index: 1;
 }
 
-.oasis-quote.redesigned-quote:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 12px 30px rgba(237, 62, 41, 0.1);
-}
-
 .stars {
-  color: var(--accent);
-  font-size: 1.2rem;
+  color: var(--accent, #ed3e29);
+  font-size: 1.1rem;
   margin-bottom: 0.75rem;
   position: relative;
   z-index: 2;
@@ -542,7 +532,7 @@ img { display:block; max-width:100%; height:auto; }
 
 .oasis-quote p {
   font-style: italic;
-  color: var(--muted);
+  color: var(--muted, #555);
   margin: 0 0 1rem;
   line-height: 1.6;
   position: relative;
@@ -557,7 +547,27 @@ img { display:block; max-width:100%; height:auto; }
   z-index: 2;
 }
 
-/* Read more small button */
+/* ===== SLIDER CORE FIX (SHOW ONE AT A TIME) ===== */
+.testimonial-slider {
+  width: 100%;
+  overflow: hidden;   /* ✅ Hide other slides */
+  position: relative;
+}
+
+.testimonial-track {
+  display: flex;       /* ✅ Put slides in horizontal row */
+  width: 100%;
+  transition: transform 0.6s ease-in-out;
+}
+
+.testimonial-slide {
+  min-width: 100%;    /* ✅ Only ONE slide visible */
+  flex-shrink: 0;
+  padding: 0.5rem;
+  box-sizing: border-box;
+}
+
+/* Read more button */
 .readmore-btn.small {
   display: block;
   width: fit-content;
@@ -565,36 +575,88 @@ img { display:block; max-width:100%; height:auto; }
   padding: 0.8rem 1.8rem;
   font-size: 0.95rem;
   background: transparent;
-  color: var(--accent);
-  border: 1px solid var(--accent);
-  border-radius: var(--radius-sm);
-  transition: all 0.3s ease;
+  color: var(--accent, #ed3e29);
+  border: 1px solid var(--accent, #ed3e29);
+  border-radius: 999px;
   font-weight: 600;
-  position: relative;
-  overflow: hidden;
-}
-
-.readmore-btn.small::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 100%;
-  height: 100%;
-  background: var(--accent);
-  transition: left 0.3s ease;
-  z-index: -1;
+  cursor: pointer;
+  text-decoration: none;
+  transition: all 0.3s ease;
 }
 
 .readmore-btn.small:hover {
+  background: var(--accent, #ed3e29);
   color: #fff;
   transform: translateY(-2px);
   box-shadow: 0 4px 12px rgba(237, 62, 41, 0.3);
 }
-
-.readmore-btn.small:hover::before {
-  left: 0;
+/* ✅ MAKE BOTH COLUMNS SAME STRUCTURE */
+.testimonial-column {
+  display: flex;
+  flex-direction: column;
 }
+
+
+/* ✅ FORCE READ MORE BUTTON TO BOTTOM */
+.testimonial-column .readmore-btn.small {
+  margin-top: auto;
+}
+
+/* ✅ SLIDER MUST HIDE ONLY THE EXTRA SLIDES */
+.testimonial-slider {
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+}
+
+/* ✅ SLIDES IN A ROW */
+.testimonial-track {
+  display: flex;
+  transition: transform 0.6s ease-in-out;
+  align-items: stretch;
+}
+
+/* ✅ EACH SLIDE FULL WIDTH */
+.testimonial-slide {
+  min-width: 100%;
+  flex-shrink: 0;
+  padding: 1rem;
+  box-sizing: border-box;
+  display: flex;
+}
+
+/* ✅ CONTENT CARD MUST EXPAND WITH TEXT */
+.oasis-quote.redesigned-quote {
+  width: 100%;
+  height: auto;              /* ✅ Allow full height */
+  max-height: none;         /* ✅ Remove height cap */
+  overflow: visible;        /* ✅ DO NOT CLIP TEXT */
+  word-wrap: break-word;
+  white-space: normal;
+}
+
+/* ✅ FORCE PARAGRAPH TO WRAP PROPERLY */
+.oasis-quote p {
+  white-space: normal;
+  overflow: visible;
+  text-overflow: unset;
+}
+
+/* ✅ PREVENT PARENT COLUMN FROM CLIPPING */
+.testimonial-column {
+  overflow: visible;
+}
+
+/* ✅ KEEP READ MORE AT BOTTOM */
+.testimonial-column {
+  display: flex;
+  flex-direction: column;
+}
+
+.testimonial-column .testimonial-slider {
+  flex-grow: 1;
+}
+
 
 /* ---------------- PARTNERS MARQUEE ---------------- */
 .oasis-partners-section.redesigned-partners { 
