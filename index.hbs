@@ -121,30 +121,39 @@
     </div>
 
     {{#get "posts" filter="tag:latest" limit="1" include="tags,feature_image"}}
-      {{#foreach posts}}
-      <div class="pulse-update">
-        <a href="/tag/latest/" class="update-badge">LATEST</a>
+  {{#foreach posts}}
+    <div class="pulse-update">
+      <a href="/tag/latest/" class="update-badge">LATEST</a>
 
-        <div class="update-content">
-          {{#if feature_image}}
+      <div class="update-content">
+        {{#if feature_image}}
           <div class="update-img">
             <img src="{{img_url feature_image size="m"}}" alt="{{title}}">
           </div>
+        {{/if}}
+
+        <div class="update-text">
+          <h4><a href="{{url}}">{{title}}</a></h4>
+
+          {{#if custom_excerpt}}
+            <p>{{custom_excerpt}}</p>
+          {{else}}
+            <p>{{excerpt words="18"}}</p>
           {{/if}}
 
-          <div class="update-text">
-            <h4><a href="{{url}}">{{title}}</a></h4>
-            {{#if custom_excerpt}}
-              <p>{{custom_excerpt}}</p>
-            {{else}}
-              <p>{{excerpt words="18"}}</p>
-            {{/if}}
-            <a href="{{slug}}" class="read-more">Read more →</a>
-          </div>
+          <a href="{{url}}" class="read-more">Read more →</a>
         </div>
       </div>
-      {{/foreach}}
-    {{/get}}
+    </div>
+  {{else}}
+    <div class="pulse-update no-update">
+      <p style="text-align:center; opacity:0.7; font-size:14px;">
+        No latest updates available.
+      </p>
+    </div>
+  {{/foreach}}
+{{/get}}
+
   </div>
 </section>
 
