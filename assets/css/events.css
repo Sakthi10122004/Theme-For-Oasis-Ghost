@@ -2,10 +2,68 @@
    FIX MAIN EVENTS PAGE CONTAINER
 ================================ */
 
+/* Events Page Variables */
+:root {
+  /* Events Colors */
+  --events-bg: #fff;
+  --events-primary: #ED3E29;
+  --events-primary-rgb: 237, 62, 41;
+  --events-text-dark: #1a1a1a;
+  --events-text-light: #fff;
+  --events-text-muted: #888;
+  --events-gradient: linear-gradient(135deg, #1a1a1a, #ED3E29);
+  --events-shadow: rgba(0, 0, 0, 0.08);
+  
+  /* Events Spacing */
+  --events-spacing-xs: 0.5rem;
+  --events-spacing-sm: 0.75rem;
+  --events-spacing-md: 1rem;
+  --events-spacing-lg: 1.5rem;
+  --events-spacing-xl: 1.8rem;
+  --events-spacing-xxl: 2rem;
+  --events-spacing-xxxl: 3rem;
+  --events-spacing-xxxxl: 4rem;
+  
+  /* Events Font Sizes */
+  --events-font-xs: 1rem;
+  --events-font-sm: 1.1rem;
+  --events-font-md: 1.4rem;
+  --events-font-lg: clamp(2.2rem, 4vw, 3.2rem);
+  
+  /* Events Font Weights */
+  --events-font-weight-medium: 500;
+  --events-font-weight-semibold: 600;
+  --events-font-weight-bold: 700;
+  --events-font-weight-extrabold: 800;
+  
+  /* Events Dimensions */
+  --events-container-max: 1200px;
+  --events-image-width: 150px;
+  --events-image-height: 110px;
+  --events-border-radius-sm: 12px;
+  --events-border-radius-md: 16px;
+  --events-border-radius-pill: 999px;
+  --events-button-padding: 10px 22px;
+  --events-grid-gap: 2rem;
+  
+  /* Events Line Heights */
+  --events-line-height-tight: 1.3;
+  --events-line-height-normal: 1.5;
+  
+  /* Events Letter Spacing */
+  --events-letter-spacing: 0.2px;
+  
+  /* Events Transitions */
+  --events-transition: 0.3s ease;
+  
+  /* Events Z-index */
+  --events-z-index-base: 1;
+}
+
 .events-page {
-  max-width: 1200px;
+  max-width: var(--events-container-max);
   margin: 0 auto;
-  padding: 0 1.5rem 4rem;
+  padding: 0 var(--events-spacing-lg) var(--events-spacing-xxxxl);
 }
 
 /* ================================
@@ -16,43 +74,40 @@
 #past-events {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 2rem;
-  margin-top: 2rem;
-  margin-bottom: 3rem;
+  gap: var(--events-grid-gap);
+  margin-top: var(--events-spacing-xxl);
+  margin-bottom: var(--events-spacing-xxxl);
   width: 100%;
 }
 
 .events-header h1 {
-  font-size: clamp(2.2rem, 4vw, 3.2rem);
-  font-weight: 800;
-  background: linear-gradient(135deg, #1a1a1a, #ED3E29);
+  font-size: var(--events-font-lg);
+  font-weight: var(--events-font-weight-extrabold);
+  background: var(--events-gradient);
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
-  margin-bottom: .75rem;
+  margin-bottom: var(--events-spacing-sm);
   text-align: center;
-  /* ✅ CENTERED */
 }
-
 
 /* ================================
    EVENT TITLE STYLING
 ================================ */
 
 .events-title {
-  font-size: 1.4rem;
-  font-weight: 700;
-  color: #1a1a1a;
-  margin-bottom: 0.5rem;
-  line-height: 1.3;
-  letter-spacing: 0.2px;
+  font-size: var(--events-font-md);
+  font-weight: var(--events-font-weight-bold);
+  color: var(--events-text-dark);
+  margin-bottom: var(--events-spacing-xs);
+  line-height: var(--events-line-height-tight);
+  letter-spacing: var(--events-letter-spacing);
 }
 
 /* Optional subtle hover effect if card is clickable */
 .event-row:hover .events-title {
-  color: #ED3E29;
+  color: var(--events-primary);
 }
-
 
 /* ================================
    EVENT CARD FIX
@@ -61,14 +116,13 @@
 .event-row {
   display: flex;
   align-items: center;
-  background: #fff;
-  border-radius: 16px;
-  padding: 1.8rem;
-  gap: 1.5rem;
-  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
-  transition: .3s ease;
+  background: var(--events-bg);
+  border-radius: var(--events-border-radius-md);
+  padding: var(--events-spacing-xl);
+  gap: var(--events-spacing-lg);
+  box-shadow: 0 12px 30px var(--events-shadow);
+  transition: var(--events-transition);
   width: 100%;
-  /* ✅ IMPORTANT */
 }
 
 .event-row:hover {
@@ -77,10 +131,10 @@
 
 /* Image */
 .event-poster img {
-  width: 150px;
-  height: 110px;
+  width: var(--events-image-width);
+  height: var(--events-image-height);
   object-fit: cover;
-  border-radius: 12px;
+  border-radius: var(--events-border-radius-sm);
 }
 
 /* Info */
@@ -94,12 +148,12 @@
 }
 
 .event-btn {
-  background: #ED3E29;
-  color: #fff;
-  padding: 10px 22px;
-  border-radius: 999px;
+  background: var(--events-primary);
+  color: var(--events-text-light);
+  padding: var(--events-button-padding);
+  border-radius: var(--events-border-radius-pill);
   text-decoration: none;
-  font-weight: 600;
+  font-weight: var(--events-font-weight-semibold);
 }
 
 /* ================================
@@ -107,7 +161,6 @@
 ================================ */
 
 @media (max-width: 900px) {
-
   #upcoming-events,
   #past-events {
     grid-template-columns: 1fr;
@@ -118,7 +171,7 @@
   }
 
   .event-action {
-    margin-top: 1rem;
+    margin-top: var(--events-spacing-md);
   }
 
   .event-poster img {
@@ -129,8 +182,8 @@
 
 .no-events-msg {
   text-align: center;
-  padding: 2rem;
-  font-size: 1.1rem;
-  color: #888;
-  font-weight: 500;
+  padding: var(--events-spacing-xxl);
+  font-size: var(--events-font-sm);
+  color: var(--events-text-muted);
+  font-weight: var(--events-font-weight-medium);
 }

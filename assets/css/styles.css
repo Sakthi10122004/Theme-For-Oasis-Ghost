@@ -1,4 +1,79 @@
 /* ==============================================
+   CSS CUSTOM PROPERTIES (Variables)
+   STRICT COLOR PALETTE ONLY
+   ============================================== */
+:root {
+  /* STRICT COLOR PALETTE */
+  --color-button: #1c1c1c;               /* Button color */
+  --color-page-bg: #f9faf2;              /* Page background */
+  --color-card-stroke: #ebe9de;          /* Card stroke / secondary button */
+  --color-card-bg: #fafafa;              /* White background for cards */
+  --color-accent-1: #fbe86b;             /* Yellow accent */
+  --color-accent-2: #fd635a;             /* Red accent */
+  
+  /* Derived colors ONLY from the palette */
+  --color-button-light: rgba(28, 28, 28, 0.15);
+  --color-button-lighter: rgba(28, 28, 28, 0.08);
+  --color-accent-2-light: rgba(253, 99, 90, 0.15);
+  --color-accent-2-lighter: rgba(253, 99, 90, 0.08);
+  --color-card-stroke-light: rgba(235, 233, 222, 0.5);
+  --color-card-stroke-lighter: rgba(235, 233, 222, 0.3);
+  --color-text-dark: #1c1c1c;            /* Same as button color */
+  --color-text-light: #555;              /* Derived from #1c1c1c with opacity */
+  --color-white: #ffffff;
+  
+  /* No other colors allowed! */
+  
+  /* Ghost required font variables */
+  --gh-font-heading: Lora, serif;
+  --gh-font-body: Nunito Sans, sans-serif;
+  --header-height: 90px;
+  
+  /* Font Families */
+  --font-family-heading: 'Montserrat', sans-serif;
+  --font-family-body: 'Nunito Sans', sans-serif;
+  
+  /* Font Weights */
+  --font-weight-normal: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+  --font-weight-extrabold: 800;
+  --font-weight-black: 900;
+  
+  /* Spacing */
+  --spacing-xs: 0.25rem;
+  --spacing-sm: 0.5rem;
+  --spacing-md: 1rem;
+  --spacing-lg: 1.5rem;
+  --spacing-xl: 2.5rem;
+  --spacing-xxl: 3.75rem;
+  
+  /* Border Radius */
+  --radius-sm: 0.5rem;
+  --radius-md: 1rem;
+  --radius-lg: 1.5rem;
+  --radius-xl: 2rem;
+  --radius-pill: 3.125rem;
+  
+  /* Shadows */
+  --shadow-sm: 0 2px 8px rgba(28, 28, 28, 0.05);
+  --shadow-md: 0 8px 25px rgba(28, 28, 28, 0.08);
+  --shadow-lg: 0 15px 35px rgba(28, 28, 28, 0.1);
+  --shadow-accent: 0 8px 25px rgba(253, 99, 90, 0.15);
+  
+  /* Transitions */
+  --transition-fast: 0.15s ease;
+  --transition-base: 0.3s ease;
+  --transition-slow: 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  
+  /* Container Sizes */
+  --container-max: 87.5rem;
+  --container-wide: 75rem;
+  --container-narrow: 31.25rem;
+}
+
+/* ==============================================
    1. GLOBAL RESET & TYPOGRAPHY
    ============================================== */
 *,
@@ -9,38 +84,28 @@
   padding: 0;
 }
 
-:root {
-  /* Ghost required font variables */
-  --gh-font-heading: Lora, serif;
-  --gh-font-body: Nunito Sans, sans-serif;
-  --header-height: 90px; /* Variable for consistent spacing */
-}
-
 html {
   scroll-behavior: smooth;
 }
 
 body {
-  font-family: 'Nunito Sans', sans-serif;
-  color: #111;
+  font-family: var(--font-family-body);
+  color: var(--color-text-dark);
   line-height: 1.6;
-  background: #ffffff;
+  background: var(--color-page-bg);
   overflow-x: hidden;
 }
 
-/* Prevent scrolling when mobile menu is open */
 body.menu-open {
   overflow: hidden;
 }
 
-/* Headings */
 h1, h2, h3, h4, h5, h6 {
-  font-family: 'Montserrat', sans-serif !important;
-  font-weight: 700;
-  color: #111;
+  font-family: var(--font-family-heading) !important;
+  font-weight: var(--font-weight-bold);
+  color: var(--color-text-dark);
 }
 
-/* Sub-headings & Emphasis */
 .subtitle,
 .section-title,
 .card-title,
@@ -50,14 +115,14 @@ h1, h2, h3, h4, h5, h6 {
 .join-steps.redesigned-steps li::before,
 .testimonial-subheading,
 strong {
-  font-family: 'Montserrat', sans-serif !important;
-  font-weight: 600;
+  font-family: var(--font-family-heading) !important;
+  font-weight: var(--font-weight-semibold);
 }
 
 a {
   text-decoration: none;
   color: inherit;
-  transition: all 0.3s ease;
+  transition: all var(--transition-base);
 }
 
 img {
@@ -82,26 +147,25 @@ button {
   left: 50%;
   transform: translateX(-50%);
   width: 95%;
-  max-width: 1400px;
+  max-width: var(--container-max);
   z-index: 1000;
-  background: rgba(255, 255, 255, 0.95);
+  background: rgba(250, 250, 250, 0.95); /* Using card-bg */
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
-  border: 1px solid rgba(255, 255, 255, 0.3);
-  border-radius: 80px;
+  border: 1px solid var(--color-card-stroke);
+  border-radius: var(--radius-pill);
   padding: 0.875rem 1.875rem;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
-  transition: all 0.3s ease;
+  box-shadow: var(--shadow-md);
+  transition: all var(--transition-base);
 }
 
 .header-content {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 1.5rem;
+  gap: var(--spacing-lg);
 }
 
-/* Logo */
 .logo img {
   height: 3rem;
   width: auto;
@@ -109,8 +173,8 @@ button {
 
 .logo span {
   font-size: 1.5rem;
-  font-weight: 800;
-  color: #111;
+  font-weight: var(--font-weight-extrabold);
+  color: var(--color-text-dark);
 }
 
 /* ==============================================
@@ -125,7 +189,7 @@ button {
 .nebula-nav-horizontal ul {
   display: flex;
   align-items: center;
-  gap: 1.5rem;
+  gap: var(--spacing-lg);
   margin: 0;
   padding: 0;
   list-style: none;
@@ -133,44 +197,42 @@ button {
 
 .nebula-nav-horizontal li {
   list-style: none;
-  position: relative; /* For dropdown positioning */
+  position: relative;
 }
 
 .nebula-nav-horizontal a {
-  font-weight: 600;
+  font-weight: var(--font-weight-semibold);
   font-size: 1rem;
-  color: #111;
+  color: var(--color-text-dark);
   padding: 0.5rem 1rem;
-  border-radius: 50px;
-  transition: all 0.3s ease;
+  border-radius: var(--radius-pill);
+  transition: all var(--transition-base);
   position: relative;
   display: block;
 }
 
 .nebula-nav-horizontal a:hover,
 .nebula-nav-horizontal .nav-current a {
-  color: #ED3E29;
-  background: rgba(237, 62, 41, 0.1);
+  color: var(--color-accent-2);
+  background: var(--color-accent-2-light);
 }
 
-/* Desktop Submenu / Dropdown Handling */
 .nebula-nav-horizontal li ul {
-  display: none; /* Hidden by default */
+  display: none;
   position: absolute;
   top: 100%;
   left: 0;
-  background: #fff;
+  background: var(--color-card-bg);
   min-width: 200px;
-  border-radius: 10px;
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
-  border: 1px solid rgba(0, 0, 0, 0.05);
-  padding: 8px 0;
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-md);
+  border: 1px solid var(--color-card-stroke);
+  padding: 0.5rem 0;
   flex-direction: column;
   gap: 0;
   z-index: 999;
 }
 
-/* Show dropdown on hover (Desktop only) */
 @media (min-width: 769px) {
   .nebula-nav-horizontal li:hover > ul {
     display: flex;
@@ -178,7 +240,7 @@ button {
   
   .nebula-nav-horizontal li ul a {
     border-radius: 0;
-    padding: 10px 16px;
+    padding: 0.625rem 1rem;
     font-size: 0.95rem;
   }
 }
@@ -189,17 +251,16 @@ button {
 .header-right-items {
   display: flex;
   align-items: center;
-  gap: 1rem;
+  gap: var(--spacing-md);
   margin-left: auto;
 }
 
-/* Search Icon */
 .gh-search-icon {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 32px;
-  height: 32px;
+  width: 2rem;
+  height: 2rem;
   padding: 0;
   border: 0;
   font-size: 1.5rem;
@@ -208,53 +269,50 @@ button {
   cursor: pointer;
   outline: none;
   border-radius: 50%;
-  transition: all 0.3s ease;
+  transition: all var(--transition-base);
 }
 
 .gh-search-icon:hover {
-  background: rgba(237, 62, 41, 0.1);
-  color: #ED3E29;
+  background: var(--color-accent-2-light);
+  color: var(--color-accent-2);
   transform: scale(1.05);
 }
 
-/* Profile Icon */
 .profile-icon {
   display: flex;
   align-items: center;
   justify-content: center;
   padding: 0.7rem 1.5rem;
-  border-radius: 50px;
-  background: #ED3E29;
-  color: #fff;
-  font-weight: 700;
+  border-radius: var(--radius-pill);
+  background: var(--color-button);
+  color: var(--color-white);
+  font-weight: var(--font-weight-bold);
   font-size: 0.95rem;
-  transition: all 0.3s ease;
+  transition: all var(--transition-base);
 }
 
 .profile-icon:hover {
   transform: translateY(-2px);
-  box-shadow: 0 4px 16px rgba(237, 62, 41, 0.4);
+  box-shadow: var(--shadow-accent);
 }
 
-/* Join CTA */
 .join-cta {
-  background: #ED3E29;
-  color: #fff;
+  background: var(--color-button);
+  color: var(--color-white);
   padding: 0.7rem 1.5rem;
-  border-radius: 50px;
-  font-weight: 700;
+  border-radius: var(--radius-pill);
+  font-weight: var(--font-weight-bold);
   font-size: 0.95rem;
-  transition: all 0.3s ease;
+  transition: all var(--transition-base);
 }
 
 .join-cta:hover {
   transform: translateY(-2px);
-  box-shadow: 0 4px 16px rgba(237, 62, 41, 0.4);
+  box-shadow: 0 4px 16px rgba(28, 28, 28, 0.25);
 }
 
-/* Hamburger Menu Toggle */
 .hamburger {
-  display: none; /* Hidden on desktop */
+  display: none;
   flex-direction: column;
   justify-content: space-between;
   width: 1.875rem;
@@ -268,9 +326,9 @@ button {
 .hamburger span {
   width: 100%;
   height: 0.1875rem;
-  background: #111;
+  background: var(--color-text-dark);
   border-radius: 0.125rem;
-  transition: all 0.3s ease;
+  transition: all var(--transition-base);
   transform-origin: center;
 }
 
@@ -290,19 +348,16 @@ button {
    5. RESPONSIVE NAVIGATION (TABLET & MOBILE)
    ============================================== */
 @media (max-width: 768px) {
-  /* Hide Desktop Elements */
   .header-right-items {
     display: none !important;
   }
 
-  /* Show Hamburger */
   .hamburger {
     display: flex;
   }
 
-  /* Adjust Header container */
   .nebula-header {
-    border-radius: 20px;
+    border-radius: var(--radius-md);
     padding: 0.75rem 1.25rem;
   }
 
@@ -313,22 +368,21 @@ button {
   .nebula-nav-horizontal.active {
     display: flex !important;
     position: fixed;
-    top: calc(var(--header-height) + 10px); /* Just below header */
+    top: calc(var(--header-height) + 0.625rem);
     left: 0;
     width: 100%;
     height: calc(100vh - var(--header-height));
-    background: rgba(255, 255, 255, 0.98);
+    background: rgba(250, 250, 250, 0.98); /* card-bg with opacity */
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
-    overflow-y: auto; /* Enable scrolling inside menu */
-    padding: 1rem 1.5rem 4rem; /* Bottom padding for scroll space */
+    overflow-y: auto;
+    padding: 1rem 1.5rem 4rem;
     z-index: 999;
     flex-direction: column;
     justify-content: flex-start;
-    border-top: 1px solid rgba(0,0,0,0.05);
+    border-top: 1px solid var(--color-card-stroke);
   }
 
-  /* Reset List Layout for Column */
   .nebula-nav-horizontal.active ul {
     flex-direction: column;
     gap: 0;
@@ -336,14 +390,12 @@ button {
     align-items: flex-start;
   }
 
-  /* List Items */
   .nebula-nav-horizontal.active ul li {
     width: 100%;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+    border-bottom: 1px solid var(--color-card-stroke);
     margin: 0;
   }
 
-  /* Links Styling */
   .nebula-nav-horizontal.active ul li a {
     width: 100%;
     padding: 1rem 0;
@@ -356,7 +408,6 @@ button {
     align-items: center;
   }
   
-  /* Submenu Handling on Mobile */
   .nebula-nav-horizontal.active li ul,
   .nebula-nav-horizontal.active ul.ghost-submenu {
     position: relative;
@@ -365,7 +416,7 @@ button {
     border: none;
     background: transparent;
     padding: 0 0 0.5rem 0;
-    display: block; /* Always show submenus or use JS to toggle */
+    display: block;
   }
   
   .nebula-nav-horizontal.active li ul li {
@@ -373,20 +424,19 @@ button {
   }
 
   .nebula-nav-horizontal.active li ul a {
-    padding: 0.6rem 0 0.6rem 1.5rem; /* Indentation */
+    padding: 0.6rem 0 0.6rem 1.5rem;
     font-size: 1rem;
-    color: #555;
-    font-weight: 500;
+    color: var(--color-text-light);
+    font-weight: var(--font-weight-medium);
   }
 
-  /* Mobile CTA / Extra Items injection */
   .mobile-extra-items {
     display: flex;
     flex-direction: column;
-    margin-top: 2rem;
-    gap: 1rem;
-    padding-top: 1.5rem;
-    border-top: 2px solid rgba(0,0,0,0.05);
+    margin-top: var(--spacing-xl);
+    gap: var(--spacing-md);
+    padding-top: var(--spacing-lg);
+    border-top: 2px solid var(--color-card-stroke);
     width: 100%;
   }
 
@@ -418,50 +468,47 @@ button {
 }
 
 .container {
-  max-width: 1200px;
+  max-width: var(--container-wide);
   margin: 0 auto;
-  padding: 0 1rem;
+  padding: 0 var(--spacing-md);
 }
 
-/* Loading States */
 .loading-state { display: none; }
 .form-loading .loading-state,
 .form-success .success-state,
 .form-error .error-state { display: block; }
 
-/* Benefits Stack */
 .benefits-stack {
   display: flex;
   flex-direction: column;
-  gap: 2rem;
-  max-width: 850px;
-  margin: 3rem auto;
+  gap: var(--spacing-xl);
+  max-width: 53.125rem;
+  margin: var(--spacing-xxl) auto;
 }
 
 .benefits-stack .oasis-card {
-  padding: 2rem 2.2rem;
-  border-radius: 1.5rem;
+  padding: var(--spacing-xl) 2.2rem;
+  border-radius: var(--radius-lg);
 }
 
 @media (max-width: 600px) {
   .benefits-stack {
-    gap: 1.5rem;
-    padding: 0 1rem;
+    gap: var(--spacing-lg);
+    padding: 0 var(--spacing-md);
   }
 }
 
-/* Ghost CMS Width Utilities */
-.kg-width-wide { max-width: 1200px; margin: 0 auto; }
+.kg-width-wide { max-width: var(--container-wide); margin: 0 auto; }
 .kg-width-full { width: 100%; margin: 0; }
 
 /* ==============================================
    7. FOOTER STYLES
    ============================================== */
 .stack-footer {
-  background: linear-gradient(to bottom, #fafafa, #ffffff);
-  padding: 30px 20px 25px;
+  background: linear-gradient(to bottom, var(--color-card-bg), var(--color-white));
+  padding: var(--spacing-xl) var(--spacing-lg) 1.5625rem;
   text-align: center;
-  border-top: 2px solid #f0f0f0;
+  border-top: 2px solid var(--color-card-stroke);
   position: relative;
   overflow: hidden;
 }
@@ -473,9 +520,9 @@ button {
   left: 50%;
   transform: translateX(-50%);
   width: 60%;
-  max-width: 400px;
+  max-width: 25rem;
   height: 1px;
-  background: linear-gradient(to right, transparent, #ED3E29 50%, transparent);
+  background: linear-gradient(to right, transparent, var(--color-accent-2) 50%, transparent);
   opacity: 0.4;
 }
 
@@ -483,17 +530,17 @@ button {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 6px;
-  max-width: 500px;
+  gap: 0.375rem;
+  max-width: var(--container-narrow);
   margin: 0 auto;
 }
 
 .footer-logo {
-  width: 140px;
+  width: 8.75rem;
   height: auto;
   margin-bottom: 0;
   filter: grayscale(0);
-  transition: all 0.4s ease;
+  transition: all var(--transition-slow);
   opacity: 0.95;
 }
 
@@ -505,16 +552,16 @@ button {
 
 .footer-copy {
   font-size: 0.9rem;
-  color: #666;
+  color: var(--color-text-light);
   line-height: 1.2;
-  font-weight: 400;
-  letter-spacing: 0.2px;
+  font-weight: var(--font-weight-normal);
+  letter-spacing: 0.0125rem;
   margin: 0;
 }
 
 .footer-social {
   display: flex;
-  gap: 16px;
+  gap: 1rem;
   align-items: center;
   justify-content: center;
   padding: 0;
@@ -525,30 +572,29 @@ button {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 40px;
-  height: 40px;
+  width: 2.5rem;
+  height: 2.5rem;
   border-radius: 50%;
-  background: #f8f8f8;
-  color: #080000;
+  background: var(--color-card-stroke);
+  color: var(--color-text-dark);
   text-decoration: none;
-  font-size: 18px;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  font-size: 1.125rem;
+  transition: all var(--transition-slow);
   position: relative;
-  overflow: hidden;     /* ✅ keep glow inside */
+  overflow: hidden;
   z-index: 0;
 }
 
-/* Glow background */
 .footer-social a::before {
   content: '';
   position: absolute;
   inset: 0;
   border-radius: 50%;
-  background: #ed3e29;  /* ✅ visible hover color */
+  background: var(--color-accent-2);
   opacity: 0;
   transform: scale(0.8);
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  z-index: -1;          /* ✅ keeps icon visible */
+  transition: all var(--transition-slow);
+  z-index: -1;
 }
 
 .footer-social a:hover::before {
@@ -557,29 +603,29 @@ button {
 }
 
 .footer-social a:hover {
-  color: #ffffff;      /* ✅ icon stays visible */
-  transform: translateY(-4px);
-  box-shadow: 0 6px 16px rgba(237, 62, 41, 0.35);
+  color: var(--color-white);
+  transform: translateY(-0.25rem);
+  box-shadow: 0 0.375rem 1rem rgba(253, 99, 90, 0.35);
 }
 
-
 .footer-mail {
-  color: #ED3E29;
-  font-weight: 600;
+  color: var(--color-accent-2);
+  font-weight: var(--font-weight-semibold);
   font-size: 0.95rem;
   text-decoration: none;
   display: inline-block;
   position: relative;
-  padding: 6px 16px;
-  border-radius: 6px;
-  transition: all 0.3s ease;
-  letter-spacing: 0.3px;
+  padding: 0.375rem 1rem;
+  border-radius: var(--radius-sm);
+  transition: all var(--transition-base);
+  letter-spacing: 0.01875rem;
   margin-top: 0;
   z-index: 1;
 }
+
 .footer-built {
-  color: #000000;
-  font-weight: 500;
+  color: var(--color-text-dark);
+  font-weight: var(--font-weight-medium);
   font-size: 0.75rem;
   text-decoration: none;
   display: inline-block;
@@ -590,17 +636,17 @@ button {
   content: '';
   position: absolute;
   inset: 0;
-  background: #ED3E29;
+  background: var(--color-accent-2);
   opacity: 0;
-  border-radius: 6px;
+  border-radius: var(--radius-sm);
   transform: scale(0.95);
-  transition: all 0.3s ease;
+  transition: all var(--transition-base);
   z-index: -1;
 }
 
 .footer-mail:hover {
-  color: #fff;
-  transform: translateY(-2px);
+  color: var(--color-white);
+  transform: translateY(-0.125rem);
 }
 
 .footer-mail:hover::before {
@@ -608,77 +654,93 @@ button {
   transform: scale(1);
 }
 
-/* 1. Ensure the main footer container allows positioning */
 .stack-footer {
-  position: relative; /* This is required! */
-  /* Keep your existing padding/background styles here */
+  position: relative;
 }
 
-/* 2. Position the Address/Build Text */
 .footer-address {
-  position: absolute;  /* Takes it out of the centered stack */
-  bottom: 25px;        /* Adjust distance from bottom */
-  right: 30px;         /* Adjust distance from right */
-  margin: 0;           /* Remove old margins */
+  position: absolute;
+  bottom: 1.5625rem;
+  right: 1.875rem;
+  margin: 0;
   
   font-size: 1rem;
-  color: #888;
+  color: var(--color-text-light);
   text-align: right;
   z-index: 10;
 }
 
 .footer-address a {
-  color: #ED3E29; /* OASIS Red */
+  color: var(--color-accent-2);
   text-decoration: none;
-  font-weight: 700;
-  transition: all 0.3s ease;
+  font-weight: var(--font-weight-bold);
+  transition: all var(--transition-base);
 }
 
 .footer-address a:hover {
-  color: #c12d1b;
+  color: var(--color-accent-2);
   text-decoration: underline;
 }
 
-/* 3. Mobile Responsiveness 
-   On mobile, absolute positioning creates overlap issues. 
-   We reset it to sit at the bottom of the stack normally. 
-*/
 @media (max-width: 900px) {
   .footer-address {
-    position: relative; /* Reset to normal flow */
+    position: relative;
     bottom: auto;
     right: auto;
     width: 100%;
-    text-align: center; /* Center it back for mobile */
-    margin-top: 25px;
-    padding-bottom: 10px;
+    text-align: center;
+    margin-top: 1.5625rem;
+    padding-bottom: 0.625rem;
   }
 }
 
-/* Footer Responsive */
 @media (min-width: 1440px) {
-  .nebula-header, .footer-content { max-width: 1400px; }
+  .nebula-header, .footer-content { 
+    max-width: var(--container-max); 
+  }
 }
 
 @media (max-width: 768px) {
-  .stack-footer { padding: 28px 24px 22px; }
-  .footer-inner { gap: 5px; }
-  .footer-logo { width: 120px; }
+  .stack-footer { 
+    padding: 1.75rem 1.5rem 1.375rem; 
+  }
+  .footer-inner { gap: 0.3125rem; }
+  .footer-logo { width: 7.5rem; }
 }
 
 @media (max-width: 480px) {
-  .stack-footer { padding: 25px 20px 20px; }
+  .stack-footer { 
+    padding: 1.5625rem 1.25rem 1.25rem; 
+  }
   .stack-footer::before { width: 80%; }
-  .footer-inner { gap: 5px; }
-  .footer-logo { width: 100px; }
-  .footer-copy { font-size: 0.85rem; line-height: 1.2; }
-  .footer-social { gap: 12px; }
-  .footer-social a { width: 36px; height: 36px; font-size: 16px; }
-  .footer-mail { font-size: 0.9rem; padding: 5px 12px; }
-  .footer-buit { font-size: 0.5rem; padding: 5px 12px; } 
+  .footer-inner { gap: 0.3125rem; }
+  .footer-logo { width: 6.25rem; }
+  .footer-copy { 
+    font-size: 0.85rem; 
+    line-height: 1.2; 
+  }
+  .footer-social { 
+    gap: 0.75rem; 
+  }
+  .footer-social a { 
+    width: 2.25rem; 
+    height: 2.25rem; 
+    font-size: 1rem; 
+  }
+  .footer-mail { 
+    font-size: 0.9rem; 
+    padding: 0.3125rem 0.75rem; 
+  }
+  .footer-built { 
+    font-size: 0.7rem; 
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .footer-logo, .footer-social a, .footer-mail { transition: none; }
-  .footer-logo:hover, .footer-social a:hover { transform: none; }
+  .footer-logo, .footer-social a, .footer-mail { 
+    transition: none; 
+  }
+  .footer-logo:hover, .footer-social a:hover { 
+    transform: none; 
+  }
 }

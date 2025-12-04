@@ -1,13 +1,76 @@
 /* 404 Error Page Styles */
 
+/* Error Page Variables */
+:root {
+  /* Error Page Colors */
+  --error-bg-color: #Ffff;
+  --error-card-bg: white;
+  --error-primary: #ED3E29;
+  --error-primary-rgb: 237, 62, 41;
+  --error-text-dark: #333;
+  --error-text-medium: #666;
+  --error-text-light: white;
+  --error-shadow-color: rgba(0, 0, 0, 0.3);
+  --error-shadow-primary: rgba(237, 62, 41, 0.3);
+  --error-shadow-primary-hover: rgba(237, 62, 41, 0.4);
+  --error-shadow-glitch: rgba(237, 62, 41, 0.1);
+  --error-shape-bg: rgba(255, 255, 255, 0.1);
+  --error-glow: rgba(255, 255, 255, 0.3);
+  
+  /* Error Page Spacing */
+  --error-spacing-xs: 0.5rem;
+  --error-spacing-sm: 1rem;
+  --error-spacing-md: 1.5rem;
+  --error-spacing-lg: 2rem;
+  --error-spacing-xl: 2.5rem;
+  --error-spacing-xxl: 3rem;
+  
+  /* Error Page Font Sizes */
+  --error-font-xs: 1rem;
+  --error-font-sm: 1.125rem;
+  --error-font-md: 1.5rem;
+  --error-font-lg: 2rem;
+  --error-font-xl: 5rem;
+  --error-font-xxl: 8rem;
+  
+  /* Error Page Dimensions */
+  --error-icon-size: 120px;
+  --error-icon-size-mobile: 100px;
+  --error-shape-small: 300px;
+  --error-shape-large: 400px;
+  --error-border-radius: 20px;
+  --error-button-radius: 50px;
+  --error-max-width: 600px;
+  
+  /* Error Page Animation Timings */
+  --error-animation-fast: 0.3s ease;
+  --error-animation-medium: 0.5s ease;
+  --error-animation-slow: 0.6s ease-out;
+  --error-animation-bounce: 2s ease-in-out;
+  --error-animation-float: 6s ease-in-out;
+  --error-animation-glitch: 3s ease-in-out;
+  
+  /* Error Page Animation Delays */
+  --error-delay-float: 2s;
+  
+  /* Error Page Font Weights */
+  --error-font-weight-semibold: 600;
+  --error-font-weight-bold: 700;
+  --error-font-weight-black: 900;
+  
+  /* Error Page Line Heights */
+  --error-line-height-tight: 1;
+  --error-line-height-normal: 1.6;
+}
+
 .error-page {
     min-height: 100vh;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    background-color: #Ffff;
-    padding: 2rem;
+    background-color: var(--error-bg-color);
+    padding: var(--error-spacing-lg);
     position: relative;
     overflow: hidden;
 }
@@ -18,24 +81,24 @@
     content: '';
     position: absolute;
     border-radius: 50%;
-    background: rgba(255, 255, 255, 0.1);
-    animation: float 6s ease-in-out infinite;
+    background: var(--error-shape-bg);
+    animation: float var(--error-animation-float) ease-in-out infinite;
 }
 
 .error-page::before {
-    width: 300px;
-    height: 300px;
+    width: var(--error-shape-small);
+    height: var(--error-shape-small);
     top: -100px;
     left: -100px;
     animation-delay: 0s;
 }
 
 .error-page::after {
-    width: 400px;
-    height: 400px;
+    width: var(--error-shape-large);
+    height: var(--error-shape-large);
     bottom: -150px;
     right: -150px;
-    animation-delay: 2s;
+    animation-delay: var(--error-delay-float);
 }
 
 @keyframes float {
@@ -51,13 +114,13 @@
     position: relative;
     z-index: 1;
     text-align: center;
-    background: white;
-    padding: 3rem 2.5rem;
-    border-radius: 20px;
-    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
-    max-width: 600px;
+    background: var(--error-card-bg);
+    padding: var(--error-spacing-xxl) var(--error-spacing-xl);
+    border-radius: var(--error-border-radius);
+    box-shadow: 0 20px 60px var(--error-shadow-color);
+    max-width: var(--error-max-width);
     width: 100%;
-    animation: slideUp 0.6s ease-out;
+    animation: slideUp var(--error-animation-slow);
 }
 
 @keyframes slideUp {
@@ -72,14 +135,14 @@
 }
 
 .error-page .icon-wrapper {
-    margin-bottom: 1.5rem;
+    margin-bottom: var(--error-spacing-md);
 }
 
 .error-page .error-icon {
-    width: 120px;
-    height: 120px;
+    width: var(--error-icon-size);
+    height: var(--error-icon-size);
     margin: 0 auto;
-    animation: bounce 2s ease-in-out infinite;
+    animation: bounce var(--error-animation-bounce) ease-in-out infinite;
 }
 
 @keyframes bounce {
@@ -92,13 +155,13 @@
 }
 
 .error-page .error-number {
-    font-size: 8rem;
-    font-weight: 900;
-    color: #ED3E29;
-    line-height: 1;
-    margin-bottom: 0.5rem;
-    text-shadow: 4px 4px 0px rgba(237, 62, 41, 0.1);
-    animation: glitch 3s ease-in-out infinite;
+    font-size: var(--error-font-xxl);
+    font-weight: var(--error-font-weight-black);
+    color: var(--error-primary);
+    line-height: var(--error-line-height-tight);
+    margin-bottom: var(--error-spacing-xs);
+    text-shadow: 4px 4px 0px var(--error-shadow-glitch);
+    animation: glitch var(--error-animation-glitch) ease-in-out infinite;
 }
 
 @keyframes glitch {
@@ -120,30 +183,30 @@
 }
 
 .error-page h1 {
-    font-size: 2rem;
-    color: #333;
-    margin-bottom: 1rem;
-    font-weight: 700;
+    font-size: var(--error-font-lg);
+    color: var(--error-text-dark);
+    margin-bottom: var(--error-spacing-sm);
+    font-weight: var(--error-font-weight-bold);
 }
 
 .error-page p {
-    font-size: 1.125rem;
-    color: #666;
-    margin-bottom: 2rem;
-    line-height: 1.6;
+    font-size: var(--error-font-sm);
+    color: var(--error-text-medium);
+    margin-bottom: var(--error-spacing-lg);
+    line-height: var(--error-line-height-normal);
 }
 
 .error-page .btn-primary {
     display: inline-block;
-    background: #ED3E29;
-    color: white;
+    background: var(--error-primary);
+    color: var(--error-text-light);
     text-decoration: none;
-    padding: 1rem 2.5rem;
-    border-radius: 50px;
-    font-weight: 600;
-    font-size: 1.125rem;
-    transition: all 0.3s ease;
-    box-shadow: 0 4px 15px rgba(237, 62, 41, 0.3);
+    padding: var(--error-spacing-sm) var(--error-spacing-xl);
+    border-radius: var(--error-button-radius);
+    font-weight: var(--error-font-weight-semibold);
+    font-size: var(--error-font-sm);
+    transition: all var(--error-animation-fast);
+    box-shadow: 0 4px 15px var(--error-shadow-primary);
     position: relative;
     overflow: hidden;
 }
@@ -155,13 +218,13 @@
     left: -100%;
     width: 100%;
     height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
-    transition: left 0.5s ease;
+    background: linear-gradient(90deg, transparent, var(--error-glow), transparent);
+    transition: left var(--error-animation-medium);
 }
 
 .error-page .btn-primary:hover {
     transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(237, 62, 41, 0.4);
+    box-shadow: 0 6px 20px var(--error-shadow-primary-hover);
 }
 
 .error-page .btn-primary:hover::before {
@@ -175,23 +238,23 @@
 /* Responsive Design */
 @media (max-width: 768px) {
     .error-page .error-number {
-        font-size: 5rem;
+        font-size: var(--error-font-xl);
     }
 
     .error-page h1 {
-        font-size: 1.5rem;
+        font-size: var(--error-font-md);
     }
 
     .error-page p {
-        font-size: 1rem;
+        font-size: var(--error-font-xs);
     }
 
     .error-page .content-wrapper {
-        padding: 2rem 1.5rem;
+        padding: var(--error-spacing-lg) var(--error-spacing-md);
     }
 
     .error-page .error-icon {
-        width: 100px;
-        height: 100px;
+        width: var(--error-icon-size-mobile);
+        height: var(--error-icon-size-mobile);
     }
 }

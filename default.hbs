@@ -9,6 +9,10 @@
 
   <title>{{meta_title}}</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+   <script src="{{asset "js/script.js"}}" defer></script>
+  <script src="{{asset "js/ghost-dropdown.js"}}" defer></script>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.min.js"></script>
   <link rel="stylesheet" href="{{asset "css/styles.css"}}" />
   <link rel="stylesheet" href="{{asset "css/index.css"}}" />
@@ -21,12 +25,12 @@
   <link rel="stylesheet" href="{{asset "css/blog.css"}}" />
   <link rel="stylesheet" href="{{asset "css/events.css"}}" />
   <link rel="stylesheet" href="{{asset "css/ghost-dropdown.css"}}" />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet">
+  {{!-- <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet"> --}}
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
   {{ghost_head}} 
 </head>
 <body class="{{body_class}}">
-
+ 
 <header class="nebula-header">
   <div class="header-content">
 
@@ -118,14 +122,6 @@
 
   </div>
 </footer>
-
-<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-<script src="{{asset "js/script.js"}}"></script>
-
-<!-- jQuery (required by ghost-dynamic-dropdown) -->
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
-<script src="{{asset "js/ghost-dropdown.js"}}"></script>
 {{ghost_foot}}
 </body>
 </html>

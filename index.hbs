@@ -12,7 +12,7 @@
   </div>
   <div class="orbit-visual">
     {{#if @site.cover_image}}
-      <img src="{{@site.cover_image}}" alt="Open source impact visual" class="floating-img">
+      <img src="{{@site.cover_image}}" alt="Open source impact visual" class="floating-img" loading="lazy">
     {{else}}
       <div class="floating-placeholder">Your cover image here</div>
     {{/if}}
@@ -21,14 +21,14 @@
 
 <section class="impact-wave">
   <div class="wave-container">
-    <h2>We’re making waves</h2>
+    <h2>We're making waves</h2>
     <div class="stats-orbit">
       <div class="stat-orbit">
         <div class="count-wrap">
           <span class="count" data-target="120">0</span>
           <span class="plus">+</span>
         </div>
-        <p>NPO’s have reached out to us</p>
+        <p>NPO's have reached out to us</p>
       </div>
       <div class="stat-orbit">
         <div class="count-wrap">
@@ -42,19 +42,18 @@
           <span class="count" data-target="12">0</span>
           <span class="plus">+</span>
         </div>
-        <p>NPO’s have been mapped to tech vendors</p>
+        <p>NPO's have been mapped to tech vendors</p>
       </div>
     </div>
   </div>
 </section>
-
 
 <section class="bbb-section">
   <div class="bbb-item">
     <h4>BRIDGE</h4>
     <p>Bridging the worlds of Tech and social change</p>
     <div class="bbb-img">
-      <img src="{{asset 'images/bridge.jpg'}}" alt="Bridge illustration">
+      <img src="{{asset 'images/bridge.webp'}}" alt="Bridge illustration" loading="lazy">
     </div>
   </div>
 
@@ -62,7 +61,7 @@
     <h4>BUILD</h4>
     <p>Building open source tools for good</p>
     <div class="bbb-img">
-      <img src="{{asset 'images/build.jpg'}}" alt="Build illustration">
+      <img src="{{asset 'images/build.webp'}}" alt="Build illustration" loading="lazy">
     </div>
   </div>
 
@@ -70,15 +69,14 @@
     <h4>BELONG</h4>
     <p>Belonging to a community that shares</p>
     <div class="bbb-img">
-      <img src="{{asset 'images/belong.jpg'}}" alt="Belong illustration">
+      <img src="{{asset 'images/belong.webp'}}" alt="Belong illustration" loading="lazy">
     </div>
   </div>
 </section>
 
-
 <section class="philosophy-constellation">
   <h2 class="constellation-title">The FOSS Philosophy</h2>
-      <h3 class="constellation-sub-title">Free and Open Source Software</h3>
+  <h3 class="constellation-sub-title">Free and Open Source Software</h3>
   <div class="constellation">
     <div class="star-card">
       <div class="star-icon">✦</div>
@@ -112,7 +110,7 @@
 <section class="pulse-section">
   <div class="pulse-grid">
     <div class="pulse-newsletter">
-      <h3>We’re building tech that works for good. From grassroots innovation to open-source breakthroughs, our newsletter curates real stories, useful tools, and lessons from the field.</h3>
+      <h3>We're building tech that works for good. From grassroots innovation to open-source breakthroughs, our newsletter curates real stories, useful tools, and lessons from the field.</h3>
       <p>Join the movement, stay in the loop.</p>
       <form data-members-form="subscribe" class="pulse-form">
         <input data-members-email type="email" placeholder="you@nonprofit.org" required aria-label="Email address">
@@ -121,83 +119,60 @@
     </div>
 
     {{#get "posts" filter="tag:latest" limit="1" include="tags,feature_image"}}
-  {{#foreach posts}}
-    <div class="pulse-update">
-      <a href="/tag/latest/" class="update-badge">LATEST</a>
-
-      <div class="update-content">
-        {{#if feature_image}}
-          <div class="update-img">
-            <img src="{{img_url feature_image size="m"}}" alt="{{title}}">
+      {{#foreach posts}}
+        <div class="pulse-update">
+          <a href="/tag/latest/" class="update-badge">LATEST</a>
+          <div class="update-content">
+            {{#if feature_image}}
+              <div class="update-img">
+                <img src="{{img_url feature_image size="m"}}" alt="{{title}}" loading="lazy">
+              </div>
+            {{/if}}
+            <div class="update-text">
+              <h4><a href="{{url}}">{{title}}</a></h4>
+              {{#if custom_excerpt}}
+                <p>{{custom_excerpt}}</p>
+              {{else}}
+                <p>{{excerpt words="18"}}</p>
+              {{/if}}
+              <a href="{{url}}" class="read-more">Read more →</a>
+            </div>
           </div>
-        {{/if}}
-
-        <div class="update-text">
-          <h4><a href="{{url}}">{{title}}</a></h4>
-
-          {{#if custom_excerpt}}
-            <p>{{custom_excerpt}}</p>
-          {{else}}
-            <p>{{excerpt words="18"}}</p>
-          {{/if}}
-
-          <a href="{{url}}" class="read-more">Read more →</a>
         </div>
-      </div>
-    </div>
-  {{else}}
-    <div class="pulse-update no-update">
-      <p style="text-align:center; opacity:0.7; font-size:14px;">
-        No latest updates available.
-      </p>
-    </div>
-  {{/foreach}}
-{{/get}}
-
+      {{else}}
+        <div class="pulse-update no-update">
+          <p style="text-align:center; opacity:0.7; font-size:14px;">No latest updates available.</p>
+        </div>
+      {{/foreach}}
+    {{/get}}
   </div>
 </section>
 
-
 <section class="ecosystem-ring">
-        <div class="floating-shapes">
-            <div class="shape shape-1"></div>
-            <div class="shape shape-2"></div>
-        </div>
-        
-        <p class="ring-quote">"It takes a village — and five open hearts — to start a movement."</p>
-
-        <div class="ring-logos">
-            <div class="ring-track">
-                <!-- ORIGINAL LOGOS -->
-                <a href="https://aikyamfellows.org"><img src="{{asset 'images/alliance/aikyam.png'}}" alt="Aikyam"></a>
-                <a href="https://aspire.ashoka.org"><img src="{{asset 'images/alliance/ashoka.png'}}" alt="Ashoka"></a>
-                <a href="https://fossunited.org"><img src="{{asset 'images/alliance/fossunited.png'}}" alt="FOSS United"></a>
-                <a href="https://github.com"><img src="{{asset 'images/alliance/github.png'}}" alt="GitHub"></a>
-                <a href="https://reapbenefit.org"><img src="{{asset 'images/alliance/reap_benefit.png'}}" alt="Reap Benefit"></a>
-                <a href="https://samagatha.org"><img src="{{asset 'images/alliance/samagata.png'}}" alt="Samagatha"></a>
-                <a href="https://www.tech4goodcommunity.com"><img src="{{asset 'images/alliance/t4gc.png'}}" alt="Tech4Good"></a>
-                <a href="https://tinkerhub.org"><img src="{{asset 'images/alliance/tinkerhub.png'}}" alt="TinkerHub"></a>
-                <a href="https://aikyamfellows.org"><img src="{{asset 'images/alliance/aikyam.png'}}" alt="Aikyam"></a>
-                <a href="https://aspire.ashoka.org"><img src="{{asset 'images/alliance/ashoka.png'}}" alt="Ashoka"></a>
-                <a href="https://fossunited.org"><img src="{{asset 'images/alliance/fossunited.png'}}" alt="FOSS United"></a>
-                <a href="https://github.com"><img src="{{asset 'images/alliance/github.png'}}" alt="GitHub"></a>
-                <a href="https://reapbenefit.org"><img src="{{asset 'images/alliance/reap_benefit.png'}}" alt="Reap Benefit"></a>
-                <a href="https://samagatha.org"><img src="{{asset 'images/alliance/samagata.png'}}" alt="Samagatha"></a>
-                <a href="https://www.tech4goodcommunity.com"><img src="{{asset 'images/alliance/t4gc.png'}}" alt="Tech4Good"></a>
-                <a href="https://tinkerhub.org"><img src="{{asset 'images/alliance/tinkerhub.png'}}" alt="TinkerHub"></a>
-
-                <!-- DUPLICATED LOGOS (REQUIRED FOR LOOP) -->
-                {{!-- <a href="https://aikyamfellows.org"><img src="https://via.placeholder.com/150x60/ffffff/000000?text=Aikyam" alt="Aikyam"></a>
-                <a href="https://aspire.ashoka.org"><img src="https://via.placeholder.com/150x60/ffffff/000000?text=Ashoka" alt="Ashoka"></a>
-                <a href="https://fossunited.org"><img src="https://via.placeholder.com/150x60/ffffff/000000?text=FOSS" alt="FOSS United"></a>
-                <a href="https://github.com"><img src="https://via.placeholder.com/150x60/ffffff/000000?text=GitHub" alt="GitHub"></a>
-                <a href="https://reapbenefit.org"><img src="https://via.placeholder.com/150x60/ffffff/000000?text=Reap+Benefit" alt="Reap Benefit"></a>
-                <a href="https://samagatha.org"><img src="https://via.placeholder.com/150x60/ffffff/000000?text=Samagatha" alt="Samagatha"></a>
-                <a href="https://www.tech4goodcommunity.com"><img src="https://via.placeholder.com/150x60/ffffff/000000?text=T4GC" alt="Tech4Good"></a>
-                <a href="https://tinkerhub.org"><img src="https://via.placeholder.com/150x60/ffffff/000000?text=TinkerHub" alt="TinkerHub"></a> --}}
-            </div>
-        </div>
-    </section>
+  <p class="ring-quote">"It takes a village — and five open hearts — to start a movement."</p>
+  <div class="ring-logos">
+    <div class="ring-track">
+      <!-- Original Logos -->
+      <a href="https://aikyamfellows.org"><img src="{{asset 'images/alliance/aikyam.png'}}" alt="Aikyam" loading="lazy"></a>
+      <a href="https://aspire.ashoka.org"><img src="{{asset 'images/alliance/ashoka.png'}}" alt="Ashoka" loading="lazy"></a>
+      <a href="https://fossunited.org"><img src="{{asset 'images/alliance/fossunited.png'}}" alt="FOSS United" loading="lazy"></a>
+      <a href="https://github.com"><img src="{{asset 'images/alliance/github.png'}}" alt="GitHub" loading="lazy"></a>
+      <a href="https://reapbenefit.org"><img src="{{asset 'images/alliance/reap_benefit.png'}}" alt="Reap Benefit" loading="lazy"></a>
+      <a href="https://samagatha.org"><img src="{{asset 'images/alliance/samagata.png'}}" alt="Samagatha" loading="lazy"></a>
+      <a href="https://www.tech4goodcommunity.com"><img src="{{asset 'images/alliance/t4gc.png'}}" alt="Tech4Good" loading="lazy"></a>
+      <a href="https://tinkerhub.org"><img src="{{asset 'images/alliance/tinkerhub.png'}}" alt="TinkerHub" loading="lazy"></a>
+      <!-- Duplicated for seamless loop -->
+      <a href="https://aikyamfellows.org"><img src="{{asset 'images/alliance/aikyam.png'}}" alt="Aikyam" loading="lazy"></a>
+      <a href="https://aspire.ashoka.org"><img src="{{asset 'images/alliance/ashoka.png'}}" alt="Ashoka" loading="lazy"></a>
+      <a href="https://fossunited.org"><img src="{{asset 'images/alliance/fossunited.png'}}" alt="FOSS United" loading="lazy"></a>
+      <a href="https://github.com"><img src="{{asset 'images/alliance/github.png'}}" alt="GitHub" loading="lazy"></a>
+      <a href="https://reapbenefit.org"><img src="{{asset 'images/alliance/reap_benefit.png'}}" alt="Reap Benefit" loading="lazy"></a>
+      <a href="https://samagatha.org"><img src="{{asset 'images/alliance/samagata.png'}}" alt="Samagatha" loading="lazy"></a>
+      <a href="https://www.tech4goodcommunity.com"><img src="{{asset 'images/alliance/t4gc.png'}}" alt="Tech4Good" loading="lazy"></a>
+      <a href="https://tinkerhub.org"><img src="{{asset 'images/alliance/tinkerhub.png'}}" alt="TinkerHub" loading="lazy"></a>
+    </div>
+  </div>
+</section>
 
 <section class="stories-galaxy redesigned-stories">
   <h2>Impact Stories</h2>
@@ -207,7 +182,7 @@
         {{#foreach posts}}
           <a href="{{url}}" class="impact-card">
             {{#if feature_image}}
-              <img src="{{img_url feature_image size="l"}}" alt="{{title}}">
+              <img src="{{img_url feature_image size="l"}}" alt="{{title}}" loading="lazy">
             {{/if}}
             <div class="impact-overlay">
               <span>{{title}} →</span>
@@ -224,65 +199,37 @@
   <a href="/tag/impact-stories/" class="view-all">View all stories →</a>
 </section>
 
-
-
-
 <section class="toolbox">
   <div class="expert-tool-wrapper">
-
     <div class="tools-orbit">
       <div class="orbit-header">
         <h3>Don't know which tool to choose?</h3>
       </div>
-
       {{#get "posts" filter="tag:tools" limit="3" include="feature_image"}}
-      <div class="marquee-window">
-        <div class="marquee-track">
-          
-          {{#foreach posts}}
-            <a href="{{url}}" class="tool-card" title="{{title}}">
-              {{#if feature_image}}
-                <img src="{{img_url feature_image size="xs"}}" alt="{{title}}">
-              {{else}}
-                <span class="tool-text">{{title}}</span>
-              {{/if}}
-            </a>
-          {{/foreach}}
-
-          {{#foreach posts}}
-            <a href="{{url}}" class="tool-card" title="{{title}}">
-              {{#if feature_image}}
-                <img src="{{img_url feature_image size="xs"}}" alt="{{title}}">
-              {{else}}
-                <span class="tool-text">{{title}}</span>
-              {{/if}}
-            </a>
-          {{/foreach}}
-
-          {{#foreach posts}}
-            <a href="{{url}}" class="tool-card" title="{{title}}">
-              {{#if feature_image}}
-                <img src="{{img_url feature_image size="xs"}}" alt="{{title}}">
-              {{else}}
-                <span class="tool-text">{{title}}</span>
-              {{/if}}
-            </a>
-          {{/foreach}}
-
-           {{#foreach posts}}
-            <a href="{{url}}" class="tool-card" title="{{title}}">
-              {{#if feature_image}}
-                <img src="{{img_url feature_image size="xs"}}" alt="{{title}}">
-              {{else}}
-                <span class="tool-text">{{title}}</span>
-              {{/if}}
-            </a>
-          {{/foreach}}
-
+        <div class="marquee-window">
+          <div class="marquee-track">
+            {{#foreach posts}}
+              <a href="{{url}}" class="tool-card" title="{{title}}">
+                {{#if feature_image}}
+                  <img src="{{img_url feature_image size="xs"}}" alt="{{title}}" loading="lazy">
+                {{else}}
+                  <span class="tool-text">{{title}}</span>
+                {{/if}}
+              </a>
+            {{/foreach}}
+            <!-- Duplicate for seamless loop -->
+            {{#foreach posts}}
+              <a href="{{url}}" class="tool-card" title="{{title}}">
+                {{#if feature_image}}
+                  <img src="{{img_url feature_image size="xs"}}" alt="{{title}}" loading="lazy">
+                {{else}}
+                  <span class="tool-text">{{title}}</span>
+                {{/if}}
+              </a>
+            {{/foreach}}
+          </div>
         </div>
-      </div>
       {{/get}}
-
       <a href="/tag/tools/" class="view-all-btn">View all tools</a>
     </div>
 
@@ -290,61 +237,35 @@
       <div class="orbit-header">
         <h3>OASIS verified experts</h3>
       </div>
-
       {{#get "posts" filter="tag:verified-experts" limit="3" include="feature_image"}}
-      <div class="marquee-window">
-        <div class="marquee-track reverse-scroll">
-          
-          {{#foreach posts}}
-            <a href="{{url}}" class="expert-card" title="{{title}}">
-              {{#if feature_image}}
-                <img src="{{img_url feature_image size="xs"}}" alt="{{title}}">
-              {{else}}
-                <span class="expert-initial">{{title.[0]}}</span>
-              {{/if}}
-            </a>
-          {{/foreach}}
-
-          {{#foreach posts}}
-            <a href="{{url}}" class="expert-card" title="{{title}}">
-              {{#if feature_image}}
-                <img src="{{img_url feature_image size="xs"}}" alt="{{title}}">
-              {{else}}
-                <span class="expert-initial">{{title.[0]}}</span>
-              {{/if}}
-            </a>
-          {{/foreach}}
-
-          {{#foreach posts}}
-            <a href="{{url}}" class="expert-card" title="{{title}}">
-              {{#if feature_image}}
-                <img src="{{img_url feature_image size="xs"}}" alt="{{title}}">
-              {{else}}
-                <span class="expert-initial">{{title.[0]}}</span>
-              {{/if}}
-            </a>
-          {{/foreach}}
-
-          {{#foreach posts}}
-            <a href="{{url}}" class="expert-card" title="{{title}}">
-              {{#if feature_image}}
-                <img src="{{img_url feature_image size="xs"}}" alt="{{title}}">
-              {{else}}
-                <span class="expert-initial">{{title.[0]}}</span>
-              {{/if}}
-            </a>
-          {{/foreach}}
-
+        <div class="marquee-window">
+          <div class="marquee-track reverse-scroll">
+            {{#foreach posts}}
+              <a href="{{url}}" class="expert-card" title="{{title}}">
+                {{#if feature_image}}
+                  <img src="{{img_url feature_image size="xs"}}" alt="{{title}}" loading="lazy">
+                {{else}}
+                  <span class="expert-initial">{{title.[0]}}</span>
+                {{/if}}
+              </a>
+            {{/foreach}}
+            <!-- Duplicate for seamless loop -->
+            {{#foreach posts}}
+              <a href="{{url}}" class="expert-card" title="{{title}}">
+                {{#if feature_image}}
+                  <img src="{{img_url feature_image size="xs"}}" alt="{{title}}" loading="lazy">
+                {{else}}
+                  <span class="expert-initial">{{title.[0]}}</span>
+                {{/if}}
+              </a>
+            {{/foreach}}
+          </div>
         </div>
-      </div>
       {{/get}}
-
       <a href="/tag/verified-experts/" class="view-all-btn">Meet all experts</a>
     </div>
-
   </div>
 </section>
-
 
 <script>
 document.addEventListener("DOMContentLoaded", function () {
@@ -353,8 +274,6 @@ document.addEventListener("DOMContentLoaded", function () {
   const defaultText = button.textContent;
 
   const observer = new MutationObserver(() => {
-
-    // Remove previous color states
     button.classList.remove("state-checking", "state-success", "state-error");
 
     if (form.classList.contains("loading")) {
@@ -389,34 +308,27 @@ document.addEventListener("DOMContentLoaded", function () {
 document.addEventListener("DOMContentLoaded", () => {
   const scrollContainer = document.querySelector(".impact-scroll");
   if (scrollContainer) {
-    // duplicate cards for seamless loop
     scrollContainer.innerHTML += scrollContainer.innerHTML;
   }
-});
 
-document.addEventListener("DOMContentLoaded", () => {
   const counters = document.querySelectorAll(".count");
-
-  const animateCount = (counter) => {
-    const target = +counter.getAttribute("data-target");
-    const speed = 25;
-    let count = 0;
-    const update = () => {
-      count += target / 100;
-      if (count < target) {
-        counter.textContent = Math.floor(count);
-        requestAnimationFrame(update);
-      } else {
-        counter.textContent = target;
-      }
-    };
-    update();
-  };
-
   const observer = new IntersectionObserver((entries, obs) => {
     entries.forEach((entry) => {
       if (entry.isIntersecting) {
-        animateCount(entry.target.querySelector(".count"));
+        const counter = entry.target.querySelector(".count");
+        const target = +counter.getAttribute("data-target");
+        const speed = 25;
+        let count = 0;
+        const update = () => {
+          count += target / 100;
+          if (count < target) {
+            counter.textContent = Math.floor(count);
+            requestAnimationFrame(update);
+          } else {
+            counter.textContent = target;
+          }
+        };
+        update();
         obs.unobserve(entry.target);
       }
     });
