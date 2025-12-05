@@ -1,189 +1,183 @@
-/* ================================
-   FIX MAIN EVENTS PAGE CONTAINER
-================================ */
+/*
+    Ghost Events Page Styles – BOXED 2 COLUMN LAYOUT
+*/
 
-/* Events Page Variables */
+/* 1. Color Variables */
 :root {
-  /* Events Colors */
-  --events-bg: #fff;
-  --events-primary: #ED3E29;
-  --events-primary-rgb: 237, 62, 41;
-  --events-text-dark: #1a1a1a;
-  --events-text-light: #fff;
-  --events-text-muted: #888;
-  --events-gradient: linear-gradient(135deg, #1a1a1a, #ED3E29);
-  --events-shadow: rgba(0, 0, 0, 0.08);
-  
-  /* Events Spacing */
-  --events-spacing-xs: 0.5rem;
-  --events-spacing-sm: 0.75rem;
-  --events-spacing-md: 1rem;
-  --events-spacing-lg: 1.5rem;
-  --events-spacing-xl: 1.8rem;
-  --events-spacing-xxl: 2rem;
-  --events-spacing-xxxl: 3rem;
-  --events-spacing-xxxxl: 4rem;
-  
-  /* Events Font Sizes */
-  --events-font-xs: 1rem;
-  --events-font-sm: 1.1rem;
-  --events-font-md: 1.4rem;
-  --events-font-lg: clamp(2.2rem, 4vw, 3.2rem);
-  
-  /* Events Font Weights */
-  --events-font-weight-medium: 500;
-  --events-font-weight-semibold: 600;
-  --events-font-weight-bold: 700;
-  --events-font-weight-extrabold: 800;
-  
-  /* Events Dimensions */
-  --events-container-max: 1200px;
-  --events-image-width: 150px;
-  --events-image-height: 110px;
-  --events-border-radius-sm: 12px;
-  --events-border-radius-md: 16px;
-  --events-border-radius-pill: 999px;
-  --events-button-padding: 10px 22px;
-  --events-grid-gap: 2rem;
-  
-  /* Events Line Heights */
-  --events-line-height-tight: 1.3;
-  --events-line-height-normal: 1.5;
-  
-  /* Events Letter Spacing */
-  --events-letter-spacing: 0.2px;
-  
-  /* Events Transitions */
-  --events-transition: 0.3s ease;
-  
-  /* Events Z-index */
-  --events-z-index-base: 1;
+    --color-bg: #f9faf2;
+    --color-card-bg: #fafafa;
+    --color-card-stroke: #ebe9de;
+    --color-button-primary: #1c1c1c;
+    --color-accent-1: #fbe86b;
+    --color-accent-2: #fd635a;
+    --color-text-primary: #1c1c1c;
+    --color-text-secondary: #555;
+    --font-family-primary: sans-serif;
 }
 
+/* 2. Global Container */
 .events-page {
-  max-width: var(--events-container-max);
-  margin: 0 auto;
-  padding: 0 var(--events-spacing-lg) var(--events-spacing-xxxxl);
+    background-color: var(--color-bg);
+    color: var(--color-text-primary);
+    font-family: var(--font-family-primary);
+    line-height: 1.6;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 40px 20px;
 }
 
-/* ================================
-   2 COLUMN GRID FIX
-================================ */
-
-#upcoming-events,
-#past-events {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: var(--events-grid-gap);
-  margin-top: var(--events-spacing-xxl);
-  margin-bottom: var(--events-spacing-xxxl);
-  width: 100%;
+/* 3. Header */
+.events-header {
+    text-align: center;
+    margin-bottom: 60px;
 }
 
 .events-header h1 {
-  font-size: var(--events-font-lg);
-  font-weight: var(--events-font-weight-extrabold);
-  background: var(--events-gradient);
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
-  margin-bottom: var(--events-spacing-sm);
-  text-align: center;
+    font-size: 3em;
+    font-weight: 800;
+    letter-spacing: -1px;
+    position: relative;
+    display: inline-block;
 }
 
-/* ================================
-   EVENT TITLE STYLING
-================================ */
+.events-header h1::after {
+    content: '';
+    display: block;
+    width: 60%;
+    height: 6px;
+    background-color: var(--color-accent-2);
+    margin: 10px auto 0;
+    border-radius: 3px;
+}
+
+/* 4. Section */
+.events-section {
+    margin-bottom: 80px;
+}
 
 .events-title {
-  font-size: var(--events-font-md);
-  font-weight: var(--events-font-weight-bold);
-  color: var(--events-text-dark);
-  margin-bottom: var(--events-spacing-xs);
-  line-height: var(--events-line-height-tight);
-  letter-spacing: var(--events-letter-spacing);
+    font-size: 1.8em;
+    font-weight: 700;
+    margin-bottom: 40px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid var(--color-card-stroke);
 }
 
-/* Optional subtle hover effect if card is clickable */
-.event-row:hover .events-title {
-  color: var(--events-primary);
+/* ✅ 5. TWO LARGE BOXES PER ROW */
+.events-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 40px;
+    align-items: stretch;
 }
 
-/* ================================
-   EVENT CARD FIX
-================================ */
-
-.event-row {
-  display: flex;
-  align-items: center;
-  background: var(--events-bg);
-  border-radius: var(--events-border-radius-md);
-  padding: var(--events-spacing-xl);
-  gap: var(--events-spacing-lg);
-  box-shadow: 0 12px 30px var(--events-shadow);
-  transition: var(--events-transition);
-  width: 100%;
+/* Mobile */
+@media (max-width: 768px) {
+    .events-container {
+        grid-template-columns: 1fr;
+    }
 }
 
-.event-row:hover {
-  transform: translateY(-6px);
-}
-
-/* Image */
-.event-poster img {
-  width: var(--events-image-width);
-  height: var(--events-image-height);
-  object-fit: cover;
-  border-radius: var(--events-border-radius-sm);
-}
-
-/* Info */
-.event-info {
-  flex: 1;
-}
-
-/* Button */
-.event-action {
-  margin-left: auto;
-}
-
-.event-btn {
-  background: var(--events-primary);
-  color: var(--events-text-light);
-  padding: var(--events-button-padding);
-  border-radius: var(--events-border-radius-pill);
-  text-decoration: none;
-  font-weight: var(--events-font-weight-semibold);
-}
-
-/* ================================
-   MOBILE FIX
-================================ */
-
-@media (max-width: 900px) {
-  #upcoming-events,
-  #past-events {
-    grid-template-columns: 1fr;
-  }
-
-  .event-row {
+/* ✅ 6. RECTANGULAR EVENT BOX */
+.event-card {
+    background-color: var(--color-card-bg);
+    border: 2px solid var(--color-card-stroke);
+    border-radius: 8px;
+    overflow: hidden;
+    display: flex;
     flex-direction: column;
-  }
-
-  .event-action {
-    margin-top: var(--events-spacing-md);
-  }
-
-  .event-poster img {
-    width: 100%;
-    height: auto;
-  }
+    min-height: 340px;
+    transition: all 0.25s ease;
+    position: relative;
 }
 
+/* Top border bar */
+.event-card::before {
+    content: "";
+    height: 6px;
+    width: 100%;
+    background: var(--color-accent-2);
+    display: block;
+}
+
+.event-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 12px 25px rgba(0,0,0,0.12);
+}
+
+/* 7. Poster (Top Area) */
+.event-poster {
+    height: 140px;
+    overflow: hidden;
+    border-bottom: 1px solid var(--color-card-stroke);
+}
+
+.event-poster img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* 8. Event Info (Middle Area) */
+.event-info {
+    padding: 24px;
+    flex-grow: 1;
+}
+
+.event-title {
+    font-size: 1.5em;
+    font-weight: 700;
+    margin-bottom: 14px;
+}
+
+.event-info p {
+    font-size: 1em;
+    color: var(--color-text-secondary);
+    margin-bottom: 8px;
+}
+
+.event-info strong {
+    font-weight: 600;
+    color: var(--color-text-primary);
+}
+
+/* 9. Bottom Border Area */
+.event-action {
+    padding: 20px;
+    border-top: 1px solid var(--color-card-stroke);
+    background: #fff;
+}
+
+/* 10. Full Width Button */
+.event-btn {
+    display: block;
+    width: 100%;
+    padding: 14px 20px;
+    background-color: var(--color-button-primary);
+    color: #fff;
+    text-align: center;
+    text-decoration: none;
+    border-radius: 6px;
+    font-weight: 600;
+    font-size: 1em;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.25s, transform 0.15s;
+}
+
+.event-btn:hover {
+    background-color: var(--color-accent-2);
+    transform: translateY(-2px);
+}
+
+/* 11. Empty State */
 .no-events-msg {
-  text-align: center;
-  padding: var(--events-spacing-xxl);
-  font-size: var(--events-font-sm);
-  color: var(--events-text-muted);
-  font-weight: var(--events-font-weight-medium);
+    grid-column: 1 / -1;
+    text-align: center;
+    padding: 50px;
+    font-style: italic;
+    font-size: 1.1em;
+    color: var(--color-text-secondary);
+    background-color: var(--color-card-stroke);
+    border-radius: 8px;
 }

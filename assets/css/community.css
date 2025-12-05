@@ -1,960 +1,463 @@
-/* ========== OASIS COMMUNITY - Optimized CSS ========== */
-
-/* Base Variables */
-:root {
-  /* Color Palette */
-  --color-primary: #ED3E29;
-  --color-primary-dark: #d6341f;
-  --color-primary-light: rgba(237, 62, 41, 0.08);
-  --color-primary-lighter: rgba(237, 62, 41, 0.03);
-  --color-primary-gradient: linear-gradient(90deg, var(--color-primary), #ff6b5b);
-  
-  /* Neutral Colors */
-  --color-dark: #111;
-  --color-black: #000000;
-  --color-white: #ffffff;
-  --color-gray-medium: #555;
-  --color-muted: var(--color-black);
-  --color-muted-light: var(--color-white);
-  
-  /* Background Colors */
-  --bg-primary: #fff;
-  --bg-secondary: #f7f7f9;
-  --bg-alt: #ffffff;
-  --bg-card: #fff;
-  --bg-card-gradient: linear-gradient(135deg, #fff, #fef8f7);
-  
-  /* Shadow Colors */
-  --shadow-color: rgba(0, 0, 0, 0.08);
-  --shadow-primary: rgba(237, 62, 41, 0.15);
-  --shadow-light: rgba(0, 0, 0, 0.03);
-  --shadow-medium: rgba(0, 0, 0, 0.05);
-  --shadow-dark: rgba(0, 0, 0, 0.07);
-  
-  /* Border Colors */
-  --border-light: rgba(0, 0, 0, 0.03);
-  --border-primary: rgba(237, 62, 41, 0.06);
-  --border-primary-medium: rgba(237, 62, 41, 0.1);
-  --border-primary-dark: rgba(237, 62, 41, 0.15);
-  --border-primary-light: rgba(237, 62, 41, 0.07);
-  --border-accent: rgba(237, 62, 41, 0.2);
-  
-  /* Border Radius */
-  --radius-lg: 1.5rem;
-  --radius-md: 1rem;
-  --radius-sm: 0.75rem;
-  --radius-pill: 999px;
-  
-  /* Container Sizes */
-  --container-max: 1400px;
-  --container-medium: 1200px;
-  --container-padding: 1.5rem;
-  
-  /* Spacing */
-  --spacing-xs: 0.5rem;
-  --spacing-sm: 0.75rem;
-  --spacing-md: 1rem;
-  --spacing-lg: 1.5rem;
-  --spacing-xl: 2rem;
-  --spacing-xxl: 2.5rem;
-  --spacing-xxxl: 3rem;
-  --spacing-xxxxl: 4rem;
-  
-  /* Section Padding */
-  --section-padding: 4rem 0;
-  
-  /* Typography */
-  --font-size-sm: 0.9rem;
-  --font-size-base: 1rem;
-  --font-size-md: 1.1rem;
-  --font-size-lg: 1.2rem;
-  --font-size-xl: 1.4rem;
-  --font-size-xxl: 1.5rem;
-  --font-size-xxxl: 2rem;
-  --font-size-huge: clamp(2rem, 4vw, 3.8rem);
-  --font-size-subtitle: clamp(2rem, 3vw, 2.5rem);
-  
-  /* Font Weights */
-  --font-weight-medium: 500;
-  --font-weight-semibold: 600;
-  --font-weight-bold: 700;
-  --font-weight-extrabold: 800;
-  
-  /* Line Heights */
-  --line-height-tight: 1.05;
-  --line-height-normal: 1.6;
-  
-  /* Transitions */
-  --transition-slide: 0.6s ease-in-out;
-  
-  /* Animations */
-  --marquee-speed: 30s;
-}
-
-/* Base Styles */
-a { 
-  color: inherit; 
-  text-decoration: none; 
-}
-
-img { 
-  display: block; 
-  max-width: 100%; 
-  height: auto; 
-}
-
-/* Container */
-.oasis-container { 
-  max-width: var(--container-max); 
-  margin: 0 auto; 
-  padding: 0 var(--container-padding); 
-}
-
-.section-container {
-  max-width: var(--container-medium);
-  margin: 0 auto;
-}
-
-/* ---------------- HERO ---------------- */
-.oasis-hero.redesigned-hero {
-  position: relative;
-  padding: 1.8rem 0 3rem;
-  background: var(--bg-primary);
-  overflow: visible;
-  text-align: center;
-}
-
-.oasis-hero-content { 
-  position: relative; 
-  z-index: 2; 
-  max-width: var(--container-medium); 
-  margin: 0 auto; 
-}
-
-.hero-text { 
-  margin-bottom: var(--spacing-xxl); 
-}
-
-.oasis-title { 
-  font-size: var(--font-size-huge); 
-  line-height: var(--line-height-tight); 
-  margin: 0 0 var(--spacing-md); 
-  font-weight: var(--font-weight-extrabold); 
-  color: var(--color-dark); 
-}
-
-.oasis-title .highlight { 
-  background: var(--color-primary-gradient); 
-  -webkit-background-clip: text; 
-  background-clip: text; 
-  -webkit-text-fill-color: transparent; 
-}
-
-.oasis-intro { 
-  margin: 0 auto var(--spacing-xl); 
-  max-width: 840px; 
-  font-size: clamp(1.1rem, 1.8vw, 1.3rem); 
-  color: var(--color-muted); 
-  line-height: var(--line-height-normal); 
-}
-
-.hero-image-container { 
-  margin: 0 auto; 
-  max-width: var(--container-medium); 
-}
-
-.hero-image {
-  width: 100%;
-  max-height: 520px;
-  object-fit: cover;
-  border-radius: var(--radius-lg);
-  box-shadow: var(--shadow-color) 0 12px 40px;
-  border: 1px solid var(--border-light);
-}
-
-/* ---------------- WHO CAN JOIN ---------------- */
-.oasis-who.redesigned-who { 
-  padding: var(--section-padding); 
-  background: var(--bg-alt); 
-  text-align: center; 
-}
-
-.oasis-subtitle { 
-  font-size: var(--font-size-subtitle);
-  font-weight: var(--font-weight-extrabold);
-  background: linear-gradient(135deg, #1a1a1a, var(--color-primary));
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
-  margin-bottom: .75rem;
-  text-align: center;
-}
-
-.oasis-lead { 
-  margin: 0 auto var(--spacing-xxxl); 
-  max-width: 1000px; 
-  color: var(--color-muted); 
-  line-height: var(--line-height-normal); 
-  font-size: clamp(1.1rem, 1.6vw, 1.2rem); 
-}
-
-/* 3-column grid for categories */
-.oasis-grid-3.redesigned-grid {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: var(--spacing-xl);
-  max-width: var(--container-medium);
-  margin: 0 auto;
-}
-
-@media (min-width: 768px) {
-  .oasis-grid-3.redesigned-grid { 
-    grid-template-columns: repeat(3, 1fr); 
-    gap: var(--spacing-md); 
-  }
-}
-
-/* category card */
-.oasis-category.redesigned-category {
-  background: var(--bg-card);
-  padding: var(--spacing-xxl) 1.75rem;
-  border-radius: var(--radius-lg);
-  box-shadow: var(--shadow-color) 0 12px 40px;
-  border: 1px solid var(--border-light);
-  text-align: center;
-}
-
-.category-icon.redesigned-icon { 
-  width: 5rem; 
-  height: 5rem; 
-  border-radius: var(--radius-sm); 
-  display: flex; 
-  align-items: center; 
-  justify-content: center; 
-  margin: 0 auto var(--spacing-xl); 
-  color: var(--color-primary); 
-  background: var(--color-primary-light); 
-}
-
-.oasis-category h3 { 
-  margin: 0 0 var(--spacing-md); 
-  font-size: 1.25rem; 
-  font-weight: var(--font-weight-bold); 
-  color: var(--color-dark); 
-}
-
-.oasis-category p { 
-  margin: 0; 
-  color: var(--color-muted); 
-  font-size: var(--font-size-base); 
-  line-height: var(--line-height-normal); 
-}
-
-/* ================================
-   BENEFITS + JOIN SECTION LAYOUT
-================================ */
-
-/* Benefits & Join Section */
-.oasis-benefits-join {
-  padding: var(--section-padding);
-  background: var(--bg-primary);
-}
-
-.benefits-join-grid {
-  display: flex;
-  flex-direction: column;
-  gap: var(--spacing-xxxl);
-}
-
-/* Side-by-side benefits grid */
-.benefits-side-by-side {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: var(--spacing-xxl);
-  align-items: stretch;
-}
-
-/* Benefit cards */
-.benefits-card {
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-}
-
-.oasis-card.redesigned-card {
-  background: var(--bg-card);
-  padding: var(--spacing-xxl);
-  border-radius: var(--radius-lg);
-  box-shadow: var(--shadow-color) 0 12px 40px;
-  border: 1px solid var(--border-primary-light);
-  display: flex;
-  flex-direction: column;
-  height: 100%;
-}
-
-.oasis-card h3 { 
-  margin: 0 0 1.75rem; 
-  font-size: var(--font-size-xxl); 
-  color: var(--color-dark); 
-  font-weight: var(--font-weight-bold);
-  line-height: 1.3;
-  padding-bottom: var(--spacing-md);
-  border-bottom: 2px solid var(--color-primary-light);
-}
-
-/* Improved benefit list layout */
-.benefits-list.redesigned-list {
-  display: flex;
-  flex-direction: column;
-  gap: var(--spacing-xl);
-  flex: 1;
-}
-
-.benefit {
-  display: flex;
-  align-items: flex-start;
-  gap: var(--spacing-lg);
-  padding: var(--spacing-md);
-  border-radius: var(--radius-md);
-  background: var(--color-primary-lighter);
-}
-
-/* Fixed arrow icon alignment */
-.benefit-icon.redesigned-icon {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  min-width: 1.2rem;
-  height: 1rem;
-  color: rgb(255, 0, 0);
-  border-radius: 50%;
-  font-size: 2rem;
-  font-weight: var(--font-weight-bold);
-  margin-top: 0.1rem;
-}
-
-.benefit-content {
-  flex: 1;
-}
-
-.benefit-content strong {
-  font-size: var(--font-size-md);
-  font-weight: var(--font-weight-bold);
-  color: var(--color-dark);
-  display: block;
-  margin-bottom: var(--spacing-xs);
-  line-height: 1.4;
-}
-
-.benefit-content p {
-  margin: 0;
-  color: var(--color-muted);
-  font-size: 0.98rem;
-  line-height: var(--line-height-normal);
-}
-
-/* How to Join section */
-.join-cards-container {
-  width: 100%;
-  margin-top: var(--spacing-md);
-}
-
-.how-card {
-  background: var(--bg-card-gradient);
-  text-align: center;
-  position: relative;
-  overflow: hidden;
-  max-width: 100% !important;
-  margin: 0 auto;
-}
-
-.how-card::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 4px;
-  background: var(--color-primary-gradient);
-}
-
-.how-card h3 {
-  color: var(--color-primary);
-  margin-bottom: var(--spacing-md);
-  border-bottom: none;
-  padding-bottom: 0;
-  font-size: 1.6rem;
-}
-
-.how-card > p {
-  color: var(--color-muted);
-  margin-bottom: var(--spacing-xxl);
-  font-size: var(--font-size-md);
-  line-height: var(--line-height-normal);
-  max-width: 700px;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-/* Three-column layout for join content */
-.join-content-wrapper {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  gap: var(--spacing-xxxl);
-  align-items: start;
-  text-align: left;
-}
-
-/* Community Guidelines Section */
-.community-guidelines {
-  padding: var(--spacing-xl);
-  background: var(--color-primary-light);
-  border-radius: var(--radius-lg);
-  border: 1px solid var(--border-primary-medium);
-}
-
-.community-guidelines h4 {
-  color: var(--color-primary);
-  font-size: var(--font-size-xl);
-  margin: 0 0 var(--spacing-md) 0;
-  font-weight: var(--font-weight-bold);
-}
-
-.community-guidelines p {
-  color: var(--color-muted);
-  margin-bottom: var(--spacing-xl);
-  font-size: var(--font-size-sm);
-  line-height: var(--line-height-normal);
-}
-
-.guidelines-link {
-  display: inline-flex;
-  align-items: center;
-  gap: var(--spacing-xs);
-  color: var(--color-primary);
-  font-weight: var(--font-weight-semibold);
-  text-decoration: none;
-  padding: var(--spacing-xs) var(--spacing-md);
-  background: var(--color-white);
-  border-radius: var(--radius-sm);
-  border: 1px solid var(--border-accent);
-}
-
-/* Join Steps Section */
-.join-steps-section {
-  padding: var(--spacing-xl);
-}
-
-.join-steps-section h4 {
-  color: var(--color-dark);
-  font-size: var(--font-size-xl);
-  margin: 0 0 var(--spacing-xl) 0;
-  font-weight: var(--font-weight-bold);
-  text-align: center;
-}
-
-.join-steps.redesigned-steps { 
-  list-style: none; 
-  padding: 0; 
-  margin: 0; 
-  display: flex; 
-  flex-direction: column; 
-  gap: var(--spacing-lg); 
-}
-
-.join-steps.redesigned-steps li { 
-  display: flex; 
-  align-items: flex-start;
-  gap: var(--spacing-md); 
-  padding: var(--spacing-lg); 
-  border-radius: var(--radius-md); 
-  background: var(--color-primary-light);
-  color: var(--color-gray-medium); 
-  position: relative;
-}
-
-.join-steps.redesigned-steps li::before { 
-  content: counter(step);
-  counter-increment: step;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  min-width: 2rem;
-  height: 2rem;
-  background: var(--color-primary);
-  color: var(--color-white);
-  border-radius: 50%;
-  font-weight: var(--font-weight-bold);
-  font-size: var(--font-size-sm);
-  flex-shrink: 0;
-}
-
-.join-steps.redesigned-steps {
-  counter-reset: step;
-}
-
-.join-step-content {
-  flex: 1;
-  display: flex;
-  align-items: center;
-  min-height: 2rem;
-  font-weight: var(--font-weight-medium);
-  color: var(--color-gray-medium);
-}
-
-.join-steps.redesigned-steps li a {
-  color: var(--color-primary);
-  font-weight: var(--font-weight-semibold);
-  text-decoration: none;
-  display: inline-block;
-  padding: 0.25rem 0;
-}
-
-/* Ready to Join CTA Section */
-.ready-section {
-  padding: var(--spacing-md);
-  background: var(--color-white);
-  border-radius: var(--radius-lg);
-  border: 2px solid var(--color-primary-light);
-  text-align: center;
-  box-shadow: 0 10px 30px rgba(237, 62, 41, 0.08);
-}
-
-.ready-section h3 {
-  margin-bottom: var(--spacing-sm);
-  color: var(--color-dark);
-  font-size: var(--font-size-xxl);
-  font-weight: var(--font-weight-bold);
-}
-
-.ready-section p {
-  margin-bottom: var(--spacing-xl);
-  color: var(--color-muted);
-  font-size: var(--font-size-md);
-  line-height: var(--line-height-normal);
-  max-width: 500px;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-/* CTA Button */
-.oasis-btn.redesigned-btn {
-  display: inline-block; 
-  width: 100%; 
-  max-width: 300px;
-  text-align: center; 
-  padding: 1.1rem 2rem; 
-  background: var(--color-primary); 
-  color: var(--color-white); 
-  border-radius: var(--radius-md); 
-  font-weight: var(--font-weight-bold); 
-  border: none; 
-  cursor: pointer; 
-  font-size: var(--font-size-md);
-  text-decoration: none;
-  position: relative;
-  overflow: hidden;
-}
-
-/* ---------------- TESTIMONIALS SLIDER ---------------- */
-.oasis-testimonials.redesigned-testimonials { 
-  padding: var(--section-padding); 
-  background: var(--bg-secondary); 
-}
-
-.oasis-testimonials .section-container {
-  max-width: var(--container-medium);
-  margin: 0 auto;
-}
-
-/* Title */
-.oasis-testimonials .oasis-subtitle {
-  text-align: center;
-  font-size: var(--font-size-xxxl);
-  margin-bottom: var(--spacing-md);
-}
-
-/* ===== TWO COLUMN LAYOUT ===== */
-.testimonials-two-column {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: var(--spacing-xxxl);
-  margin-top: var(--spacing-md);
-}
-
-@media (min-width: 768px) {
-  .testimonials-two-column {
-    grid-template-columns: 1fr 1fr;
-  }
-}
-
-/* Column card */
-.testimonial-column {
-  background: var(--bg-card);
-  padding: var(--spacing-xxl);
-  border-radius: 18px;
-  border: 1px solid var(--border-primary-dark);
-  box-shadow: 0 10px 30px var(--shadow-light);
-  position: relative;
-  overflow: hidden;
-  display: flex;
-  flex-direction: column;
-}
-
-/* Column heading */
-.testimonial-subheading {
-  text-align: center;
-  font-size: var(--font-size-xl);
-  color: var(--color-primary);
-  margin-bottom: var(--spacing-md);
-  font-weight: var(--font-weight-bold);
-  position: relative;
-}
-
-.testimonial-subheading::after {
-  content: '';
-  position: absolute;
-  bottom: -8px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 60px;
-  height: 3px;
-  background: var(--color-primary);
-  border-radius: var(--radius-pill);
-}
-
-/* ===== Testimonial Card ===== */
-.oasis-quote.redesigned-quote {
-  background: var(--bg-card);
-  border-radius: 14px;
-  padding: 1.75rem;
-  border: 1px solid var(--border-primary-medium);
-  box-shadow: 0 8px 20px var(--shadow-medium);
-  position: relative;
-  overflow: hidden;
-  width: 100%;
-  height: auto;
-  max-height: none;
-  overflow: visible;
-  word-wrap: break-word;
-  white-space: normal;
-}
-
-.oasis-quote.redesigned-quote::before {
-  content: '"';
-  position: absolute;
-  top: 5px;
-  left: 10px;
-  font-size: 4rem;
-  color: rgba(237, 62, 41, 0.07);
-  font-family: serif;
-  line-height: 1;
-  z-index: 1;
-}
-
-.stars {
-  color: var(--color-primary);
-  font-size: var(--font-size-md);
-  margin-bottom: var(--spacing-sm);
-  position: relative;
-  z-index: 2;
-}
-
-.oasis-quote p {
-  font-style: italic;
-  color: var(--color-gray-medium);
-  margin: 0 0 var(--spacing-md);
-  line-height: var(--line-height-normal);
-  position: relative;
-  z-index: 2;
-  white-space: normal;
-  overflow: visible;
-  text-overflow: unset;
-}
-
-.oasis-quote cite {
-  font-weight: var(--font-weight-semibold);
-  color: var(--color-dark);
-  font-style: normal;
-  position: relative;
-  z-index: 2;
-}
-
-/* ===== SLIDER CORE ===== */
-.testimonial-slider {
-  width: 100%;
-  overflow: hidden;
-  position: relative;
-  flex-grow: 1;
-}
-
-.testimonial-track {
-  display: flex;
-  width: 100%;
-  transition: transform var(--transition-slide);
-  align-items: stretch;
-}
-
-.testimonial-slide {
-  min-width: 100%;
-  flex-shrink: 0;
-  padding: var(--spacing-md);
-  box-sizing: border-box;
-  display: flex;
-}
-
-/* Read more button */
-.readmore-btn.small {
-  display: block;
-  width: fit-content;
-  margin: var(--spacing-md) auto 0;
-  padding: var(--spacing-xs) 1.8rem;
-  font-size: var(--font-size-sm);
-  background: transparent;
-  color: var(--color-primary);
-  border: 1px solid var(--color-primary);
-  border-radius: var(--radius-pill);
-  font-weight: var(--font-weight-semibold);
-  cursor: pointer;
-  text-decoration: none;
-}
-
-.testimonial-column .readmore-btn.small {
-  margin-top: auto;
-}
-
-/* ---------------- PARTNERS MARQUEE ---------------- */
-.oasis-partners-section.redesigned-partners { 
-  padding: var(--section-padding); 
-  text-align: center; 
-  background: var(--bg-primary); 
-}
-
-.partners-marquee.redesigned-marquee { 
-  overflow: hidden; 
-  position: relative; 
-  margin: var(--spacing-xxl) auto 0; 
-  max-width: var(--container-medium); 
-}
-
-.partners-track { 
-  display: flex; 
-  gap: var(--spacing-xxl); 
-  align-items: center; 
-  padding: var(--spacing-xl) 0; 
-  animation: marquee var(--marquee-speed) linear infinite; 
-}
-
-@keyframes marquee { 
-  0% { transform: translateX(0); } 
-  100% { transform: translateX(-50%); } 
-}
-
-.partner-logo.redesigned-logo { 
-  display: flex; 
-  align-items: center; 
-  justify-content: center; 
-  background: var(--bg-card); 
-  padding: var(--spacing-xl); 
-  border-radius: var(--radius-md); 
-  box-shadow: var(--shadow-color) 0 12px 40px; 
-  border: 1px solid var(--border-light); 
-  flex-shrink: 0;
-}
-
-.partner-logo img { 
-  height: 3.5rem; 
-  width: auto; 
-  object-fit: contain; 
-}
-
-.partner-text {
-  font-weight: var(--font-weight-semibold);
-  color: var(--color-muted);
-  text-align: center;
-  max-width: 120px;
-}
-
-/* ---------------- FINAL CTA ---------------- */
-.oasis-cta.redesigned-cta { 
-  padding: 5rem 0; 
-  text-align: center; 
-  background: linear-gradient(135deg, var(--bg-alt), var(--bg-primary));
-}
-
-.cta-content h2 { 
-  margin: 0 0 var(--spacing-md); 
-  font-size: clamp(2rem, 3.5vw, 3rem); 
-  color: var(--color-dark); 
-  font-weight: var(--font-weight-extrabold); 
-}
-
-.cta-content p { 
-  margin: 0 auto var(--spacing-xxl); 
-  color: var(--color-muted); 
-  max-width: 900px; 
-  line-height: var(--line-height-normal); 
-  font-size: var(--font-size-lg);
-}
-
-.oasis-btn.redesigned-cta-btn { 
-  display: inline-block; 
-  padding: var(--spacing-lg) var(--spacing-xxl); 
-  border-radius: var(--radius-md); 
-  font-weight: var(--font-weight-bold); 
-  border: 2px solid var(--color-primary); 
-  background: var(--color-primary); 
-  color: var(--color-white); 
-  font-size: var(--font-size-md);
-}
-
-/* ---------------- RESPONSIVE STYLES ---------------- */
-@media (max-width: 1100px) {
-  .join-content-wrapper {
-    gap: var(--spacing-md);
-  }
-}
-
-@media (max-width: 900px) {
-  .benefits-side-by-side {
-    grid-template-columns: 1fr;
-    gap: var(--spacing-md);
-  }
-  
-  .join-content-wrapper {
-    grid-template-columns: 1fr;
-    gap: var(--spacing-md);
-  }
-  
-  .community-guidelines,
-  .join-steps-section,
-  .ready-section {
-    text-align: center;
-  }
-  
-  .join-steps.redesigned-steps li {
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    gap: var(--spacing-md);
-  }
-  
-  .join-step-content {
-    min-height: auto;
-  }
-  
-  .guidelines-link {
-    justify-content: center;
-  }
-  
-  .oasis-card.redesigned-card {
-    padding: var(--spacing-md);
-  }
-  
-  .benefit {
-    padding: var(--spacing-lg) var(--spacing-md);
-  }
-  
-  .hero-image { 
-    max-height: 420px; 
-    border-radius: var(--radius-md); 
-  }
-  
-  :root {
-    --section-padding: 3.5rem 0;
-  }
-}
-
-@media (max-width: 768px) {
-  .oasis-hero.redesigned-hero { 
-    padding: 3rem 0 2rem; 
-  }
-  
-  .oasis-grid-3.redesigned-grid { 
-    grid-template-columns: 1fr; 
-  }
-  
-  .testimonials-two-column { 
-    grid-template-columns: 1fr; 
-  }
-  
-  .partners-track { 
-    animation-duration: 50s; 
-  }
-  
-  .oasis-card.redesigned-card {
-    padding: var(--spacing-md) var(--spacing-xl);
-  }
-  
-  .benefit {
-    padding: var(--spacing-md);
-  }
-  
-  .testimonial-column {
-    padding: var(--spacing-md) var(--spacing-xl);
-  }
-  
-  :root {
-    --section-padding: 3rem 0;
-  }
-}
-
-@media (max-width: 600px) {
-  .hero-image { 
-    max-height: 300px; 
-  }
-  
-  .oasis-title { 
-    font-size: 1.8rem; 
-  }
-  
-  .oasis-intro { 
-    font-size: var(--font-size-base); 
-  }
-  
-  .oasis-card.redesigned-card { 
-    padding: var(--spacing-xl); 
-  }
-  
-  .benefit {
-    flex-direction: column;
-    text-align: center;
-    gap: var(--spacing-xs);
-  }
-  
-  .benefit-icon.redesigned-icon {
-    margin-top: 0;
-  }
-  
-  .join-steps.redesigned-steps li {
-    flex-direction: column;
-    text-align: center;
-    gap: var(--spacing-xs);
-  }
-  
-  .oasis-card.redesigned-card {
-    padding: var(--spacing-lg);
-  }
-  
-  :root {
-    --section-padding: 2.5rem 0;
-  }
-}
-
-@media (max-width: 480px) {
-  .hero-image { 
-    max-height: 250px; 
-  }
-  
-  .oasis-title { 
-    font-size: 1.6rem; 
-  }
-  
-  .oasis-subtitle { 
-    font-size: 1.4rem; 
-  }
-  
-  .benefits-side-by-side {
-    gap: var(--spacing-xl);
-  }
-}
+/* Color Variables */
+        :root {
+            --color-page-bg: #f9faf2;
+            --color-white-card: #fafafa;
+            --color-card-stroke: #ebe9de;
+            --color-primary-button: #1c1c1c;
+            --color-text-dark: #1c1c1c;
+            --color-accent1: #fbe86b; /* Yellow */
+            --color-accent2: #fd635a; /* Red/Orange */
+            --color-secondary-button: #ebe9de;
+            /* Spacing adjustments */
+            --spacing-section: 3rem; 
+            --spacing-internal: 1.5rem;
+        }
+
+        /* Base Reset and Performance Optimization */
+        .oasis-community-page {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
+            color: var(--color-text-dark);
+            background-color: var(--color-page-bg);
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+        }
+
+        *, *::before, *::after {
+            box-sizing: border-box;
+        }
+
+        /* Typography and Structure */
+        .oasis-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: var(--spacing-section) var(--spacing-internal);
+        }
+
+        /* Adjust all section padding to use common variable */
+        .oasis-hero .oasis-container,
+        .oasis-who .oasis-container,
+        .oasis-benefits .oasis-container,
+        .oasis-join-cta .oasis-container,
+        .oasis-testimonials .oasis-container,
+        .oasis-partners .oasis-container,
+        .oasis-cta .oasis-container {
+            padding-top: var(--spacing-section);
+            padding-bottom: var(--spacing-section);
+        }
+
+        h1, h2, h3 {
+            line-height: 1.2;
+            margin-top: 0;
+            margin-bottom: var(--spacing-internal);
+        }
+
+        h1 { font-size: 3rem; }
+        h2 { font-size: 2.25rem; }
+        h3 { font-size: 1.5rem; }
+
+        .oasis-title {
+            font-size: clamp(2rem, 5vw, 4rem);
+        }
+
+        .oasis-subtitle {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .highlight {
+            color: var(--color-accent2);
+            font-style: italic;
+        }
+
+        /* Removed HR styling as HR tags were removed */
+
+        /* --- Buttons and Links --- */
+        .oasis-btn {
+            display: inline-block;
+            padding: 0.75rem 1.75rem;
+            font-weight: 600;
+            text-decoration: none;
+            cursor: pointer;
+            border-radius: 4px;
+            border: 2px solid var(--color-primary-button);
+            transition: background-color 0.2s, color 0.2s, transform 0.1s;
+        }
+
+        .primary-btn {
+            background-color: var(--color-primary-button);
+            color: var(--color-white-card);
+        }
+
+        .primary-btn:hover {
+            background-color: transparent;
+            color: var(--color-primary-button);
+            transform: translateY(-2px);
+        }
+
+        .secondary-btn {
+            background-color: var(--color-secondary-button);
+            color: var(--color-text-dark);
+            border-color: var(--color-card-stroke);
+        }
+
+        .secondary-btn:hover {
+            background-color: var(--color-accent1);
+            transform: translateY(-2px);
+            border-color: var(--color-accent1);
+        }
+
+        .large-btn {
+            padding: 1rem 2.5rem;
+            font-size: 1.125rem;
+        }
+
+        .small-btn {
+            padding: 0.5rem 1rem;
+            font-size: 0.875rem;
+        }
+
+        /* --- Hero Section --- */
+        .hero-content {
+            display: flex;
+            align-items: center;
+            gap: 3rem;
+        }
+
+        .hero-text {
+            flex: 1;
+        }
+
+        .oasis-intro {
+            font-size: 1.25rem;
+            margin-bottom: var(--spacing-internal);
+        }
+
+        .hero-image-container {
+            flex: 1;
+            max-width: 50%;
+            position: relative;
+            border: 5px solid var(--color-accent2);
+        }
+
+        .hero-image {
+            display: block;
+            width: 100%;
+            height: auto;
+            object-fit: cover;
+        }
+
+        /* --- Who Can Join Section --- */
+        .oasis-lead {
+            text-align: center;
+            font-size: 1.125rem;
+            max-width: 700px;
+            margin: 0 auto 3rem; /* Adjusted margin-bottom */
+        }
+
+        .oasis-grid-3 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .oasis-category {
+            background-color: var(--color-white-card);
+            padding: 2rem;
+            border: 2px solid var(--color-card-stroke);
+            border-radius: 4px;
+            text-align: center;
+            transition: border-color 0.3s;
+        }
+
+        .oasis-category:hover {
+            border-color: var(--color-accent1);
+        }
+
+        .category-icon {
+            width: 48px;
+            height: 48px;
+            background-color: var(--color-accent1);
+            border-radius: 50%;
+            margin: 0 auto 1rem;
+        }
+
+        .icon-tech { background-color: var(--color-accent2); }
+        .icon-npo { background-color: var(--color-accent1); }
+        .icon-funder { background-color: var(--color-secondary-button); }
+
+
+        /* --- Benefits Section --- */
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+        }
+
+        .oasis-card {
+            background-color: var(--color-white-card);
+            border: 2px solid var(--color-card-stroke);
+            border-radius: 4px;
+            padding: 2rem;
+        }
+
+        .accent-card {
+            background-color: var(--color-accent1);
+            border-color: var(--color-accent1);
+        }
+
+        .benefits-list {
+            list-style: none;
+            padding: 0;
+            margin-top: var(--spacing-internal);
+        }
+
+        .benefits-list li {
+            margin-bottom: 0.75rem; /* Reduced line spacing */
+            padding-left: 1.5rem;
+            position: relative;
+        }
+
+        .benefits-list li::before {
+            content: '→';
+            position: absolute;
+            left: 0;
+            color: var(--color-accent2);
+            font-weight: 800;
+        }
+
+        /* --- Join Process & CTA Section --- */
+        .join-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+        }
+
+        .how-card {
+            padding: 2rem;
+        }
+
+        .join-steps {
+            list-style: none;
+            counter-reset: step-counter;
+            padding: 0;
+            margin-bottom: 2rem;
+        }
+
+        .join-steps li {
+            counter-increment: step-counter;
+            margin-bottom: 0.75rem;
+            position: relative;
+            padding-left: 2rem;
+        }
+
+        .join-steps li::before {
+            content: counter(step-counter);
+            position: absolute;
+            left: 0;
+            font-weight: 700;
+            color: var(--color-accent2);
+            font-size: 1.125rem;
+        }
+
+        .ready-section {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 3rem 2rem;
+            background-color: var(--color-accent2);
+            color: var(--color-white-card);
+            border: none;
+        }
+
+        .ready-section h3, .ready-section p {
+            color: inherit;
+            margin-bottom: 1rem;
+        }
+
+        .ready-section .primary-btn {
+            background-color: var(--color-white-card);
+            color: var(--color-primary-button);
+            border-color: var(--color-white-card);
+        }
+
+        .ready-section .primary-btn:hover {
+            background-color: var(--color-accent1);
+            color: var(--color-primary-button);
+            border-color: var(--color-accent1);
+        }
+
+        /* --- Testimonials Section --- */
+        .testimonials-two-column {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin-bottom: var(--spacing-internal);
+        }
+
+        .testimonial-column {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .testimonial-subheading {
+            text-align: center;
+            font-size: 1.25rem;
+            margin-bottom: 1rem;
+            border-bottom: 2px solid var(--color-accent1);
+            padding-bottom: 0.5rem;
+            width: 100%;
+        }
+
+        .testimonial-slider {
+            width: 100%;
+            overflow: hidden;
+            position: relative;
+            border: 2px solid var(--color-card-stroke);
+            border-radius: 4px;
+            margin-bottom: var(--spacing-internal);
+            background-color: var(--color-white-card);
+        }
+
+        .testimonial-track {
+            display: flex;
+            width: 100%;
+            transition: transform 0.5s ease-in-out;
+            will-change: transform;
+        }
+
+        .testimonial-slide {
+            flex-shrink: 0;
+            width: 100%;
+            padding: 2rem;
+        }
+
+        .oasis-quote {
+            margin: 0;
+            text-align: center;
+            font-style: italic;
+            font-size: 1.125rem;
+        }
+
+        .oasis-quote cite {
+            display: block;
+            margin-top: 1rem;
+            font-style: normal;
+            font-weight: 600;
+            color: var(--color-accent2);
+        }
+
+        .stars {
+            color: var(--color-accent1);
+            margin-bottom: 0.5rem;
+            font-size: 1.25rem;
+        }
+
+        /* --- Partners Section --- */
+        .partners-marquee {
+            overflow: hidden;
+            margin: var(--spacing-section) 0;
+            border-top: 1px solid var(--color-card-stroke);
+            border-bottom: 1px solid var(--color-card-stroke);
+            padding: 1rem 0;
+        }
+
+        .partners-track {
+            display: flex;
+            animation: marquee-scroll 60s linear infinite;
+            gap: 3rem;
+        }
+
+        .partner-logo {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            height: 60px;
+            opacity: 0.6;
+            transition: opacity 0.3s;
+        }
+
+        .partner-logo:hover {
+            opacity: 1;
+        }
+
+        .partner-logo img {
+            max-height: 100%;
+            max-width: 150px;
+            width: auto;
+            height: auto;
+            filter: grayscale(100%);
+            transition: filter 0.3s;
+        }
+
+        .partner-logo:hover img {
+            filter: grayscale(0%);
+        }
+
+        @keyframes marquee-scroll {
+            from {
+                transform: translateX(0);
+            }
+            to {
+                transform: translateX(-50%);
+            }
+        }
+
+        /* --- Final CTA Section --- */
+        .oasis-cta {
+            background-color: var(--color-accent2);
+            color: var(--color-white-card);
+            text-align: center;
+            /* Use a single padding for the CTA section */
+            padding: 4rem 1.5rem; 
+        }
+
+        .cta-content h2 {
+            font-size: clamp(1.75rem, 4vw, 3rem);
+            color: inherit;
+        }
+
+        .cta-content p {
+            font-size: 1.25rem;
+            max-width: 700px;
+            margin: 1rem auto 2rem;
+        }
+
+        .oasis-cta .primary-btn {
+            background-color: var(--color-white-card);
+            color: var(--color-primary-button);
+            border-color: var(--color-white-card);
+        }
+
+        .oasis-cta .primary-btn:hover {
+            background-color: var(--color-accent1);
+            color: var(--color-primary-button);
+            border-color: var(--color-accent1);
+        }
+
+        /* --- Media Queries --- */
+        @media (max-width: 900px) {
+            .hero-content {
+                flex-direction: column-reverse;
+                text-align: center;
+            }
+
+            .hero-text, .hero-image-container {
+                max-width: 100%;
+                flex: none;
+            }
+
+            .benefits-grid, .join-grid, .testimonials-two-column {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 500px) {
+            .oasis-container {
+                padding: 2rem 1rem;
+            }
+        }
