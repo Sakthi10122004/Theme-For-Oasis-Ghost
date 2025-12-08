@@ -1,212 +1,59 @@
 {{!< default}}
-
 <style>
-/* ===============================
-   CRITICAL CSS (Inlined for faster rendering)
-   =============================== */
-:root {
-  --hero-primary: #ED3E29;
-  --hero-text-light: #fff;
-  --hero-bg: #fff;
-}
-
-/* Basic layout structure - Critical for initial render */
+  /* Critical CSS - Inline for faster loading */
+/* Only essential above-the-fold styles here */
 .hero-orbit {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 4rem;
+  grid-template-columns: 1fr 1fr; 
+  gap: 0.9rem;
   align-items: center;
-  padding: 6rem 5%;
+  padding: 2rem;
   min-height: 80vh;
-  max-width: 1600px;
+  background: #f9faf2;
+  max-width: 1900px;
   margin: 0 auto;
-  background: var(--hero-bg);
-}
-
-.orbit-content {
-  max-width: 600px;
-  justify-self: start;
+  position: relative;
 }
 
 .hero-title {
+  text-align: -webkit-left;
   font-size: clamp(1.5rem, 4vw, 4rem);
   line-height: 1.1;
   margin-bottom: 1.5rem;
   font-weight: 550;
-}
-
-.hero-desc {
-  font-size: clamp(1.1rem, 1.5vw, 1.4rem);
-  color: #555;
-  margin-bottom: 2.5rem;
-  line-height: 1.6;
-  max-width: 90%;
-}
-
-.hero-cta {
-  background: var(--hero-primary);
-  color: var(--hero-text-light);
-  padding: 1rem 2.5rem;
-  border-radius: 50px;
-  font-size: 1.1rem;
-  font-weight: 600;
-  box-shadow: 0 8px 24px rgba(237, 62, 41, 0.3);
-  display: inline-block;
-  text-decoration: none;
+  color: #1c1c1c;
 }
 
 .orbit-visual {
-  justify-self: end;
+  display: flex;
+  justify-content: center;
   width: 100%;
   max-width: 800px;
+  position: relative;
 }
 
 .floating-img {
   width: 100%;
   height: auto;
+  max-width: 2000px; 
   max-height: 600px;
   object-fit: cover;
-  border-radius: 24px;
-  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+  border-radius: 28px;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
 }
 
-.floating-placeholder {
-  width: 100%;
-  height: 500px;
-  background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
-  border-radius: 24px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: #64748b;
-  font-size: 1.2rem;
-  border: 2px dashed #cbd5e1;
-}
-
-/* BBB Section - Critical for layout */
-.bbb-section {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 30px;
-  max-width: 1400px;
-  margin: 0 auto;
-  padding: 80px 20px;
-  background-color: #fff;
-}
-
-.bbb-item {
-  text-align: center;
-  padding: 40px 20px;
-  border-radius: 16px;
-  box-shadow: 0 8px 32px rgba(237, 62, 41, 0.08);
-}
-
-.bbb-item h4 {
-  font-size: 2.2rem;
-  color: #ED3E29;
-  margin: 0 0 15px;
-  font-weight: bold;
-}
-
-.bbb-img {
-  width: 100%;
-  max-width: 350px;
-  height: 200px;
-  margin: 0 auto;
-  border-radius: 12px;
-  overflow: hidden;
-}
-
-.bbb-img img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-/* Lazy loading styles */
+/* Lazy loading base */
 .lazy-load {
   opacity: 0;
-  transition: opacity 0.3s;
 }
 
 .lazy-loaded {
   opacity: 1;
 }
-
-/* Hide preloader */
-.preload-critical {
-  position: absolute;
-  width: 0;
-  height: 0;
-  overflow: hidden;
-}
-
-/* Loading animation */
-.skeleton {
-  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
-  background-size: 200% 100%;
-  animation: loading 1.5s infinite;
-}
-
-@keyframes loading {
-  0% { background-position: 200% 0; }
-  100% { background-position: -200% 0; }
-}
-
-/* Responsive adjustments for critical layout */
-@media (max-width: 992px) {
-  .hero-orbit {
-    grid-template-columns: 1fr;
-    text-align: center;
-    gap: 3rem;
-    padding: 4rem 5%;
-  }
-  
-  .orbit-content {
-    max-width: 100%;
-    justify-self: center;
-  }
-  
-  .hero-desc {
-    max-width: 100%;
-  }
-  
-  .orbit-visual {
-    justify-self: center;
-    order: -1;
-  }
-  
-  .bbb-section {
-    grid-template-columns: 1fr;
-    max-width: 500px;
-  }
-}
-
-@media (max-width: 768px) {
-  .floating-img {
-    max-height: 350px;
-  }
-  
-  .bbb-item {
-    padding: 25px 15px;
-  }
-  
-  .bbb-item h4 {
-    font-size: 1.6rem;
-  }
-  
-  .bbb-img {
-    max-width: 200px;
-    height: 140px;
-  }
-}
-
-/* Load deferred CSS without blocking render */
-<link rel="preload" href="{{asset 'css/deferred.css'}}" as="style" onload="this.onload=null;this.rel='stylesheet'">
-<noscript><link rel="stylesheet" href="{{asset 'css/deferred.css'}}"></noscript>
 </style>
+<link rel="preload" href="{{asset 'css/index.css'}}" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="{{asset 'css/index.css'}}"></noscript>
 
-<!-- Preload critical images -->
 <div class="preload-critical">
   {{#if @site.cover_image}}
     <link rel="preload" as="image" href="{{@site.cover_image}}" fetchpriority="high">
@@ -220,7 +67,7 @@
   <div class="orbit-content">
     <h1 class="hero-title">
       <span class="line">The open-source</span>
-      <span class="line highlight">collective </span>
+      <span>collective </span>
       <span class="line">fueling <span class="glow">social impact.</span></span>
     </h1>
     <p class="hero-desc">{{@site.description}}</p>
@@ -231,13 +78,13 @@
       <img 
         src="{{@site.cover_image}}" 
         alt="Open source impact visual" 
-        class="floating-img lazy-load" 
+        class="floating-img" 
         loading="eager"
         fetchpriority="high"
         width="800"
         height="600"
-        onload="this.classList.add('lazy-loaded')"
-        onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\"floating-placeholder\"></div>'"    {{else}}
+        decoding="async">
+    {{else}}
       <div class="floating-placeholder">Your cover image here</div>
     {{/if}}
   </div>
@@ -272,51 +119,54 @@
   </div>
 </section>
 
-<!-- BBB Section - Now side by side (3 columns) -->
 <section class="bbb-section">
-  <div class="bbb-item">
-    <h4>BRIDGE</h4>
-    <p>Bridging the worlds of Tech and social change</p>
-    <div class="bbb-img">
-      <img 
-        src="{{asset 'images/bridge.webp'}}" 
-        alt="Bridge illustration" 
-        loading="lazy"
-        width="350"
-        height="200"
-        class="lazy-load"
-        onload="this.classList.add('lazy-loaded')">
+  <div class="bbb-container">
+    
+    <div class="bbb-item">
+      <h4 class="bbb-banner">BRIDGE</h4>
+      <div class="bbb-img-wrapper">
+        <img 
+          src="{{asset 'images/bridge.webp'}}" 
+          alt="Bridge illustration" 
+          loading="lazy"
+          class="lazy-load"
+          onload="this.classList.add('lazy-loaded')">
+      </div>
+      <div class="bbb-content">
+        <p>Bridging the worlds of Tech and social change</p>
+      </div>
     </div>
-  </div>
 
-  <div class="bbb-item">
-    <h4>BUILD</h4>
-    <p>Building open source tools for good</p>
-    <div class="bbb-img">
-      <img 
-        src="{{asset 'images/build.webp'}}" 
-        alt="Build illustration" 
-        loading="lazy"
-        width="350"
-        height="200"
-        class="lazy-load"
-        onload="this.classList.add('lazy-loaded')">
+    <div class="bbb-item">
+      <h4 class="bbb-banner">BUILD</h4>
+      <div class="bbb-img-wrapper">
+        <img 
+          src="{{asset 'images/build.webp'}}" 
+          alt="Build illustration" 
+          loading="lazy"
+          class="lazy-load"
+          onload="this.classList.add('lazy-loaded')">
+      </div>
+      <div class="bbb-content">
+        <p>Building open source tools for good</p>
+      </div>
     </div>
-  </div>
 
-  <div class="bbb-item">
-    <h4>BELONG</h4>
-    <p>Belonging to a community that shares</p>
-    <div class="bbb-img">
-      <img 
-        src="{{asset 'images/belong.webp'}}" 
-        alt="Belong illustration" 
-        loading="lazy"
-        width="350"
-        height="200"
-        class="lazy-load"
-        onload="this.classList.add('lazy-loaded')">
+    <div class="bbb-item">
+      <h4 class="bbb-banner">BELONG</h4>
+      <div class="bbb-img-wrapper">
+        <img 
+          src="{{asset 'images/belong.webp'}}" 
+          alt="Belong illustration" 
+          loading="lazy"
+          class="lazy-load"
+          onload="this.classList.add('lazy-loaded')">
+      </div>
+      <div class="bbb-content">
+        <p>Belonging to a community that shares</p>
+      </div>
     </div>
+
   </div>
 </section>
 
@@ -405,7 +255,6 @@
   <p class="ring-quote">"It takes a village — and five open hearts — to start a movement."</p>
   <div class="ring-logos">
     <div class="ring-track">
-      <!-- Original Logos -->
       <a href="https://aikyamfellows.org"><img src="{{asset 'images/alliance/aikyam.png'}}" alt="Aikyam" loading="lazy" class="lazy-load" onload="this.classList.add('lazy-loaded')"></a>
       <a href="https://aspire.ashoka.org"><img src="{{asset 'images/alliance/ashoka.png'}}" alt="Ashoka" loading="lazy" class="lazy-load" onload="this.classList.add('lazy-loaded')"></a>
       <a href="https://fossunited.org"><img src="{{asset 'images/alliance/fossunited.png'}}" alt="FOSS United" loading="lazy" class="lazy-load" onload="this.classList.add('lazy-loaded')"></a>
@@ -414,7 +263,6 @@
       <a href="https://samagatha.org"><img src="{{asset 'images/alliance/samagata.png'}}" alt="Samagatha" loading="lazy" class="lazy-load" onload="this.classList.add('lazy-loaded')"></a>
       <a href="https://www.tech4goodcommunity.com"><img src="{{asset 'images/alliance/t4gc.png'}}" alt="Tech4Good" loading="lazy" class="lazy-load" onload="this.classList.add('lazy-loaded')"></a>
       <a href="https://tinkerhub.org"><img src="{{asset 'images/alliance/tinkerhub.png'}}" alt="TinkerHub" loading="lazy" class="lazy-load" onload="this.classList.add('lazy-loaded')"></a>
-      <!-- Duplicated for seamless loop -->
       <a href="https://aikyamfellows.org"><img src="{{asset 'images/alliance/aikyam.png'}}" alt="Aikyam" loading="lazy" class="lazy-load" onload="this.classList.add('lazy-loaded')"></a>
       <a href="https://aspire.ashoka.org"><img src="{{asset 'images/alliance/ashoka.png'}}" alt="Ashoka" loading="lazy" class="lazy-load" onload="this.classList.add('lazy-loaded')"></a>
       <a href="https://fossunited.org"><img src="{{asset 'images/alliance/fossunited.png'}}" alt="FOSS United" loading="lazy" class="lazy-load" onload="this.classList.add('lazy-loaded')"></a>
@@ -484,7 +332,6 @@
                 {{/if}}
               </a>
             {{/foreach}}
-            <!-- Duplicate for seamless loop -->
             {{#foreach posts}}
               <a href="{{url}}" class="tool-card" title="{{title}}">
                 {{#if feature_image}}
@@ -530,7 +377,6 @@
                 {{/if}}
               </a>
             {{/foreach}}
-            <!-- Duplicate for seamless loop -->
             {{#foreach posts}}
               <a href="{{url}}" class="expert-card" title="{{title}}">
                 {{#if feature_image}}
@@ -554,163 +400,3 @@
     </div>
   </div>
 </section>
-
-<script>
-// Critical JavaScript (loads immediately)
-(function() {
-  // Load deferred CSS
-  var deferred = document.querySelector('link[rel="preload"][as="style"]');
-  if (deferred) {
-    deferred.onload = function() {
-      this.rel = 'stylesheet';
-    };
-    // Fallback for browsers that don't support onload
-    if (deferred.sheet || deferred.href) {
-      deferred.rel = 'stylesheet';
-    }
-  }
-  
-  // Lazy load images with Intersection Observer
-  if ('IntersectionObserver' in window) {
-    const lazyImages = [].slice.call(document.querySelectorAll('img.lazy-load'));
-    
-    let lazyImageObserver = new IntersectionObserver(function(entries) {
-      entries.forEach(function(entry) {
-        if (entry.isIntersecting) {
-          let lazyImage = entry.target;
-          // If image hasn't loaded yet, trigger load
-          if (!lazyImage.complete) {
-            lazyImage.classList.add('lazy-loaded');
-          }
-          lazyImageObserver.unobserve(lazyImage);
-        }
-      });
-    }, {
-      rootMargin: '50px 0px',
-      threshold: 0.01
-    });
-
-    lazyImages.forEach(function(lazyImage) {
-      lazyImageObserver.observe(lazyImage);
-    });
-  }
-  
-  // Basic counter animation (optimized)
-  const counters = document.querySelectorAll(".count");
-  if (counters.length) {
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          const counter = entry.target;
-          const target = +counter.getAttribute("data-target") || 0;
-          if (target > 0) {
-            animateCounter(counter, target);
-          }
-          observer.unobserve(counter);
-        }
-      });
-    }, { threshold: 0.5 });
-
-    counters.forEach(counter => observer.observe(counter));
-
-    function animateCounter(element, target) {
-      let count = 0;
-      const increment = target / 50; // Faster animation
-      const duration = 1000; // 1 second
-      const stepTime = Math.max(16, duration / 50); // ~60fps
-      
-      const timer = setInterval(() => {
-        count += increment;
-        if (count >= target) {
-          count = target;
-          clearInterval(timer);
-        }
-        element.textContent = Math.floor(count);
-      }, stepTime);
-    }
-  }
-})();
-
-// Deferred JavaScript (loads after page is interactive)
-window.addEventListener('load', function() {
-  // Newsletter form handling
-  const form = document.querySelector('[data-members-form="subscribe"]');
-  if (form) {
-    const button = form.querySelector("button[type='submit']");
-    if (button) {
-      const defaultText = button.textContent;
-
-      const observer = new MutationObserver(() => {
-        button.classList.remove("state-checking", "state-success", "state-error");
-
-        if (form.classList.contains("loading")) {
-          button.textContent = "Checking...";
-          button.classList.add("state-checking");
-          button.disabled = true;
-        }
-        else if (form.classList.contains("success")) {
-          button.textContent = "Done!";
-          button.classList.add("state-success");
-          button.disabled = true;
-        }
-        else if (form.classList.contains("error")) {
-          button.textContent = "Try Again";
-          button.classList.add("state-error");
-          button.disabled = false;
-
-          setTimeout(() => {
-            button.textContent = defaultText;
-            button.classList.remove("state-error");
-          }, 2000);
-        }
-        else {
-          button.textContent = defaultText;
-          button.disabled = false;
-        }
-      });
-
-      observer.observe(form, { attributes: true, attributeFilter: ["class"] });
-    }
-  }
-  
-  // Infinite scroll animations (non-critical)
-  const scrollContainer = document.querySelector(".impact-scroll");
-  if (scrollContainer && scrollContainer.children.length > 0) {
-    // Only duplicate if we have content
-    scrollContainer.innerHTML += scrollContainer.innerHTML;
-  }
-  
-  // Add smooth scrolling for anchor links
-  document.querySelectorAll('a[href^="#"], a[href^="/"]').forEach(anchor => {
-    if (anchor.getAttribute('href').startsWith('/')) return;
-    
-    anchor.addEventListener('click', function(e) {
-      const href = this.getAttribute('href');
-      if (href.startsWith('#')) {
-        e.preventDefault();
-        const target = document.querySelector(href);
-        if (target) {
-          target.scrollIntoView({
-            behavior: 'smooth',
-            block: 'start'
-          });
-        }
-      }
-    });
-  });
-});
-
-// Add error handling for images
-document.addEventListener('error', function(e) {
-  if (e.target.tagName === 'IMG') {
-    e.target.style.opacity = '0';
-    setTimeout(() => {
-      e.target.style.display = 'none';
-      const parent = e.target.parentElement;
-      if (parent && parent.classList.contains('bbb-img')) {
-        parent.innerHTML = '<div style="width:100%;height:100%;background:#f0f0f0;border-radius:12px;display:flex;align-items:center;justify-content:center;color:#999;">Image not available</div>';
-      }
-    }, 300);
-  }
-}, true);
-</script>

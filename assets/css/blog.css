@@ -2,68 +2,64 @@
    BLOG PAGE GRID - OPTIMIZED
 ============================ */
 
-/* Blog Variables */
+/* Blog Color Variables Only */
 :root {
-  /* Blog Colors */
-  --blog-primary: #7a1d16;
-  --blog-secondary: #ED3E29;
-  --blog-text-dark: #222;
-  --blog-text-light: #eee;
-  --blog-bg-card: #ffffff;
-  --blog-bg-placeholder: #f5f5f5;
-  --blog-shadow-color: rgba(0, 0, 0, 0.06);
-  
-  /* Blog Spacing */
-  --blog-spacing-sm: 1rem;
-  --blog-spacing-md: 2rem;
-  --blog-spacing-xl: 3rem;
-  --blog-spacing-xxl: 4rem;
-  
-  /* Blog Font Sizes */
-  --blog-font-sm: 1.2rem;
-  --blog-font-md: clamp(2rem, 4vw, 3rem);
-  
-  /* Blog Dimensions */
-  --blog-image-height: 220px;
-  --blog-border-radius: 20px;
-  --blog-grid-min: 280px;
-  --blog-grid-gap: 2.5rem;
-  
-  /* Blog Font Weights */
-  --blog-font-weight-bold: 700;
-  --blog-font-weight-extrabold: 800;
+    /* Primary Colors */
+    --color-primary-button: #1C1C1C;
+    --color-cta-buttons: #1C1C1C;
+    --color-page-background: #F9FAF2;
+    --color-main-background: #F9FAF2;
+    --color-stroke-secondary: #EBE9DE;
+    --color-card-background: #FAFAFA;
+    --color-accent-1: #FBE86B;
+    --color-accent-2: #FD635A;
+
+    /* Semantic Colors */
+    --blog-primary: #1C1C1C;
+    --blog-secondary: #FD635A;
+    --blog-text-dark: #222222;
+    --blog-text-light: #EBE9DE;
+    --blog-bg-card: #FAFAFA;
+    --blog-bg-placeholder: #F9FAF2;
+    --blog-shadow-color: rgba(28, 28, 28, 0.08);
+    --blog-border-color: #EBE9DE;
 }
 
 /* Main Wrapper */
 .blog-wrapper {
-    padding: var(--blog-spacing-xl) 0;
+    padding: 3rem 0;
+    background-color: var(--color-page-background);
 }
 
 /* Header */
 .blog-header {
     text-align: center;
-    margin-bottom: var(--blog-spacing-xl);
+    margin-bottom: 3rem;
+    padding: 0 2rem;
 }
 
 .blog-title {
-    font-size: var(--blog-font-md);
-    font-weight: var(--blog-font-weight-extrabold);
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 800;
     color: var(--blog-primary);
+    margin: 0;
 }
 
 /* Grid Layout */
 .blog-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(var(--blog-grid-min), 1fr));
-    gap: var(--blog-grid-gap);
-    padding: 0 var(--blog-spacing-xxl);
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2.5rem;
+    padding: 0 4rem;
+    max-width: 1400px;
+    margin: 0 auto;
 }
 
 /* Card */
 .blog-card {
     background: var(--blog-bg-card);
-    border-radius: var(--blog-border-radius);
-    border: 1px solid var(--blog-text-light);
+    border-radius: 20px;
+    border: 1px solid var(--blog-border-color);
     box-shadow: 0 10px 25px var(--blog-shadow-color);
     overflow: hidden;
 }
@@ -71,9 +67,9 @@
 /* Image */
 .blog-card-image {
     width: 100%;
-    height: var(--blog-image-height);
+    height: 220px;
     overflow: hidden;
-    border-bottom: 1px solid var(--blog-text-light);
+    border-bottom: 1px solid var(--blog-border-color);
 }
 
 .blog-card-image img {
@@ -85,16 +81,29 @@
 /* Placeholder (if no feature image) */
 .blog-card-image.placeholder {
     background: var(--blog-bg-placeholder);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.blog-card-image.placeholder::before {
+    content: "";
+    width: 60px;
+    height: 60px;
+    background-color: var(--color-accent-1);
+    border-radius: 50%;
+    opacity: 0.6;
 }
 
 /* Title */
 .blog-card-title {
     text-align: center;
-    font-size: var(--blog-font-sm);
-    font-weight: var(--blog-font-weight-bold);
-    padding: var(--blog-spacing-sm);
+    font-size: 1.2rem;
+    font-weight: 700;
+    padding: 1rem;
     color: var(--blog-text-dark);
     margin: 0;
+    line-height: 1.4;
 }
 
 .blog-card-link {
@@ -106,20 +115,37 @@
 /* ============================
    RESPONSIVE DESIGN
 ============================ */
+@media (max-width: 1024px) {
+    .blog-grid {
+        padding: 0 3rem;
+        gap: 2rem;
+    }
+}
+
 @media (max-width: 768px) {
     .blog-grid {
-        padding: 0 var(--blog-spacing-md);
-        gap: var(--blog-spacing-md);
+        padding: 0 2rem;
+        gap: 1.5rem;
+    }
+
+    .blog-wrapper {
+        padding: 2rem 0;
     }
 }
 
 @media (max-width: 480px) {
     .blog-grid {
-        padding: 0 var(--blog-spacing-sm);
-        gap: var(--blog-spacing-sm);
+        padding: 0 1rem;
+        gap: 1rem;
+        grid-template-columns: 1fr;
     }
-    
+
     .blog-title {
         font-size: clamp(1.5rem, 4vw, 2.5rem);
+    }
+
+    .blog-header {
+        padding: 0 1rem;
+        margin-bottom: 2rem;
     }
 }
