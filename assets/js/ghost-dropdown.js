@@ -1,11 +1,3 @@
-/**
- * ghost-dynamic-dropdown 1.2.0 (https://github.com/themeix/ghost-dynamic-dropdown)
- * A simple script for dynamic dropdown & mega menu for Ghost Blogging Platform.
- * Copyright 2022 Themeix (https://themeix.com)
- * Released under MIT License
- * Released on:  Jul 25, 2021
- * Updated for mobile support: Dec 2024
- */
 
 (function ($) {
     "use strict";
@@ -277,26 +269,22 @@
         initMobileMenu();
     }
 
-    $(document).ready(function () {
-        ghost_dropdown({
-            targetElement: ".nebula-nav-horizontal ul li",
-            hasChildrenClasses: "menu-item-has-children",
-            hasChildrenIcon: "<svg width='19' height='10' viewBox='0 0 19 10' fill='none' xmlns='http://www.w3.org/2000/svg'><path d='M1.74805 1.52002L9.54883 9.00002L17.3496 1.52002' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/></svg>",
-            hasChildDetectText: "[has_child]",
-            submenuUlClasses: "ghost-submenu",
-            subitemDetectText: "[subitem]",
-            subitemLiClasses: "subitem",
-            multi_level: true,
-            mega_menu: false
-        });
+$(document).ready(function () {
+    ghost_dropdown({
+        targetElement: ".nebula-nav-horizontal ul li",
+        hasChildrenClasses: "menu-item-has-children",
+        hasChildDetectText: "[has_child]",
+        submenuUlClasses: "ghost-submenu",
+        subitemDetectText: "[subitem]",
+        subitemLiClasses: "subitem",
+        multi_level: true,
+        mega_menu: false
+        // NOTICE: we do NOT override hasChildrenIcon here
+        // so the default SVG WITH PATH is used
     });
 
-    $hamburger.on('click', function(e) {
-    e.stopPropagation();
-    $(this).toggleClass('active');
-    $mobileNav.toggleClass('active');
-    $('body').toggleClass('menu-open'); // lock scroll
+    // Optional: just a marker class, doesn't affect visibility now
+    document.querySelector(".nebula-nav-horizontal")?.classList.add("nav-ready");
 });
 
-
-}(jQuery));1
+}(jQuery));

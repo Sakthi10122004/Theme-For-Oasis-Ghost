@@ -1,5 +1,24 @@
 /* About Page Styles */
 
+:root {
+    /* Primary Colors */
+    --color-primary: #fd635a; /* Used for highlights, titles, timeline dot/line, hover borders */
+    --color-secondary: #fbe86b; /* Used for board hover border/shadow and team-link hover */
+    
+    /* Backgrounds */
+    --color-background-light: #f9faf2; /* Main page background */
+    --color-background-card: #fafafa; /* Card backgrounds (timeline, board, team, mission) */
+    --color-background-dark: #1c1c1c; /* CTA section background, main link background, dot/text hover */
+
+    /* Text Colors */
+    --color-text-dark: #1c1c1c; /* Main dark text, hover dot/border, highlight hover border */
+    --color-text-medium: #666; /* Subtitles, role descriptions */
+    --color-text-light: #fafafa; /* Text on dark backgrounds (CTA, timeline highlight) */
+
+    /* Borders / Separators */
+    --color-border-light: #ebe9de; /* Default border color, CTA button border */
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -7,7 +26,7 @@
 }
 
 .about-page {
-    background-color: #f9faf2;
+    background-color: var(--color-background-light);
     min-height: 100vh;
 }
 
@@ -27,7 +46,7 @@
 /* Hero Section */
 .hero-section {
     padding: 60px 0 50px 0;
-    background-color: #f9faf2;
+    background-color: var(--color-background-light);
 }
 
 .hero-title {
@@ -35,7 +54,7 @@
     font-weight: 700;
     text-align: center;
     margin: 0 0 20px 0;
-    color: #fd635a;
+    color: var(--color-text-dark);
     line-height: 1.3;
     animation: fadeIn 0.6s ease-out;
 }
@@ -44,7 +63,7 @@
     font-size: 1.1rem;
     text-align: center;
     margin: 0 0 50px 0;
-    color: #666;
+    color: var(--color-text-medium);
     line-height: 1.6;
     max-width: 900px;
     margin-left: auto;
@@ -64,15 +83,18 @@
 
 .hero-image {
     width: 100%;
-    height: auto;
-    display: block;
+    display: flex;
+    justify-content: center;
+    perspective: 1200px;
+    aspect-ratio: 15 / 6; 
 }
+    
 
 .hero-context {
     font-size: 1.4rem;
     text-align: center;
     margin: 0;
-    color: #1c1c1c;
+    color: var(--color-text-dark);
     line-height: 1.5;
     max-width: 950px;
     margin: 0 auto;
@@ -83,14 +105,14 @@
 /* Timeline Section */
 .timeline-section {
     padding: 60px 0;
-    background-color: #f9faf2;
+    background-color: var(--color-background-light);
 }
 
 .section-title {
     font-size: 2rem;
     text-align: center;
     margin: 0 0 50px 0;
-    color: #fd635a;
+    color: var(--color-text-dark);
     font-weight: 700;
 }
 
@@ -105,7 +127,7 @@
     left: 0;
     width: 100%;
     height: 3px;
-    background: #fd635a;
+    background: var(--color-primary);
     opacity: 0.3;
 }
 
@@ -125,8 +147,8 @@
 .timeline-dot {
     width: 18px;
     height: 18px;
-    background: #fd635a;
-    border: 4px solid #f9faf2;
+    background: var(--color-primary);
+    border: 4px solid var(--color-background-light);
     border-radius: 50%;
     margin: 0 auto 25px auto;
     position: relative;
@@ -135,17 +157,17 @@
 }
 
 .timeline-dot-final {
-    background: #fd635a;
+    background: var(--color-primary);
 }
 
 .timeline-item:hover .timeline-dot {
     transform: scale(1.2);
-    background: #1c1c1c;
+    background: var(--color-background-dark);
 }
 
 .timeline-card {
-    background: #fafafa;
-    border: 2px solid #ebe9de;
+    background: var(--color-background-card);
+    border: 2px solid var(--color-border-light);
     border-radius: 10px;
     padding: 24px;
     min-height: 160px;
@@ -155,28 +177,28 @@
 .timeline-card:hover {
     transform: translateY(-5px);
     box-shadow: 0 8px 20px rgba(253, 99, 90, 0.12);
-    border-color: #fd635a;
+    border-color: var(--color-primary);
 }
 
 .timeline-card p {
     margin: 0;
     line-height: 1.6;
-    color: #1c1c1c;
+    color: var(--color-text-dark);
     font-size: 0.95rem;
 }
 
 .timeline-highlight {
-    background: #fd635a;
-    border-color: #fd635a;
+    background: var(--color-primary);
+    border-color: var(--color-primary);
 }
 
 .timeline-highlight:hover {
-    border-color: #1c1c1c;
+    border-color: var(--color-text-dark);
 }
 
 .timeline-highlight p,
 .timeline-highlight h3 {
-    color: #fafafa;
+    color: var(--color-text-light);
 }
 
 .timeline-year {
@@ -184,7 +206,7 @@
     font-size: 0.8rem;
     font-weight: 700;
     margin-bottom: 8px;
-    color: #fafafa;
+    color: var(--color-text-light);
     text-transform: uppercase;
     letter-spacing: 0.5px;
 }
@@ -192,14 +214,14 @@
 .timeline-highlight h3 {
     margin: 0 0 10px 0;
     font-size: 1.5rem;
-    color: #fafafa;
+    color: var(--color-text-light);
     font-weight: 700;
 }
 
 /* Board Section */
 .board-section {
     padding: 60px 0;
-    background-color: #f9faf2;
+    background-color: var(--color-background-light);
 }
 
 .board-grid {
@@ -210,8 +232,8 @@
 }
 
 .board-member {
-    background: #fafafa;
-    border: 2px solid #ebe9de;
+    background: var(--color-background-card);
+    border: 2px solid var(--color-border-light);
     border-radius: 10px;
     padding: 24px;
     text-align: center;
@@ -222,7 +244,7 @@
 .board-member:hover {
     transform: translateY(-5px);
     box-shadow: 0 8px 20px rgba(251, 232, 107, 0.15);
-    border-color: #fbe86b;
+    border-color: var(--color-secondary);
 }
 
 .board-member img {
@@ -232,26 +254,26 @@
     object-fit: cover;
     margin: 0 auto 14px auto;
     display: block;
-    border: 3px solid #ebe9de;
+    border: 3px solid var(--color-border-light);
     transition: all 0.3s ease;
 }
 
 .board-member:hover img {
-    border-color: #fbe86b;
+    border-color: var(--color-secondary);
     transform: scale(1.05);
 }
 
 .board-member h3 {
     font-size: 1rem;
     margin: 0 0 8px 0;
-    color: #1c1c1c;
+    color: var(--color-text-dark);
     font-weight: 600;
 }
 
 .board-member p {
     font-size: 0.85rem;
     margin: 0;
-    color: #666;
+    color: var(--color-text-medium);
     line-height: 1.5;
 }
 
@@ -260,18 +282,18 @@
     max-width: 950px;
     margin: 0 auto;
     line-height: 1.7;
-    color: #1c1c1c;
+    color: var(--color-text-dark);
     font-size: 0.95rem;
-    background: #fafafa;
+    background: var(--color-background-card);
     padding: 25px;
     border-radius: 10px;
-    border: 2px solid #ebe9de;
+    border: 2px solid var(--color-border-light);
 }
 
 /* Team Section */
 .team-section {
     padding: 60px 0;
-    background-color: #f9faf2;
+    background-color: var(--color-background-light);
 }
 
 .team-grid {
@@ -281,8 +303,8 @@
 }
 
 .team-member {
-    background: #fafafa;
-    border: 2px solid #ebe9de;
+    background: var(--color-background-card);
+    border: 2px solid var(--color-border-light);
     border-radius: 10px;
     padding: 30px;
     transition: all 0.3s ease;
@@ -292,7 +314,7 @@
 .team-member:hover {
     transform: translateY(-5px);
     box-shadow: 0 8px 20px rgba(253, 99, 90, 0.12);
-    border-color: #fd635a;
+    border-color: var(--color-primary);
 }
 
 .team-member img {
@@ -302,20 +324,20 @@
     object-fit: cover;
     margin: 0 auto 20px auto;
     display: block;
-    border: 4px solid #ebe9de;
+    border: 4px solid var(--color-border-light);
     transition: all 0.3s ease;
 }
 
 .team-member:hover img {
-    border-color: #fd635a;
+    border-color: var(--color-primary);
     transform: scale(1.05);
 }
 
 .team-member h3 {
     font-size: 1.3rem;
-    margin: 0 0 6px 0;
+    margin: 0 0 12px 0;
     text-align: center;
-    color: #1c1c1c;
+    color: var(--color-text-dark);
     font-weight: 600;
 }
 
@@ -323,23 +345,23 @@
     display: block;
     text-align: center;
     font-size: 0.9rem;
-    color: #666;
+    color: var(--color-text-medium);
     margin-bottom: 16px;
     font-weight: 600;
 }
 
 .team-bio {
     line-height: 1.6;
-    color: #1c1c1c;
+    color: var(--color-text-dark);
     margin: 0 0 20px 0;
     font-size: 0.9rem;
 }
 
 .team-link {
     display: inline-block;
-    padding: 10px 24px;
-    background: #1c1c1c;
-    color: #fafafa;
+    padding: 12px 24px;
+    background: var(--color-background-dark);
+    color: var(--color-text-light);
     text-decoration: none;
     border-radius: 6px;
     font-size: 0.85rem;
@@ -348,51 +370,103 @@
 }
 
 .team-link:hover {
-    background: #fbe86b;
-    color: #1c1c1c;
+    background: transparent;
+    color: var(--color-text-dark);
     transform: translateY(-2px);
     box-shadow: 0 4px 15px rgba(251, 232, 107, 0.3);
 }
 
 /* Mission Section */
 .mission-section {
-    padding: 60px 0;
+    padding: 80px 0;
     background-color: #f9faf2;
+    position: relative;
+}
+
+.mission-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, #fd635a, transparent);
 }
 
 .mission-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 28px;
+    gap: 32px;
+    margin-top: 48px;
 }
 
 .mission-card {
     background: #fafafa;
     border: 2px solid #ebe9de;
-    border-radius: 10px;
-    padding: 28px;
-    transition: all 0.3s ease;
-    animation: fadeIn 0.5s ease-out;
+    border-radius: 16px;
+    padding: 36px;
+    position: relative;
+    overflow: hidden;
 }
 
-.mission-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 20px rgba(253, 99, 90, 0.12);
-    border-color: #fd635a;
+.mission-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: #fd635a;
+}
+
+.mission-card-primary::before {
+    background: #fd635a;
+}
+
+.mission-card-secondary::before {
+    background: #fbe86b;
+}
+
+.mission-card-accent::before {
+    background: linear-gradient(90deg, #fbe86b, #fd635a);
+}
+
+.card-icon {
+    width: 64px;
+    height: 64px;
+    background: #1c1c1c;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 24px;
+    color: #fbe86b;
+}
+
+.mission-card-secondary .card-icon {
+    background: #fd635a;
+    color: #fafafa;
+}
+
+.mission-card-accent .card-icon {
+    background: #fbe86b;
+    color: #1c1c1c;
 }
 
 .mission-card h3 {
-    font-size: 1.3rem;
-    margin: 0 0 14px 0;
+    font-size: 1.5rem;
+    margin: 0 0 18px 0;
     color: #1c1c1c;
-    font-weight: 600;
+    font-weight: 700;
+    letter-spacing: -0.02em;
 }
 
 .mission-card p {
-    line-height: 1.6;
+    line-height: 1.8;
     color: #1c1c1c;
     margin: 0;
-    font-size: 0.9rem;
+    font-size: 0.95rem;
+    opacity: 0.85;
 }
 
 .mission-card ul {
@@ -402,33 +476,80 @@
 }
 
 .mission-card li {
-    margin-bottom: 12px;
-    line-height: 1.6;
+    margin-bottom: 16px;
+    line-height: 1.8;
     color: #1c1c1c;
-    font-size: 0.9rem;
+    font-size: 0.95rem;
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+    opacity: 0.85;
 }
 
 .mission-card li:last-child {
     margin-bottom: 0;
 }
 
+.value-icon {
+    color: #fd635a;
+    font-size: 0.7rem;
+    flex-shrink: 0;
+    margin-top: 6px;
+}
+
+.mission-card li strong {
+    color: #1c1c1c;
+    display: block;
+    margin-bottom: 4px;
+    font-weight: 600;
+    opacity: 1;
+}
+
+
+
+@media (max-width: 1024px) {
+    .mission-grid {
+        grid-template-columns: 1fr;
+        gap: 24px;
+    }
+    
+    .mission-section {
+        padding: 60px 0;
+    }
+}
+
+@media (max-width: 768px) {
+    .mission-card {
+        padding: 28px;
+    }
+    
+    .card-icon {
+        width: 56px;
+        height: 56px;
+    }
+    
+    .card-icon svg {
+        width: 32px;
+        height: 32px;
+    }
+}
 /* CTA Section */
 .cta-section {
     padding: 70px 0;
-    background-color: #1c1c1c;
+    background-color: var(--color-background-dark);
     text-align: center;
 }
 
 .cta-content h2 {
     font-size: 2.2rem;
-    color: #fafafa;
+    color: var(--color-text-light);
     margin: 0 0 16px 0;
     font-weight: 700;
 }
 
 .cta-content p {
     font-size: 1.05rem;
-    color: #fafafa;
+    color: var(--color-text-light);
     margin: 0 0 28px 0;
     max-width: 750px;
     margin-left: auto;
@@ -440,20 +561,20 @@
 .cta-button {
     display: inline-block;
     padding: 14px 36px;
-    background: #1c1c1c;
-    color: #fafafa;
+    background: var(--color-background-dark);
+    color: var(--color-text-light);
     text-decoration: none;
     border-radius: 6px;
     font-size: 1rem;
     font-weight: 700;
-    border: 2px solid #ebe9de;
+    border: 2px solid var(--color-border-light);
     transition: all 0.3s ease;
 }
 
 .cta-button:hover {
-    background: #fbe86b;
-    color: #1c1c1c;
-    border-color: #fbe86b;
+    background: var(--color-secondary);
+    color: var(--color-text-dark);
+    border-color: var(--color-secondary);
     transform: translateY(-3px);
     box-shadow: 0 6px 20px rgba(251, 232, 107, 0.3);
 }

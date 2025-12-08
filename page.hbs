@@ -4,99 +4,39 @@
 
 <main id="site-main" class="page-wrapper">
 
-    <!-- FEATURE IMAGE (optional) -->
+    <!-- FEATURE IMAGE -->
     {{#if feature_image}}
     <figure class="page-feature-image gh-canvas">
         <img
+            src="{{img_url feature_image}}"
             srcset="{{img_url feature_image size="s"}} 300w,
-                    {{img_url feature_image size="m"}} 600w,
-                    {{img_url feature_image size="l"}} 1000w,
-                    {{img_url feature_image size="xl"}} 2000w"
-            sizes="(min-width: 1400px) 1400px, 92vw"
-            src="{{img_url feature_image size="xl"}}"
+                    {{img_url feature_image size="m"}} 600w"
+            sizes="(max-width: 768px) 100vw, 92vw"
+            loading="lazy"
+            decoding="async"
             alt="{{feature_image_alt}}"
         />
-        {{#if feature_image_caption}}
-            <figcaption>{{feature_image_caption}}</figcaption>
-        {{/if}}
     </figure>
     {{/if}}
 
     <!-- HEADER -->
     <header class="page-header gh-canvas">
         <h1 class="page-title">{{title}}</h1>
-
         {{#if custom_excerpt}}
             <p class="page-subtitle">{{custom_excerpt}}</p>
         {{/if}}
     </header>
 
     <!-- MAIN CONTENT -->
-  <section class="page-content gh-canvas">
-
-    <div class="dynamic-content">
-        {{content}}
-    </div>
-
-    {{!-- Auto File Grid --}}
-    <div class="file-grid">
-        {{#match content regex="\\.(pdf|docx|doc|pptx|ppt|xlsx|xls)"}}
+    <section class="page-content gh-canvas">
+        <div class="dynamic-content">
             {{content}}
-        {{/match}}
-    </div>
-
-</section>
-
+        </div>
+    </section>
 
 </main>
 
 {{/post}}
 
-<script>
-document.addEventListener("DOMContentLoaded", function () {
-    document.querySelectorAll(".kg-file-card a").forEach(function (link) {
-        link.removeAttribute("download");   // remove forced download
-        link.setAttribute("target", "_blank"); // open in new tab
-    });
-});
-
-document.addEventListener("DOMContentLoaded", async function () {
-
-    const pdfCards = document.querySelectorAll(".kg-file-card a");
-
-    pdfCards.forEach(async (link) => {
-        const url = link.href;
-
-        try {
-            const pdf = await pdfjsLib.getDocument(url).promise;
-            const page = await pdf.getPage(1);
-
-            const scale = 0.4; 
-            const viewport = page.getViewport({ scale });
-
-            const canvas = document.createElement("canvas");
-            const context = canvas.getContext("2d");
-
-            canvas.width = viewport.width;
-            canvas.height = viewport.height;
-
-            await page.render({
-                canvasContext: context,
-                viewport: viewport
-            }).promise;
-
-            // Replace icon with preview
-            let iconBox = link.querySelector(".kg-file-card-icon");
-            if (iconBox) {
-                iconBox.innerHTML = "";
-                iconBox.appendChild(canvas);
-            }
-        } catch (err) {
-            console.error("Error rendering PDF preview:", err);
-        }
-
-    });
-});
-
-
-</script>
+<!-- Load PDF.js from CDN -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
