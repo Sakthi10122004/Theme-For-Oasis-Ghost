@@ -1,18 +1,35 @@
 /* ================================
+   COLOR VARIABLES (ROOT)
+================================ */
+:root {
+  /* Main colors */
+  --color-page-bg: #f9faf2;
+  --color-white-cards: #fafafa;
+  --color-button: #1c1c1c;
+  --color-card-stroke: #ebe9de;
+  --color-accent1: #fbe86b;
+  --color-accent2: #fd635a;
+  
+  /* Text colors */
+  --color-text-primary: #1c1c1c;
+  --color-text-secondary: #1c1c1c;
+  --color-text-accent: #fd635a;
+  --color-text-on-dark: #f9faf2;
+}
+
+/* ================================
    FIX MAIN EVENTS PAGE CONTAINER
 ================================ */
-
 .events-page {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 0 1.5rem 4rem;
-  background-color: #f9faf2; /* page background */
+  padding: 3rem 1rem 6rem;
+  background-color: var(--color-page-bg);
 }
 
 /* ================================
    2 COLUMN GRID FIX
 ================================ */
-
 #upcoming-events,
 #past-events {
   display: grid;
@@ -26,32 +43,27 @@
 .events-header h1 {
   font-size: clamp(2.2rem, 4vw, 3.2rem);
   font-weight: 800;
-  background: linear-gradient(135deg, #1c1c1c, #1c1c1c); /* Button color to accent color2 */
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
+  color: var(--color-text-primary);
   margin-bottom: .75rem;
   text-align: center;
-  /* ✅ CENTERED */
 }
 
 .events-section h2.events-title {
   font-size: 1.8rem;
   font-weight: 700;
-  color: #1c1c1c; /* Button color */
+  color: var(--color-button);
   margin-bottom: 1.5rem;
   padding-bottom: 0.5rem;
-  border-bottom: 2px solid #ebe9de; /* card stroke/secondary button */
+  border-bottom: 2px solid var(--color-card-stroke);
 }
 
 /* ================================
    EVENT TITLE STYLING
 ================================ */
-
 .event-title {
   font-size: 1.4rem;
   font-weight: 700;
-  color: #1c1c1c; /* Button color */
+  color: var(--color-text-primary);
   margin-bottom: 0.5rem;
   line-height: 1.3;
   letter-spacing: 0.2px;
@@ -60,25 +72,23 @@
 /* ================================
    EVENT CARD FIX
 ================================ */
-
 .event-row {
   display: flex;
   align-items: center;
-  background: #fafafa; /* white background-cards */
+  background: var(--color-white-cards);
   border-radius: 16px;
   padding: 1.8rem;
   gap: 1.5rem;
   box-shadow: 0 4px 12px rgba(28, 28, 28, 0.08);
-  border: 1px solid #ebe9de; /* card stroke/secondary button */
+  border: 1px solid var(--color-card-stroke);
   transition: .3s ease;
   width: 100%;
-  /* ✅ IMPORTANT */
 }
 
 .event-row:hover {
   transform: translateY(-4px);
   box-shadow: 0 8px 24px rgba(28, 28, 28, 0.12);
-  border-color: #fbe86b; /* accent color1 on hover */
+  border-color: var(--color-accent1);
 }
 
 /* Image */
@@ -87,7 +97,7 @@
   height: 110px;
   object-fit: cover;
   border-radius: 12px;
-  border: 2px solid #ebe9de; /* card stroke/secondary button */
+  border: 2px solid var(--color-card-stroke);
 }
 
 /* Info */
@@ -97,11 +107,11 @@
 
 .event-info p {
   margin: 0.5rem 0;
-  color: #1c1c1c; /* Button color */
+  color: var(--color-text-primary);
 }
 
 .event-info strong {
-  color: #1c1c1c; /* Button color */
+  color: var(--color-text-primary);
   font-weight: 600;
 }
 
@@ -111,8 +121,8 @@
 }
 
 .event-btn {
-  background: #1c1c1c; /* Button color */
-  color: #f9faf2; /* page background */
+  background: var(--color-button);
+  color: var(--color-text-on-dark);
   padding: 10px 22px;
   border-radius: 999px;
   text-decoration: none;
@@ -126,17 +136,15 @@
 }
 
 .event-btn:hover {
-  background: #fd635a; /* accent color2 */
-  color: #f9faf2; /* page background */
+  background: var(--color-accent2);
+  color: var(--color-text-on-dark);
   transform: scale(1.05);
 }
 
 /* ================================
    MOBILE FIX
 ================================ */
-
 @media (max-width: 900px) {
-
   #upcoming-events,
   #past-events {
     grid-template-columns: 1fr;
@@ -169,29 +177,29 @@
   text-align: center;
   padding: 3rem;
   font-size: 1.2rem;
-  color: #1c1c1c; /* Button color */
+  color: var(--color-text-primary);
   font-weight: 500;
-  background: #fafafa; /* white background-cards */
+  background: var(--color-white-cards);
   border-radius: 16px;
-  border: 2px dashed #ebe9de; /* card stroke/secondary button */
+  border: 2px dashed var(--color-card-stroke);
   grid-column: 1 / -1;
 }
 
 /* ================================
    ADDITIONAL STYLING
 ================================ */
-
 .events-section {
   margin-bottom: 4rem;
 }
+
 /* Style the date display */
 .event-info p:nth-of-type(1) {
-  color: #fd635a; /* accent color2 */
+  color: var(--color-text-accent);
   font-weight: 600;
 }
 
 /* Style venue display */
 .event-info p:nth-of-type(3) {
-  color: #1c1c1c; /* Button color */
+  color: var(--color-text-secondary);
   opacity: 0.9;
 }
