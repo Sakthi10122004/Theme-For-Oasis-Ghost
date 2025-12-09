@@ -1,128 +1,119 @@
-/* OASIS Community Page Styles */
-
+/* OASIS Community Page Styles - Optimized */
 :root {
-    /* Primary Colors */
-    --color-primary-accent: #fd635a; /* Red/Salmon - Used for highlight text, list bullets */
-    --color-secondary-accent: #fbe86b; /* Yellow/Gold - Used for card hovers, accent cards, final CTA button */
+    /* Color Variables */
+    --color-primary-accent: #fd635a;
+    --color-secondary-accent: #fbe86b;
+    --color-bg-light: #f9faf2;
+    --color-bg-card: #fafafa;
+    --color-bg-dark: #1c1c1c;
+    --color-bg-card-accent-gradient: #fffef5;
+    --color-text-dark: #1c1c1c;
+    --color-text-light: #fafafa;
+    --color-border-light: #ebe9de;
+    --color-bg-dark-hover: #2d2d2d;
+    --color-bg-secondary-hover: #ebe9de;
+    --color-bg-final-cta-hover: #fdf19f;
     
-    /* Backgrounds & Surfaces */
-    --color-bg-light: #f9faf2; /* Very light off-white - Main page background */
-    --color-bg-card: #fafafa; /* Card backgrounds (category, benefit, join, testimonial) */
-    --color-bg-dark: #1c1c1c; /* Very dark gray - Primary button, Final CTA background */
-    --color-bg-card-accent-gradient: #fffef5; /* Light gradient end for accent card */
-
-    /* Text Colors */
-    --color-text-dark: #1c1c1c; /* Main dark text, primary button hover, secondary button text */
-    --color-text-light: #fafafa; /* Text on dark backgrounds */
-    --color-text-opacity-medium: rgba(0, 0, 0, 0.9); /* Opaque text (used for hero text, section lead, join text, cta text) */
-    --color-text-opacity-low: rgba(0, 0, 0, 0.85); /* Less opaque text (used for category card text, partner opacity) */
-
-    /* Borders & Separators */
-    --color-border-light: #ebe9de; /* Default border color, secondary button border */
-    
-    /* Hover/Effect Colors */
-    --color-bg-dark-hover: #2d2d2d; /* Primary button hover background */
-    --color-bg-secondary-hover: #ebe9de; /* Secondary button hover background (same as light border) */
-    --color-bg-final-cta-hover: #fdf19f; /* Final CTA button hover background */
+    /* Semantic aliases */
+    --color-bg-primary: var(--color-bg-dark);
+    --color-bg-primary-hover: var(--color-bg-dark-hover);
+    --color-text-primary: var(--color-text-dark);
+    --color-text-on-dark: var(--color-text-light);
+    --color-border-default: var(--color-border-light);
+    --color-accent-yellow: var(--color-secondary-accent);
+    --color-accent-red: var(--color-primary-accent);
 }
 
+/* Critical CSS - Above the fold */
 .oasis-community {
     background-color: var(--color-bg-light);
     color: var(--color-text-dark);
 }
 
-/* Container */
 .container {
     max-width: 1200px;
     margin: 0 auto;
-    padding: 0 24px;
+    padding: 0 1.5rem;
 }
 
-/* Hero Section */
+/* Hero Section - Prioritized */
 .hero-section {
-    padding: 60px 0;
+    background-color: var(--color-bg-light);
+    padding: 4rem 0;
 }
 
 .hero-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 48px;
+    gap: 4rem;
     align-items: center;
 }
 
+.hero-visual {
+    order: 1;
+    display: flex;
+    justify-content: center;
+}
+
+.hero-content {
+    order: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
 .hero-title {
-    font-size: 48px;
+    font-size: 3rem;
     font-weight: 700;
     line-height: 1.2;
-    margin: 0 0 20px;
+    margin-bottom: 1.5rem;
+    color: var(--color-text-dark);
+    text-align: left;
 }
 
 .hero-title .highlight {
-    color: var(--color-primary-accent);
+    background-color: var(--color-secondary-accent);
+    padding: 0 0.5rem;
+    border-radius: 4px;
 }
 
 .hero-text {
-    font-size: 18px;
+    font-size: 1.125rem;
     line-height: 1.6;
-    margin: 0 0 32px;
-    opacity: 0.9;
-}
-
-.hero-img {
-    width: 100%;
-    height: auto;
-    border-radius: 12px;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
-    transition: transform 0.3s ease;
-}
-
-.hero-img:hover {
-    transform: scale(1.02);
-}
-
-/* Buttons */
-.btn-primary,
-.btn-secondary {
-    display: inline-block;
-    padding: 14px 32px;
-    font-size: 16px;
-    font-weight: 600;
-    text-decoration: none;
-    border-radius: 8px;
-    transition: all 0.3s ease;
-    cursor: pointer;
+    margin-bottom: 2rem;
+    color: var(--color-text-dark);
+    max-width: 500px;
 }
 
 .btn-primary {
     background-color: var(--color-bg-dark);
-    color: var(--color-text-light);
+    color: var(--color-bg-light);
+    padding: 0.875rem 2rem;
+    border-radius: 4px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 1rem;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+    display: inline-block;
 }
 
 .btn-primary:hover {
     background-color: var(--color-bg-dark-hover);
-    transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(28, 28, 28, 0.3);
 }
 
-.btn-secondary {
-    background-color: var(--color-bg-dark);
-    color: var(--color-text-light);
-    border: 2px solid var(--color-border-light);
+.hero-img {
+    width: 100%;
+    max-width: 600px;
+    height: auto;
+    border-radius: 8px;
+    object-fit: cover;
+    border: 1px solid var(--color-border-light);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
 }
 
-.btn-secondary:hover {
-    background-color: var(--color-bg-secondary-hover);
-    transform: translateY(-2px);
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-    color: var(--color-bg-dark);
-}
-
-.btn-large {
-    padding: 18px 48px;
-    font-size: 18px;
-}
-
-/* Sections */
+/* Sections Common Styles */
 .who-section,
 .benefits-section,
 .join-section,
@@ -159,7 +150,8 @@
     padding: 32px;
     border-radius: 12px;
     border: 1px solid var(--color-border-light);
-    transition: all 0.3s ease;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+    will-change: transform;
 }
 
 .category-card:hover {
@@ -193,7 +185,8 @@
     padding: 40px;
     border-radius: 12px;
     border: 1px solid var(--color-border-light);
-    transition: all 0.3s ease;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    will-change: transform;
 }
 
 .benefit-card:hover {
@@ -226,10 +219,11 @@
     position: relative;
 }
 
-.benefit-list li:before {
+.benefit-list li::before {
     content: "→";
     position: absolute;
     left: 0;
+    top: -3px;
     color: var(--color-primary-accent);
     font-weight: 700;
 }
@@ -250,7 +244,8 @@
     padding: 40px;
     border-radius: 12px;
     border: 1px solid var(--color-border-light);
-    transition: all 0.3s ease;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    will-change: transform;
 }
 
 .join-card:hover {
@@ -293,7 +288,7 @@
     position: relative;
 }
 
-.join-steps li:before {
+.join-steps li::before {
     content: counter(steps);
     position: absolute;
     left: 0;
@@ -310,7 +305,7 @@
 }
 
 .join-steps a {
-    color: var(--color-text-dark);
+    color: var(--color-text-light);
     text-decoration: underline;
     transition: color 0.2s ease;
 }
@@ -356,7 +351,7 @@
     border-radius: 12px;
     border: 1px solid var(--color-border-light);
     margin: 0;
-    transition: all 0.3s ease;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
 .testimonial-item blockquote:hover {
@@ -382,6 +377,18 @@
     text-align: center;
 }
 
+a.btn-secondary {
+    padding: 12px 24px;
+    border-radius: 4px;
+    background-color: var(--color-text-dark);
+    color: var(--color-text-light);
+    text-decoration: underline;
+    transition: color 0.2s ease;
+}
+
+a.btn-secondary:hover {
+    color: var(--color-text-light);
+}
 /* Partners Section */
 .partners-marquee {
     overflow: hidden;
@@ -396,6 +403,7 @@
     display: flex;
     gap: 48px;
     animation: marquee 30s linear infinite;
+    animation-play-state: running;
 }
 
 .partner-item {
@@ -407,6 +415,7 @@
     opacity: 0.7;
     transition: opacity 0.3s ease;
     flex-shrink: 0;
+    will-change: opacity;
 }
 
 .partner-item:hover {
@@ -423,12 +432,6 @@
 
 .partner-item:hover img {
     filter: grayscale(0%);
-}
-
-.partner-item span {
-    font-size: 14px;
-    font-weight: 600;
-    color: var(--color-text-dark);
 }
 
 @keyframes marquee {
@@ -467,9 +470,6 @@
     font-size: 18px;
     line-height: 1.6;
     margin: 0 0 32px;
-    max-width: 700px;
-    margin-left: auto;
-    margin-right: auto;
     opacity: 0.9;
 }
 
@@ -484,6 +484,27 @@
 }
 
 /* Responsive Design */
+@media (max-width: 992px) {
+    .hero-grid {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+    }
+    
+    .hero-title {
+        font-size: 2.5rem;
+    }
+    
+    .hero-content {
+        text-align: center;
+        align-items: center;
+        order: 1;
+    }
+    
+    .hero-visual {
+        order: 2;
+    }
+}
+
 @media (max-width: 968px) {
     .hero-grid,
     .category-grid,
@@ -494,16 +515,8 @@
         gap: 32px;
     }
 
-    .hero-title {
-        font-size: 36px;
-    }
-
     .section-title {
         font-size: 28px;
-    }
-
-    .hero-visual {
-        order: -1;
     }
 
     .category-grid {
@@ -548,9 +561,46 @@
         padding: 24px;
     }
 
-    .btn-primary,
-    .btn-secondary {
+    .btn-primary {
         width: 100%;
         text-align: center;
+    }
+}
+
+@media (max-width: 576px) {
+    .hero-section {
+        padding: 2.5rem 0;
+    }
+    
+    .hero-title {
+        font-size: 2rem;
+    }
+    
+    .hero-text {
+        font-size: 1rem;
+    }
+    
+    .hero-grid {
+        gap: 2rem;
+    }
+}
+
+/* Reduce motion for accessibility */
+@media (prefers-reduced-motion: reduce) {
+    .category-card,
+    .benefit-card,
+    .join-card,
+    .testimonial-item blockquote {
+        transition: none;
+    }
+    
+    .category-card:hover,
+    .benefit-card:hover,
+    .join-card:hover {
+        transform: none;
+    }
+    
+    .partners-track {
+        animation: none;
     }
 }

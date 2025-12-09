@@ -1,301 +1,249 @@
-/* ============================================
-   CSS VARIABLES
-============================================ */
+/* =========================================
+   TAG PAGE – OASIS THEME
+   ========================================= */
+
 :root {
-  /* Primary colors */
-  --color-primary: #1c1c1c;
-  --color-accent: #fd635a;
-  --color-accent-light: #fc4a40;
-  --color-accent-hover: rgba(253, 99, 90, 0.12);
-  
-  /* Background colors */
-  --color-bg-primary: #f9faf2;
-  --color-bg-secondary: #fafafa;
-  --color-bg-yellow: #fbe86b;
-  --color-bg-yellow-hover: #fadf4b;
-  
-  /* Text colors */
-  --color-text-primary: #1c1c1c;
-  --color-text-secondary: #666;
-  --color-text-tertiary: #555;
-  --color-text-light: white;
-  
-  /* Border & shadow colors */
-  --color-border: #ebe9de;
-  --color-shadow: rgba(0, 0, 0, 0.05);
-  --color-shadow-hover: rgba(0, 0, 0, 0.05);
-  
-  /* Layout */
-  --max-width: 1300px;
-  --border-radius: 16px;
-  --card-border-radius: 18px;
-  --button-border-radius: 8px;
+  --oasis-bg: #f9faf2;
+  --oasis-surface: #ffffff;
+  --oasis-surface-soft: #f4f4f0;
+  --oasis-border: #e2e8f0;
+  --oasis-text: #0f172a;
+  --oasis-text-muted: #6b7280;
+  --oasis-accent: #ed3e29;
+  --oasis-accent-soft: rgba(237, 62, 41, 0.08);
+  --oasis-shadow-soft: 0 18px 45px rgba(15, 23, 42, 0.08);
 }
-
-
-/* ============================================
-   TAG PAGE – DEFAULT LAYOUT
-============================================ */
 
 .tag-page {
-  font-family: 'Nunito Sans', sans-serif;
-  max-width: var(--max-width);
-  margin: 0 auto;
-  background-color: var(--color-bg-primary);
-  min-height: 100vh;
+  background: var(--oasis-bg);
 }
 
-/* Header */
-.tag-header {
+/* =========================================
+   HERO
+   ========================================= */
+
+.tag-hero {
+  width: 100%;
+  margin: 0 auto 3rem;
+  background: transparent;
+  box-shadow: none;
+  border-radius: 0;
+  overflow: visible;
   text-align: center;
-  border-bottom: 1px solid var(--color-border);
-  padding: 3rem 1.5rem 2rem;
-  background-color: var(--color-bg-primary);
+  padding-top: 4rem;
+  padding-bottom: 3.5rem;
 }
 
-.tag-header h1 {
-  font-size: clamp(2.2rem, 4vw, 3.2rem);
+.tag-hero-cover {
+  display: none; /* hide background bar */
+}
+
+.tag-hero-inner {
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.tag-label {
+  display: none;
+}
+
+/* BIG CENTER TITLE */
+.tag-title {
+  font-size: clamp(2.6rem, 4vw, 3.2rem);
+  line-height: 1.15;
   font-weight: 800;
-  color: var(--color-text-primary);
-  margin-bottom: .75rem;
-}
-
-.tag-header p {
-  font-family: 'Montserrat', sans-serif;
-  color: var(--color-text-secondary);
-  font-size: 1.1rem;
-  max-width: 650px;
+  color: var(--oasis-text);
+  text-align: center;
   margin: 0 auto;
-  line-height: 1.6;
 }
 
-/* Grid */
-.tag-post-list {
-  margin-top: 50px;
-  padding: 0 1.5rem 3rem;
+.tag-description {
+  margin-top: 1rem;
+  font-size: 1.05rem;
+  line-height: 1.6;
+  color: var(--oasis-text-muted);
+  max-width: 650px;
+  text-align: center;
+}
+
+/* POST COUNTER */
+.tag-stat-chip {
+  margin: 1.4rem auto 0;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.8rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  padding: 0.45rem 0.9rem;
+  border-radius: 999px;
+  background: var(--oasis-surface-soft);
+  color: var(--oasis-text-muted);
+}
+
+/* =========================================
+   POSTS GRID
+   ========================================= */
+
+.tag-posts {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.tag-posts-grid {
   display: grid;
-  gap: 32px;
-  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-  background-color: var(--color-bg-primary);
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1.75rem;
 }
 
 /* Card */
+
 .tag-post-card {
-  background: var(--color-bg-secondary);
-  border-radius: var(--border-radius);
-  padding: 20px;
-  box-shadow: 0 3px 12px var(--color-shadow);
-  border: 2px solid var(--color-border);
+  background: var(--oasis-surface);
+  border-radius: 1.25rem;
+  overflow: hidden;
+  border: 1px solid rgba(148, 163, 184, 0.18);
+  box-shadow: 0 16px 40px rgba(15, 23, 42, 0.06);
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+}
+
+.tag-post-card-link {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  text-decoration: none;
+  color: inherit;
 }
 
 .tag-post-card:hover {
-  border-color: var(--color-accent);
-  box-shadow: 0 5px 20px var(--color-accent-hover);
+  transform: translateY(-4px);
+  box-shadow: 0 22px 60px rgba(15, 23, 42, 0.12);
+  border-color: rgba(148, 163, 184, 0.4);
 }
 
-.tag-post-card a {
-  text-decoration: none;
-  color: inherit;
-  display: block;
+/* MEDIA */
+
+.tag-post-media {
+  position: relative;
+  padding-top: 60%;
 }
 
-/* Image */
-.tag-post-image {
+.tag-post-media img {
+  position: absolute;
+  inset: 0;
   width: 100%;
-  height: auto;
-  max-height: 220px;
-  object-fit: contain;
-  background: var(--color-bg-secondary);
-  border-radius: 12px;
-  margin-bottom: 16px;
-  padding: 8px;
-  border: 1px solid var(--color-border);
+  height: 100%;
+  object-fit: cover;
 }
 
-/* Title */
+/* BODY */
+
+.tag-post-body {
+  padding: 1.2rem 1.25rem 1.1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+}
+
 .tag-post-title {
-  font-family: 'Lora', serif;
-  font-size: 1.35rem;
-  font-weight: 700;
-  color: var(--color-text-primary);
-  margin: 10px 0 6px;
+  font-size: 1.02rem;
+  font-weight: 600;
+  line-height: 1.4;
+  color: var(--oasis-text);
 }
 
-.tag-post-card:hover .tag-post-title {
-  color: var(--color-accent);
+.tag-post-meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.7rem;
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: var(--oasis-text-muted);
 }
 
-/* Excerpt */
+.tag-post-tag {
+  padding: 0.2rem 0.55rem;
+  border-radius: 999px;
+  background: var(--oasis-surface-soft);
+}
+
 .tag-post-excerpt {
-  color: var(--color-text-secondary);
-  font-size: 1rem;
+  margin-top: 0.25rem;
+  font-size: 0.9rem;
   line-height: 1.55;
+  color: var(--oasis-text-muted);
 }
 
-/* Responsive */
-@media (max-width: 768px) {
-  .tag-post-list {
+.tag-post-cta {
+  margin-top: 0.35rem;
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--oasis-accent);
+}
+
+/* =========================================
+   Pagination
+   ========================================= */
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  gap: 0.75rem;
+  margin-top: 2.5rem;
+}
+
+.pagination a,
+.pagination span {
+  min-width: 2.4rem;
+  height: 2.4rem;
+  border-radius: 999px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.85rem;
+  text-decoration: none;
+  border: 1px solid rgba(148, 163, 184, 0.35);
+  color: var(--oasis-text-muted);
+  background: #ffffff;
+  transition: background 0.18s ease, color 0.18s ease, border-color 0.18s ease;
+}
+
+.pagination a:hover {
+  border-color: var(--oasis-accent-soft);
+  color: var(--oasis-accent);
+}
+
+.pagination .page-number.current {
+  border-color: var(--oasis-accent);
+  background: var(--oasis-accent);
+  color: #ffffff;
+}
+
+/* =========================================
+   RESPONSIVE
+   ========================================= */
+
+@media (max-width: 960px) {
+  .tag-posts-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 640px) {
+  .tag-page {
+    padding: 3rem 1.25rem 4rem;
+  }
+
+  .tag-posts-grid {
     grid-template-columns: 1fr;
   }
 
-  .tag-post-image {
-    max-height: 180px;
+  .tag-post-body {
+    padding: 1.05rem 1.1rem 1rem;
   }
-}
-
-/* ============================================
-   VERIFIED EXPERTS SPECIAL LAYOUT
-============================================ */
-
-.verified-wrapper {
-  max-width: var(--max-width);
-  margin: 0 auto;
-  padding: 3rem 24px 80px;
-  background-color: var(--color-bg-primary);
-  min-height: 100vh;
-}
-
-.verified-header {
-  text-align: center;
-  margin-bottom: 3rem;
-  padding-top: 1rem;
-}
-
-.verified-header h1 {
-  font-size: clamp(2.2rem, 4vw, 3.2rem);
-  font-weight: 800;
-  color: var(--color-text-primary);
-  margin-bottom: .5rem;
-}
-
-.verified-header h1 span {
-  color: var(--color-accent);
-}
-
-.verified-header p {
-  color: var(--color-text-secondary);
-  max-width: 650px;
-  margin: 0 auto;
-  line-height: 1.6;
-}
-
-/* Grid */
-.verified-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-  gap: 32px;
-}
-
-/* Card */
-.verified-card {
-  background: var(--color-bg-secondary);
-  border-radius: var(--card-border-radius);
-  overflow: hidden;
-  box-shadow: 0 4px 15px var(--color-shadow);
-  text-align: center;
-  display: flex;
-  flex-direction: column;
-  border: 2px solid var(--color-border);
-}
-
-.verified-card:hover {
-  border-color: var(--color-accent);
-  box-shadow: 0 6px 20px var(--color-accent-hover);
-}
-
-/* Image */
-.verified-image img {
-  width: 100%;
-  height: 260px;
-  object-fit: cover;
-  border-bottom: 2px solid var(--color-border);
-}
-
-/* Info */
-.verified-info {
-  padding: 1.4rem 1.2rem 1.8rem;
-  background: var(--color-bg-secondary);
-}
-
-.verified-name {
-  font-size: 1.25rem;
-  font-weight: 700;
-  color: var(--color-text-primary);
-  margin-bottom: .5rem;
-}
-
-.verified-specialisation {
-  font-size: 1rem;
-  color: var(--color-text-tertiary);
-  font-weight: 500;
-}
-
-/* Highlight for specialisation text */
-.verified-specialisation {
-  color: var(--color-accent);
-  font-weight: 600;
-}
-
-/* Mobile */
-@media (max-width: 768px) {
-  .verified-image img {
-    height: 220px;
-  }
-}
-
-/* Button Styles (if you need them) */
-.tag-button {
-  background-color: var(--color-primary);
-  color: var(--color-text-light);
-  border: none;
-  padding: 10px 24px;
-  border-radius: var(--button-border-radius);
-  font-weight: 600;
-  cursor: pointer;
-}
-
-.tag-button:hover {
-  background-color: #000;
-}
-
-.secondary-button {
-  background-color: transparent;
-  color: var(--color-text-primary);
-  border: 2px solid var(--color-border);
-  padding: 10px 24px;
-  border-radius: var(--button-border-radius);
-  font-weight: 600;
-  cursor: pointer;
-}
-
-.secondary-button:hover {
-  background-color: var(--color-border);
-}
-
-.accent-button-1 {
-  background-color: var(--color-bg-yellow);
-  color: var(--color-text-primary);
-  border: none;
-  padding: 10px 24px;
-  border-radius: var(--button-border-radius);
-  font-weight: 600;
-  cursor: pointer;
-}
-
-.accent-button-1:hover {
-  background-color: var(--color-bg-yellow-hover);
-}
-
-.accent-button-2 {
-  background-color: var(--color-accent);
-  color: var(--color-text-light);
-  border: none;
-  padding: 10px 24px;
-  border-radius: var(--button-border-radius);
-  font-weight: 600;
-  cursor: pointer;
-}
-
-.accent-button-2:hover {
-  background-color: var(--color-accent-light);
 }

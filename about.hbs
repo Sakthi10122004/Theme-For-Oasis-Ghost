@@ -2,7 +2,7 @@
 <main class="about-page">
     <section class="hero-section">
         <div class="container">
-            <h1 class="hero-title">How Filter Coffee, FOSS, and a Few Restless Minds Started a Movement.</h1>
+            <h1 class="hero-title">How Filter Coffee,<span class="highlight">FOSS</span>, and a Few Restless Minds Started a Movement.</h1>
             <p class="hero-subtitle">Discover the story behind OASIS – where passion for open-source meets the drive to transform the social sector.</p>
             
             <div class="hero-image-wrapper">
@@ -122,27 +122,49 @@
     </section>
 
     <section class="team-section">
-        <div class="container">
-            <h2 class="section-title">Our Team</h2>
-            <div class="team-grid">
-                <div class="team-member">
-                    <img src="{{asset 'images/pranav.webp'}}" alt="Pranav Prabhu" loading="lazy">
-                    <h3>Pranav Prabhu</h3>
-                    <span class="team-role">Head of Oasis</span>
-                    <p class="team-bio">Growth hacker turned open-source tinkerer- currently obsessed with imagining FOSS solutions for nonprofits. Once grew a brand from soil up, now growing open systems instead. Still chasing the dream of a self-sustaining farm-for the day Wi-Fi fails!</p>
-                    <a href="https://www.linkedin.com/in/ipranavprabhu/" target="_blank" class="team-link">Connect on LinkedIn</a>
-                </div>
+  <div class="container">
+    <h2 class="section-title">Our Team</h2>
 
-                <div class="team-member">
-                    <img src="{{asset 'images/Yashaswi.webp'}}" alt="Yashaswi" loading="lazy">
-                    <h3>Yashaswi</h3>
-                    <span class="team-role">Partnerships & Programs Associate</span>
-                    <p class="team-bio">"Architect turned nonprofit tinkerer, building systems that make more sense than most buildings. Dog behaviorist on weekends, just for balance haha"</p>
-                    <a href="https://www.linkedin.com/in/Yashaswi-bg-45a611176/" target="_blank" class="team-link">Connect on LinkedIn</a>
-                </div>
-            </div>
+    <div class="team-grid">
+
+      {{!-- member --}}
+      <div class="team-member">
+        <img src="{{asset 'images/pranav.webp'}}" alt="Pranav Prabhu" loading="lazy">
+
+        <div class="team-content">
+          <h3>Pranav Prabhu</h3>
+          <div class="team-role">Head of Oasis</div>
+          <p class="team-bio">
+            Growth hacker turned open-source tinkerer—currently obsessed with imagining FOSS solutions for nonprofits. Once grew a brand from soil up, now growing open systems instead. Still chasing the dream of a self-sustaining farm—for the day Wi-Fi fails!
+          </p>
         </div>
-    </section>
+
+        <a href="https://www.linkedin.com/in/ipranavprabhu/" class="team-link" target="_blank">
+          Connect on LinkedIn
+        </a>
+      </div>
+
+      {{!-- member --}}
+      <div class="team-member">
+        <img src="{{asset 'images/Yashaswi.webp'}}" alt="Yashaswi" loading="lazy">
+
+        <div class="team-content">
+          <h3>Yashaswi</h3>
+          <div class="team-role">Partnerships & Programs Associate</div>
+          <p class="team-bio">
+            Architect turned nonprofit tinkerer, building systems that make more sense than most buildings. Dog behaviorist on weekends, just for balance haha
+          </p>
+        </div>
+
+        <a href="https://www.linkedin.com/in/Yashaswi-bg-45a611176/" class="team-link" target="_blank">
+          Connect on LinkedIn
+        </a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
 
    <section class="mission-section">
     <div class="container">
