@@ -172,11 +172,16 @@ button {
   /* Prevent flash of unstyled content */
   visibility: hidden; 
   min-height: 22px; 
+  opacity: 0;
+  transform: translateY(-6px);
+  transition: opacity .35s ease, transform .35s ease;
 }
 
 /* JS toggles this class to show menu */
 .nebula-nav-horizontal.nav-ready {
   visibility: visible;
+  opacity: 1;
+  transform: translateY(0);
 }
 
 .nebula-nav-horizontal ul {
@@ -506,6 +511,11 @@ min-height: 100vh;
   padding: 1.5rem 2rem;
 }
 
+.footer-brand a {
+  font-weight: 600;
+  font-size: 24px;
+}
+
 .footer-inner {
   max-width: 1300px;
   margin: auto;
@@ -521,7 +531,8 @@ min-height: 100vh;
 .footer-brand {
   grid-column: 1;       /* Left */
   grid-row: 1;
-  justify-self: start;  /* Force Left Align */
+  justify-self: start;
+  font-size: 24px;
 }
 
 .footer-copy {

@@ -2,9 +2,6 @@
 
 <main class="tag-page">
 
-  {{!-- ======================================
-       HERO SECTION
-  ======================================= --}}
   {{#tag}}
 
   <header class="tag-hero">
@@ -23,6 +20,7 @@
         {{else match slug "=" "tech-experts-says"}}Tech Experts Says
         {{else match slug "=" "npo-says"}}NPO Says
         {{else match slug "=" "impact-stories"}}Impact Stories
+        {{else match slug "=" "npo"}}NPO
         {{else}}{{name}}{{/match}}
       </h1>
 
@@ -41,9 +39,6 @@
 
 
 
-  {{!-- ======================================
-       POSTS GRID
-  ======================================= --}}
   <section class="tag-posts">
 
     <div class="tag-posts-grid">
@@ -51,7 +46,18 @@
       {{#foreach posts}}
 
       <article class="tag-post-card {{post_class}}">
-        <a href="{{url}}" class="tag-post-card-link">
+
+        {{!-- NON-clickable if verified-experts or npo --}}
+        {{#match ../tag.slug "=" "verified-experts"}}
+          <div class="tag-post-card-link">
+
+        {{else match ../tag.slug "=" "npo"}}
+          <div class="tag-post-card-link">
+
+        {{!-- All other tags clickable --}}
+        {{else}}
+          <a href="{{url}}" class="tag-post-card-link">
+        {{/match}}
 
           {{#if feature_image}}
           <div class="tag-post-media">
@@ -77,11 +83,27 @@
               {{excerpt words="24"}}
             </p>
 
-            <span class="tag-post-cta">Read story →</span>
+            {{!-- Conditional CTA: Hide for verified-experts and npo --}}
+            {{#match ../tag.slug "=" "verified-experts"}}
+              {{!-- no read story --}}
+            {{else match ../tag.slug "=" "npo"}}
+              {{!-- no read story --}}
+            {{else}}
+              <span class="tag-post-cta">Read story →</span>
+            {{/match}}
 
           </div>
 
-        </a>
+
+        {{!-- closing --}}
+        {{#match ../tag.slug "=" "verified-experts"}}
+          </div>
+        {{else match ../tag.slug "=" "npo"}}
+          </div>
+        {{else}}
+          </a>
+        {{/match}}
+
       </article>
 
       {{/foreach}}

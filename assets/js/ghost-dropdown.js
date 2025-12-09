@@ -284,7 +284,10 @@ $(document).ready(function () {
     });
 
     // Optional: just a marker class, doesn't affect visibility now
+    setTimeout(() => {
     document.querySelector(".nebula-nav-horizontal")?.classList.add("nav-ready");
+}, 110);
+
 });
 
 }(jQuery));

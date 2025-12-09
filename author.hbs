@@ -1,10 +1,5 @@
 {{!< default}}
 
-{{!-------------------------------------------------
-  AUTHOR TEMPLATE
-  Shows: author profile + ALL their posts (no pagination)
---------------------------------------------------}}
-
 <main class="author-page">
   {{#author}}
 
@@ -72,16 +67,22 @@
     </header>
 
     <section class="author-posts">
-      <div class="author-posts-header">
-        
-      </div>
+      <div class="author-posts-header"></div>
 
       <div class="author-posts-grid">
-        {{!-- Get ALL posts for this author, no pagination --}}
+        
         {{#get "posts" filter="authors:{{slug}}" limit="all" include="tags,authors" order="published_at desc"}}
           {{#foreach posts}}
+
             <article class="author-post-card {{post_class}}">
-              <a href="{{url}}" class="author-post-card-link">
+
+              {{!-- Check post’s tag slug --}}
+              {{#has tag="verified-experts,npo"}}
+                <div class="author-post-card-link">
+              {{else}}
+                <a href="{{url}}" class="author-post-card-link">
+              {{/has}}
+
                 {{#if feature_image}}
                   <div class="author-post-media">
                     <img src="{{img_url feature_image size="m"}}" alt="{{title}}">
@@ -109,12 +110,27 @@
                     </p>
                   {{/if}}
 
-                  <span class="author-post-cta">Read story →</span>
+                  {{!-- hide CTA if post has tag verified-experts or npo --}}
+                  {{#has tag="verified*,npo"}}
+                    {{!-- no read story --}}
+                  {{else}}
+                    <span class="author-post-cta">Read story →</span>
+                  {{/has}}
+
                 </div>
-              </a>
+
+              {{#has tag="verified*,npo"}}
+
+                </div>
+              {{else}}
+                </a>
+              {{/has}}
+
             </article>
+
           {{/foreach}}
         {{/get}}
+
       </div>
     </section>
 
