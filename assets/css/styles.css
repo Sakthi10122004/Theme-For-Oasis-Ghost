@@ -48,6 +48,7 @@ html {
 body {
   font-family: 'Nunito Sans', sans-serif;
   color: var(--color-text-dark);
+  padding: 0;
   line-height: 1.6;
   background: var(--color-page-bg);
   overflow-x: hidden;
@@ -55,6 +56,16 @@ body {
 
 body.menu-open {
   overflow: hidden;
+}
+body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: var(--header-height);
+  background: var(--color-page-bg); /* your yellow page bg or white */
+  z-index: 900;  /* less than header, more than content */
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -429,8 +440,8 @@ button {
    6. MAIN CONTENT & UTILITIES
    ============================================== */
 .cosmic-flow {
-  padding-top: 7rem;
-  min-height: 100vh;
+padding-top: 7rem;
+min-height: 100vh;
 }
 
 .sr-only {
