@@ -511,36 +511,45 @@ min-height: 100vh;
   margin: auto;
 
   display: grid;
-  grid-template-columns: 1fr auto 1fr;
+  /* 3 Columns: Left | Center (Auto width) | Right */
+  grid-template-columns: 1fr auto 1fr; 
   row-gap: .8rem;
   align-items: center;
 }
 
 /* --- ROW 1 --- */
 .footer-brand {
-  grid-column: 1 / 2;
+  grid-column: 1;       /* Left */
+  grid-row: 1;
+  justify-self: start;  /* Force Left Align */
 }
 
 .footer-copy {
-  grid-column: 2 / 3;
+  grid-column: 2;       /* Center */
+  grid-row: 1;
   text-align: center;
+  white-space: nowrap;  /* Prevents breaking if possible */
 }
 
 .footer-mail {
-  grid-column: 2 / 4;
-  justify-self: end;
+  grid-column: 3;       /* Right */
+  grid-row: 1;
+  justify-self: end;    /* Force Right Align */
 }
 
 /* --- ROW 2 --- */
 .footer-social {
-  grid-column: 1 / 2;
+  grid-column: 1;       /* Left */
+  grid-row: 2;
+  justify-self: start;  /* Force Left Align */
   display: flex;
   gap: .7rem;
 }
 
 .footer-address {
-  grid-column: 3 / 4;
-  justify-self: end;
+  grid-column: 3;       /* Right */
+  grid-row: 2;
+  justify-self: end;    /* Force Right Align */
 }
 
 /* styling */
@@ -548,13 +557,15 @@ min-height: 100vh;
 .footer-copy,
 .footer-address {
   color: var(--text-dark);
-  font-size: .82rem;
+  font-size: 0.95rem;   /* INCREASED from .82rem */
   text-decoration: none;
 }
+
 .footer-mail {
   color: var(--accent-2);
-  font-size: .82rem;
+  font-size: 0.95rem;   /* INCREASED from .82rem */
   text-decoration: none;
+  font-weight: 600;
 }
 
 .footer-copy,
@@ -565,7 +576,9 @@ min-height: 100vh;
 .footer-social a {
   color: var(--text-dark);
   transition: .2s;
+  font-size: 1.1rem; /* Optional: Social icons usually need to be a tad bigger too */
 }
+
 .footer-social a:hover {
   color: var(--accent-2);
 }
@@ -573,11 +586,19 @@ min-height: 100vh;
 /* mobile */
 @media(max-width: 800px){
   .footer-inner {
-    grid-template-columns: 1fr;
+    grid-template-columns: 1fr; /* Stack vertically */
     text-align: center;
+    row-gap: 1.2rem;
   }
+  
+  /* Reset grid positions for mobile stack */
+  .footer-brand,
+  .footer-copy,
   .footer-mail,
+  .footer-social,
   .footer-address {
-    justify-self: center;
+    grid-column: 1;
+    grid-row: auto;
+    justify-self: center; /* Center everything on mobile */
   }
 }
