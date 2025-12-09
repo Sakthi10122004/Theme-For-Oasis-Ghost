@@ -183,7 +183,6 @@
 .timeline-card:hover {
     transform: translateY(-5px);
     box-shadow: 0 8px 20px rgba(253, 99, 90, 0.12);
-    border-color: var(--color-primary);
 }
 
 .timeline-card p {
@@ -194,12 +193,12 @@
 }
 
 .timeline-highlight {
-    background: var(--color-primary);
-    border-color: var(--color-primary);
+    background: var(--color-background-dark);
+    border-color: var(--color-background-light);
 }
 
 .timeline-highlight:hover {
-    border-color: var(--color-text-dark);
+    border-color: var(--color-secondary);
 }
 
 .timeline-highlight p,
@@ -239,7 +238,7 @@
 
 .board-member {
     background: var(--color-background-card);
-    border: 2px solid var(--color-border-light);
+    border: 2px solid var(--color-background-dark);
     border-radius: 10px;
     padding: 24px;
     text-align: center;
@@ -250,7 +249,6 @@
 .board-member:hover {
     transform: translateY(-5px);
     box-shadow: 0 8px 20px rgba(251, 232, 107, 0.15);
-    border-color: var(--color-secondary);
 }
 
 .board-member img {
@@ -260,12 +258,11 @@
     object-fit: cover;
     margin: 0 auto 14px auto;
     display: block;
-    border: 3px solid var(--color-border-light);
+    border: 2px solid var(--color-background-dark);
     transition: all 0.3s ease;
 }
 
 .board-member:hover img {
-    border-color: var(--color-secondary);
     transform: scale(1.05);
 }
 

@@ -170,6 +170,7 @@
   padding: 0.2rem 0.55rem;
   border-radius: 999px;
   background: var(--oasis-surface-soft);
+  color: var(--oasis-text);
 }
 
 .tag-post-excerpt {

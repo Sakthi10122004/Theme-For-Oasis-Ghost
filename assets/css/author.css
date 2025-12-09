@@ -304,6 +304,7 @@
   padding: 0.2rem 0.55rem;
   border-radius: 999px;
   background: var(--oasis-surface-soft);
+  color: var(--oasis-text);
 }
 
 .author-post-excerpt {
@@ -319,49 +320,6 @@
   font-weight: 500;
   color: var(--oasis-accent);
 }
-
-/* =========================================
-   PAGINATION (reusing Ghost default markup)
-   ========================================= */
-
-.pagination {
-  display: flex;
-  justify-content: center;
-  gap: 0.75rem;
-  margin-top: 2.5rem;
-}
-
-.pagination a,
-.pagination span {
-  min-width: 2.4rem;
-  height: 2.4rem;
-  border-radius: 999px;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 0.85rem;
-  text-decoration: none;
-  border: 1px solid rgba(148, 163, 184, 0.35);
-  color: var(--oasis-text-muted);
-  background: #ffffff;
-  transition: background 0.18s ease, color 0.18s ease, border-color 0.18s ease;
-}
-
-.pagination a:hover {
-  border-color: var(--oasis-accent-soft);
-  color: var(--oasis-accent);
-}
-
-.pagination .page-number {
-  padding-inline: 0.4rem;
-}
-
-.pagination .page-number.current {
-  border-color: var(--oasis-accent);
-  background: var(--oasis-accent);
-  color: #ffffff;
-}
-
 /* =========================================
    RESPONSIVE
    ========================================= */
