@@ -137,10 +137,29 @@ button {
 /* ==============================================
    3. NAVIGATION (DESKTOP DEFAULT)
    ============================================== */
+:root {
+  --color-button: #1c1c1c;
+  --color-text-dark: #111;
+  --color-white: #fff;
+  --color-accent-2: #ED3E29;
+  --color-accent-2-light: rgba(237, 62, 41, 0.08);
+  --color-card-bg: #ffffff;
+  --color-card-stroke: rgba(0, 0, 0, 0.06);
+  --color-button: #ED3E29;
+}
+
 .nebula-nav-horizontal {
   flex-grow: 1;
   display: flex;
   justify-content: center;
+  /* Prevent flash of unstyled content */
+  visibility: hidden; 
+  min-height: 22px; 
+}
+
+/* JS toggles this class to show menu */
+.nebula-nav-horizontal.nav-ready {
+  visibility: visible;
 }
 
 .nebula-nav-horizontal ul {
@@ -174,6 +193,7 @@ button {
   background: var(--color-accent-2-light);
 }
 
+/* Submenu Base Styles */
 .nebula-nav-horizontal li ul {
   display: none;
   position: absolute;
@@ -190,15 +210,6 @@ button {
   z-index: 999;
 }
 
-/* Prevent nav flash while keeping layout space */
-.nebula-nav-horizontal {
-    visibility: hidden;
-}
-
-.nebula-nav-horizontal.nav-ready {
-    visibility: visible;
-}
-
 @media (min-width: 769px) {
   .nebula-nav-horizontal li:hover > ul {
     display: flex;
@@ -209,14 +220,6 @@ button {
     padding: 0.625rem 1rem;
     font-size: 0.95rem;
   }
-}
-.nebula-nav-horizontal {
-    visibility: hidden;
-    min-height: 22px;
-}
-
-.nebula-nav-horizontal.nav-ready {
-    visibility: visible;
 }
 
 /* ==============================================
@@ -271,8 +274,8 @@ button {
 }
 
 .join-cta {
-  background: var(--color-button);
-  color: var(--color-white);
+  background: black;
+  color: var(--color-text-light);
   padding: 0.7rem 1.5rem;
   border-radius: 3.125rem;
   font-weight: 700;
@@ -645,7 +648,7 @@ button {
   margin: 0;
   
   font-size: 1rem;
-  color: var(--color-text-light);
+  color: var(--color-text-dark);
   text-align: right;
   z-index: 10;
 }

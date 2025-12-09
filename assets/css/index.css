@@ -752,7 +752,7 @@
   justify-content: center;
   gap: 40px;
   overflow: hidden;
-  animation: autoScroll 55s linear infinite;
+  animation: autoScroll 52s linear infinite;
   width: max-content;
   margin: 0 auto;
   padding: 0 40px;
@@ -848,7 +848,9 @@
   overflow: hidden; 
 }
 
-.orbit-header { margin-bottom: 35px; }
+.orbit-header { 
+  margin-bottom: 35px; 
+}
 
 .tools-orbit h3,
 .experts-orbit h3 {
@@ -871,13 +873,18 @@
 .marquee-track {
   display: flex;
   gap: 20px;
-  width: max-content; 
+  width: max-content;
   animation: scroll 30s linear infinite;
+  will-change: transform;
 }
 
 @keyframes scroll {
-  0% { transform: translateX(0); }
-  100% { transform: translateX(-50%); } 
+  0% { 
+    transform: translateX(0); 
+  }
+  100% { 
+    transform: translateX(-50%); 
+  }
 }
 
 .tool-card {
@@ -950,16 +957,34 @@
 }
 
 @media (max-width: 900px) {
-  .expert-tool-wrapper { flex-direction: column; gap: 30px; }
-  .tools-orbit, .experts-orbit { width: 100%; padding: 40px 20px; }
-  .tools-orbit h3, .experts-orbit h3 { font-size: 1.5rem; }
+  .expert-tool-wrapper { 
+    flex-direction: column; 
+    gap: 30px; 
+  }
+  .tools-orbit, .experts-orbit { 
+    width: 100%; 
+    padding: 40px 20px; 
+  }
+  .tools-orbit h3, .experts-orbit h3 { 
+    font-size: 1.5rem; 
+  }
 }
 
 @media (max-width: 480px) {
-  .toolbox { padding: 3rem 1rem; }
-  .marquee-track { gap: 15px; }
-  .tool-card { width: 70px; height: 70px; }
-  .expert-card { width: 60px; height: 60px; }
+  .toolbox { 
+    padding: 3rem 1rem; 
+  }
+  .marquee-track { 
+    gap: 15px; 
+  }
+  .tool-card { 
+    width: 70px; 
+    height: 70px; 
+  }
+  .expert-card { 
+    width: 60px; 
+    height: 60px; 
+  }
 }
 
 /* Performance optimizations */
@@ -970,35 +995,4 @@
 
 img {
   content-visibility: auto;
-}
-
-/* Remove all transition and transform properties that cause repaints */
-.hero-cta,
-.bbb-item,
-.stat-orbit,
-.star-card,
-.impact-card,
-.tools-orbit,
-.experts-orbit,
-.tool-card,
-.expert-card,
-.ring-logos a {
-  transition: none !important;
-  transform: none !important;
-}
-
-/* Optimize animations for performance */
-@keyframes scrollLoop {
-  0% { transform: translateX(0); }
-  100% { transform: translateX(-50%); }
-}
-
-@keyframes autoScroll {
-  0% { transform: translateX(0); }
-  100% { transform: translateX(-50%); }
-}
-
-@keyframes scroll {
-  0% { transform: translateX(0); }
-  100% { transform: translateX(-50%); }
 }

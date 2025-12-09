@@ -85,6 +85,25 @@ ul.ghost-submenu li a:hover {
 }
 
 /* ================================
+   SAFETY RESET: PREVENT PARENT CLICK HIGHLIGHTING CHILDREN
+   ================================ */
+/* This ensures that clicking the parent (.menu-item-has-children:active or :focus)
+   does NOT turn the children background red. Children only turn red on their OWN hover. */
+.menu-item-has-children:active > ul.ghost-submenu li a,
+.menu-item-has-children:focus > ul.ghost-submenu li a,
+.menu-item-has-children:focus-within > ul.ghost-submenu li a,
+.nav-current > ul.ghost-submenu li a {
+    background-color: transparent !important;
+    color: var(--menu-text-dark) !important;
+}
+
+/* Re-apply hover specifically for the child items to ensure they still work */
+ul.ghost-submenu li a:hover {
+    background-color: var(--menu-bg-hover) !important;
+    color: var(--menu-text-hover) !important;
+}
+
+/* ================================
    TABLET STYLES (769px - 1024px)
    ================================ */
 @media (max-width: 1024px) and (min-width: 769px) {
@@ -128,16 +147,6 @@ ul.ghost-submenu li a:hover {
         border-bottom: none;
     }
 
-    /* Mobile dropdown arrow */
-    .menu-item-has-children > a::after {
-        content: '›';
-        font-size: 1.3rem;
-        font-weight: 300;
-        transition: transform 0.3s ease;
-        margin-left: auto;
-        padding-left: 1rem;
-    }
-
     .menu-item-has-children.open > a::after {
         transform: rotate(90deg);
     }
@@ -164,13 +173,6 @@ ul.ghost-submenu li a:hover {
         border-left: 3px solid var(--menu-border-accent);
     }
 
-    /* When JavaScript toggles .open */
-    .menu-item-has-children.open > ul.ghost-submenu {
-        display: block;
-        animation: slideDown 0.3s ease-out;
-    }
-
-    /* Mobile items */
     ul.ghost-submenu li {
         padding: 0;
         border-bottom: 1px solid var(--menu-border-subtle);
@@ -189,11 +191,12 @@ ul.ghost-submenu li a:hover {
         color: var(--menu-text-medium);
         display: flex;
         align-items: center;
+        background-color: transparent !important; /* Force Reset for Mobile */
     }
 
     ul.ghost-submenu li a:hover {
-        background: var(--menu-bg-hover);
-        color: var(--menu-text-hover);
+        background: var(--menu-bg-hover) !important;
+        color: var(--menu-text-hover) !important;
     }
 }
 
@@ -245,7 +248,6 @@ ul.ghost-submenu li a:hover {
         transform: translateY(5px);
     }
     
-    /* Ensure hover states don't interfere with touch */
     .menu-item-has-children:hover svg {
         transform: translateY(-50%) rotate(0deg);
         opacity: 0.7;
