@@ -43,7 +43,7 @@
       {{/if}}
     </a>
 
-        <!-- Desktop Navigation -->
+    <!-- Desktop Navigation -->
     <nav class="nebula-nav-horizontal" aria-label="Main navigation">
       <ul>
         {{navigation}}
@@ -51,28 +51,35 @@
 
       <!-- Mobile only extra items inside nav -->
       <div class="mobile-extra-items">
+        <button class="gh-search-icon" aria-label="Search" data-ghost-search>
+          🔍︎
+        </button>
+
+        {{#if @member}}
+          <a href="#/portal/account" class="join-cta">Account</a>
+        {{else}}
+          <a href="#/portal/signup" class="join-cta">Join us</a>
+        {{/if}}
       </div>
     </nav>
 
     <!-- Desktop Right Side -->
-   <div class="header-right-items">
-    <button class="gh-search-icon" aria-label="search" data-ghost-search>
+    <div class="header-right-items">
+      <button class="gh-search-icon" aria-label="search" data-ghost-search>
         🔍︎
-    </button>
+      </button>
 
-    {{#if @member}}
+      {{#if @member}}
         <a href="#/portal/account" class="join-cta">Account</a>
-    {{else}}
+      {{else}}
         <a href="#/portal/signup" class="join-cta">Join us</a>
-    {{/if}}
-</div>
-
+      {{/if}}
+    </div>
 
     <!-- Hamburger -->
     <button class="hamburger" aria-label="Toggle navigation menu">
       <span></span><span></span><span></span>
     </button>
-
 
   </div>
 </header>

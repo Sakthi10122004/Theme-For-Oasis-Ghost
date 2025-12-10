@@ -254,6 +254,11 @@ button {
   margin-left: auto;
 }
 
+/* HIDE mobile items on desktop */
+.mobile-extra-items {
+  display: none;
+}
+
 .gh-search-icon {
   display: flex;
   align-items: center;
@@ -297,7 +302,7 @@ button {
 
 .join-cta {
   background: black;
-  color: var(--color-text-light);
+  color: var(--color-white);
   padding: 0.7rem 1.5rem;
   border-radius: 3.125rem;
   font-weight: 700;
@@ -347,8 +352,9 @@ button {
    5. RESPONSIVE NAVIGATION (TABLET & MOBILE)
    ============================================== */
 @media (max-width: 768px) {
+  /* FIXED: Hide desktop header items but keep them in DOM */
   .header-right-items {
-    display: none !important;
+    display: none;
   }
 
   .hamburger {
@@ -372,7 +378,7 @@ button {
     left: 0;
     width: 100%;
     height: calc(100vh - 90px);
-    background: rgba(250, 250, 250, 0.98); /* card-bg with opacity */
+    background: rgba(250, 250, 250, 0.98);
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
     overflow-y: auto;
@@ -408,6 +414,18 @@ button {
     align-items: center;
   }
   
+  /* FIXED: Style the dropdown icon for mobile */
+  .nebula-nav-horizontal.active .menu-item-has-children > a > svg {
+    cursor: pointer;
+    transition: transform 0.3s ease;
+    flex-shrink: 0;
+    margin-left: auto;
+  }
+  
+  .nebula-nav-horizontal.active .menu-item-has-children.open > a > svg {
+    transform: rotate(180deg);
+  }
+  
   .nebula-nav-horizontal.active li ul,
   .nebula-nav-horizontal.active ul.ghost-submenu {
     position: relative;
@@ -416,7 +434,7 @@ button {
     border: none;
     background: transparent;
     padding: 0 0 0.5rem 0;
-    display: block;
+    display: none; /* Hidden by default */
   }
   
   .nebula-nav-horizontal.active li ul li {
@@ -430,7 +448,8 @@ button {
     font-weight: 500;
   }
 
-  .mobile-extra-items {
+  /* FIXED: Add mobile extra items container */
+  .nebula-nav-horizontal.active .mobile-extra-items {
     display: flex;
     flex-direction: column;
     margin-top: 2.5rem;
@@ -440,13 +459,28 @@ button {
     width: 100%;
   }
 
-  .mobile-join {
-    text-align: center;
+  .nebula-nav-horizontal.active .mobile-extra-items .gh-search-icon {
     width: 100%;
-    padding: 0.9rem;
+    height: auto;
+    padding: 1rem;
+    border-radius: 3.125rem;
+    border: 2px solid var(--color-card-stroke);
+    font-size: 1.2rem;
+    justify-content: center;
+  }
+
+  .nebula-nav-horizontal.active .mobile-extra-items .profile-icon,
+  .nebula-nav-horizontal.active .mobile-extra-items .join-cta {
+    width: 100%;
+    text-align: center;
+    padding: 1rem 1.5rem;
+    display: block;
+    color:#ebe9de
   }
 }
-
+.mobile-extra-items {
+     display: none;
+   }
 /* ==============================================
    6. MAIN CONTENT & UTILITIES
    ============================================== */

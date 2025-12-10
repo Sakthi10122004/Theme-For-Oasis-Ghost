@@ -1,4 +1,3 @@
-
 (function ($) {
     "use strict";
 
@@ -100,15 +99,29 @@
             $('.ghost-submenu').slideUp(200);
         }
 
-        // Updated mobile click function with tapped logic
-        let tapped = false;
+        // FIXED: Allow first click to navigate, icon click to toggle dropdown
         $(document).on('click', '.menu-item-has-children > a', function(e) {
             if (window.innerWidth <= 768) {
-                if (!$(this).parent().hasClass("open")) {
+                const $parent = $(this).parent();
+                const $icon = $(e.target).closest('svg');
+                
+                // If clicking the dropdown icon (SVG), toggle submenu
+                if ($icon.length > 0) {
                     e.preventDefault();
-                    $(this).parent().toggleClass("open");
-                    return;
-                } 
+                    e.stopPropagation();
+                    
+                    // Close other dropdowns
+                    $('.menu-item-has-children').not($parent).removeClass('open');
+                    $('.ghost-submenu').not($parent.find('.ghost-submenu')).slideUp(200);
+                    
+                    // Toggle this dropdown
+                    $parent.toggleClass('open');
+                    $parent.find('> .ghost-submenu').slideToggle(200);
+                } else {
+                    // If clicking the link text, allow navigation (don't prevent default)
+                    // Just close any open dropdowns
+                    closeAllDropdowns();
+                }
             }
         });
 
@@ -146,6 +159,12 @@
 
             // Close menu when clicking on a link (except dropdown parents)
             $mobileNav.on('click', 'a', function(e) {
+                // Don't close if clicking dropdown icon
+                if ($(e.target).closest('svg').length > 0) {
+                    return;
+                }
+                
+                // Close menu for regular links
                 if (!$(this).parent().hasClass('menu-item-has-children')) {
                     $mobileNav.removeClass('active');
                     $hamburger.removeClass('active');
@@ -269,25 +288,21 @@
         initMobileMenu();
     }
 
-$(document).ready(function () {
-    ghost_dropdown({
-        targetElement: ".nebula-nav-horizontal ul li",
-        hasChildrenClasses: "menu-item-has-children",
-        hasChildDetectText: "[has_child]",
-        submenuUlClasses: "ghost-submenu",
-        subitemDetectText: "[subitem]",
-        subitemLiClasses: "subitem",
-        multi_level: true,
-        mega_menu: false
-        // NOTICE: we do NOT override hasChildrenIcon here
-        // so the default SVG WITH PATH is used
+    $(document).ready(function () {
+        ghost_dropdown({
+            targetElement: ".nebula-nav-horizontal ul li",
+            hasChildrenClasses: "menu-item-has-children",
+            hasChildDetectText: "[has_child]",
+            submenuUlClasses: "ghost-submenu",
+            subitemDetectText: "[subitem]",
+            subitemLiClasses: "subitem",
+            multi_level: true,
+            mega_menu: false
+        });
+
+        setTimeout(() => {
+            document.querySelector(".nebula-nav-horizontal")?.classList.add("nav-ready");
+        }, 110);
     });
-
-    // Optional: just a marker class, doesn't affect visibility now
-    setTimeout(() => {
-    document.querySelector(".nebula-nav-horizontal")?.classList.add("nav-ready");
-}, 110);
-
-});
 
 }(jQuery));
