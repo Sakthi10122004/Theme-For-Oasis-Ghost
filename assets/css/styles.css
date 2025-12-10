@@ -620,7 +620,7 @@ min-height: 100vh;
 .footer-social a {
   color: var(--text-dark);
   transition: .2s;
-  font-size: 1.1rem;
+  font-size: .1rem;
 }
 
 .footer-social a:hover {
