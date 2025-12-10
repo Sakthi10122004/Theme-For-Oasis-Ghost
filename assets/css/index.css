@@ -523,7 +523,7 @@
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
-  gap: 10rem;
+  gap:7rem;
   max-width: 1400px;
   margin: 0 auto;
 }
@@ -701,7 +701,7 @@
 }
 
 .update-badge {
-  background: var(--hero-primary);
+  background: var(--accent-2);
   color: var(--hero-text-light);
   padding: 4px 12px;
   border-radius: 50px;
@@ -816,7 +816,7 @@
 .ecosystem-ring {
   text-align: center;
   padding: 5rem 2rem;
-  background: var(--hero-bg);
+  background: var(--accent-1);
   position: relative;
   overflow: hidden;
 }
@@ -868,15 +868,15 @@
   z-index: 2;
 }
 
-.ring-logos::before {
+/* .ring-logos::before {
   left: 0;
   background: linear-gradient(90deg, var(--gradient-overlay) 0%, transparent 100%);
-}
+} */
 
-.ring-logos::after {
+/* .ring-logos::after {
   right: 0;
   background: linear-gradient(270deg, var(--gradient-overlay) 0%, transparent 100%);
-}
+} */
 
 .ring-track {
   display: flex;

@@ -10,6 +10,7 @@
   --oasis-text: #0f172a;
   --oasis-text-muted: #6b7280;
   --oasis-accent: #ed3e29;
+  --oasis-accent2: #fd635a;
   --oasis-accent-soft: rgba(237, 62, 41, 0.08);
   --oasis-shadow-soft: 0 18px 45px rgba(15, 23, 42, 0.08);
 }
@@ -169,8 +170,8 @@
 .tag-post-tag {
   padding: 0.2rem 0.55rem;
   border-radius: 999px;
-  background: var(--oasis-surface-soft);
-  color: var(--oasis-text);
+  background: var(--oasis-accent2);
+  color: var(--oasis-bg);
 }
 
 .tag-post-excerpt {
