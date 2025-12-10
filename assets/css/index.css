@@ -761,6 +761,12 @@
 }
 
 @media (max-width: 768px) {
+  .pulse-form button {
+    width: 100%;
+    padding: 1rem 1.25rem;
+    font-size: 1.05rem;
+  }
+
   .pulse-section {
     padding: 4rem 5%;
   }
