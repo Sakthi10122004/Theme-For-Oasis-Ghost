@@ -169,3 +169,52 @@
         </div>
     </section>
 </main>
+<script>
+    // COMMUNITY PAGE JS
+  // ================================
+  //      JS FOR SLIDER
+  // ================================ 
+  document.addEventListener('DOMContentLoaded', function () {
+    const sliders = document.querySelectorAll('[data-slider]');
+    sliders.forEach(function (slider) {
+      const track = slider.querySelector('[data-slider-track]');
+      const slides = Array.from(slider.querySelectorAll('[data-slider-slide]'));
+      if (!track || slides.length <= 1) return;
+      let currentIndex = 0;
+      const totalSlides = slides.length;
+      let autoTimer = null;
+      function updateUI() {
+        track.style.transform = 'translateX(-' + (currentIndex * 100) + '%)';
+      }
+      function nextSlide() {
+        currentIndex = (currentIndex + 1) % totalSlides;
+        updateUI();
+      }
+      function startAuto() {
+        if (autoTimer) clearInterval(autoTimer);
+        autoTimer = setInterval(nextSlide, 5000);
+      }
+      function stopAuto() {
+        if (autoTimer) clearInterval(autoTimer);
+      }
+      updateUI();
+      startAuto();
+      slider.addEventListener('mouseenter', stopAuto);
+      slider.addEventListener('mouseleave', startAuto);
+      let startX;
+      slider.addEventListener('touchstart', function (e) {
+        startX = e.touches[0].clientX;
+        stopAuto();
+      });
+      slider.addEventListener('touchend', function (e) {
+        const endX = e.changedTouches[0].clientX;
+        if (startX - endX > 50) nextSlide();
+        else if (endX - startX > 50) {
+          currentIndex = (currentIndex - 1 + totalSlides) % totalSlides;
+          updateUI();
+        }
+        startAuto();
+      });
+    });
+  });
+</script>

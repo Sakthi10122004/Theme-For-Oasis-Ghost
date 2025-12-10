@@ -566,9 +566,9 @@ min-height: 100vh;
 /* styling */
 .footer-brand a,
 .footer-copy,
-.footer-address {
+.footer-address a{
   color: var(--text-dark);
-  font-size: 0.95rem;   /* INCREASED from .82rem */
+  font-size: 1rem;
   text-decoration: none;
 }
 

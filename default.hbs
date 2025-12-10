@@ -55,12 +55,18 @@
     </nav>
 
     <!-- Desktop Right Side -->
-    <div class="header-right-items">
-      <button class="gh-search-icon" aria-label="search" data-ghost-search>
+   <div class="header-right-items">
+    <button class="gh-search-icon" aria-label="search" data-ghost-search>
         🔍︎
-      </button>
-      <a href="#/portal/signup" class="join-cta">Join us</a>
-    </div>
+    </button>
+
+    {{#if @member}}
+        <a href="#/portal/account" class="join-cta">Account</a>
+    {{else}}
+        <a href="#/portal/signup" class="join-cta">Join us</a>
+    {{/if}}
+</div>
+
 
     <!-- Hamburger -->
     <button class="hamburger" aria-label="Toggle navigation menu">
