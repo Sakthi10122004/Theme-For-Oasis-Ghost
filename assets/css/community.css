@@ -382,8 +382,9 @@ a.btn-secondary {
     border-radius: 4px;
     background-color: var(--color-text-dark);
     color: var(--color-text-light);
-    text-decoration: underline;
+    font-weight: 700;
     transition: color 0.2s ease;
+
 }
 
 a.btn-secondary:hover {
@@ -416,6 +417,17 @@ a.btn-secondary:hover {
     transition: opacity 0.3s ease;
     flex-shrink: 0;
     will-change: opacity;
+}
+a.btn-secondary-partners {
+    padding: 12px 24px;
+    border-radius: 4px;
+    background-color: var(--color-text-dark);
+    color: var(--color-text-light);
+    font-weight: 700;
+    transition: color 0.2s ease;
+    display: block;
+    width: fit-content;
+    margin: 0 auto;
 }
 
 .partner-item:hover {
