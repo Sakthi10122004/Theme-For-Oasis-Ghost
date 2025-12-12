@@ -1,5 +1,25 @@
 {{!< default}}
 
+{{#tag}}
+<script>
+(() => {
+    const slug = "{{slug}}";
+    const titles = {
+        "verified-experts": "Verified Experts",
+        "tools": "Our Suite of Tools",
+        "tech-experts-says": "Tech Experts Says",
+        "npo-says": "NPO Says",
+        "impact-stories": "Impact Stories",
+        "npo": "NPO",
+        "event": "Events"
+    };
+
+    // Set browser tab title immediately
+    document.title = titles[slug] || "{{name}}";
+})();
+</script>
+{{/tag}}
+
 <main class="tag-page">
 
   {{#tag}}
@@ -21,7 +41,7 @@
         {{else match slug "=" "npo-says"}}NPO Says
         {{else match slug "=" "impact-stories"}}Impact Stories
         {{else match slug "=" "npo"}}NPO
-         {{else match slug "=" "event"}}Events
+        {{else match slug "=" "event"}}Events
         {{else}}{{name}}{{/match}}
       </h1>
 
@@ -37,8 +57,6 @@
   </header>
 
   {{/tag}}
-
-
 
   <section class="tag-posts">
 
@@ -84,7 +102,7 @@
               {{excerpt words="24"}}
             </p>
 
-            {{!-- Conditional CTA: Hide for verified-experts and npo --}}
+            {{!-- Hide CTA for verified-experts and npo --}}
             {{#match ../tag.slug "=" "verified-experts"}}
               {{!-- no read story --}}
             {{else match ../tag.slug "=" "npo"}}
@@ -94,7 +112,6 @@
             {{/match}}
 
           </div>
-
 
         {{!-- closing --}}
         {{#match ../tag.slug "=" "verified-experts"}}

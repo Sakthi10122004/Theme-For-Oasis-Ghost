@@ -1,260 +1,236 @@
-/* 404 Error Page Styles */
-
-/* Error Page Variables */
+/* ======================================================
+   404 PAGE THEME VARIABLES (USING STRICT COLOR PALETTE)
+   ====================================================== */
 :root {
-  /* Error Page Colors */
-  --error-bg-color: #Ffff;
-  --error-card-bg: white;
-  --error-primary: #ED3E29;
-  --error-primary-rgb: 237, 62, 41;
-  --error-text-dark: #333;
-  --error-text-medium: #666;
-  --error-text-light: white;
-  --error-shadow-color: rgba(0, 0, 0, 0.3);
-  --error-shadow-primary: rgba(237, 62, 41, 0.3);
-  --error-shadow-primary-hover: rgba(237, 62, 41, 0.4);
-  --error-shadow-glitch: rgba(237, 62, 41, 0.1);
-  --error-shape-bg: rgba(255, 255, 255, 0.1);
-  --error-glow: rgba(255, 255, 255, 0.3);
-  
-  /* Error Page Spacing */
-  --error-spacing-xs: 0.5rem;
-  --error-spacing-sm: 1rem;
-  --error-spacing-md: 1.5rem;
-  --error-spacing-lg: 2rem;
-  --error-spacing-xl: 2.5rem;
-  --error-spacing-xxl: 3rem;
-  
-  /* Error Page Font Sizes */
-  --error-font-xs: 1rem;
-  --error-font-sm: 1.125rem;
-  --error-font-md: 1.5rem;
-  --error-font-lg: 2rem;
-  --error-font-xl: 5rem;
-  --error-font-xxl: 8rem;
-  
-  /* Error Page Dimensions */
-  --error-icon-size: 120px;
-  --error-icon-size-mobile: 100px;
-  --error-shape-small: 300px;
-  --error-shape-large: 400px;
-  --error-border-radius: 20px;
-  --error-button-radius: 50px;
-  --error-max-width: 600px;
-  
-  /* Error Page Animation Timings */
-  --error-animation-fast: 0.3s ease;
-  --error-animation-medium: 0.5s ease;
-  --error-animation-slow: 0.6s ease-out;
-  --error-animation-bounce: 2s ease-in-out;
-  --error-animation-float: 6s ease-in-out;
-  --error-animation-glitch: 3s ease-in-out;
-  
-  /* Error Page Animation Delays */
-  --error-delay-float: 2s;
-  
-  /* Error Page Font Weights */
-  --error-font-weight-semibold: 600;
-  --error-font-weight-bold: 700;
-  --error-font-weight-black: 900;
-  
-  /* Error Page Line Heights */
-  --error-line-height-tight: 1;
-  --error-line-height-normal: 1.6;
+  /* Core Palette */
+  --error-bg: #f9faf2;           /* Page background */
+  --error-card-bg: #fafafa;      /* Card background */
+  --error-border: #ebe9de;       /* Card stroke */
+  --error-primary: #1c1c1c;      /* Button / primary dark */
+  --error-accent-1: #fbe86b;     /* Accent yellow */
+  --error-accent-2: #fd635a;     /* Accent red */
+
+  /* Text */
+  --error-text-dark: #1c1c1c;
+  --error-text-medium: #6b6b6b;
+  --error-text-light: #ffffff;
+
+  /* Shadows */
+  --error-shadow: rgba(0,0,0,0.15);
+  --error-shadow-strong: rgba(0,0,0,0.20);
+
+  /* Spacing */
+  --s-xs: .5rem;
+  --s-sm: 1rem;
+  --s-md: 1.5rem;
+  --s-lg: 2rem;
+  --s-xl: 2.5rem;
+  --s-xxl: 3rem;
+
+  /* Typography */
+  --fs-xs: 1rem;
+  --fs-sm: 1.125rem;
+  --fs-md: 1.5rem;
+  --fs-lg: 2rem;
+  --fs-xl: 5rem;
+  --fs-xxl: 8rem;
+
+  --fw-semibold: 600;
+  --fw-bold: 700;
+  --fw-black: 900;
+
+  /* Shapes & Sizes */
+  --icon-size: 120px;
+  --icon-size-mobile: 100px;
+  --shape-small: 280px;
+  --shape-large: 380px;
+
+  --radius-card: 20px;
+  --radius-button: 50px;
+  --max-width: 600px;
+
+  /* Animation */
+  --anim-fast: .3s ease;
+  --anim-medium: .5s ease;
+  --anim-slow: .6s ease-out;
+  --anim-float: 6s ease-in-out;
+  --anim-bounce: 2s ease-in-out;
 }
 
+/* ======================================================
+   PAGE WRAPPER
+   ====================================================== */
 .error-page {
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    background-color: var(--error-bg-color);
-    padding: var(--error-spacing-lg);
-    position: relative;
-    overflow: hidden;
+  min-height: 100vh;
+  padding: var(--s-lg);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: var(--error-bg);
+  position: relative;
+  overflow: hidden;
 }
 
-/* Animated background shapes */
+/* Floating background shapes */
 .error-page::before,
 .error-page::after {
-    content: '';
-    position: absolute;
-    border-radius: 50%;
-    background: var(--error-shape-bg);
-    animation: float var(--error-animation-float) ease-in-out infinite;
+  content: '';
+  position: absolute;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.1);
+  animation: float var(--anim-float) infinite;
 }
 
 .error-page::before {
-    width: var(--error-shape-small);
-    height: var(--error-shape-small);
-    top: -100px;
-    left: -100px;
-    animation-delay: 0s;
+  width: var(--shape-small);
+  height: var(--shape-small);
+  top: -100px;
+  left: -100px;
 }
 
 .error-page::after {
-    width: var(--error-shape-large);
-    height: var(--error-shape-large);
-    bottom: -150px;
-    right: -150px;
-    animation-delay: var(--error-delay-float);
+  width: var(--shape-large);
+  height: var(--shape-large);
+  bottom: -150px;
+  right: -150px;
+  animation-delay: 2s;
 }
 
 @keyframes float {
-    0%, 100% {
-        transform: translate(0, 0) scale(1);
-    }
-    50% {
-        transform: translate(30px, 30px) scale(1.1);
-    }
+  0%,100% { transform: translate(0,0) scale(1); }
+  50%     { transform: translate(30px,30px) scale(1.1); }
 }
 
+/* ======================================================
+   CARD WRAPPER
+   ====================================================== */
 .error-page .content-wrapper {
-    position: relative;
-    z-index: 1;
-    text-align: center;
-    background: var(--error-card-bg);
-    padding: var(--error-spacing-xxl) var(--error-spacing-xl);
-    border-radius: var(--error-border-radius);
-    box-shadow: 0 20px 60px var(--error-shadow-color);
-    max-width: var(--error-max-width);
-    width: 100%;
-    animation: slideUp var(--error-animation-slow);
+  background: var(--error-card-bg);
+  padding: var(--s-xxl) var(--s-xl);
+  border-radius: var(--radius-card);
+  box-shadow: 0 20px 60px var(--error-shadow);
+  max-width: var(--max-width);
+  width: 100%;
+  text-align: center;
+  position: relative;
+  animation: fadeUp var(--anim-slow);
 }
 
-@keyframes slideUp {
-    from {
-        opacity: 0;
-        transform: translateY(30px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to   { opacity: 1; transform: translateY(0); }
 }
 
-.error-page .icon-wrapper {
-    margin-bottom: var(--error-spacing-md);
-}
-
+/* ======================================================
+   ICON
+   ====================================================== */
 .error-page .error-icon {
-    width: var(--error-icon-size);
-    height: var(--error-icon-size);
-    margin: 0 auto;
-    animation: bounce var(--error-animation-bounce) ease-in-out infinite;
+  width: var(--icon-size);
+  height: var(--icon-size);
+  margin-bottom: var(--s-md);
+  animation: bounce var(--anim-bounce) infinite;
 }
 
 @keyframes bounce {
-    0%, 100% {
-        transform: translateY(0);
-    }
-    50% {
-        transform: translateY(-20px);
-    }
+  0%,100% { transform: translateY(0); }
+  50%     { transform: translateY(-20px); }
 }
 
+/* ======================================================
+   TEXT CONTENT
+   ====================================================== */
 .error-page .error-number {
-    font-size: var(--error-font-xxl);
-    font-weight: var(--error-font-weight-black);
-    color: var(--error-primary);
-    line-height: var(--error-line-height-tight);
-    margin-bottom: var(--error-spacing-xs);
-    text-shadow: 4px 4px 0px var(--error-shadow-glitch);
-    animation: glitch var(--error-animation-glitch) ease-in-out infinite;
+  font-size: var(--fs-xxl);
+  font-weight: var(--fw-black);
+  color: var(--error-accent-2);
+  line-height: 1;
+  margin-bottom: var(--s-xs);
+  text-shadow: 4px 4px 0 rgba(253,99,90,0.15);
+  animation: glitch 3s infinite;
 }
 
 @keyframes glitch {
-    0%, 100% {
-        transform: translate(0);
-    }
-    20% {
-        transform: translate(-2px, 2px);
-    }
-    40% {
-        transform: translate(-2px, -2px);
-    }
-    60% {
-        transform: translate(2px, 2px);
-    }
-    80% {
-        transform: translate(2px, -2px);
-    }
+  0%,100% { transform: translate(0); }
+  20%     { transform: translate(-2px, 2px); }
+  40%     { transform: translate(-2px, -2px); }
+  60%     { transform: translate(2px, 2px); }
+  80%     { transform: translate(2px, -2px); }
 }
 
 .error-page h1 {
-    font-size: var(--error-font-lg);
-    color: var(--error-text-dark);
-    margin-bottom: var(--error-spacing-sm);
-    font-weight: var(--error-font-weight-bold);
+  font-size: var(--fs-lg);
+  font-weight: var(--fw-bold);
+  color: var(--error-text-dark);
+  margin-bottom: var(--s-sm);
 }
 
 .error-page p {
-    font-size: var(--error-font-sm);
-    color: var(--error-text-medium);
-    margin-bottom: var(--error-spacing-lg);
-    line-height: var(--error-line-height-normal);
+  font-size: var(--fs-sm);
+  color: var(--error-text-medium);
+  margin-bottom: var(--s-lg);
+  line-height: 1.6;
 }
 
+/* ======================================================
+   BUTTON
+   ====================================================== */
 .error-page .btn-primary {
-    display: inline-block;
-    background: var(--error-primary);
-    color: var(--error-text-light);
-    text-decoration: none;
-    padding: var(--error-spacing-sm) var(--error-spacing-xl);
-    border-radius: var(--error-button-radius);
-    font-weight: var(--error-font-weight-semibold);
-    font-size: var(--error-font-sm);
-    transition: all var(--error-animation-fast);
-    box-shadow: 0 4px 15px var(--error-shadow-primary);
-    position: relative;
-    overflow: hidden;
+  display: inline-block;
+  padding: var(--s-sm) var(--s-xl);
+  background: var(--error-primary);
+  color: var(--error-text-light);
+  border-radius: var(--radius-button);
+  font-size: var(--fs-sm);
+  font-weight: var(--fw-semibold);
+  text-decoration: none;
+  transition: var(--anim-fast);
+  box-shadow: 0 4px 15px var(--error-shadow-strong);
+  position: relative;
+  overflow: hidden;
 }
 
 .error-page .btn-primary::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(90deg, transparent, var(--error-glow), transparent);
-    transition: left var(--error-animation-medium);
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+  transition: left var(--anim-medium);
 }
 
 .error-page .btn-primary:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 6px 20px var(--error-shadow-primary-hover);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px var(--error-shadow-strong);
 }
 
 .error-page .btn-primary:hover::before {
-    left: 100%;
+  left: 100%;
 }
 
-.error-page .btn-primary:active {
-    transform: translateY(0);
-}
-
-/* Responsive Design */
+/* ======================================================
+   RESPONSIVE
+   ====================================================== */
 @media (max-width: 768px) {
-    .error-page .error-number {
-        font-size: var(--error-font-xl);
-    }
+  .error-page .error-number {
+    font-size: var(--fs-xl);
+  }
 
-    .error-page h1 {
-        font-size: var(--error-font-md);
-    }
+  .error-page h1 {
+    font-size: var(--fs-md);
+  }
 
-    .error-page p {
-        font-size: var(--error-font-xs);
-    }
+  .error-page p {
+    font-size: var(--fs-xs);
+  }
 
-    .error-page .content-wrapper {
-        padding: var(--error-spacing-lg) var(--error-spacing-md);
-    }
+  .error-page .content-wrapper {
+    padding: var(--s-lg) var(--s-md);
+  }
 
-    .error-page .error-icon {
-        width: var(--error-icon-size-mobile);
-        height: var(--error-icon-size-mobile);
-    }
+  .error-page .error-icon {
+    width: var(--icon-size-mobile);
+    height: var(--icon-size-mobile);
+  }
 }

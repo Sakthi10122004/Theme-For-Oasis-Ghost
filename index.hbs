@@ -253,247 +253,112 @@
 
 <section class="ecosystem-ring">
   <p class="ring-quote">"It takes a village — and five open hearts — to start a movement."</p>
+
   <div class="ring-logos">
-    <div class="ring-logos">
-  <div class="ring-track">
+    <div class="ring-static">
 
-    <a href="https://aikyamfellows.org" target="_blank"><img src="{{asset 'images/alliance/aikyam.webp'}}" alt="Aikyam"></a>
-    <a href="https://aspire.ashoka.org" target="_blank"><img src="{{asset 'images/alliance/ashoka.webp'}}" alt="Ashoka"></a>
-    <a href="https://fossunited.org" target="_blank"><img src="{{asset 'images/alliance/fossunited.webp'}}" alt="FOSS United"></a>
-    <a href="https://github.com" target="_blank"><img src="{{asset 'images/alliance/github.webp'}}" alt="GitHub"></a>
-    <a href="https://reapbenefit.org" target="_blank"><img src="{{asset 'images/alliance/reap_benefit.webp'}}" alt="Reap Benefit"></a>
-    <a href="https://samagatha.org" target="_blank"><img src="{{asset 'images/alliance/samagata.webp'}}" alt="Samagatha"></a>
-    <a href="https://www.tech4goodcommunity.com" target="_blank"><img src="{{asset 'images/alliance/t4gc.webp'}}" alt="Tech4Good"></a>
-    <a href="https://tinkerhub.org" target="_blank"><img src="{{asset 'images/alliance/tinkerhub.webp'}}" alt="TinkerHub"></a>
+      <a href="https://aikyamfellows.org" target="_blank"><img src="{{asset 'images/alliance/aikyam.webp'}}" alt="Aikyam"></a>
+      <a href="https://aspire.ashoka.org" target="_blank"><img src="{{asset 'images/alliance/ashoka.webp'}}" alt="Ashoka"></a>
+      <a href="https://fossunited.org" target="_blank"><img src="{{asset 'images/alliance/fossunited.webp'}}" alt="FOSS United"></a>
+      <a href="https://github.com" target="_blank"><img src="{{asset 'images/alliance/github.webp'}}" alt="GitHub"></a>
+      <a href="https://reapbenefit.org" target="_blank"><img src="{{asset 'images/alliance/reap_benefit.webp'}}" alt="Reap Benefit"></a>
+      <a href="https://samagatha.org" target="_blank"><img src="{{asset 'images/alliance/samagata.webp'}}" alt="Samagatha"></a>
+      <a href="https://www.tech4goodcommunity.com" target="_blank"><img src="{{asset 'images/alliance/t4gc.webp'}}" alt="Tech4Good"></a>
+      <a href="https://tinkerhub.org" target="_blank"><img src="{{asset 'images/alliance/tinkerhub.webp'}}" alt="TinkerHub"></a>
 
-    <!-- repeated set -->
-    <a href="https://aikyamfellows.org" target="_blank"><img src="{{asset 'images/alliance/aikyam.webp'}}" alt="Aikyam"></a>
-    <a href="https://aspire.ashoka.org" target="_blank"><img src="{{asset 'images/alliance/ashoka.webp'}}" alt="Ashoka"></a>
-    <a href="https://fossunited.org" target="_blank"><img src="{{asset 'images/alliance/fossunited.webp'}}" alt="FOSS United"></a>
-    <a href="https://github.com" target="_blank"><img src="{{asset 'images/alliance/github.webp'}}" alt="GitHub"></a>
-    <a href="https://reapbenefit.org" target="_blank"><img src="{{asset 'images/alliance/reap_benefit.webp'}}" alt="Reap Benefit"></a>
-    <a href="https://samagatha.org" target="_blank"><img src="{{asset 'images/alliance/samagata.webp'}}" alt="Samagatha"></a>
-    <a href="https://www.tech4goodcommunity.com" target="_blank"><img src="{{asset 'images/alliance/t4gc.webp'}}" alt="Tech4Good"></a>
-    <a href="https://tinkerhub.org" target="_blank"><img src="{{asset 'images/alliance/tinkerhub.webp'}}" alt="TinkerHub"></a>
-
-  </div>
-</div>
-
+    </div>
   </div>
 </section>
 
 <section class="stories-galaxy redesigned-stories">
   <h2>Impact Stories</h2>
-  
-  <div class="impact-scroll-container">
-    <div class="impact-scroll">
-      {{#get "posts" filter="tag:impact-stories" limit="10" include="tags,feature_image"}}
-        {{#if posts}}
-          
-          {{#foreach posts}}
-            <a href="{{url}}" class="impact-card">
-              {{#if feature_image}}
-                <img 
-                  src="{{img_url feature_image size="l"}}" 
-                  alt="{{title}}" 
-                  loading="lazy"
-                  class="lazy-load"
-                  onload="this.classList.add('lazy-loaded')"
-                  width="320"
-                  height="440">
-              {{/if}}
-              <div class="impact-overlay">
-                <span>{{title}} →</span>
-              </div>
-            </a>
-          {{/foreach}}
 
-          {{#foreach posts}}
-            <a href="{{url}}" class="impact-card">
-              {{#if feature_image}}
-                <img 
-                  src="{{img_url feature_image size="l"}}" 
-                  alt="{{title}}" 
-                  loading="lazy"
-                  class="lazy-load"
-                  onload="this.classList.add('lazy-loaded')"
-                  width="320"
-                  height="440">
-              {{/if}}
-              <div class="impact-overlay">
-                <span>{{title}} →</span>
-              </div>
-            </a>
-          {{/foreach}}
+  <div class="impact-static">
+    {{#get "posts" filter="tag:impact-stories" limit="5" include="tags,feature_image"}}
+      {{#if posts}}
 
-        {{else}}
-          <div class="impact-placeholder">
-            <p>No impact stories yet. Add posts with the <strong>impact-stories</strong> tag.</p>
-          </div>
-        {{/if}}
-      {{/get}}
-    </div>
+        {{#foreach posts}}
+          <a href="{{url}}" class="impact-card {{#unless feature_image}}no-image{{/unless}}">
+            
+            {{#if feature_image}}
+              <img src="{{img_url feature_image size="l"}}" alt="{{title}}" loading="lazy">
+            {{else}}
+              <img src="{{asset 'images/placeholder-impact.webp'}}" alt="placeholder">
+            {{/if}}
+
+            <div class="impact-overlay">
+              <span>{{title}} →</span>
+            </div>
+
+          </a>
+        {{/foreach}}
+
+      {{else}}
+        <div class="impact-placeholder">
+          <p>No impact stories yet. Add posts with the <strong>impact-stories</strong> tag.</p>
+        </div>
+      {{/if}}
+    {{/get}}
   </div>
 
   <a href="/tag/impact-stories/" class="view-all">View all stories →</a>
 </section>
 
-{{!-- EXPERTS AND TOOLS  --}}
-
 <section class="toolbox">
   <div class="expert-tool-wrapper">
+
+    {{!-- TOOLS SECTION --}}
     <div class="tools-orbit">
       <div class="orbit-header">
         <h3>Don't know which tool to choose?</h3>
       </div>
-      {{#get "posts" filter="tag:tools" limit="3" include="feature_image"}}
-        <div class="marquee-window">
-          <div class="marquee-track">
-            {{#foreach posts}}
-              <a href="{{url}}" class="tool-card" title="{{title}}">
-                {{#if feature_image}}
-                  <img 
-                    src="{{img_url feature_image size="xs"}}" 
-                    alt="{{title}}" 
-                    loading="lazy"
-                    class="lazy-load"
-                    onload="this.classList.add('lazy-loaded')"
-                    width="35"
-                    height="35">
-                {{else}}
-                  <span class="tool-text">{{title}}</span>
-                {{/if}}
-              </a>
-            {{/foreach}}
-            {{#foreach posts}}
-              <a href="{{url}}" class="tool-card" title="{{title}}">
-                {{#if feature_image}}
-                  <img 
-                    src="{{img_url feature_image size="xs"}}" 
-                    alt="{{title}}" 
-                    loading="lazy"
-                    class="lazy-load"
-                    onload="this.classList.add('lazy-loaded')"
-                    width="35"
-                    height="35">
-                {{else}}
-                  <span class="tool-text">{{title}}</span>
-                {{/if}}
-              </a>
-            {{/foreach}}
-            {{#foreach posts}}
-              <a href="{{url}}" class="tool-card" title="{{title}}">
-                {{#if feature_image}}
-                  <img 
-                    src="{{img_url feature_image size="xs"}}" 
-                    alt="{{title}}" 
-                    loading="lazy"
-                    class="lazy-load"
-                    onload="this.classList.add('lazy-loaded')"
-                    width="35"
-                    height="35">
-                {{else}}
-                  <span class="tool-text">{{title}}</span>
-                {{/if}}
-              </a>
-            {{/foreach}}
-            {{#foreach posts}}
-              <a href="{{url}}" class="tool-card" title="{{title}}">
-                {{#if feature_image}}
-                  <img 
-                    src="{{img_url feature_image size="xs"}}" 
-                    alt="{{title}}" 
-                    loading="lazy"
-                    class="lazy-load"
-                    onload="this.classList.add('lazy-loaded')"
-                    width="35"
-                    height="35">
-                {{else}}
-                  <span class="tool-text">{{title}}</span>
-                {{/if}}
-              </a>
-            {{/foreach}}
-          </div>
+
+      {{#get "posts" filter="tag:tools" limit="4" include="feature_image"}}
+        <div class="static-grid">
+          {{#foreach posts}}
+            <a href="{{url}}" class="tool-card" title="{{title}}">
+              {{#if feature_image}}
+                <img 
+                  src="{{img_url feature_image size="xs"}}"
+                  alt="{{title}}"
+                >
+              {{else}}
+                <span class="tool-text">{{title}}</span>
+              {{/if}}
+            </a>
+          {{/foreach}}
         </div>
       {{/get}}
+
       <a href="/tag/tools/" class="view-all-btn">View all tools</a>
     </div>
 
+    {{!-- EXPERT SECTION --}}
     <div class="experts-orbit">
       <div class="orbit-header">
         <h3>OASIS verified experts</h3>
       </div>
-      {{#get "posts" filter="tag:verified-experts" limit="3" include="feature_image"}}
-        <div class="marquee-window">
-          <div class="marquee-track">
-            {{#foreach posts}}
-              <a href="{{url}}" class="expert-card" title="{{title}}">
-                {{#if feature_image}}
-                  <img 
-                    src="{{img_url feature_image size="xs"}}" 
-                    alt="{{title}}" 
-                    loading="lazy"
-                    class="lazy-load"
-                    onload="this.classList.add('lazy-loaded')"
-                    width="70"
-                    height="70">
-                {{else}}
-                  <span class="expert-initial">{{title.[0]}}</span>
-                {{/if}}
-              </a>
-            {{/foreach}}
-            {{#foreach posts}}
-              <a href="{{url}}" class="expert-card" title="{{title}}">
-                {{#if feature_image}}
-                  <img 
-                    src="{{img_url feature_image size="xs"}}" 
-                    alt="{{title}}" 
-                    loading="lazy"
-                    class="lazy-load"
-                    onload="this.classList.add('lazy-loaded')"
-                    width="70"
-                    height="70">
-                {{else}}
-                  <span class="expert-initial">{{title.[0]}}</span>
-                {{/if}}
-              </a>
-            {{/foreach}}
-            {{#foreach posts}}
-              <a href="{{url}}" class="expert-card" title="{{title}}">
-                {{#if feature_image}}
-                  <img 
-                    src="{{img_url feature_image size="xs"}}" 
-                    alt="{{title}}" 
-                    loading="lazy"
-                    class="lazy-load"
-                    onload="this.classList.add('lazy-loaded')"
-                    width="70"
-                    height="70">
-                {{else}}
-                  <span class="expert-initial">{{title.[0]}}</span>
-                {{/if}}
-              </a>
-            {{/foreach}}
-            {{#foreach posts}}
-              <a href="{{url}}" class="expert-card" title="{{title}}">
-                {{#if feature_image}}
-                  <img 
-                    src="{{img_url feature_image size="xs"}}" 
-                    alt="{{title}}" 
-                    loading="lazy"
-                    class="lazy-load"
-                    onload="this.classList.add('lazy-loaded')"
-                    width="70"
-                    height="70">
-                {{else}}
-                  <span class="expert-initial">{{title.[0]}}</span>
-                {{/if}}
-              </a>
-            {{/foreach}}
-          </div>
+
+      {{#get "posts" filter="tag:verified-experts" limit="4" include="feature_image"}}
+        <div class="static-grid">
+          {{#foreach posts}}
+            <a href="{{url}}" class="expert-card" title="{{title}}">
+              {{#if feature_image}}
+                <img 
+                  src="{{img_url feature_image size="xs"}}"
+                  alt="{{title}}"
+                >
+              {{else}}
+                <span class="expert-initial">{{title.[0]}}</span>
+              {{/if}}
+            </a>
+          {{/foreach}}
         </div>
       {{/get}}
+
       <a href="/tag/verified-experts/" class="view-all-btn">Meet all experts</a>
     </div>
+
   </div>
 </section>
+
