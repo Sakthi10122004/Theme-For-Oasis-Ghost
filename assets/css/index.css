@@ -874,7 +874,7 @@
 /* Logo Tiles */
 .ring-logos a {
   flex-shrink: 0;
-  width: 180px;
+  width: 150px;
   height: 80px;
   margin: 0;
   display: flex;
