@@ -172,13 +172,6 @@ Theme Name: **Oasis**
 
 ---
 
-## 📜 License
-
-This theme is licensed under the **MIT License**.  
-You are free to use, modify, and distribute it.
-
----
-
 ## ⭐ Support
 
 If you like this theme, please give it a **star ⭐ on GitHub** and share it with others.
