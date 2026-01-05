@@ -1,29 +1,3 @@
-/* ============================
-   BLOG PAGE GRID - OPTIMIZED
-============================ */
-
-/* Blog Color Variables Only */
-:root {
-    /* Primary Colors */
-    --color-primary-button: #1C1C1C;
-    --color-cta-buttons: #1C1C1C;
-    --color-page-background: #F9FAF2;
-    --color-main-background: #F9FAF2;
-    --color-stroke-secondary: #EBE9DE;
-    --color-card-background: #FAFAFA;
-    --color-accent-1: #FBE86B;
-    --color-accent-2: #FD635A;
-
-    /* Semantic Colors */
-    --blog-primary: #1C1C1C;
-    --blog-secondary: #FD635A;
-    --blog-text-dark: #222222;
-    --blog-text-light: #EBE9DE;
-    --blog-bg-card: #FAFAFA;
-    --blog-bg-placeholder: #F9FAF2;
-    --blog-shadow-color: rgba(28, 28, 28, 0.08);
-    --blog-border-color: #EBE9DE;
-}
 
 /* Main Wrapper */
 .blog-wrapper {

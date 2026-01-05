@@ -1,3 +1,4 @@
+document.documentElement.classList.add("js-ready");
 (function ($) {
     "use strict";
 
@@ -300,9 +301,8 @@
             mega_menu: false
         });
 
-        setTimeout(() => {
-            document.querySelector(".nebula-nav-horizontal")?.classList.add("nav-ready");
-        }, 110);
+        document.querySelector(".nebula-nav-horizontal")?.classList.add("nav-ready");
+
     });
 
 }(jQuery));

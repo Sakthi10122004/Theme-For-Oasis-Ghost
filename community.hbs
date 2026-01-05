@@ -11,7 +11,7 @@
                 <div class="hero-content">
                     <h1 class="hero-title">Join the <span class="highlight">OASIS</span> Community</h1>
                     <p class="hero-text">Connect with innovators, nonprofits, and philanthropists driving open-source solutions for social impact.</p>
-                    <a href="#/portal/signup" class="btn-primary">Join Now</a>
+                    <a href="#/portal/signup" class="hero-cta">Join Now</a>
                 </div>
                 <div class="hero-visual">
                     <img src="{{asset 'images/community_banner.webp'}}" alt="OASIS Community" class="hero-img" loading="lazy" width="600" height="400">
@@ -83,7 +83,7 @@
                 <div class="join-card cta-card">
                     <h3>Ready to Join?</h3>
                     <p>Become part of our growing community of changemakers.</p>
-                    <a href="#/portal/signup" class="btn-primary btn-large">Join Now</a>
+                    <a href="#/portal/signup" class="hero-cta">Join Now</a>
                 </div>
             </div>
         </div>
@@ -109,7 +109,7 @@
                             {{/get}}
                         </div>
                     </div>
-                    <a href="/tag/npo-says/" class="btn-secondary">Read More</a>
+                    <a href="/tag/npo-says/" class="hero-cta">Read More</a>
                 </div>
                 <div class="testimonial-col">
                     <h3 class="testimonial-heading">Tech Experts</h3>
@@ -127,41 +127,47 @@
                             {{/get}}
                         </div>
                     </div>
-                    <a href="/tag/tech-experts-says/" class="btn-secondary">Read More</a>
+                    <a href="/tag/tech-experts-says/" class="hero-cta">Read More</a>
                 </div>
             </div>
         </div>
     </section>
 
     <section class="partners-section">
-        <div class="container">
-            <h2 class="section-title">Our NPO Partners</h2>
-            <div class="partners-marquee">
-                <div class="partners-track">
-                    {{#get "posts" filter="tag:npo" limit="12" include="feature_image"}}
-                        {{#foreach posts}}
-                            <a href="{{url}}" class="partner-item" title="{{title}}">
-                                {{#if feature_image}}
-                                    <img src="{{img_url feature_image size="s"}}" alt="{{title}}" loading="lazy">
-                                {{else}}
-                                    <span>{{title}}</span>
-                                {{/if}}
-                            </a>
-                        {{/foreach}}
-                        {{#foreach posts}}
-                            <a href="{{url}}" class="partner-item" title="{{title}}">
-                                {{#if feature_image}}
-                                    <img src="{{img_url feature_image size="s"}}" alt="{{title}}" loading="lazy">
-                                {{else}}
-                                    <span>{{title}}</span>
-                                {{/if}}
-                            </a>
-                        {{/foreach}}
-                    {{/get}}
-                </div>
-            </div>
-            <a href="/tag/npo" class="btn-secondary-partners">See All Partners</a>
+        {{#get "posts" filter="tag:npo" limit="6" include="feature_image"}}
+  {{#if posts.length}}
+    <section class="partners-section">
+      <div class="container">
+
+        <h2 class="section-title">Our NPO Partners</h2>
+
+        <div class="partners-marquee">
+          <div class="partners-track">
+
+            {{#foreach posts}}
+              <div class="partner-item" title="{{title}}">
+                {{#if feature_image}}
+                  <img
+                    src="{{img_url feature_image size="s"}}"
+                    alt="{{title}}"
+                    loading="lazy"
+                  >
+                {{else}}
+                  <span>{{title}}</span>
+                {{/if}}
+              </div>
+            {{/foreach}}
+
+          </div>
         </div>
+
+        <a href="/tag/npo" class="partners-cta">See All Partners</a>
+
+      </div>
+    </section>
+  {{/if}}
+{{/get}}
+
     </section>
 
     <section class="final-cta">
@@ -169,57 +175,8 @@
             <div class="cta-content">
                 <h2>Ready to Make an Impact?</h2>
                 <p>Join thousands of innovators working together for social good through open-source collaboration.</p>
-                <a href="#/portal/signup" class="btn-primary btn-large">Join the Community Today</a>
+                <a href="#/portal/signup" class="cta-button">Join the Community Today</a>
             </div>
         </div>
     </section>
 </main>
-<script>
-    // COMMUNITY PAGE JS
-  // ================================
-  //      JS FOR SLIDER
-  // ================================ 
-  document.addEventListener('DOMContentLoaded', function () {
-    const sliders = document.querySelectorAll('[data-slider]');
-    sliders.forEach(function (slider) {
-      const track = slider.querySelector('[data-slider-track]');
-      const slides = Array.from(slider.querySelectorAll('[data-slider-slide]'));
-      if (!track || slides.length <= 1) return;
-      let currentIndex = 0;
-      const totalSlides = slides.length;
-      let autoTimer = null;
-      function updateUI() {
-        track.style.transform = 'translateX(-' + (currentIndex * 100) + '%)';
-      }
-      function nextSlide() {
-        currentIndex = (currentIndex + 1) % totalSlides;
-        updateUI();
-      }
-      function startAuto() {
-        if (autoTimer) clearInterval(autoTimer);
-        autoTimer = setInterval(nextSlide, 5000);
-      }
-      function stopAuto() {
-        if (autoTimer) clearInterval(autoTimer);
-      }
-      updateUI();
-      startAuto();
-      slider.addEventListener('mouseenter', stopAuto);
-      slider.addEventListener('mouseleave', startAuto);
-      let startX;
-      slider.addEventListener('touchstart', function (e) {
-        startX = e.touches[0].clientX;
-        stopAuto();
-      });
-      slider.addEventListener('touchend', function (e) {
-        const endX = e.changedTouches[0].clientX;
-        if (startX - endX > 50) nextSlide();
-        else if (endX - startX > 50) {
-          currentIndex = (currentIndex - 1 + totalSlides) % totalSlides;
-          updateUI();
-        }
-        startAuto();
-      });
-    });
-  });
-</script>

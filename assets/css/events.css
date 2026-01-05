@@ -1,21 +1,6 @@
 /* ================================
    COLOR VARIABLES (ROOT)
 ================================ */
-:root {
-  /* Main colors */
-  --color-page-bg: #f9faf2;
-  --color-white-cards: #fafafa;
-  --color-button: #1c1c1c;
-  --color-card-stroke: #ebe9de;
-  --color-accent1: #fbe86b;
-  --color-accent2: #fd635a;
-  
-  /* Text colors */
-  --color-text-primary: #1c1c1c;
-  --color-text-secondary: #1c1c1c;
-  --color-text-accent: #fd635a;
-  --color-text-on-dark: #f9faf2;
-}
 
 /* ================================
    FIX MAIN EVENTS PAGE CONTAINER
@@ -85,11 +70,11 @@
   width: 100%;
 }
 
-.event-row:hover {
+/* .event-row:hover {
   transform: translateY(-4px);
   box-shadow: 0 8px 24px rgba(28, 28, 28, 0.12);
   border-color: var(--color-accent1);
-}
+} */
 
 /* Image */
 .event-poster img {
@@ -118,27 +103,6 @@
 /* Button */
 .event-action {
   margin-left: auto;
-}
-
-.event-btn {
-  background: var(--color-button);
-  color: var(--color-text-on-dark);
-  padding: 10px 22px;
-  border-radius: 999px;
-  text-decoration: none;
-  font-weight: 600;
-  border: none;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  display: inline-block;
-  text-align: center;
-  min-width: 100px;
-}
-
-.event-btn:hover {
-  background: var(--color-accent2);
-  color: var(--color-text-on-dark);
-  transform: scale(1.05);
 }
 
 /* ================================

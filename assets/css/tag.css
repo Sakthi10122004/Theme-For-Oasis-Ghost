@@ -2,18 +2,6 @@
    TAG PAGE – OASIS THEME
    ========================================= */
 
-:root {
-  --oasis-bg: #f9faf2;
-  --oasis-surface: #ffffff;
-  --oasis-surface-soft: #f4f4f0;
-  --oasis-border: #e2e8f0;
-  --oasis-text: #0f172a;
-  --oasis-text-muted: #6b7280;
-  --oasis-accent: #ed3e29;
-  --oasis-accent2: #fd635a;
-  --oasis-accent-soft: rgba(237, 62, 41, 0.08);
-  --oasis-shadow-soft: 0 18px 45px rgba(15, 23, 42, 0.08);
-}
 
 .tag-page {
   background: var(--oasis-bg);
@@ -170,8 +158,8 @@
 .tag-post-tag {
   padding: 0.2rem 0.55rem;
   border-radius: 999px;
-  background: var(--oasis-accent2);
-  color: var(--oasis-bg);
+  background: var(--color-accent-1);
+  color: var(--color-text-light);
 }
 
 .tag-post-excerpt {

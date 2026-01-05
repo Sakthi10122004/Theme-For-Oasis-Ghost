@@ -1,6 +1,7 @@
 // INDEX PAGE JS
 
 // Critical JavaScript (loads immediately)
+
 (function () {
   // Load deferred CSS
   var deferred = document.querySelector('link[rel="preload"][as="style"]');

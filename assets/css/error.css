@@ -1,61 +1,6 @@
 /* ======================================================
    404 PAGE THEME VARIABLES (USING STRICT COLOR PALETTE)
    ====================================================== */
-:root {
-  /* Core Palette */
-  --error-bg: #f9faf2;           /* Page background */
-  --error-card-bg: #fafafa;      /* Card background */
-  --error-border: #ebe9de;       /* Card stroke */
-  --error-primary: #1c1c1c;      /* Button / primary dark */
-  --error-accent-1: #fbe86b;     /* Accent yellow */
-  --error-accent-2: #fd635a;     /* Accent red */
-
-  /* Text */
-  --error-text-dark: #1c1c1c;
-  --error-text-medium: #6b6b6b;
-  --error-text-light: #ffffff;
-
-  /* Shadows */
-  --error-shadow: rgba(0,0,0,0.15);
-  --error-shadow-strong: rgba(0,0,0,0.20);
-
-  /* Spacing */
-  --s-xs: .5rem;
-  --s-sm: 1rem;
-  --s-md: 1.5rem;
-  --s-lg: 2rem;
-  --s-xl: 2.5rem;
-  --s-xxl: 3rem;
-
-  /* Typography */
-  --fs-xs: 1rem;
-  --fs-sm: 1.125rem;
-  --fs-md: 1.5rem;
-  --fs-lg: 2rem;
-  --fs-xl: 5rem;
-  --fs-xxl: 8rem;
-
-  --fw-semibold: 600;
-  --fw-bold: 700;
-  --fw-black: 900;
-
-  /* Shapes & Sizes */
-  --icon-size: 120px;
-  --icon-size-mobile: 100px;
-  --shape-small: 280px;
-  --shape-large: 380px;
-
-  --radius-card: 20px;
-  --radius-button: 50px;
-  --max-width: 600px;
-
-  /* Animation */
-  --anim-fast: .3s ease;
-  --anim-medium: .5s ease;
-  --anim-slow: .6s ease-out;
-  --anim-float: 6s ease-in-out;
-  --anim-bounce: 2s ease-in-out;
-}
 
 /* ======================================================
    PAGE WRAPPER

@@ -7,15 +7,17 @@
 
   <title>{{meta_title}}</title>
   {{block "head"}}
+  <script>document.documentElement.classList.add("js-ready");</script>
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <script src="{{asset "js/script.js"}}" defer></script>
   <script src="{{asset "js/ghost-dropdown.js"}}" defer></script>
-  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+  {{!-- <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script> --}}
   <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.min.js"></script>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  {{!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/> --}}
+  {{!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"> --}}
+  {{!-- <link rel="preconnect" href="https://fonts.googleapis.com"> --}}
+  {{!-- <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin> --}}
+  {{!-- <link rel="preload" href="{{asset "fonts/Inter.woff2"}}" as="font" type="font/woff2" crossorigin> --}}
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="{{asset "css/styles.css"}}" />
   <link rel="stylesheet" href="{{asset "css/index.css"}}" />

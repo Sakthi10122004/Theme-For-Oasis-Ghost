@@ -1,40 +1,8 @@
 /* ===============================
    GLOBAL UTILITIES & VARIABLES
    =============================== */
-:root {
-  --hero-primary: #1c1c1c;
-  --hero-text-light: #fff;
-  --hero-bg: #f9faf2;
-  --accent-1: #fbe86b;
-  --accent-2: #fd635a;
-  --card-stroke: #ebe9de;
-  --card-bg: #fafafa;
-  --text-dark: #1c1c1c;
-  --text-light: #fff;
-  --text-gray: #555;
-  --text-gray-light: #666;
-  --text-dark-gray: #181717;
-  --text-black: #000000;
-  --text-muted: #64748b;
-  --text-brown: #665e5d;
-  --border-gray: #ccc;
-  --border-light: #2c2a2a;
-  --placeholder-bg: #ebe9de;
-  --shadow-light: rgba(0, 0, 0, 0.08);
-  --shadow-medium: rgba(0, 0, 0, 0.15);
-  --shadow-dark: rgba(28, 28, 28, 0.3);
-  --accent-shadow: rgba(253, 99, 90, 0.2);
-  --overlay-white: rgba(255, 255, 255, 0.92);
-  --gradient-overlay: rgba(249, 250, 242, 0.9);
-  --border-transparent: rgba(0, 0, 0, 0.05);
-}
-
 /* Lazy Loading States */
-.lazy-load {
-  opacity: 0;
-  transition: opacity 0.3s;
-}
-
+.lazy-load,
 .lazy-loaded {
   opacity: 1;
 }
@@ -57,24 +25,23 @@
   align-items: center;
   padding: 2rem;
   min-height: 80vh;
-  background: var(--hero-bg);
+  background: var(--color-page-bg);
   max-width: 1900px;
   margin: 0 auto;
   position: relative;
 }
 
 .orbit-content {
-  max-width: 40px;
   justify-self: start;
 }
 
 .hero-title {
-  text-align: -webkit-left;
+  text-align: left;
   font-size: clamp(1.5rem, 4vw, 4rem);
   line-height: 1.1;
   margin-bottom: 1.5rem;
   font-weight: 550;
-  color: var(--text-dark);
+  color: var(--color-text-primary);
 }
 
 .line {
@@ -82,49 +49,23 @@
 }
 
 .highlight {
-  color: var(--text-dark);
+  color: var(--color-text-primary);
   position: relative;
 }
 
 .glow {
-  background: linear-gradient(90deg, var(--accent-2));
+  background: var(--color-accent-1);
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
-  background-size: 200% auto;
-  animation: gradientShift 3s ease-in-out infinite;
-}
-
-@keyframes gradientShift {
-
-  0%,
-  100% {
-    background-position: 0% 50%;
-  }
-
-  50% {
-    background-position: 100% 50%;
-  }
 }
 
 .hero-desc {
   font-size: clamp(1.1rem, 1.5vw, 1.4rem);
-  color: var(--text-gray);
+  color: var(--color-text-muted);
   margin-bottom: 2.5rem;
   line-height: 1.6;
   max-width: 90%;
-}
-
-.hero-cta {
-  background: var(--hero-primary);
-  color: var(--hero-text-light);
-  padding: 1rem 2.5rem;
-  border-radius: 50px;
-  font-size: 1.1rem;
-  font-weight: 600;
-  box-shadow: 0 8px 24px var(--shadow-dark);
-  text-decoration: none;
-  display: inline-block;
 }
 
 /* Hero Image */
@@ -151,14 +92,14 @@
   width: 100%;
   max-width: 650px;
   height: 550px;
-  background: var(--placeholder-bg);
+  background: var(--color-card-bg);
   border-radius: 28px;
   display: flex;
   align-items: center;
   justify-content: center;
-  color: var(--text-muted);
+  color: var(--color-text-secondary);
   font-size: 1.2rem;
-  border: 2px dashed var(--border-gray);
+  border: 2px dashed var(--color-border);
 }
 
 /* Enhanced Responsive Design */
@@ -249,11 +190,6 @@
   .floating-img {
     border-radius: 16px;
   }
-
-  .hero-cta {
-    padding: 0.875rem 2rem;
-    font-size: 1rem;
-  }
 }
 
 @media (max-width: 480px) {
@@ -273,20 +209,13 @@
   .floating-img {
     border-radius: 12px;
   }
-
-  .hero-cta {
-    padding: 0.75rem 1.75rem;
-    font-size: 0.95rem;
-    width: 100%;
-    max-width: 280px;
-  }
 }
 
 /* ===============================
    BBB SECTION
    =============================== */
 .bbb-section {
-  background: linear-gradient(to bottom, var(--hero-bg) 30%, var(--accent-1) 30%);
+  background: linear-gradient(to bottom, var(--color-page-bg) 30%, var(--color-accent-2) 30%);
   padding: 50px 20px;
   position: relative;
 }
@@ -302,7 +231,7 @@
 .bbb-item {
   display: flex;
   flex-direction: column;
-  background: var(--card-bg);
+  background: var(--color-card-bg);
   border-radius: 12px;
   overflow: hidden;
   box-shadow: 0 10px 30px var(--shadow-light);
@@ -312,8 +241,8 @@
 }
 
 .bbb-banner {
-  background-color: var(--accent-2);
-  color: var(--hero-text-light);
+  background-color: var(--color-accent-1);
+  color: var(--color-text-light);
   padding: 15px 25px;
   font-size: 1.5rem;
   font-weight: 800;
@@ -341,7 +270,7 @@
 
 .bbb-content p {
   font-size: 1rem;
-  color: var(--text-gray);
+  color: var(--color-text-muted);
   line-height: 1.6;
   margin: 0;
 }
@@ -375,7 +304,7 @@
 @media (max-width: 768px) {
   .bbb-section {
     padding: 50px 15px;
-    background: linear-gradient(to bottom, var(--hero-bg) 15%, var(--accent-1) 15%);
+    background: linear-gradient(to bottom, var(--color-page-bg) 15%, var(--color-accent-2) 15%);
   }
 
   .bbb-container {
@@ -388,14 +317,14 @@
    =============================== */
 .impact-wave {
   padding: 6rem 5%;
-  background: var(--hero-bg);
+  background: var(--color-page-bg);
   text-align: center;
 }
 
 .wave-container h2 {
   font-size: 2.5rem;
   margin-bottom: 3rem;
-  color: var(--text-dark);
+  color: var(--color-text-primary);
 }
 
 .stats-orbit {
@@ -406,12 +335,12 @@
 }
 
 .stat-orbit {
-  background: var(--card-bg);
+  background: var(--color-card-bg);
   padding: 2rem 1.5rem;
   border-radius: 20px;
   min-width: 180px;
   box-shadow: 0 6px 20px rgba(0, 0, 0, 0.05);
-  border: 1px solid var(--card-stroke);
+  border: 1px solid var(--color-border);
 }
 
 .count-wrap {
@@ -424,7 +353,6 @@
 .count {
   font-size: 3rem;
   font-weight: 800;
-  color: var(--accent-2);
   display: inline-block;
   line-height: 1;
 }
@@ -432,13 +360,12 @@
 .plus {
   font-size: 2rem;
   font-weight: 700;
-  color: var(--accent-2);
   line-height: 1;
 }
 
 .stat-orbit p {
   margin-top: 0.75rem;
-  color: var(--text-gray-light);
+  color: var(--color-text-muted);
   font-size: 1rem;
   max-width: 220px;
   line-height: 1.5;
@@ -495,7 +422,7 @@
    =============================== */
 .philosophy-constellation {
   padding: 6rem 5%;
-  background: var(--hero-bg);
+  background: var(--color-page-bg);
   text-align: center;
   position: relative;
   overflow: hidden;
@@ -504,14 +431,14 @@
 .constellation-title {
   font-size: 2.5rem;
   font-weight: 700;
-  color: var(--text-dark);
+  color: var(--color-text-primary);
   margin-bottom: 3rem;
   position: relative;
 }
 
 .constellation-sub-title {
   font-size: 1.2rem;
-  color: var(--text-dark);
+  color: var(--color-text-primary);
   margin-bottom: 4rem;
   max-width: 700px;
   margin-left: auto;
@@ -523,14 +450,14 @@
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
-  gap:7rem;
+  gap: 7rem;
   max-width: 1400px;
   margin: 0 auto;
 }
 
 .star-card {
-  background: var(--card-bg);
-  border: 1px solid var(--card-stroke);
+  background: var(--color-card-bg);
+  border: 1px solid var(--color-border);
   border-radius: 20px;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.06);
   padding: 2.5rem 2rem;
@@ -548,26 +475,26 @@
 
 .star-icon {
   font-size: 1.7rem;
-  color: var(--accent-2);
+  color: var(--color-accent-1);
   margin-bottom: 0.8rem;
 }
 
 .star-icon-circle {
   font-size: 2.2rem;
-  color: var(--accent-2);
+  color: var(--color-accent-1);
 }
 
 .star-card h3 {
   font-size: 1.35rem;
   font-weight: 700;
-  color: var(--text-dark);
+  color: var(--color-text-primary);
   margin: 0.75rem 0 1rem;
   line-height: 1.4;
 }
 
 .star-card p {
   font-size: 1rem;
-  color: var(--text-gray);
+  color: var(--color-text-muted);
   line-height: 1.6;
   margin: 0 0 1.2rem;
   flex-grow: 1;
@@ -576,8 +503,8 @@
 .meta {
   font-size: 0.90rem;
   font-weight: 550;
-  color: var(--text-black);
-  background: var(--placeholder-bg);
+  color: var(--color-text-primary);
+  background: var(--color-border);
   padding: 8px 16px;
   border-radius: 30px;
   letter-spacing: 0.2px;
@@ -634,7 +561,7 @@
    =============================== */
 .pulse-section {
   padding: 6rem 5%;
-  background: var(--hero-bg);
+  background: var(--color-page-bg);
 }
 
 .pulse-grid {
@@ -646,21 +573,20 @@
 }
 
 .pulse-newsletter {
-  background: var(--card-bg);
-  padding: 2rem;
-  border-radius: 16px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
-  border: 1px solid var(--card-stroke);
+  background: var(--color-card-bg);
+  border-radius: 18px;
+  padding: 1.8rem 2rem;
+  box-shadow: 0 6px 28px var(--shadow-light);
 }
 
 .pulse-newsletter h3 {
   font-size: 1.4rem;
   margin-bottom: 0.5rem;
-  color: var(--text-dark);
+  color: var(--color-text-primary);
 }
 
 .pulse-newsletter p {
-  color: var(--text-gray-light);
+  color: var(--color-text-muted);
   margin-bottom: 1.5rem;
 }
 
@@ -672,15 +598,15 @@
 .pulse-form input {
   flex: 1;
   padding: 0.75rem 1rem;
-  border: 1px solid var(--card-stroke);
+  border: 1px solid var(--color-border);
   border-radius: 8px;
   font-size: 1rem;
-  background: var(--hero-text-light);
+  background: var(--color-white);
 }
 
 .pulse-form button {
-  background: var(--hero-primary);
-  color: var(--hero-text-light);
+  background: var(--color-button);
+  color: var(--color-text-light);
   border: none;
   padding: 0 1.25rem;
   border-radius: 8px;
@@ -690,19 +616,18 @@
 }
 
 .pulse-update {
-  background: var(--card-bg);
+  background: var(--color-card-bg);
   border-radius: 18px;
   padding: 1.8rem 2rem;
   box-shadow: 0 6px 28px var(--shadow-light);
   display: flex;
   flex-direction: column;
   gap: 12px;
-  border: 1px solid var(--card-stroke);
 }
 
 .update-badge {
-  background: var(--accent-2);
-  color: var(--hero-text-light);
+  background: var(--color-accent-1);
+  color: var(--color-text-light);
   padding: 4px 12px;
   border-radius: 50px;
   font-size: 0.75rem;
@@ -740,13 +665,13 @@
 
 .update-text h4 a {
   text-decoration: none;
-  color: var(--text-dark);
+  color: var(--color-text-primary);
   font-weight: 700;
   font-size: 1.2rem;
 }
 
 .update-text p {
-  color: var(--text-gray-light);
+  color: var(--color-text-muted);
   margin: 0.75rem 0;
   font-size: 1rem;
   line-height: 1.5;
@@ -754,19 +679,13 @@
 
 .read-more {
   display: inline-block;
-  color: var(--accent-2);
+  color: var(--color-accent-1);
   text-decoration: none;
   font-weight: 600;
   font-size: 0.95rem;
 }
 
 @media (max-width: 768px) {
-  .pulse-form button {
-    width: 100%;
-    padding: 1rem 1.25rem;
-    font-size: 1.05rem;
-  }
-
   .pulse-section {
     padding: 4rem 5%;
   }
@@ -813,11 +732,10 @@
 /* ===============================
    ECOSYSTEM RING (STATIC VERSION)
    =============================== */
-
 .ecosystem-ring {
   text-align: center;
   padding: 5rem 2rem;
-  background: var(--accent-1);
+  background: var(--color-accent-2);
   position: relative;
   overflow: hidden;
 }
@@ -825,7 +743,7 @@
 /* Quote */
 .ring-quote {
   font-size: 1.5rem;
-  color: var(--text-dark);
+  color: var(--color-text-primary);
   font-style: italic;
   margin-bottom: 3rem;
   max-width: 800px;
@@ -840,7 +758,7 @@
 .ring-quote::after {
   content: '"';
   font-size: 3rem;
-  color: var(--accent-shadow);
+  color: var(--shadow-dark);
   position: absolute;
   top: -1rem;
 }
@@ -860,13 +778,13 @@
   position: relative;
 }
 
-/* STATIC LOGO ROW (no animation) */
+/* STATIC LOGO ROW */
 .ring-static {
   display: flex;
-  flex-wrap: wrap;            /* Wrap on small screens */
-  gap: 2rem;                  /* Space between tiles */
-  justify-content: center;    /* Center horizontally */
-  align-items: center;        /* Center vertically */
+  flex-wrap: wrap;
+  gap: 2rem;
+  justify-content: center;
+  align-items: center;
   width: 100%;
   padding: 1rem 0;
 }
@@ -880,11 +798,11 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background: var(--card-bg);
+  background: var(--color-card-bg);
   border-radius: 16px;
   padding: 15px;
   box-shadow: 0 8px 25px var(--shadow-light);
-  border: 1px solid var(--card-stroke);
+  border: 1px solid var(--color-border);
   text-decoration: none;
 }
 
@@ -892,10 +810,6 @@
   max-width: 90%;
   max-height: 85%;
 }
-
-/* ===============================
-   RESPONSIVE ADJUSTMENTS
-   =============================== */
 
 @media (max-width: 768px) {
   .ecosystem-ring {
@@ -931,21 +845,21 @@
    =============================== */
 .redesigned-stories {
   padding: 80px 0;
-  background: var(--hero-bg);
+  background: var(--color-page-bg);
   text-align: center;
 }
 
 .redesigned-stories h2 {
   font-size: 2.5rem;
-  color: var(--text-black);
+  color: var(--color-text-primary);
   font-weight: 700;
   margin-bottom: 60px;
 }
 
-/* STATIC LAYOUT – NO SCROLLING */
+/* STATIC LAYOUT */
 .impact-static {
   display: flex;
-  flex-wrap: wrap;             /* allows wrapping */
+  flex-wrap: wrap;
   justify-content: center;
   gap: 40px;
   padding: 0 20px;
@@ -958,14 +872,9 @@
   height: 440px;
   border-radius: 22px;
   overflow: hidden;
-  background: var(--card-bg);
-  border: 1px solid var(--card-stroke);
+  background: var(--color-card-bg);
+  border: 1px solid var(--color-border);
   text-decoration: none;
-  transform: rotate(-2deg);
-}
-
-.impact-card:nth-child(even) {
-  transform: rotate(2deg);
 }
 
 .impact-card img {
@@ -980,26 +889,14 @@
   bottom: 18px;
   left: 50%;
   transform: translateX(-50%);
-  background: var(--overlay-white);
-  color: var(--text-dark);
+  background: var(--color-white);
+  color: var(--color-text-primary);
   padding: 10px 22px;
   border-radius: 40px;
   font-weight: 600;
   font-size: 0.95rem;
+  opacity: 0.92;
 }
-
-/* View All link */
-.view-all {
-  display: inline-block;
-  margin-top: 30px;
-  font-weight: 600;
-  color: var(--text-dark-gray);
-  text-decoration: none;
-}
-
-/* ===============================
-   RESPONSIVE
-   =============================== */
 
 @media (max-width: 900px) {
   .impact-card {
@@ -1023,14 +920,13 @@
     padding: 8px 16px;
   }
 }
+
 /* ==============================================
    TOOLBOX & EXPERTS SECTION (STATIC VERSION)
    ============================================== */
-
 .toolbox {
   padding: 5rem 2rem;
-  background: var(--hero-bg);
-  border-top: 1px solid var(--border-transparent);
+  background: var(--color-page-bg);
 }
 
 .expert-tool-wrapper {
@@ -1046,14 +942,12 @@
 .tools-orbit,
 .experts-orbit {
   flex: 1;
-  background: var(--card-bg);
+  background: var(--color-card-bg);
   border-radius: 24px;
   padding: 50px 30px;
   text-align: center;
   position: relative;
-  box-shadow:
-    0 10px 40px -10px rgba(0, 0, 0, 0.08),
-    0 0 0 1px var(--card-stroke);
+  border: 1px solid var(--color-primary);
 }
 
 .orbit-header {
@@ -1064,7 +958,7 @@
 .experts-orbit h3 {
   font-size: 1.75rem;
   font-weight: 800;
-  color: var(--text-black);
+  color: var(--color-text-primary);
   margin-bottom: 8px;
   letter-spacing: -0.5px;
 }
@@ -1084,13 +978,13 @@
   width: 75px;
   height: 75px;
   border-radius: 50%;
-  overflow: hidden;                /* Critical fix: keeps images inside circle */
-  background: var(--card-bg);
+  overflow: hidden;
+  background: var(--color-card-bg);
   display: flex;
   align-items: center;
   justify-content: center;
   text-decoration: none;
-  border: 2px solid var(--hero-text-light);
+  border: 2px solid var(--color-white);
   box-shadow: 0 5px 15px var(--shadow-light);
 }
 
@@ -1099,39 +993,23 @@
 .expert-card img {
   width: 100%;
   height: 100%;
-  object-fit: cover;                /* Important: clean crop */
+  object-fit: cover;
 }
 
 /* Text fallback (no image) */
 .tool-text {
   font-size: 0.75rem;
   font-weight: 700;
-  color: var(--text-brown);
+  color: var(--color-text-primary);
   padding: 5px;
 }
 
 .expert-initial {
   font-weight: 800;
-  color: var(--accent-2);
+  color: var(--color-accent-2);
   font-size: 1.2rem;
 }
 
-/* CTA button */
-.view-all-btn {
-  display: block;
-  width: fit-content;
-  margin: 2rem auto 0;
-  padding: 0.8rem 1.8rem;
-  font-size: 0.95rem;
-  background: transparent;
-  color: var(--text-black);
-  border: 1px solid var(--border-light);
-  border-radius: 999px;
-  font-weight: 600;
-  text-decoration: none;
-}
-
-/* Responsive */
 @media (max-width: 900px) {
   .expert-tool-wrapper {
     flex-direction: column;
