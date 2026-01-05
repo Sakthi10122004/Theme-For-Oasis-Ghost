@@ -26,12 +26,12 @@
 }
 
 /* Hero Section */
-.hero-section {
-    padding: 60px 0 50px 0;
-    background-color: var(--color-background-light);
+.heros-section {
+    background-color: var(--color-bg-light);
+    padding: 2rem 0;
 }
 
-.hero-title {
+.heros-title {
     font-size: 2.8rem;
     font-weight: 700;
     text-align: center;
@@ -41,7 +41,7 @@
     animation: fadeIn 0.6s ease-out;
 }
 
-.hero-subtitle {
+.heros-subtitle {
     font-size: 1.1rem;
     text-align: center;
     margin: 0 0 50px 0;
@@ -53,7 +53,7 @@
     animation: fadeIn 0.6s ease-out 0.1s backwards;
 }
 
-.hero-image-wrapper {
+.heros-image-wrapper {
     width: 100%;
     max-width: 1100px;
     margin: 0 auto 40px auto;
@@ -63,7 +63,7 @@
     animation: fadeIn 0.6s ease-out 0.2s backwards;
 }
 
-.hero-image {
+.heros-image {
     width: 100%;
     display: flex;
     justify-content: center;
@@ -72,7 +72,7 @@
 }
     
 
-.hero-context {
+.heros-context {
     font-size: 1.4rem;
     text-align: center;
     margin: 0;
@@ -553,7 +553,7 @@
         gap: 24px;
     }
     
-    .hero-title {
+    .heros-title {
         font-size: 2.2rem;
     }
 }
@@ -564,20 +564,20 @@
         padding: 0 20px;
     }
     
-    .hero-section {
+    .heros-section {
         padding: 40px 0 35px 0;
     }
     
-    .hero-title {
+    .heros-title {
         font-size: 1.8rem;
     }
     
-    .hero-subtitle {
+    .heros-subtitle {
         font-size: 1rem;
         margin-bottom: 35px;
     }
     
-    .hero-context {
+    .heros-context {
         font-size: 1.2rem;
     }
     
@@ -621,15 +621,15 @@
 }
 
 @media (max-width: 480px) {
-    .hero-title {
+    .heros-title {
         font-size: 1.5rem;
     }
     
-    .hero-subtitle {
+    .heros-subtitle {
         font-size: 0.95rem;
     }
-    
-    .hero-context {
+
+    .heros-context {
         font-size: 1.1rem;
     }
     
