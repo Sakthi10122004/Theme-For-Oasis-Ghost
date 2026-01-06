@@ -6,7 +6,7 @@
    PAGE WRAPPER
    ====================================================== */
 .error-page {
-  min-height: 100vh;
+  min-height: 10vh;
   padding: var(--s-lg);
   display: flex;
   justify-content: center;
@@ -17,16 +17,12 @@
 }
 
 /* Floating background shapes */
-.error-page::before,
-.error-page::after {
+.error-page::before {
   content: '';
   position: absolute;
   border-radius: 50%;
   background: rgba(255,255,255,0.1);
   animation: float var(--anim-float) infinite;
-}
-
-.error-page::before {
   width: var(--shape-small);
   height: var(--shape-small);
   top: -100px;
@@ -34,6 +30,11 @@
 }
 
 .error-page::after {
+  content: '';
+  position: absolute;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.1);
+  animation: float var(--anim-float) infinite;
   width: var(--shape-large);
   height: var(--shape-large);
   bottom: -150px;
@@ -49,13 +50,13 @@
 /* ======================================================
    CARD WRAPPER
    ====================================================== */
-.error-page .content-wrapper {
+.content-wrapper {
   background: var(--error-card-bg);
   padding: var(--s-xxl) var(--s-xl);
   border-radius: var(--radius-card);
   box-shadow: 0 20px 60px var(--error-shadow);
   max-width: var(--max-width);
-  width: 100%;
+  width: 35%;
   text-align: center;
   position: relative;
   animation: fadeUp var(--anim-slow);
@@ -69,7 +70,7 @@
 /* ======================================================
    ICON
    ====================================================== */
-.error-page .error-icon {
+.error-icon {
   width: var(--icon-size);
   height: var(--icon-size);
   margin-bottom: var(--s-md);
@@ -84,7 +85,7 @@
 /* ======================================================
    TEXT CONTENT
    ====================================================== */
-.error-page .error-number {
+.error-number {
   font-size: var(--fs-xxl);
   font-weight: var(--fw-black);
   color: var(--error-accent-2);
@@ -119,7 +120,7 @@
 /* ======================================================
    BUTTON
    ====================================================== */
-.error-page .btn-primary {
+.btn-primary {
   display: inline-block;
   padding: var(--s-sm) var(--s-xl);
   background: var(--error-primary);
@@ -134,7 +135,7 @@
   overflow: hidden;
 }
 
-.error-page .btn-primary::before {
+.btn-primary::before {
   content: '';
   position: absolute;
   top: 0;
@@ -145,12 +146,12 @@
   transition: left var(--anim-medium);
 }
 
-.error-page .btn-primary:hover {
+.btn-primary:hover {
   transform: translateY(-2px);
   box-shadow: 0 6px 20px var(--error-shadow-strong);
 }
 
-.error-page .btn-primary:hover::before {
+.btn-primary:hover::before {
   left: 100%;
 }
 
@@ -158,7 +159,7 @@
    RESPONSIVE
    ====================================================== */
 @media (max-width: 768px) {
-  .error-page .error-number {
+  .error-number {
     font-size: var(--fs-xl);
   }
 
@@ -170,11 +171,11 @@
     font-size: var(--fs-xs);
   }
 
-  .error-page .content-wrapper {
+  .content-wrapper {
     padding: var(--s-lg) var(--s-md);
   }
 
-  .error-page .error-icon {
+  .error-icon {
     width: var(--icon-size-mobile);
     height: var(--icon-size-mobile);
   }

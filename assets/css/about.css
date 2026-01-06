@@ -238,10 +238,11 @@
     line-height: 1.7;
     color: var(--color-text-dark);
     font-size: 0.95rem;
-    background: var(--color-background-card);
+    background: var(--color-secondary);
     padding: 25px;
     border-radius: 10px;
     border: 2px solid var(--color-border-light);
+    font-weight: 600;
 }
 
 /* ========== TEAM SECTION ========== */
