@@ -84,6 +84,9 @@
      ====================== */
   --breakpoint-mobile: 768px;
   --breakpoint-tablet: 1024px;
+
+  --nav-transition-out: all 0.1s ease-out;
+  --page-load-cover: rgba(249, 250, 242, 0.98);
 }
 
 /* ======================================================
@@ -112,11 +115,42 @@ html {
 /* ======================================================
    GLOBAL TYPOGRAPHY — INTER FONT FORCE
    ====================================================== */
-html, body, button, input, textarea, select,
-a, p, span, div, ul, li, h1, h2, h3, h4, h5, h6 {
+html,
+body,
+button,
+input,
+textarea,
+select,
+a,
+p,
+span,
+div,
+ul,
+li,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   font-family: var(--gh-font-body) !important;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+/* ======================================================
+   CRITICAL: HARD BLOCK RAW SUBITEMS
+   1. Uses :has() + href attribute (Valid CSS)
+   2. Hides items immediately before JS runs
+   ====================================================== */
+.nebula-nav-horizontal li:has(a[href*="subitem"]),
+.nebula-nav-horizontal li:has(a[href*="has_child"]) {
+  display: none !important;
+}
+
+/* Unblock items ONLY when they are safely inside a submenu */
+.nebula-nav-horizontal .ghost-submenu li {
+  display: block !important;
 }
 
 /* ======================================================
@@ -134,7 +168,7 @@ body.menu-open {
   overflow: hidden;
 }
 
-body::before {
+/* body::before {
   content: '';
   position: fixed;
   top: 0;
@@ -143,7 +177,7 @@ body::before {
   height: var(--header-height);
   background: var(--color-page-bg);
   z-index: 900;
-}
+} */
 
 /* ======================================================
    TYPOGRAPHY UTILITIES
@@ -214,7 +248,8 @@ button {
     background-color 0.2s ease;
 
   will-change: transform;
-  isolation: isolate; /* ✅ allows dropdowns */
+  isolation: isolate;
+  /* ✅ allows dropdowns */
 }
 
 
@@ -242,20 +277,24 @@ button {
    ============================================== */
 .nebula-nav-horizontal {
   flex-grow: 1;
-  display: flex;
+  display: flex !important;
   justify-content: center;
-  visibility: visible;
+  visibility: visible !important;
   min-height: 22px;
-  opacity: 0;
-  transform: none;
-  transition: opacity .35s ease, transform .35s ease;
+  opacity: 1 !important;
+  transform: none !important;
+  transition: none !important;
+  /* NO TRANSITION */
 }
 
-.nebula-nav-horizontal.nav-ready {
+
+
+
+/* .nebula-nav-horizontal.nav-ready {
   visibility: visible;
   opacity: 1;
   transform: translateY(0);
-}
+} */
 
 .nebula-nav-horizontal ul {
   display: flex;
@@ -320,9 +359,8 @@ button {
   }
 }
 
-/* ==============================================
-   HEADER RIGHT ACTIONS & HAMBURGER
-   ============================================== */
+
+
 .header-right-items {
   display: flex;
   align-items: center;
@@ -348,7 +386,7 @@ button {
   cursor: pointer;
   outline: none;
   border-radius: 50%;
- transition:
+  transition:
     transform 0.2s ease,
     box-shadow 0.2s ease,
     background-color 0.2s ease;
@@ -552,7 +590,8 @@ button {
 /* ==============================================
    BUTTON STYLES
    ============================================== */
-.hero-cta, .event-btn {
+.hero-cta,
+.event-btn {
   background: var(--color-button);
   color: var(--color-text-light);
   padding: 1rem 2.5rem;
@@ -562,13 +601,14 @@ button {
   box-shadow: 0 8px 24px var(--shadow-dark);
   text-decoration: none;
   display: inline-block;
- transition:
+  transition:
     transform 0.2s ease,
     box-shadow 0.2s ease,
     background-color 0.2s ease;
 }
 
-.hero-cta:hover, .event-btn:hover {
+.hero-cta:hover,
+.event-btn:hover {
   transform: translateY(-2px);
   box-shadow: 0 4px 16px rgba(28, 28, 28, 0.25);
 }
@@ -592,7 +632,7 @@ button {
   border-radius: var(--radius-button);
   font-weight: 600;
   text-decoration: none;
- transition:
+  transition:
     transform 0.2s ease,
     box-shadow 0.2s ease,
     background-color 0.2s ease;
@@ -764,4 +804,82 @@ button {
     flex-direction: column;
     gap: 0.8rem;
   }
+}
+
+/* NAVBAR NEVER BLINKS */
+/* .nebula-header {
+  z-index: 99999 !important;
+} */
+
+body * .nebula-header,
+body:not(.loaded) .nebula-header {
+  /* opacity: 1 !important; */
+  visibility: visible !important;
+}
+
+
+/* .nebula-nav-horizontal {
+  transition: opacity 0.08s ease-out !important;
+} */
+
+
+/* MOBILE DROPDOWN SMOOTH FIX */
+@media (max-width: 768px) {
+  .nebula-nav-horizontal.active .menu-item-has-children .ghost-submenu {
+    max-height: 0 !important;
+    opacity: 0 !important;
+    transform: translateY(-8px) !important;
+    transition: all 0.3s ease-out !important;
+    overflow: hidden !important;
+  }
+
+  .nebula-nav-horizontal.active .menu-item-has-children.open .ghost-submenu {
+    max-height: 400px !important;
+    opacity: 1 !important;
+    transform: translateY(0) !important;
+  }
+}
+
+/* PAGE TRANSITION FIX - NO MORE FLASH */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Cover entire screen during load */
+body {
+  position: relative;
+}
+
+/* ULTRA-FAST PAGE COVER */
+body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background: var(--page-load-cover);
+  z-index: 9999;
+  opacity: 1;
+  transition: opacity 0.08s cubic-bezier(0.4, 0, 1, 1);
+  /* SNAP */
+}
+
+body.loaded::before,
+body *::before {
+  opacity: 0 !important;
+  pointer-events: none !important;
+}
+
+
+
+
+/* body.loaded::before {
+  opacity: 0;
+  pointer-events: none;
+} */
+
+/* Fade nav during page change */
+.nebula-nav-horizontal {
+  transition: opacity 0.3s ease-out !important;
 }

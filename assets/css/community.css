@@ -11,56 +11,61 @@
     margin: 0 auto;
     padding: 0 1.5rem;
 }
-
 /* =========================
-   HERO — EDITORIAL STYLE
-   ========================= */
+   HERO — PERFECT EDITORIAL
+========================= */
 
 .hero {
   background: var(--color-page-bg);
-  padding: 2rem 0 2rem;
+  padding: 2rem 0 5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 /* Text block */
 .hero-container {
   max-width: 980px;
-  margin: 0 auto 3.5rem;
+  margin: 0 auto 3rem;
   padding: 0 1.5rem;
   text-align: center;
 }
 
 .hero-title {
-  font-size: clamp(1.6rem, 4.5vw, 2.6rem);
-  font-weight: 700;
+  font-size: clamp(1.8rem, 4.8vw, 2.8rem);
+  font-weight: 800;
   line-height: 1.15;
   color: var(--color-text-primary);
-  margin-bottom: 1.25rem;
+  margin-bottom: 1.3rem;
 }
 
 .hero-highlight {
   background: var(--color-accent-2);
+  padding: 0.15em 0.35em;
+  border-radius: 0.4rem;
 }
 
 .hero-description {
   max-width: 720px;
   margin: 0 auto;
-  font-size: 1.1rem;
-  line-height: 1.6;
+  font-size: 1.15rem;
+  line-height: 1.7;
   color: var(--color-text-muted);
 }
 
-/* Image block (wide) */
+/* Image block (perfectly centered) */
 .hero-image-wrapper {
-  max-width: 1340px;
+  max-width: 1200px;
 }   
 
 .hero-image {
   width: 100%;
   height: auto;
+  max-height: 560px;
   display: block;
   border-radius: 2.2rem;
   object-fit: cover;
-  box-shadow: 0 26px 60px rgba(0, 0, 0, 0.18);
+  box-shadow: 0 28px 70px rgba(0, 0, 0, 0.18);
 }
 
 /* CTA */
@@ -72,33 +77,43 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  padding: 0.9rem 2.6rem;
+  padding: 1rem 2.8rem;
   font-size: 1rem;
   font-weight: 700;
   border-radius: var(--radius-button);
   background: var(--color-button);
   color: var(--color-text-light);
   text-decoration: none;
-  box-shadow: 0 10px 24px var(--shadow-dark);
+  box-shadow: 0 12px 28px var(--shadow-dark);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.hero-cta:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 18px 36px var(--shadow-dark);
 }
 
 /* =========================
    MOBILE TUNING
-   ========================= */
+========================= */
 @media (max-width: 480px) {
   .hero {
-    padding: 4.5rem 0 4rem;
+    padding: 4rem 0 4rem;
   }
 
   .hero-description {
     font-size: 1rem;
   }
 
+  .hero-image-wrapper {
+    margin: 2.5rem auto 2.5rem;
+  }
+
   .hero-image {
     border-radius: 1.4rem;
+    max-height: 380px;
   }
 }
-
 
 /* Sections Common Styles */
 .who-section,

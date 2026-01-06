@@ -2,6 +2,37 @@ document.documentElement.classList.add("js-ready");
 (function ($) {
     "use strict";
 
+    /* =============================================================
+       DOM LOCK: IMMEDIATE MUTATION OBSERVER
+       Intercepts and hides raw [subitem] nodes before paint.
+       Works faster than document.ready.
+    ============================================================= */
+    const hideRawNode = (node) => {
+        if (node.nodeType === 1 && node.tagName === 'LI') {
+            const text = node.textContent;
+            if (text.includes('[subitem]') || text.includes('[has_child]')) {
+                node.style.display = 'none'; // Inline hard hide
+                node.dataset.ghostLocked = "true";
+            }
+        }
+    };
+
+    // 1. Scan currently existing nodes (Instant catch)
+    document.querySelectorAll('.nebula-nav-horizontal li').forEach(hideRawNode);
+
+    // 2. Observe for new nodes (Parser catch)
+    new MutationObserver((mutations) => {
+        mutations.forEach((m) => {
+            m.addedNodes.forEach((n) => {
+                if (n.nodeType === 1) {
+                    if (n.tagName === 'LI') hideRawNode(n);
+                    if (n.querySelectorAll) n.querySelectorAll('li').forEach(hideRawNode);
+                }
+            });
+        });
+    }).observe(document.documentElement, { childList: true, subtree: true });
+
+
     function multiLevel(targetElement = "ul li", mLhasSubmenu = "mL-has-submenu", mLsubmenu = "mL-submenu") {
         let mLparentDetecttext = "[-]";
         let mLchildDetectText = "[--]";
@@ -85,6 +116,10 @@ document.documentElement.classList.add("js-ready");
     function remove_text(textClass, replacedText) {
         const mLhasSubmenuEL = $(`.${textClass}`);
         mLhasSubmenuEL.each(function () {
+            // UNLOCK VISIBILITY: Remove inline display block
+            $(this).css('display', '');
+            $(this).find('li').css('display', '');
+
             if ($(this).find("> a:first").text().includes(replacedText)) {
                 let textFull = $(this).find("> a:first").text();
                 $(this).find("> a:first").text(textFull.replaceAll(replacedText, ""));
@@ -101,23 +136,23 @@ document.documentElement.classList.add("js-ready");
         }
 
         // FIXED: Allow first click to navigate, icon click to toggle dropdown
-        $(document).on('click', '.menu-item-has-children > a', function(e) {
+        $(document).on('click', '.menu-item-has-children > a', function (e) {
             if (window.innerWidth <= 768) {
                 const $parent = $(this).parent();
                 const $icon = $(e.target).closest('svg');
-                
+
                 // If clicking the dropdown icon (SVG), toggle submenu
                 if ($icon.length > 0) {
                     e.preventDefault();
                     e.stopPropagation();
-                    
+
                     // Close other dropdowns
                     $('.menu-item-has-children').not($parent).removeClass('open');
                     $('.ghost-submenu').not($parent.find('.ghost-submenu')).slideUp(200);
-                    
+
                     // Toggle this dropdown
                     $parent.toggleClass('open');
-                    $parent.find('> .ghost-submenu').slideToggle(200);
+                    // $parent.find('> .ghost-submenu').slideToggle(200);
                 } else {
                     // If clicking the link text, allow navigation (don't prevent default)
                     // Just close any open dropdowns
@@ -127,19 +162,25 @@ document.documentElement.classList.add("js-ready");
         });
 
         // Close dropdowns when clicking outside
-        $(document).on('click', function(e) {
+        $(document).on('click', function (e) {
             if (window.innerWidth <= 768 && !$(e.target).closest('.menu-item-has-children').length) {
                 closeAllDropdowns();
             }
         });
 
         // Handle window resize
-        $(window).on('resize', function() {
-            if (window.innerWidth > 768) {
-                // Reset mobile states on desktop
-                $('.menu-item-has-children').removeClass('open');
-                $('.ghost-submenu').removeAttr('style');
-            }
+        $(window).on('resize', function () {
+            let resizeTimeout;
+            $(window).off('resize').on('resize', function () {
+                clearTimeout(resizeTimeout);
+                resizeTimeout = setTimeout(function () {
+                    if (window.innerWidth > 768) {
+                        $('.menu-item-has-children').removeClass('open');
+                        $('.ghost-submenu').removeAttr('style');
+                    }
+                }, 200);
+            });
+
         });
     }
 
@@ -151,7 +192,7 @@ document.documentElement.classList.add("js-ready");
 
         if ($hamburger.length && $mobileNav.length) {
             // Toggle mobile menu
-            $hamburger.on('click', function(e) {
+            $hamburger.on('click', function (e) {
                 e.stopPropagation();
                 $(this).toggleClass('active');
                 $mobileNav.toggleClass('active');
@@ -159,12 +200,12 @@ document.documentElement.classList.add("js-ready");
             });
 
             // Close menu when clicking on a link (except dropdown parents)
-            $mobileNav.on('click', 'a', function(e) {
+            $mobileNav.on('click', 'a', function (e) {
                 // Don't close if clicking dropdown icon
                 if ($(e.target).closest('svg').length > 0) {
                     return;
                 }
-                
+
                 // Close menu for regular links
                 if (!$(this).parent().hasClass('menu-item-has-children')) {
                     $mobileNav.removeClass('active');
@@ -174,7 +215,7 @@ document.documentElement.classList.add("js-ready");
             });
 
             // Close menu when clicking outside
-            $(document).on('click', function(e) {
+            $(document).on('click', function (e) {
                 if (!$mobileNav.is(e.target) && $mobileNav.has(e.target).length === 0 && !$hamburger.is(e.target)) {
                     $mobileNav.removeClass('active');
                     $hamburger.removeClass('active');
@@ -183,7 +224,7 @@ document.documentElement.classList.add("js-ready");
             });
 
             // Handle escape key
-            $(document).on('keydown', function(e) {
+            $(document).on('keydown', function (e) {
                 if (e.key === 'Escape' && $mobileNav.hasClass('active')) {
                     $mobileNav.removeClass('active');
                     $hamburger.removeClass('active');
@@ -283,26 +324,60 @@ document.documentElement.classList.add("js-ready");
         if (options.multi_level) {
             multiLevel();
         }
-       
+
         // Initialize mobile functionality
         initMobileDropdown();
         initMobileMenu();
     }
 
+    // BULLETPROOF GHOST DROPDOWN INIT
+    function initGhostDropdown() {
+        // Wait for nav to exist AND have content
+        const checkNavReady = setInterval(function () {
+            const $nav = $('.nebula-nav-horizontal ul li');
+            if ($nav.length > 3 && $nav.first().text().trim()) {
+                clearInterval(checkNavReady);
+
+                // RUN DROPDOWN MAGIC
+                ghost_dropdown({
+                    targetElement: ".nebula-nav-horizontal ul li",
+                    hasChildrenClasses: "menu-item-has-children",
+                    hasChildDetectText: "[has_child]",
+                    submenuUlClasses: "ghost-submenu",
+                    subitemDetectText: "[subitem]",
+                    subitemLiClasses: "subitem",
+                    multi_level: true,
+                    mega_menu: false
+                });
+
+                // Nav ready
+                document.querySelector(".nebula-nav-horizontal")?.classList.add("nav-ready");
+
+                console.log("✅ Ghost dropdown initialized!");
+            }
+        }, 50); // Check every 50ms
+    }
+
+
+    // Start when DOM ready
     $(document).ready(function () {
-        ghost_dropdown({
-            targetElement: ".nebula-nav-horizontal ul li",
-            hasChildrenClasses: "menu-item-has-children",
-            hasChildDetectText: "[has_child]",
-            submenuUlClasses: "ghost-submenu",
-            subitemDetectText: "[subitem]",
-            subitemLiClasses: "subitem",
-            multi_level: true,
-            mega_menu: false
-        });
-
-        document.querySelector(".nebula-nav-horizontal")?.classList.add("nav-ready");
-
+        initGhostDropdown();
     });
+    // end setTimeout - WAITS for WP menu to render
+
+
 
 }(jQuery));
+
+
+// MAX SPEED - NO WAITS
+$(window).on('load pageshow', function () {
+    $('body').addClass('loaded');
+    $('.nebula-nav-horizontal').css({ opacity: 1, visibility: 'visible' });
+});
+
+
+// NO DELAYS
+setTimeout(() => {
+    $('body').addClass('loaded');
+}, 10); // 10ms only
