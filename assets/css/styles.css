@@ -105,6 +105,7 @@ html:not(.js-ready) *::after {
 html {
   scroll-behavior: smooth;
   font-size: 16px;
+  scroll-padding-top: 0px;
 }
 
 /* ======================================================
@@ -198,6 +199,7 @@ button {
   transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
   will-change: transform;
   isolation: isolate;
+  /* contain: layout paint; */
 }
 
 .header-content {
@@ -606,7 +608,6 @@ button {
   border-radius: var(--radius-button);
   font-size: 1.1rem;
   font-weight: 600;
-  box-shadow: 0 8px 24px var(--shadow-dark);
   text-decoration: none;
   display: inline-block;
   transition: transform 0.2s ease, box-shadow 0.2s ease;
@@ -837,4 +838,25 @@ body.loaded::before,
 body *::before {
   opacity: 0 !important;
   pointer-events: none !important;
+}
+
+
+/* ==============================================
+   FINAL FIX: Remove page-load overlay from render tree
+   (Prevents scroll jump under fixed header)
+   ============================================== */
+
+body.loaded::before {
+  display: none !important;
+}
+body::after {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: calc(var(--header-height) + 1.5rem);
+  background: var(--color-page-bg);
+  z-index: 999;      /* below header (1000), above content */
+  pointer-events: none;
 }

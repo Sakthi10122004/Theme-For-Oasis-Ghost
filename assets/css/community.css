@@ -210,78 +210,117 @@
     font-weight: 700;
 }
 
-/* Join Section */
-.join-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 32px;
+/* ===============================
+   JOIN SECTION
+   =============================== */
+
+.join-section {
+  padding: 4rem 0;
 }
 
-.join-card {
-    background-color: var(--color-card-bg);
-    padding: 40px;
-    border-radius: 12px;
-    border: 1px solid var(--color-border-light);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    will-change: transform;
+/* ===============================
+   SINGLE HORIZONTAL CARD
+   =============================== */
+
+.join-card-horizontal {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 48px;
+  align-items: center;
+
+  background-color: var(--color-card-bg);
+  padding: 48px;
+  border-radius: 20px;
+  border: 1px solid var(--color-border-light);
 }
 
-.join-card.cta-card {
-    background-color: var(--color-accent-2);
-    border-color: var(--color-secondary-accent);
-    text-align: center;
+/* ===============================
+   LEFT CONTENT
+   =============================== */
+
+.join-left h3 {
+  font-size: 24px;
+  font-weight: 700;
+  margin-bottom: 16px;
 }
 
-.join-card h3 {
-    font-size: 24px;
-    font-weight: 700;
-    margin: 0 0 16px;
+.join-left p {
+  font-size: 16px;
+  line-height: 1.6;
+  margin-bottom: 24px;
+  opacity: 0.9;
 }
 
-.join-card p {
-    font-size: 16px;
-    line-height: 1.6;
-    margin: 0 0 24px;
-    opacity: 0.9;
-}
+/* ===============================
+   ORDERED STEPS (1, 2, 3)
+   =============================== */
 
 .join-steps {
-    list-style: none;
-    counter-reset: steps;
-    padding: 0;
-    margin: 0;
+  list-style: decimal;
+  padding-left: 20px;
+  margin: 0;
 }
 
 .join-steps li {
-    counter-increment: steps;
-    font-size: 15px;
-    line-height: 1.6;
-    margin-bottom: 12px;
-    padding-left: 32px;
-    position: relative;
+  font-size: 15px;
+  line-height: 1.7;
+  margin-bottom: 14px;
+  font-weight: 500;
 }
 
-.join-steps li::before {
-    content: counter(steps);
-    position: absolute;
-    left: 0;
-    width: 24px;
-    height: 24px;
-    background-color: var(--color-bg-dark);
-    color: var(--color-accent-1);
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 12px;
-    font-weight: 700;
+.join-steps li a {
+  color: var(--color-text-primary);
+  text-decoration: underline;
 }
 
-.join-steps a {
-    color: var(--color-text-dark);
-    text-decoration: underline;
-    transition: color 0.2s ease;
+.join-steps li a:hover {
+  color: var(--color-accent-1);
 }
+
+/* ===============================
+   RIGHT CTA PANEL
+   =============================== */
+
+.join-right {
+  background-color: var(--color-accent-2);
+  border-radius: 16px;
+  padding: 36px;
+  text-align: center;
+}
+
+.join-right h3 {
+  font-size: 22px;
+  font-weight: 700;
+  margin-bottom: 14px;
+}
+
+.join-right p {
+  font-size: 15px;
+  line-height: 1.6;
+  margin-bottom: 24px;
+  opacity: 0.9;
+}
+
+.join-right .hero-cta {
+  display: inline-block;
+}
+
+/* ===============================
+   RESPONSIVE (MOBILE)
+   =============================== */
+
+@media (max-width: 768px) {
+  .join-card-horizontal {
+    grid-template-columns: 1fr;
+    gap: 32px;
+    padding: 32px;
+  }
+
+  .join-right {
+    text-align: left;
+  }
+}
+
 
 /* Testimonials */
 .testimonial-columns {
