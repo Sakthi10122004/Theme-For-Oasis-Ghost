@@ -1,26 +1,23 @@
 document.documentElement.classList.add("js-ready");
-(function ($) {
+(function($) {
     "use strict";
 
     /* =============================================================
        DOM LOCK: IMMEDIATE MUTATION OBSERVER
        Intercepts and hides raw [subitem] nodes before paint.
-       Works faster than document.ready.
     ============================================================= */
     const hideRawNode = (node) => {
         if (node.nodeType === 1 && node.tagName === 'LI') {
             const text = node.textContent;
             if (text.includes('[subitem]') || text.includes('[has_child]')) {
-                node.style.display = 'none'; // Inline hard hide
+                node.style.display = 'none';
                 node.dataset.ghostLocked = "true";
             }
         }
     };
 
-    // 1. Scan currently existing nodes (Instant catch)
     document.querySelectorAll('.nebula-nav-horizontal li').forEach(hideRawNode);
 
-    // 2. Observe for new nodes (Parser catch)
     new MutationObserver((mutations) => {
         mutations.forEach((m) => {
             m.addedNodes.forEach((n) => {
@@ -32,7 +29,6 @@ document.documentElement.classList.add("js-ready");
         });
     }).observe(document.documentElement, { childList: true, subtree: true });
 
-
     function multiLevel(targetElement = "ul li", mLhasSubmenu = "mL-has-submenu", mLsubmenu = "mL-submenu") {
         let mLparentDetecttext = "[-]";
         let mLchildDetectText = "[--]";
@@ -40,8 +36,7 @@ document.documentElement.classList.add("js-ready");
         let mLparentIndex = [];
         let mLparentLen = 0;
 
-        // Find Dropdown parent element
-        $(`${targetElement} li`).each(function (index, element) {
+        $(`${targetElement} li`).each(function(index, element) {
             if ($(this).text().includes(mLparentDetecttext)) {
                 mLparentIndex.push(index);
                 mLparentLen++;
@@ -60,7 +55,7 @@ document.documentElement.classList.add("js-ready");
         for (let i = 0; i < mLparentLen; i++) {
             elIndex = 0;
 
-            $(`${targetElement} li`).each(function (index, element) {
+            $(`${targetElement} li`).each(function(index, element) {
                 let mLsubitem = $(this).text().includes(mLchildDetectText);
 
                 if (mLsubitem) {
@@ -83,9 +78,10 @@ document.documentElement.classList.add("js-ready");
         }
 
         let lastMlElementIndex = 0;
-        let lastChildIndex = 0, lastChildElementText;
+        let lastChildIndex = 0,
+            lastChildElementText;
 
-        $(`${targetElement} li`).each(function (index, element) {
+        $(`${targetElement} li`).each(function(index, element) {
             let lastMlElement = $(this).text().includes(lastMlElementText);
 
             if (lastMlElement) {
@@ -115,8 +111,7 @@ document.documentElement.classList.add("js-ready");
 
     function remove_text(textClass, replacedText) {
         const mLhasSubmenuEL = $(`.${textClass}`);
-        mLhasSubmenuEL.each(function () {
-            // UNLOCK VISIBILITY: Remove inline display block
+        mLhasSubmenuEL.each(function() {
             $(this).css('display', '');
             $(this).find('li').css('display', '');
 
@@ -127,86 +122,69 @@ document.documentElement.classList.add("js-ready");
         });
     }
 
-    // Mobile dropdown functionality
     function initMobileDropdown() {
-        // Close all dropdowns
         function closeAllDropdowns() {
             $('.menu-item-has-children').removeClass('open');
             $('.ghost-submenu').slideUp(200);
         }
 
-        // FIXED: Allow first click to navigate, icon click to toggle dropdown
-        $(document).on('click', '.menu-item-has-children > a', function (e) {
+        $(document).on('click', '.menu-item-has-children > a', function(e) {
             if (window.innerWidth <= 768) {
                 const $parent = $(this).parent();
                 const $icon = $(e.target).closest('svg');
 
-                // If clicking the dropdown icon (SVG), toggle submenu
                 if ($icon.length > 0) {
                     e.preventDefault();
                     e.stopPropagation();
 
-                    // Close other dropdowns
                     $('.menu-item-has-children').not($parent).removeClass('open');
                     $('.ghost-submenu').not($parent.find('.ghost-submenu')).slideUp(200);
 
-                    // Toggle this dropdown
                     $parent.toggleClass('open');
-                    // $parent.find('> .ghost-submenu').slideToggle(200);
                 } else {
-                    // If clicking the link text, allow navigation (don't prevent default)
-                    // Just close any open dropdowns
                     closeAllDropdowns();
                 }
             }
         });
 
-        // Close dropdowns when clicking outside
-        $(document).on('click', function (e) {
+        $(document).on('click', function(e) {
             if (window.innerWidth <= 768 && !$(e.target).closest('.menu-item-has-children').length) {
                 closeAllDropdowns();
             }
         });
 
-        // Handle window resize
-        $(window).on('resize', function () {
+        $(window).on('resize', function() {
             let resizeTimeout;
-            $(window).off('resize').on('resize', function () {
+            $(window).off('resize').on('resize', function() {
                 clearTimeout(resizeTimeout);
-                resizeTimeout = setTimeout(function () {
+                resizeTimeout = setTimeout(function() {
                     if (window.innerWidth > 768) {
                         $('.menu-item-has-children').removeClass('open');
                         $('.ghost-submenu').removeAttr('style');
                     }
                 }, 200);
             });
-
         });
     }
 
-    // Mobile menu functionality
     function initMobileMenu() {
         const $hamburger = $('.hamburger');
         const $mobileNav = $('.nebula-nav-horizontal');
         const $body = $('body');
 
         if ($hamburger.length && $mobileNav.length) {
-            // Toggle mobile menu
-            $hamburger.on('click', function (e) {
+            $hamburger.on('click', function(e) {
                 e.stopPropagation();
                 $(this).toggleClass('active');
                 $mobileNav.toggleClass('active');
                 $body.css('overflow', $mobileNav.hasClass('active') ? 'hidden' : '');
             });
 
-            // Close menu when clicking on a link (except dropdown parents)
-            $mobileNav.on('click', 'a', function (e) {
-                // Don't close if clicking dropdown icon
+            $mobileNav.on('click', 'a', function(e) {
                 if ($(e.target).closest('svg').length > 0) {
                     return;
                 }
 
-                // Close menu for regular links
                 if (!$(this).parent().hasClass('menu-item-has-children')) {
                     $mobileNav.removeClass('active');
                     $hamburger.removeClass('active');
@@ -214,8 +192,7 @@ document.documentElement.classList.add("js-ready");
                 }
             });
 
-            // Close menu when clicking outside
-            $(document).on('click', function (e) {
+            $(document).on('click', function(e) {
                 if (!$mobileNav.is(e.target) && $mobileNav.has(e.target).length === 0 && !$hamburger.is(e.target)) {
                     $mobileNav.removeClass('active');
                     $hamburger.removeClass('active');
@@ -223,8 +200,7 @@ document.documentElement.classList.add("js-ready");
                 }
             });
 
-            // Handle escape key
-            $(document).on('keydown', function (e) {
+            $(document).on('keydown', function(e) {
                 if (e.key === 'Escape' && $mobileNav.hasClass('active')) {
                     $mobileNav.removeClass('active');
                     $hamburger.removeClass('active');
@@ -235,7 +211,6 @@ document.documentElement.classList.add("js-ready");
     }
 
     function ghost_dropdown(options) {
-        // Default options
         let defultOptions = {
             targetElement: ".nebula-nav-horizontal ul li",
             hasChildrenClasses: "menu-item-has-children",
@@ -246,16 +221,12 @@ document.documentElement.classList.add("js-ready");
             subitemLiClasses: "subitem"
         }
 
-        // Merge defaultOptions 
         options = {
             ...defultOptions,
             ...options
         }
 
-        // Target Element
         let targetElement = options.targetElement;
-
-        // Default value 
         let hasChildrenClasses = options.hasChildrenClasses;
         let hasChildDetectText = options.hasChildDetectText;
         let hasChildrenIcon = options.hasChildrenIcon;
@@ -263,7 +234,6 @@ document.documentElement.classList.add("js-ready");
         let subitemDetectText = options.subitemDetectText;
         let subitemLiClasses = options.subitemLiClasses;
 
-        // Declare necessary variable
         let parentEl = $(targetElement);
         let childEL = $(targetElement);
         let parentLen = 0;
@@ -274,8 +244,7 @@ document.documentElement.classList.add("js-ready");
 
         $(`${targetElement}`).parent().addClass('ghost-dropdown-menu');
 
-        // Find Dropdown parent element
-        parentEl.each(function (index, element) {
+        parentEl.each(function(index, element) {
             if ($(this).text().indexOf(hasChildDetectText) >= 0) {
                 parentIndex.push(index);
                 parentLen++;
@@ -290,12 +259,10 @@ document.documentElement.classList.add("js-ready");
         $(targetElement).css("opacity", "1");
         $(`.${hasChildrenClasses}`).append(hasChildrenIcon);
 
-        // Using loop to reach dropdown parent element
         for (let i = 0; i < parentLen; i++) {
             elIndex = 0;
 
-            // Find subitem element
-            childEL.each(function (index, element) {
+            childEL.each(function(index, element) {
                 let subitem = $(this).text().includes(subitemDetectText);
 
                 if (subitem) {
@@ -325,20 +292,16 @@ document.documentElement.classList.add("js-ready");
             multiLevel();
         }
 
-        // Initialize mobile functionality
         initMobileDropdown();
         initMobileMenu();
     }
 
-    // BULLETPROOF GHOST DROPDOWN INIT
     function initGhostDropdown() {
-        // Wait for nav to exist AND have content
-        const checkNavReady = setInterval(function () {
+        const checkNavReady = setInterval(function() {
             const $nav = $('.nebula-nav-horizontal ul li');
             if ($nav.length > 3 && $nav.first().text().trim()) {
                 clearInterval(checkNavReady);
 
-                // RUN DROPDOWN MAGIC
                 ghost_dropdown({
                     targetElement: ".nebula-nav-horizontal ul li",
                     hasChildrenClasses: "menu-item-has-children",
@@ -350,34 +313,22 @@ document.documentElement.classList.add("js-ready");
                     mega_menu: false
                 });
 
-                // Nav ready
                 document.querySelector(".nebula-nav-horizontal")?.classList.add("nav-ready");
-
-                console.log("✅ Ghost dropdown initialized!");
             }
-        }, 50); // Check every 50ms
+        }, 50);
     }
 
-
-    // Start when DOM ready
-    $(document).ready(function () {
+    $(document).ready(function() {
         initGhostDropdown();
     });
-    // end setTimeout - WAITS for WP menu to render
-
-
 
 }(jQuery));
 
-
-// MAX SPEED - NO WAITS
-$(window).on('load pageshow', function () {
+$(window).on('load pageshow', function() {
     $('body').addClass('loaded');
     $('.nebula-nav-horizontal').css({ opacity: 1, visibility: 'visible' });
 });
 
-
-// NO DELAYS
 setTimeout(() => {
     $('body').addClass('loaded');
-}, 10); // 10ms only
+}, 10);
