@@ -60,7 +60,7 @@
 .event-row {
   display: flex;
   align-items: center;
-  background: var(--color-white-cards);
+  background: var(--color-secondary);
   border-radius: 16px;
   padding: 1.8rem;
   gap: 1.5rem;

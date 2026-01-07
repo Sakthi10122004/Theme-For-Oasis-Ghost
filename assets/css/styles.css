@@ -40,10 +40,10 @@
   /* ======================
      BUTTON COLORS
      ====================== */
-  --color-button: var(--color-primary);
+  --color-button: #000000;
   --color-button-light: rgba(28, 28, 28, 0.15);
   --color-button-lighter: rgba(28, 28, 28, 0.08);
-  --color-accent-2-light: rgba(253, 99, 90, 0.15);
+  --color-accent-2-light: rgba(237, 62, 41, 0.08);
   --color-accent-2-lighter: rgba(253, 99, 90, 0.08);
 
   /* ======================
@@ -58,8 +58,8 @@
   /* ======================
      TYPOGRAPHY
      ====================== */
-  --gh-font-heading: 'Inter';
-  --gh-font-body: 'Inter';
+  --gh-font-heading: 'Inter', sans-serif;
+  --gh-font-body: 'Inter', sans-serif;
 
   /* ======================
      LAYOUT & SPACING
@@ -73,18 +73,15 @@
   --radius-button: 50px;
 
   /* ======================
-     ANIMATIONS (can be deprecated later)
+     ANIMATIONS
      ====================== */
   --anim-fast: .3s ease;
   --anim-medium: .5s ease;
   --anim-slow: .6s ease-out;
 
   /* ======================
-     RESPONSIVE BREAKPOINTS
+     TRANSITION UTILS
      ====================== */
-  --breakpoint-mobile: 768px;
-  --breakpoint-tablet: 1024px;
-
   --nav-transition-out: all 0.1s ease-out;
   --page-load-cover: rgba(249, 250, 242, 0.98);
 }
@@ -92,9 +89,7 @@
 /* ======================================================
    GLOBAL RESET
    ====================================================== */
-*,
-*::before,
-*::after {
+*, *::before, *::after {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
@@ -107,32 +102,15 @@ html:not(.js-ready) *::after {
   animation: none !important;
 }
 
-
 html {
   scroll-behavior: smooth;
+  font-size: 16px;
 }
 
 /* ======================================================
-   GLOBAL TYPOGRAPHY — INTER FONT FORCE
+   GLOBAL TYPOGRAPHY
    ====================================================== */
-html,
-body,
-button,
-input,
-textarea,
-select,
-a,
-p,
-span,
-div,
-ul,
-li,
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
+html, body, button, input, textarea, select, a, p, span, div, ul, li, h1, h2, h3, h4, h5, h6 {
   font-family: var(--gh-font-body) !important;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -140,8 +118,6 @@ h6 {
 
 /* ======================================================
    CRITICAL: HARD BLOCK RAW SUBITEMS
-   1. Uses :has() + href attribute (Valid CSS)
-   2. Hides items immediately before JS runs
    ====================================================== */
 .nebula-nav-horizontal li:has(a[href*="subitem"]),
 .nebula-nav-horizontal li:has(a[href*="has_child"]) {
@@ -168,29 +144,12 @@ body.menu-open {
   overflow: hidden;
 }
 
-/* body::before {
-  content: '';
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: var(--header-height);
-  background: var(--color-page-bg);
-  z-index: 900;
-} */
-
 /* ======================================================
    TYPOGRAPHY UTILITIES
    ====================================================== */
-.subtitle,
-.section-title,
-.card-title,
-.oasis-subtitle,
-.oasis-card h3,
-.benefit-content strong,
-.join-steps.redesigned-steps li::before,
-.testimonial-subheading,
-strong {
+.subtitle, .section-title, .card-title, .oasis-subtitle, .oasis-card h3, 
+.benefit-content strong, .join-steps.redesigned-steps li::before, 
+.testimonial-subheading, strong {
   font-family: var(--gh-font-heading);
   font-weight: 600;
 }
@@ -201,7 +160,6 @@ strong {
 a {
   text-decoration: none;
   color: inherit;
-  /* transition: color var(--anim-fast); */
 }
 
 img {
@@ -225,44 +183,42 @@ button {
   top: 1rem;
   left: 50%;
   transform: translateX(-50%);
-
   width: 95%;
   max-width: 87.5rem;
   height: var(--header-height);
   box-sizing: border-box;
-
   background: rgba(250, 250, 250, 0.95);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
-
   border: 1px solid var(--color-border-light);
   border-radius: 3.125rem;
   padding: 0.875rem 1.875rem;
-
   box-shadow: 0 8px 25px var(--shadow-dark);
   z-index: 1000;
-
-  transition:
-    transform 0.2s ease,
-    box-shadow 0.2s ease,
-    background-color 0.2s ease;
-
+  transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
   will-change: transform;
   isolation: isolate;
-  /* ✅ allows dropdowns */
 }
-
 
 .header-content {
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 1.5rem;
+  height: 100%;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  /* CRITICAL: Prevents logo from shrinking on laptop screens */
+  flex-shrink: 0; 
 }
 
 .logo img {
   height: 3rem;
   width: auto;
+  max-width: 180px;
 }
 
 .logo span {
@@ -270,6 +226,7 @@ button {
   font-weight: 800;
   color: var(--color-primary);
   font-family: var(--gh-font-heading);
+  white-space: nowrap;
 }
 
 /* ==============================================
@@ -277,24 +234,22 @@ button {
    ============================================== */
 .nebula-nav-horizontal {
   flex-grow: 1;
-  display: flex !important;
+  display: flex;
   justify-content: center;
-  visibility: visible !important;
+  visibility: visible;
   min-height: 22px;
-  opacity: 1 !important;
-  transform: none !important;
-  transition: none !important;
-  /* NO TRANSITION */
+  
+  /* Initial State for Transition */
+  opacity: 0; 
+  transform: translateY(-5px);
+  transition: opacity 0.4s ease, transform 0.4s ease;
 }
 
-
-
-
-/* .nebula-nav-horizontal.nav-ready {
-  visibility: visible;
+/* JS Adds this class to show menu smoothly */
+.nebula-nav-horizontal.nav-ready {
   opacity: 1;
   transform: translateY(0);
-} */
+}
 
 .nebula-nav-horizontal ul {
   display: flex;
@@ -316,12 +271,10 @@ button {
   color: var(--color-text-primary);
   padding: 0.5rem 1rem;
   border-radius: var(--radius-button);
-  transition:
-    color var(--anim-fast),
-    background-color var(--anim-fast),
-    transform var(--anim-fast);
+  transition: color var(--anim-fast), background-color var(--anim-fast);
   position: relative;
   display: block;
+  white-space: nowrap; /* Prevents wrapping */
 }
 
 .nebula-nav-horizontal a:hover,
@@ -337,7 +290,7 @@ button {
   top: 100%;
   left: 0;
   background: var(--color-surface);
-  min-width: 200px;
+  min-width: 220px;
   border-radius: var(--radius-card);
   box-shadow: 0 8px 25px var(--shadow-dark);
   border: 1px solid var(--color-border-light);
@@ -348,24 +301,42 @@ button {
 }
 
 @media (min-width: 769px) {
-  .nebula-nav-horizontal li:hover>ul {
+  .nebula-nav-horizontal li:hover > ul {
     display: flex;
   }
 
   .nebula-nav-horizontal li ul a {
     border-radius: 0;
-    padding: 0.625rem 1rem;
+    padding: 0.75rem 1.25rem;
     font-size: 0.95rem;
   }
 }
 
+/* --- LAPTOP / TABLET RESPONSIVE FIX (769px to 1150px) --- */
+/* CRITICAL: Prevents layout breaking on medium screens */
+@media (min-width: 769px) and (max-width: 1150px) {
+  .nebula-nav-horizontal ul {
+    gap: 0.3rem; /* Tighter gap */
+  }
+  .nebula-nav-horizontal a {
+    padding: 0.5rem 0.6rem; /* Smaller padding */
+    font-size: 0.9rem;
+  }
+  .header-content {
+    gap: 0.5rem;
+  }
+}
 
-
+/* ==============================================
+   HEADER RIGHT ACTIONS
+   ============================================== */
 .header-right-items {
   display: flex;
   align-items: center;
   gap: 1rem;
   margin-left: auto;
+  /* CRITICAL: Prevents buttons from squeezing/jumping */
+  flex-shrink: 0; 
 }
 
 .mobile-extra-items {
@@ -376,20 +347,17 @@ button {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 2rem;
-  height: 2rem;
+  width: 2.5rem;
+  height: 2.5rem;
   padding: 0;
   border: 0;
-  font-size: 1.5rem;
+  font-size: 1.2rem;
   color: inherit;
   background-color: transparent;
   cursor: pointer;
   outline: none;
   border-radius: 50%;
-  transition:
-    transform 0.2s ease,
-    box-shadow 0.2s ease,
-    background-color 0.2s ease;
+  transition: transform 0.2s ease, background-color 0.2s ease;
 }
 
 .gh-search-icon:hover {
@@ -409,11 +377,8 @@ button {
   color: var(--color-text-light);
   font-weight: 700;
   font-size: 0.95rem;
-  transition:
-    transform 0.2s ease,
-    box-shadow 0.2s ease,
-    background-color 0.2s ease;
-
+  white-space: nowrap;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 .profile-icon:hover,
@@ -422,32 +387,32 @@ button {
   box-shadow: 0 4px 16px rgba(28, 28, 28, 0.25);
 }
 
+/* Hamburger */
 .hamburger {
   display: none;
   flex-direction: column;
   justify-content: space-between;
-  width: 1.875rem;
-  height: 1.875rem;
+  width: 1.75rem;
+  height: 1.25rem;
   background: none;
   cursor: pointer;
   padding: 0;
   z-index: 1001;
+  margin-left: 0.5rem;
+  flex-shrink: 0;
 }
 
 .hamburger span {
   width: 100%;
-  height: 0.1875rem;
+  height: 2px;
   background: var(--color-primary);
-  border-radius: 0.125rem;
-  transition:
-    transform 0.2s ease,
-    box-shadow 0.2s ease,
-    background-color 0.2s ease;
+  border-radius: 2px;
+  transition: transform 0.2s ease, opacity 0.2s ease;
   transform-origin: center;
 }
 
 .hamburger.active span:nth-child(1) {
-  transform: rotate(45deg) translate(0.375rem, 0.375rem);
+  transform: rotate(45deg) translate(5px, 5px);
 }
 
 .hamburger.active span:nth-child(2) {
@@ -455,11 +420,11 @@ button {
 }
 
 .hamburger.active span:nth-child(3) {
-  transform: rotate(-45deg) translate(0.5rem, -0.5rem);
+  transform: rotate(-45deg) translate(6px, -6px);
 }
 
 /* ==============================================
-   RESPONSIVE NAVIGATION (TABLET & MOBILE)
+   RESPONSIVE NAVIGATION (MOBILE <= 768px)
    ============================================== */
 @media (max-width: 768px) {
   .header-right-items {
@@ -472,21 +437,29 @@ button {
 
   .nebula-header {
     border-radius: 1rem;
-    padding: 0.75rem 1.25rem;
-    min-height: 72px;
+    padding: 0.75rem 1rem; 
+    min-height: 60px;
+    top: 0.5rem; 
+  }
+
+  .logo img {
+    height: 2.2rem;
   }
 
   .nebula-nav-horizontal {
     display: none;
   }
 
+  /* Active Menu State */
   .nebula-nav-horizontal.active {
     display: flex !important;
     position: fixed;
-    top: calc(var(--header-height) + 0.625rem);
+    top: calc(var(--header-height) + 0.5rem);
     left: 0;
     width: 100%;
+    /* CSS Height Fallback & Dynamic Height */
     height: calc(100vh - var(--header-height));
+    height: calc(100dvh - var(--header-height)); 
     background: rgba(250, 250, 250, 0.98);
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
@@ -496,7 +469,10 @@ button {
     flex-direction: column;
     justify-content: flex-start;
     border-top: 1px solid var(--color-border-light);
-    padding-bottom: calc(env(safe-area-inset-bottom) + 6rem);
+    /* Safe area for iPhone home bar */
+    padding-bottom: calc(env(safe-area-inset-bottom) + 4rem);
+    opacity: 1 !important; /* Force visible on mobile active */
+    transform: none !important;
   }
 
   .nebula-nav-horizontal.active ul {
@@ -510,31 +486,41 @@ button {
     width: 100%;
     border-bottom: 1px solid var(--color-border-light);
     margin: 0;
+    position: relative; /* Context for arrow */
   }
 
   .nebula-nav-horizontal.active ul li a {
     width: 100%;
-    padding: 1rem 0;
-    font-size: 1.1rem;
+    padding: 1.1rem 3rem 1.1rem 0; /* Padding Right for Arrow space */
+    font-size: 1.15rem;
     text-align: left;
     border-radius: 0;
     background: transparent !important;
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-start;
     align-items: center;
   }
 
-  .nebula-nav-horizontal.active .menu-item-has-children>a>svg {
+  /* Dropdown Arrows (SVG) */
+  .nebula-nav-horizontal.active .menu-item-has-children > a > svg {
+    display: block !important;
     cursor: pointer;
     transition: transform 0.3s ease;
-    flex-shrink: 0;
-    margin-left: auto;
+    position: absolute;
+    right: 0;
+    top: 1.1rem;
+    width: 24px;
+    height: 24px;
+    z-index: 50; /* Ensure clickability */
+    padding: 4px; /* Touch target size */
+    box-sizing: content-box;
   }
 
-  .nebula-nav-horizontal.active .menu-item-has-children.open>a>svg {
+  .nebula-nav-horizontal.active .menu-item-has-children.open > a > svg {
     transform: rotate(180deg);
   }
 
+  /* Submenus */
   .nebula-nav-horizontal.active li ul,
   .nebula-nav-horizontal.active ul.ghost-submenu {
     position: relative;
@@ -545,22 +531,28 @@ button {
     padding: 0 0 0.5rem 0;
     display: none;
   }
+  
+  /* Show submenu when 'open' class is added via JS */
+  .nebula-nav-horizontal.active .menu-item-has-children.open > ul {
+    display: block !important;
+  }
 
   .nebula-nav-horizontal.active li ul li {
     border-bottom: none;
   }
 
   .nebula-nav-horizontal.active li ul a {
-    padding: 0.6rem 0 0.6rem 1.5rem;
+    padding: 0.75rem 0 0.75rem 1.5rem;
     font-size: 1rem;
-    color: var(--color-text-primary);
+    color: var(--color-text-secondary);
     font-weight: 500;
   }
 
+  /* Mobile Extra Items (Search & Join) */
   .nebula-nav-horizontal.active .mobile-extra-items {
     display: flex;
     flex-direction: column;
-    margin-top: 2.5rem;
+    margin-top: 2rem;
     gap: 1rem;
     padding-top: 1.5rem;
     border-top: 2px solid var(--color-border-light);
@@ -570,11 +562,18 @@ button {
   .nebula-nav-horizontal.active .mobile-extra-items .gh-search-icon {
     width: 100%;
     height: auto;
-    padding: 1rem;
+    padding: 0.8rem;
     border-radius: var(--radius-button);
-    border: 2px solid var(--color-border-light);
-    font-size: 1.2rem;
-    justify-content: center;
+    border: 1px solid var(--color-border-light);
+    font-size: 1.1rem;
+    justify-content: flex-start; 
+    gap: 10px;
+    color: var(--color-text-primary);
+  }
+  
+  .gh-search-icon span {
+    font-family: var(--gh-font-body);
+    font-weight: 600;
   }
 
   .nebula-nav-horizontal.active .mobile-extra-items .profile-icon,
@@ -587,11 +586,20 @@ button {
   }
 }
 
+/* Small Mobile Tweak (iPhone SE size) */
+@media (max-width: 400px) {
+  .logo span {
+    font-size: 1.2rem;
+  }
+  .nebula-header {
+    padding: 0.75rem;
+  }
+}
+
 /* ==============================================
    BUTTON STYLES
    ============================================== */
-.hero-cta,
-.event-btn {
+.hero-cta, .event-btn {
   background: var(--color-button);
   color: var(--color-text-light);
   padding: 1rem 2.5rem;
@@ -601,14 +609,10 @@ button {
   box-shadow: 0 8px 24px var(--shadow-dark);
   text-decoration: none;
   display: inline-block;
-  transition:
-    transform 0.2s ease,
-    box-shadow 0.2s ease,
-    background-color 0.2s ease;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
-.hero-cta:hover,
-.event-btn:hover {
+.hero-cta:hover, .event-btn:hover {
   transform: translateY(-2px);
   box-shadow: 0 4px 16px rgba(28, 28, 28, 0.25);
 }
@@ -632,10 +636,7 @@ button {
   border-radius: var(--radius-button);
   font-weight: 600;
   text-decoration: none;
-  transition:
-    transform 0.2s ease,
-    box-shadow 0.2s ease,
-    background-color 0.2s ease;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 .view-all-btn:hover {
@@ -806,51 +807,19 @@ button {
   }
 }
 
-/* NAVBAR NEVER BLINKS */
-/* .nebula-header {
-  z-index: 99999 !important;
-} */
-
+/* ==============================================
+   PAGE UTILS & TRANSITIONS
+   ============================================== */
 body * .nebula-header,
 body:not(.loaded) .nebula-header {
-  /* opacity: 1 !important; */
   visibility: visible !important;
 }
 
-
-/* .nebula-nav-horizontal {
-  transition: opacity 0.08s ease-out !important;
-} */
-
-
-/* MOBILE DROPDOWN SMOOTH FIX */
-@media (max-width: 768px) {
-  .nebula-nav-horizontal.active .menu-item-has-children .ghost-submenu {
-    max-height: 0 !important;
-    opacity: 0 !important;
-    transform: translateY(-8px) !important;
-    transition: all 0.3s ease-out !important;
-    overflow: hidden !important;
-  }
-
-  .nebula-nav-horizontal.active .menu-item-has-children.open .ghost-submenu {
-    max-height: 400px !important;
-    opacity: 1 !important;
-    transform: translateY(0) !important;
-  }
-}
-
-/* PAGE TRANSITION FIX - NO MORE FLASH */
-html {
-  scroll-behavior: smooth;
-}
-
-/* Cover entire screen during load */
+/* PAGE LOAD COVER */
 body {
   position: relative;
 }
 
-/* ULTRA-FAST PAGE COVER */
 body::before {
   content: '';
   position: fixed;
@@ -862,24 +831,10 @@ body::before {
   z-index: 9999;
   opacity: 1;
   transition: opacity 0.08s cubic-bezier(0.4, 0, 1, 1);
-  /* SNAP */
 }
 
 body.loaded::before,
 body *::before {
   opacity: 0 !important;
   pointer-events: none !important;
-}
-
-
-
-
-/* body.loaded::before {
-  opacity: 0;
-  pointer-events: none;
-} */
-
-/* Fade nav during page change */
-.nebula-nav-horizontal {
-  transition: opacity 0.3s ease-out !important;
 }
