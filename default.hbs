@@ -59,11 +59,9 @@
           🔍︎
         </button>
 
-        {{#if @member}}
-          <a href="#/portal/account" class="join-cta">Account</a>
-        {{else}}
-          <a href="#/portal/signup" class="join-cta">Get started</a>
-        {{/if}}
+        
+          <a href="{{@site.url}}/get-started" class="join-cta">Get started</a>
+        
       </div>
     </nav>
 
@@ -73,11 +71,9 @@
         🔍︎
       </button>
 
-      {{#if @member}}
-        <a href="#/portal/account" class="join-cta">Account</a>
-      {{else}}
-        <a href="#/portal/signup" class="join-cta">Get started</a>
-      {{/if}}
+      
+        <a href="{{@site.url}}/get-started" class="join-cta">Get started</a>
+      
     </div>
 
     <!-- Hamburger -->

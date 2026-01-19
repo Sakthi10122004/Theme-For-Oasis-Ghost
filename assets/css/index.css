@@ -754,24 +754,6 @@
   position: relative;
   padding: 0 2rem;
 }
-
-.ring-quote::before,
-.ring-quote::after {
-  content: '"';
-  font-size: 3rem;
-  color: var(--shadow-dark);
-  position: absolute;
-  top: -1rem;
-}
-
-.ring-quote::before {
-  left: 0;
-}
-
-.ring-quote::after {
-  right: 0;
-}
-
 /* Logo Container */
 .ring-logos {
   width: 100%;
