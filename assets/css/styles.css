@@ -758,8 +758,8 @@ button {
 }
 
 .footer-social a svg {
-  width: 20px;
-  height: 20px;
+  /* width: 20px;
+  height: 20px; */
   fill: currentColor;
 }
 
@@ -773,19 +773,19 @@ button {
 .footer-copy {
   grid-column: 2;
   text-align: center;
-  font-size: 0.9rem;
+  font-size: 1.0rem;
   color: var(--color-text-secondary);
   margin: 0;
   white-space: nowrap; /* Keeps copyright on one line */
-  font-weight: 500;
+  font-weight: 1000;
 }
 
 /* --- COLUMN 3: EMAIL --- */
 .footer-mail {
   grid-column: 3;
   justify-self: end; /* Aligns to far right */
-  font-size: 0.95rem;
-  font-weight: 600;
+  font-size: 1.0rem;
+  font-weight: 1000;
   color: var(--color-text-primary);
   text-decoration: none;
   transition: color 0.2s ease;
