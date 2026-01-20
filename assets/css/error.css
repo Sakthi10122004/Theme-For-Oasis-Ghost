@@ -1,182 +1,50 @@
-/* ======================================================
-   404 PAGE THEME VARIABLES (USING STRICT COLOR PALETTE)
-   ====================================================== */
-
-/* ======================================================
-   PAGE WRAPPER
-   ====================================================== */
+/* =========================
+   PAGE NOT AVAILABLE
+========================= */
 .error-page {
-  min-height: 10vh;
-  padding: var(--s-lg);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background: var(--error-bg);
-  position: relative;
-  overflow: hidden;
+    min-height: 80vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--color-background-light);
+    padding: 40px 20px;
 }
 
-/* Floating background shapes */
-.error-page::before {
-  content: '';
-  position: absolute;
-  border-radius: 50%;
-  background: rgba(255,255,255,0.1);
-  animation: float var(--anim-float) infinite;
-  width: var(--shape-small);
-  height: var(--shape-small);
-  top: -100px;
-  left: -100px;
+.error-container {
+    max-width: 520px;
+    text-align: center;
 }
 
-.error-page::after {
-  content: '';
-  position: absolute;
-  border-radius: 50%;
-  background: rgba(255,255,255,0.1);
-  animation: float var(--anim-float) infinite;
-  width: var(--shape-large);
-  height: var(--shape-large);
-  bottom: -150px;
-  right: -150px;
-  animation-delay: 2s;
+/* =========================
+   TITLE
+========================= */
+.error-title {
+    font-size: 1.9rem;
+    font-weight: 700;
+    margin-bottom: 16px;
+    color: var(--color-text-dark);
 }
 
-@keyframes float {
-  0%,100% { transform: translate(0,0) scale(1); }
-  50%     { transform: translate(30px,30px) scale(1.1); }
+/* =========================
+   MESSAGE
+========================= */
+.error-message {
+    font-size: 1rem;
+    line-height: 1.6;
+    color: var(--color-text-muted);
+    margin-bottom: 32px;
 }
 
-/* ======================================================
-   CARD WRAPPER
-   ====================================================== */
-.content-wrapper {
-  background: var(--error-card-bg);
-  padding: var(--s-xxl) var(--s-xl);
-  border-radius: var(--radius-card);
-  box-shadow: 0 20px 60px var(--error-shadow);
-  max-width: var(--max-width);
-  width: 35%;
-  text-align: center;
-  position: relative;
-  animation: fadeUp var(--anim-slow);
+/* =========================
+   ACTION
+========================= */
+.error-actions {
+    display: flex;
+    justify-content: center;
 }
 
-@keyframes fadeUp {
-  from { opacity: 0; transform: translateY(30px); }
-  to   { opacity: 1; transform: translateY(0); }
-}
-
-/* ======================================================
-   ICON
-   ====================================================== */
-.error-icon {
-  width: var(--icon-size);
-  height: var(--icon-size);
-  margin-bottom: var(--s-md);
-  animation: bounce var(--anim-bounce) infinite;
-}
-
-@keyframes bounce {
-  0%,100% { transform: translateY(0); }
-  50%     { transform: translateY(-20px); }
-}
-
-/* ======================================================
-   TEXT CONTENT
-   ====================================================== */
-.error-number {
-  font-size: var(--fs-xxl);
-  font-weight: var(--fw-black);
-  color: var(--error-accent-2);
-  line-height: 1;
-  margin-bottom: var(--s-xs);
-  text-shadow: 4px 4px 0 rgba(253,99,90,0.15);
-  animation: glitch 3s infinite;
-}
-
-@keyframes glitch {
-  0%,100% { transform: translate(0); }
-  20%     { transform: translate(-2px, 2px); }
-  40%     { transform: translate(-2px, -2px); }
-  60%     { transform: translate(2px, 2px); }
-  80%     { transform: translate(2px, -2px); }
-}
-
-.error-page h1 {
-  font-size: var(--fs-lg);
-  font-weight: var(--fw-bold);
-  color: var(--error-text-dark);
-  margin-bottom: var(--s-sm);
-}
-
-.error-page p {
-  font-size: var(--fs-sm);
-  color: var(--error-text-medium);
-  margin-bottom: var(--s-lg);
-  line-height: 1.6;
-}
-
-/* ======================================================
-   BUTTON
-   ====================================================== */
-.btn-primary {
-  display: inline-block;
-  padding: var(--s-sm) var(--s-xl);
-  background: var(--error-primary);
-  color: var(--error-text-light);
-  border-radius: var(--radius-button);
-  font-size: var(--fs-sm);
-  font-weight: var(--fw-semibold);
-  text-decoration: none;
-  transition: var(--anim-fast);
-  box-shadow: 0 4px 15px var(--error-shadow-strong);
-  position: relative;
-  overflow: hidden;
-}
-
-.btn-primary::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
-  transition: left var(--anim-medium);
-}
-
-.btn-primary:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 6px 20px var(--error-shadow-strong);
-}
-
-.btn-primary:hover::before {
-  left: 100%;
-}
-
-/* ======================================================
-   RESPONSIVE
-   ====================================================== */
-@media (max-width: 768px) {
-  .error-number {
-    font-size: var(--fs-xl);
-  }
-
-  .error-page h1 {
-    font-size: var(--fs-md);
-  }
-
-  .error-page p {
-    font-size: var(--fs-xs);
-  }
-
-  .content-wrapper {
-    padding: var(--s-lg) var(--s-md);
-  }
-
-  .error-icon {
-    width: var(--icon-size-mobile);
-    height: var(--icon-size-mobile);
-  }
+.error-actions .btn-primary {
+    padding: 12px 26px;
+    border-radius: 6px;
+    font-weight: 600;
 }
