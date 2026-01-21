@@ -205,14 +205,31 @@
 
 <section class="pulse-section">
   <div class="pulse-grid">
-    <div class="pulse-newsletter">
-      <h3>We're building tech that works for good. From grassroots innovation to open-source breakthroughs, our newsletter curates real stories, useful tools, and lessons from the field.</h3>
-      <p>Join the movement, stay in the loop.</p>
-      <form data-members-form="subscribe" class="pulse-form">
-        <input data-members-email type="email" placeholder="you@nonprofit.org" required aria-label="Email address">
-        <button type="submit">Subscribe</button>
-      </form>
-    </div>
+  {{#if @member}}
+  <div class="pulse-newsletter pulse-joined">
+    <h3>You're already part of the Network.</h3>
+    <p>Thank you for supporting our work.</p>
+  </div>
+{{else}}
+  <div class="pulse-newsletter">
+    <h3>
+      We're building tech that works for good. From grassroots innovation to open-source breakthroughs,
+      our newsletter curates real stories, useful tools, and lessons from the field.
+    </h3>
+    <p>Join the movement, stay in the loop.</p>
+
+    <form data-members-form="subscribe" class="pulse-form">
+      <input
+        data-members-email
+        type="email"
+        placeholder="you@nonprofit.org"
+        required
+        aria-label="Email address"
+      >
+      <button type="submit">Subscribe</button>
+    </form>
+  </div>
+{{/if}}
 
     {{#get "posts" filter="tag:latest" limit="1" include="tags,feature_image"}}
       {{#foreach posts}}
