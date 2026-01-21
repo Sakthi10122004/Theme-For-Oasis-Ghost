@@ -84,7 +84,8 @@
 
 /* Wrapper adjustments when cards exist */
 .page-content:has(.kg-file-card) {
-    max-width: 1400px !important; /* Wider container for grid */
+    max-width: 1400px !important;
+    /* Wider container for grid */
     padding: 0 2rem !important;
 }
 
@@ -109,29 +110,31 @@
     border-radius: 16px !important;
     border: 2px solid var(--color-border) !important;
     padding: 1.25rem !important;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.06) !important;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.06) !important;
     transition: transform 0.2s ease, box-shadow 0.2s ease !important;
-    
+
     /* Critical for Uniform Size & Alignment */
     width: 100% !important;
-    height: 100% !important; /* Stretches to fill grid cell */
+    height: 100% !important;
+    /* Stretches to fill grid cell */
     box-sizing: border-box !important;
-    margin: 0 !important; /* FIX: Removes any default 'first-child' margins */
+    margin: 0 !important;
+    /* FIX: Removes any default 'first-child' margins */
 }
 
 .kg-file-card:hover {
-    box-shadow: 0 15px 35px rgba(0,0,0,.1) !important;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, .1) !important;
     transform: translateY(-3px) !important;
 }
 
 /* TOP IMAGE / PDF PREVIEW */
 .kg-file-card-icon {
     /* Responsive Width */
-    width: 100% !important; 
-    
+    width: 100% !important;
+
     /* Fixed Height for Uniformity */
-    height: 240px !important; 
-    
+    height: 240px !important;
+
     border-radius: 12px !important;
     overflow: hidden !important;
     display: flex !important;
@@ -141,14 +144,15 @@
     border: 2px solid var(--color-border) !important;
     margin-bottom: 1rem !important;
     position: relative !important;
-    flex-shrink: 0 !important; /* Prevent shrinking */
+    flex-shrink: 0 !important;
+    /* Prevent shrinking */
 }
 
 .kg-file-card-icon canvas,
 .kg-file-card-icon img {
     width: 100% !important;
     height: 100% !important;
-    object-fit: cover !important; 
+    object-fit: cover !important;
     object-position: top center !important;
 }
 
@@ -158,15 +162,18 @@
     font-size: 1.1rem !important;
     font-weight: 700 !important;
     color: var(--color-text-dark) !important;
-    margin: 0 0 0.5rem 0 !important; /* Added bottom margin */
+    margin: 0 0 0.5rem 0 !important;
+    /* Added bottom margin */
     padding: 0 0.5rem !important;
-    
+
     /* Consistency for alignment */
     display: -webkit-box !important;
     -webkit-line-clamp: 2 !important;
+    line-clamp: 2 !important;
     -webkit-box-orient: vertical !important;
     overflow: hidden !important;
-    min-height: 2.4rem !important; /* Ensures 1-line titles align with 2-line titles */
+    min-height: 2.4rem !important;
+    /* Ensures 1-line titles align with 2-line titles */
 }
 
 /* Clean up Ghost defaults */
@@ -186,9 +193,9 @@
     align-items: center !important;
     width: 100% !important;
     text-decoration: none !important;
-    
+
     /* FIX: Pushes link to the bottom of the card */
-    margin-top: auto !important; 
+    margin-top: auto !important;
 }
 
 .kg-file-card a::after {
@@ -210,9 +217,9 @@
         grid-template-columns: repeat(2, 1fr) !important;
         gap: 1.5rem !important;
     }
-    
+
     .kg-file-card-icon {
-        height: 220px !important; 
+        height: 220px !important;
     }
 }
 
@@ -236,6 +243,6 @@
     }
 
     .kg-file-card-icon {
-        height: 250px !important; 
+        height: 250px !important;
     }
 }
