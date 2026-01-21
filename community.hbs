@@ -166,11 +166,18 @@
             {{#foreach posts}}
               <div class="partner-item" title="{{title}}">
                 {{#if feature_image}}
-                  <img
+                 <img
                     src="{{img_url feature_image size="s"}}"
+                    srcset="
+                        {{img_url feature_image size="xs"}} 200w,
+                        {{img_url feature_image size="s"}} 300w,
+                        {{img_url feature_image size="m"}} 600w
+                    "
+                    sizes="(max-width: 768px) 120px, 160px"
                     alt="{{title}}"
                     loading="lazy"
-                  >
+                    onerror="this.onerror=null;this.src='{{asset "images/partner-placeholder.svg"}}';"
+/>
                 {{else}}
                   <span>{{title}}</span>
                 {{/if}}

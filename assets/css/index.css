@@ -903,9 +903,8 @@
     padding: 8px 16px;
   }
 }
-
 /* ==============================================
-   TOOLBOX & EXPERTS SECTION (STATIC VERSION)
+   TOOLBOX & EXPERTS SECTION
    ============================================== */
 .toolbox {
   padding: 5rem 2rem;
@@ -914,14 +913,12 @@
 
 .expert-tool-wrapper {
   display: flex;
-  justify-content: center;
-  align-items: start;
   gap: 40px;
   max-width: 1200px;
   margin: 0 auto;
 }
 
-/* Orbit Containers */
+/* Orbit containers */
 .tools-orbit,
 .experts-orbit {
   flex: 1;
@@ -929,7 +926,6 @@
   border-radius: 24px;
   padding: 50px 30px;
   text-align: center;
-  position: relative;
   border: 1px solid var(--color-primary);
 }
 
@@ -942,83 +938,97 @@
   font-size: 1.75rem;
   font-weight: 800;
   color: var(--color-text-primary);
-  margin-bottom: 8px;
-  letter-spacing: -0.5px;
 }
 
-/* STATIC GRID LAYOUT */
+/* ==============================================
+   STATIC GRID
+   ============================================== */
 .static-grid {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   gap: 22px;
-  padding: 10px 0 20px;
 }
 
-/* Tool & Expert cards */
+/* ==============================================
+   CIRCULAR CARD (DUAL IMAGE PATTERN)
+   ============================================== */
 .tool-card,
 .expert-card {
   width: 75px;
   height: 75px;
   border-radius: 50%;
+  position: relative;
   overflow: hidden;
-  background: var(--color-card-bg);
+  background: #fff;
   display: flex;
   align-items: center;
   justify-content: center;
   text-decoration: none;
-  border: 2px solid var(--color-white);
-  box-shadow: 0 5px 15px var(--shadow-light);
+  box-shadow: 0 5px 15px rgba(0,0,0,.08);
 }
 
-/* Image fills the circle perfectly */
-.tool-card img,
-.expert-card img {
+/* Blurred background image (fills circle) */
+.tool-card .img-bg,
+.expert-card .img-bg {
+  position: absolute;
+  inset: 0;
   width: 100%;
   height: 100%;
   object-fit: cover;
+  filter: blur(10px);
+  transform: scale(1.2);
+  opacity: 0.9;
 }
 
-/* Text fallback (no image) */
+/* Foreground image (fully visible) */
+.tool-card .img-fg,
+.expert-card .img-fg {
+  position: relative;
+  z-index: 2;
+  max-width: 70%;
+  max-height: 70%;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+}
+
+/* ==============================================
+   FALLBACK TEXT
+   ============================================== */
 .tool-text {
   font-size: 0.75rem;
   font-weight: 700;
   color: var(--color-text-primary);
+  text-align: center;
   padding: 5px;
 }
 
 .expert-initial {
+  font-size: 1.2rem;
   font-weight: 800;
   color: var(--color-accent-2);
-  font-size: 1.2rem;
 }
 
+/* ==============================================
+   RESPONSIVE
+   ============================================== */
 @media (max-width: 900px) {
   .expert-tool-wrapper {
     flex-direction: column;
-    gap: 30px;
-  }
-
-  .tools-orbit,
-  .experts-orbit {
-    width: 100%;
-    padding: 40px 20px;
-  }
-
-  .tools-orbit h3,
-  .experts-orbit h3 {
-    font-size: 1.5rem;
   }
 }
 
 @media (max-width: 480px) {
-  .toolbox {
-    padding: 3rem 1rem;
-  }
-
   .tool-card,
   .expert-card {
     width: 65px;
     height: 65px;
+  }
+
+  .tool-card .img-fg,
+  .expert-card .img-fg {
+    max-width: 75%;
+    max-height: 75%;
   }
 }

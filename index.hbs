@@ -291,7 +291,7 @@
   <h2>Impact Stories</h2>
 
   <div class="impact-static">
-    {{#get "posts" filter="tag:impact-stories" limit="4" include="tags,feature_image"}}
+    {{#get "posts" filter="tag:impact-stories" limit="5" include="tags,feature_image"}}
       {{#if posts}}
 
         {{#foreach posts}}
@@ -320,7 +320,6 @@
 
   <a href="/tag/impact-stories/" class="view-all">View all stories →</a>
 </section>
-
 <section class="toolbox">
   <div class="expert-tool-wrapper">
 
@@ -335,7 +334,14 @@
           {{#foreach posts}}
             <a href="{{url}}" class="tool-card" title="{{title}}">
               {{#if feature_image}}
-                <img 
+                <img
+                  class="img-bg"
+                  src="{{img_url feature_image size="xs"}}"
+                  alt=""
+                  aria-hidden="true"
+                >
+                <img
+                  class="img-fg"
                   src="{{img_url feature_image size="xs"}}"
                   alt="{{title}}"
                 >
@@ -350,7 +356,7 @@
       <a href="/tag/tools/" class="view-all-btn">View all tools</a>
     </div>
 
-    {{!-- EXPERT SECTION --}}
+    {{!-- EXPERTS SECTION --}}
     <div class="experts-orbit">
       <div class="orbit-header">
         <h3>OASIS verified experts</h3>
@@ -361,7 +367,14 @@
           {{#foreach posts}}
             <a href="{{url}}" class="expert-card" title="{{title}}">
               {{#if feature_image}}
-                <img 
+                <img
+                  class="img-bg"
+                  src="{{img_url feature_image size="xs"}}"
+                  alt=""
+                  aria-hidden="true"
+                >
+                <img
+                  class="img-fg"
                   src="{{img_url feature_image size="xs"}}"
                   alt="{{title}}"
                 >
@@ -378,4 +391,3 @@
 
   </div>
 </section>
-
