@@ -1,56 +1,63 @@
-
-/* -------------------------------------------------
+/* =================================================
    BASE LAYOUT
---------------------------------------------------- */
+=================================================== */
 .page-wrapper {
     padding: 3rem 0;
     background: var(--color-bg);
 }
 
-/* -------------------------------------------------
+/* =================================================
    HEADER
---------------------------------------------------- */
+=================================================== */
 .page-header {
     text-align: center;
     margin-bottom: 3rem;
+    padding: 0 1.5rem;
 }
 
 .page-title {
-    font-size: clamp(2.2rem, 4vw, 3.2rem);
+    font-size: clamp(2rem, 5vw, 3.2rem);
     font-weight: 800;
     color: var(--color-text-dark);
     margin-bottom: .75rem;
+    line-height: 1.1;
 }
 
 .page-subtitle {
     color: var(--color-text-light);
     max-width: 650px;
     margin: 0 auto;
+    font-size: 1.1rem;
+    line-height: 1.5;
 }
 
-/* -------------------------------------------------
+/* =================================================
    FEATURE IMAGE
---------------------------------------------------- */
+=================================================== */
 .page-feature-image {
     margin: 0 auto 2rem;
     max-width: 1000px;
+    width: 90%;
 }
 
 .page-feature-image img {
     width: 100%;
+    height: auto;
     border-radius: 12px;
     border: 2px solid var(--color-border);
+    display: block;
 }
 
-/* -------------------------------------------------
+/* =================================================
    CONTENT
---------------------------------------------------- */
+=================================================== */
 .page-content {
     font-size: 1.08rem;
     line-height: 1.75;
     color: var(--color-text);
     max-width: 1000px;
     margin: 0 auto;
+    padding: 0 1.5rem;
 }
 
 .page-content img {
@@ -68,29 +75,32 @@
     border-radius: 4px;
 }
 
-/* -------------------------------------------------
+/* =================================================
    FILE CARDS GRID SYSTEM
---------------------------------------------------- */
+=================================================== */
 .dynamic-content {
     display: block !important;
 }
 
+/* Wrapper adjustments when cards exist */
 .page-content:has(.kg-file-card) {
-    max-width: 100% !important;
-    padding: 0 4rem !important;
+    max-width: 1400px !important; /* Wider container for grid */
+    padding: 0 2rem !important;
 }
 
+/* The Grid */
 .page-content:has(.kg-file-card) .dynamic-content {
     display: grid !important;
-    grid-template-columns: repeat(3, minmax(280px, 1fr)) !important;
-    gap: 2.5rem !important;
-    justify-items: center !important;
+    /* 3 Columns by default */
+    grid-template-columns: repeat(3, 1fr) !important;
+    gap: 2rem !important;
     width: 100% !important;
+    box-sizing: border-box !important;
 }
 
-/* -------------------------------------------------
+/* =================================================
    FILE CARD COMPONENT
---------------------------------------------------- */
+=================================================== */
 .kg-file-card {
     display: flex !important;
     flex-direction: column !important;
@@ -98,20 +108,31 @@
     background: var(--color-bg-alt) !important;
     border-radius: 16px !important;
     border: 2px solid var(--color-border) !important;
-    padding: 1.5rem !important;
+    padding: 1.25rem !important;
     box-shadow: 0 10px 25px rgba(0,0,0,0.06) !important;
-    overflow: hidden !important;
+    transition: transform 0.2s ease, box-shadow 0.2s ease !important;
+    
+    /* Critical for Uniform Size & Alignment */
+    width: 100% !important;
+    height: 100% !important; /* Stretches to fill grid cell */
+    box-sizing: border-box !important;
+    margin: 0 !important; /* FIX: Removes any default 'first-child' margins */
 }
 
 .kg-file-card:hover {
     box-shadow: 0 15px 35px rgba(0,0,0,.1) !important;
+    transform: translateY(-3px) !important;
 }
 
 /* TOP IMAGE / PDF PREVIEW */
 .kg-file-card-icon {
-    width: 360px !important;
-    height: 260px !important;
-    border-radius: 14px !important;
+    /* Responsive Width */
+    width: 100% !important; 
+    
+    /* Fixed Height for Uniformity */
+    height: 240px !important; 
+    
+    border-radius: 12px !important;
     overflow: hidden !important;
     display: flex !important;
     justify-content: center !important;
@@ -119,13 +140,16 @@
     background: var(--color-white) !important;
     border: 2px solid var(--color-border) !important;
     margin-bottom: 1rem !important;
+    position: relative !important;
+    flex-shrink: 0 !important; /* Prevent shrinking */
 }
 
 .kg-file-card-icon canvas,
 .kg-file-card-icon img {
     width: 100% !important;
     height: 100% !important;
-    object-fit: contain !important;
+    object-fit: cover !important; 
+    object-position: top center !important;
 }
 
 /* TITLE */
@@ -134,11 +158,18 @@
     font-size: 1.1rem !important;
     font-weight: 700 !important;
     color: var(--color-text-dark) !important;
-    margin: 0 !important;
-    padding: .4rem 1rem !important;
+    margin: 0 0 0.5rem 0 !important; /* Added bottom margin */
+    padding: 0 0.5rem !important;
+    
+    /* Consistency for alignment */
+    display: -webkit-box !important;
+    -webkit-line-clamp: 2 !important;
+    -webkit-box-orient: vertical !important;
+    overflow: hidden !important;
+    min-height: 2.4rem !important; /* Ensures 1-line titles align with 2-line titles */
 }
 
-/* Remove Ghost extras */
+/* Clean up Ghost defaults */
 .kg-file-card-filename,
 .kg-file-card-caption,
 .kg-file-card-metadata,
@@ -148,37 +179,63 @@
     display: none !important;
 }
 
-/* FILE TYPE */
+/* FILE TYPE LABEL / LINK */
 .kg-file-card a {
     display: flex !important;
     flex-direction: column !important;
     align-items: center !important;
     width: 100% !important;
-    gap: .4rem !important;
+    text-decoration: none !important;
+    
+    /* FIX: Pushes link to the bottom of the card */
+    margin-top: auto !important; 
 }
 
 .kg-file-card a::after {
     content: "PDF Document" !important;
     display: block !important;
-    font-size: .85rem !important;
+    font-size: 0.85rem !important;
     color: var(--color-text-light) !important;
+    margin-top: 0.25rem !important;
+    font-weight: 500 !important;
 }
 
-/* -------------------------------------------------
-   RESPONSIVE GRID
---------------------------------------------------- */
-@media(max-width: 1024px){
-    .page-content:has(.kg-file-card) .dynamic-content{
-        grid-template-columns: repeat(2,1fr) !important;
+/* =================================================
+   RESPONSIVE MEDIA QUERIES
+=================================================== */
+
+/* Tablet (2 Columns) */
+@media (max-width: 1024px) {
+    .page-content:has(.kg-file-card) .dynamic-content {
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 1.5rem !important;
+    }
+    
+    .kg-file-card-icon {
+        height: 220px !important; 
     }
 }
 
-@media(max-width:768px){
+/* Mobile (1 Column) */
+@media (max-width: 768px) {
+    .page-wrapper {
+        padding: 2rem 0;
+    }
+
     .page-content:has(.kg-file-card) {
-        padding: 0 2rem !important;
+        padding: 0 1.5rem !important;
     }
-    .page-content:has(.kg-file-card) .dynamic-content{
+
+    .page-content:has(.kg-file-card) .dynamic-content {
         grid-template-columns: 1fr !important;
         gap: 2rem !important;
+    }
+
+    .kg-file-card {
+        padding: 1.25rem !important;
+    }
+
+    .kg-file-card-icon {
+        height: 250px !important; 
     }
 }
