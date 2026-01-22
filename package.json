@@ -1,0 +1,61 @@
+{
+    "name": "oasis-theme",
+    "version": "1.0.0",
+    "description": "A clean, full-width Ghost theme",
+    "engines": {
+        "ghost": ">=5.0.0"
+    },
+    "author": {
+        "email": "sakthikaribeeran@gmail.com",
+        "name": "Sakthi"
+    },
+    "license": "MIT",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/Sakthi10122004/Theme-For-Oasis-Ghost.git"
+    },
+    "devDependencies": {
+        "autoprefixer": "10.4.7",
+        "gulp": "4.0.2",
+        "gulp-uglify": "3.0.2",
+        "gulp-zip": "5.1.0"
+    },
+    "scripts": {
+        "dev": "gulp",
+        "zip": "gulp zip"
+    },
+    "keywords": [
+        "ghost-theme",
+        "ghost",
+        "theme",
+        "full-width",
+        "minimal"
+    ],
+    "gpm": {
+        "type": "theme",
+        "categories": [
+            "Minimal",
+            "Magazine"
+        ]
+    },
+    "screenshots": {
+        "desktop": "assets/screenshot-desktop.jpg",
+        "mobile": "assets/screenshot-mobile.jpg"
+    },
+  "config": {
+    "custom": {
+        "color_scheme": {
+            "type": "select",
+            "options": [
+                "Light",
+                "Dark",
+                "Auto"
+            ],
+            "default": "Light"
+        }
+    },
+    "posts_per_page": 12,
+    "card_assets": true
+    }
+}
+

@@ -1,0 +1,208 @@
+{{!< default}}
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        document.title = "Oasis Community";
+    });
+</script>
+<main class="oasis-community">
+   <section class="hero">
+  <div class="hero-container">
+
+    <h1 class="heros-title">
+      Join the <span class="hero-highlight">OASIS</span> Network 
+    </h1>
+
+    <p class="hero-description">
+      Connect with innovators, nonprofits, and philanthropists driving
+      open-source solutions for meaningful social impact.
+    </p>
+
+  </div>
+
+  <div class="hero-image-wrapper">
+    <img
+      src="{{asset 'images/community_group.webp'}}"
+      alt="OASIS Community"
+      {{!-- width="900"
+      height="800"
+      loading="eager"
+      decoding="async" --}}
+      class="hero-image"
+    />
+  </div>
+</section>
+    <section class="who-section">
+        <div class="container">
+            <h2 class="section-title">Who is it for?</h2>
+            <p class="section-lead">For nonprofits tired of wrestling with their tech, and for techies who want to do more than just ship code. OASIS is where both sides finally meet.</p>
+            <div class="category-grid">
+                <div class="category-card">
+                    <h3>Tech Freelancers & Innovators</h3>
+                    <p>Build and support open-source solutions that help nonprofits scale their impact.</p>
+                </div>
+                <div class="category-card">
+                    <h3>Social Sector Organisations</h3>
+                    <p>NGOs and nonprofits ready to embrace open-source systems to scale their impact.</p>
+                </div>
+                <div class="category-card">
+                    <h3>Philanthropic Institutions</h3>
+                    <p>Foundations seeking scalable tech capacity for their portfolios or initiatives.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="benefits-section">
+        <div class="container">
+            <div class="benefits-grid">
+                <div class="benefit-card">
+                    <h3>For Nonprofits:</h3>
+                    <ul class="benefit-list">
+                        <li><strong>Tap Into Expertise:</strong> Connect with open-source experts who understand nonprofit realities.</li>
+                        <li><strong>Build Real Connections:</strong> Work with peers, technologists, and funders committed to impact.</li>
+                        <li><strong>Unlock Solutions:</strong> Turn tech challenges into sustainable open-source tools.</li>
+                        <li><strong>Access Resources:</strong> Use playbooks and case studies to grow your digital confidence.</li>
+                        <li><strong>Increase Visibility:</strong> Share your work and inspire other nonprofits.</li>
+                    </ul>
+                </div>
+                <div class="benefit-card accent-card">
+                    <h3>For Tech Experts:</h3>
+                    <ul class="benefit-list">
+                        <li><strong>Purpose-Driven Partners:</strong> Connect with nonprofits seeking open-source expertise.</li>
+                        <li><strong>Build Relationships:</strong> Collaborate with sector leaders and funders.</li>
+                        <li><strong>New Opportunities:</strong> Engage in pilots, co-development, and support projects.</li>
+                        <li><strong>Sector Insight:</strong> Use shared research to design solutions nonprofits need.</li>
+                        <li><strong>Grow Credibility:</strong> Showcase your impact in the social sector.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="join-section">
+  <div class="container">
+    <div class="join-card-horizontal">
+
+      <!-- LEFT SIDE -->
+      <div class="join-left">
+        <h3>How to Join?</h3>
+        <p>No long forms. No barriers. Just good intent and open collaboration.</p>
+
+        <ol class="join-steps">
+          <li>
+            <a href="/community-guidelines">Read the OASIS guidelines</a>
+          </li>
+          <li>Click Get Started</li>
+          <li>We’ll onboard you quickly</li>
+        </ol>
+      </div>
+
+      <!-- RIGHT SIDE -->
+      <div class="join-right">
+        <h3>Ready to Join?</h3>
+        <p>Become part of our growing community of changemakers.</p>
+        <a href="/get-started" class="hero-cta">Get Started</a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+    <section class="testimonials-section">
+        <div class="container">
+            <h2 class="section-title">What the Collective Says</h2>
+            <div class="testimonial-columns">
+                <div class="testimonial-col">
+                    <h3 class="testimonial-heading">NPOs</h3>
+                    <div class="testimonial-slider" data-slider>
+                        <div class="testimonial-track" data-slider-track>
+                            {{#get "posts" filter="tag:npo-says" order="published_at desc" limit="5"}}
+                                {{#foreach posts}}
+                                    <div class="testimonial-item" data-slider-slide>
+                                        <blockquote>
+                                            <p>"{{#if custom_excerpt}}{{custom_excerpt}}{{else}}{{excerpt words="5"}}{{/if}}"</p>
+                                            <cite>{{title}}</cite>
+                                        </blockquote>
+                                    </div>
+                                {{/foreach}}
+                            {{/get}}
+                        </div>
+                    </div>
+                    <a href="/tag/npo-says/" class="hero-cta">Read More</a>
+                </div>
+                <div class="testimonial-col">
+                    <h3 class="testimonial-heading">Tech Experts</h3>
+                    <div class="testimonial-slider" data-slider>
+                        <div class="testimonial-track" data-slider-track>
+                            {{#get "posts" filter="tag:tech-experts-says" order="published_at desc" limit="5"}}
+                                {{#foreach posts}}
+                                    <div class="testimonial-item" data-slider-slide>
+                                        <blockquote>
+                                            <p>"{{#if custom_excerpt}}{{custom_excerpt}}{{else}}{{excerpt words="5"}}{{/if}}"</p>
+                                            <cite>{{title}}</cite>
+                                        </blockquote>
+                                    </div>
+                                {{/foreach}}
+                            {{/get}}
+                        </div>
+                    </div>
+                    <a href="/tag/tech-experts-says/" class="hero-cta">Read More</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="partners-section">
+        {{#get "posts" filter="tag:npo" limit="6" include="feature_image"}}
+  {{#if posts.length}}
+    <section class="partners-section">
+      <div class="container">
+
+        <h2 class="section-title">Our NPO Partners</h2>
+
+        <div class="partners-marquee">
+          <div class="partners-track">
+
+            {{#foreach posts}}
+              <div class="partner-item" title="{{title}}">
+                {{#if feature_image}}
+                 <img
+                    src="{{img_url feature_image size="s"}}"
+                    srcset="
+                        {{img_url feature_image size="xs"}} 200w,
+                        {{img_url feature_image size="s"}} 300w,
+                        {{img_url feature_image size="m"}} 600w
+                    "
+                    sizes="(max-width: 768px) 120px, 160px"
+                    alt="{{title}}"
+                    loading="lazy"
+                    onerror="this.onerror=null;this.src='{{asset "images/partner-placeholder.svg"}}';"
+/>
+                {{else}}
+                  <span>{{title}}</span>
+                {{/if}}
+              </div>
+            {{/foreach}}
+
+          </div>
+        </div>
+
+        <a href="/tag/npo" class="partners-cta">See All Partners</a>
+
+      </div>
+    </section>
+  {{/if}}
+{{/get}}
+
+    </section>
+
+    <section class="final-cta">
+        <div class="container">
+            <div class="cta-content">
+                <h2>Ready to Make an Impact?</h2>
+                <p>Join thousands of innovators working together for social good through open-source collaboration.</p>
+                <a href="/get-started" class="cta-button">Join Network Today</a>
+            </div>
+        </div>
+    </section>
+</main>

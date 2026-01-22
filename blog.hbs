@@ -1,0 +1,30 @@
+{{!< default}}
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        document.title = "Blogs";
+    });
+</script>
+<main class="blog-wrapper">
+    <header class="blog-header">
+        <h1 class="blog-title">Blogs</h1>
+    </header>
+
+    <section class="blog-grid">
+        {{#get "posts" filter="tag:blog" include="tags,authors" limit="all"}}
+            {{#foreach posts}}
+                <article class="blog-card">
+                    <a href="{{url}}" class="blog-card-link">
+                        {{#if feature_image}}
+                            <div class="blog-card-image">
+                                <img src="{{feature_image}}" alt="{{title}}" loading="lazy">
+                            </div>
+                        {{else}}
+                            <div class="blog-card-image placeholder"></div>
+                        {{/if}}
+                        <h2 class="blog-card-title">{{title}}</h2>
+                    </a>
+                </article>
+            {{/foreach}}
+        {{/get}}
+    </section>
+</main>

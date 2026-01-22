@@ -1,0 +1,138 @@
+{{!< default}}
+
+<main class="author-page">
+  {{#author}}
+
+    <header class="author-hero">
+      {{#if cover_image}}
+        <div class="author-hero-cover" style="background-image: url({{img_url cover_image size="xl"}});"></div>
+      {{/if}}
+
+      <div class="author-hero-inner">
+        <div class="author-avatar-wrap">
+          {{#if profile_image}}
+            <img class="author-avatar" src="{{img_url profile_image size="xs"}}" alt="{{name}}">
+          {{else}}
+            <div class="author-avatar placeholder">{{name.[0]}}</div>
+          {{/if}}
+        </div>
+
+        <div class="author-meta">
+          <p class="author-label">Contributor</p>
+          <h1 class="author-name">{{name}}</h1>
+
+          {{#if bio}}
+            <p class="author-bio">{{bio}}</p>
+          {{/if}}
+
+          <div class="author-meta-row">
+            {{#if location}}
+              <span class="author-meta-item">
+                <span class="author-meta-label">Based in</span>
+                <span class="author-meta-value">{{location}}</span>
+              </span>
+            {{/if}}
+
+            {{#if website}}
+              <span class="author-meta-item">
+                <span class="author-meta-label">Website</span>
+                <a class="author-meta-link" href="{{website}}" target="_blank" rel="noopener">
+                  {{website}}
+                </a>
+              </span>
+            {{/if}}
+          </div>
+
+          <div class="author-social">
+            {{#if twitter}}
+              <a class="author-social-link" href="{{twitter_url}}" target="_blank" rel="noopener">
+                Twitter
+              </a>
+            {{/if}}
+
+            {{#if facebook}}
+              <a class="author-social-link" href="{{facebook_url}}" target="_blank" rel="noopener">
+                Facebook
+              </a>
+            {{/if}}
+          </div>
+
+          <div class="author-stats">
+            <span class="author-stat-chip">
+              {{plural ../pagination.total empty="No posts yet" singular="% post" plural="% posts"}}
+            </span>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <section class="author-posts">
+      <div class="author-posts-header"></div>
+
+      <div class="author-posts-grid">
+        
+        {{#get "posts" filter="authors:{{slug}}" limit="all" include="tags,authors" order="published_at desc"}}
+          {{#foreach posts}}
+
+            <article class="author-post-card {{post_class}}">
+
+              {{!-- Check post’s tag slug --}}
+              {{#has tag="verified-experts,npo"}}
+                <div class="author-post-card-link">
+              {{else}}
+                <a href="{{url}}" class="author-post-card-link">
+              {{/has}}
+
+                {{#if feature_image}}
+                  <div class="author-post-media">
+                    <img src="{{img_url feature_image size="m"}}" alt="{{title}}">
+                  </div>
+                {{/if}}
+
+                <div class="author-post-body">
+                  <h3 class="author-post-title">{{title}}</h3>
+
+                  <div class="author-post-meta">
+                    <time datetime="{{date format="YYYY-MM-DD"}}">
+                      {{date format="DD MMM YYYY"}}
+                    </time>
+
+                    {{#if primary_tag}}
+                      <span class="tag-post-tag">
+                        {{primary_tag.name}}
+                      </span>
+                    {{/if}}
+                  </div>
+
+                  {{#if excerpt}}
+                    <p class="author-post-excerpt">
+                      {{excerpt words="24"}}
+                    </p>
+                  {{/if}}
+
+                  {{!-- hide CTA if post has tag verified-experts or npo --}}
+                  {{#has tag="verified*,npo"}}
+                    {{!-- no read story --}}
+                  {{else}}
+                    <span class="author-post-cta">Read More →</span>
+                  {{/has}}
+
+                </div>
+
+              {{#has tag="verified*,npo"}}
+
+                </div>
+              {{else}}
+                </a>
+              {{/has}}
+
+            </article>
+
+          {{/foreach}}
+        {{/get}}
+
+      </div>
+    </section>
+
+  {{/author}}
+</main>

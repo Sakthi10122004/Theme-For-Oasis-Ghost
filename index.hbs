@@ -1,0 +1,393 @@
+{{!< default}}
+<style>
+  /* Critical CSS - Inline for faster loading */
+/* Only essential above-the-fold styles here */
+.hero-orbit {
+  display: grid;
+  grid-template-columns: 1fr 1fr; 
+  gap: 0.9rem;
+  align-items: center;
+  padding: 2rem;
+  min-height: 80vh;
+  background: #f9faf2;
+  max-width: 1900px;
+  margin: 0 auto;
+  position: relative;
+}
+
+.hero-title {
+  text-align: -webkit-left;
+  font-size: clamp(1.5rem, 4vw, 4rem);
+  line-height: 1.1;
+  margin-bottom: 1.5rem;
+  font-weight: 550;
+  color: #1c1c1c;
+}
+
+.orbit-visual {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  max-width: 800px;
+  position: relative;
+}
+
+.floating-img {
+  width: 100%;
+  height: auto;
+  max-width: 2000px; 
+  max-height: 600px;
+  object-fit: cover;
+  border-radius: 28px;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
+}
+
+/* Lazy loading base */
+.lazy-load {
+  opacity: 0;
+}
+
+.lazy-loaded {
+  opacity: 1;
+}
+</style>
+<link rel="preload" href="{{asset 'css/index.css'}}" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="{{asset 'css/index.css'}}"></noscript>
+
+<div class="preload-critical">
+  {{#if @site.cover_image}}
+    <link rel="preload" as="image" href="{{@site.cover_image}}" fetchpriority="high">
+  {{/if}}
+  <link rel="preload" as="image" href="{{asset 'images/bridge.webp'}}">
+  <link rel="preload" as="image" href="{{asset 'images/build.webp'}}">
+  <link rel="preload" as="image" href="{{asset 'images/belong.webp'}}">
+</div>
+
+<div class="hero-orbit">
+  <div class="orbit-content">
+    <h1 class="hero-title">
+      <span class="line">The open-source</span>
+      <span>collective </span>
+      <span class="line">fueling <span class="glow">social impact.</span></span>
+    </h1>
+    <p class="hero-desc">{{@site.description}}</p>
+    <a href="/community" class="hero-cta">Start your journey</a>
+  </div>
+  <div class="orbit-visual">
+    {{#if @site.cover_image}}
+      <img 
+        src="{{@site.cover_image}}" 
+        alt="Open source impact visual" 
+        class="floating-img" 
+        loading="eager"
+        fetchpriority="high"
+        width="800"
+        height="600"
+        decoding="async">
+    {{else}}
+      <div class="floating-placeholder">Your cover image here</div>
+    {{/if}}
+  </div>
+</div>
+
+<section class="impact-wave">
+  <div class="wave-container">
+    <h2>Listening with intent. Iterating to learn</h2>
+    <div class="stats-orbit">
+      <div class="stat-orbit">
+        <div class="count-wrap">
+          <span class="count" data-target="120">0</span>
+          <span class="plus">+</span>
+        </div>
+        <p>NPO's have reached out to us</p>
+      </div>
+      <div class="stat-orbit">
+        <div class="count-wrap">
+          <span class="count" data-target="200">0</span>
+          <span class="plus">+</span>
+        </div>
+        <p>Tech vendors have attended our events</p>
+      </div>
+      <div class="stat-orbit">
+        <div class="count-wrap">
+          <span class="count" data-target="30">0</span>
+          <span class="plus">+</span>
+        </div>
+        <p>NPO’s have engaged with us</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="bbb-section">
+  <div class="bbb-container">
+    
+    <div class="bbb-item">
+      <h4 class="bbb-banner">BRIDGE</h4>
+      <div class="bbb-img-wrapper">
+        <img 
+          src="{{asset 'images/bridge.webp'}}" 
+          alt="Bridge illustration" 
+          loading="lazy"
+          class="lazy-load"
+          onload="this.classList.add('lazy-loaded')">
+      </div>
+      <div class="bbb-content">
+        <p>Bridging the worlds of Tech and social change</p>
+      </div>
+    </div>
+
+    <div class="bbb-item">
+      <h4 class="bbb-banner">BUILD</h4>
+      <div class="bbb-img-wrapper">
+        <img 
+          src="{{asset 'images/build.webp'}}" 
+          alt="Build illustration" 
+          loading="lazy"
+          class="lazy-load"
+          onload="this.classList.add('lazy-loaded')">
+      </div>
+      <div class="bbb-content">
+        <p>Building open source tools for good</p>
+      </div>
+    </div>
+
+    <div class="bbb-item">
+      <h4 class="bbb-banner">BELONG</h4>
+      <div class="bbb-img-wrapper">
+        <img 
+          src="{{asset 'images/belong.webp'}}" 
+          alt="Belong illustration" 
+          loading="lazy"
+          class="lazy-load"
+          onload="this.classList.add('lazy-loaded')">
+      </div>
+      <div class="bbb-content">
+        <p>Belonging to a community that shares</p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<section class="philosophy-constellation">
+  <h2 class="constellation-title">The FOSS Philosophy</h2>
+  <h3 class="constellation-sub-title">Free and Open Source Software</h3>
+  <div class="constellation">
+    <div class="star-card">
+      <div class="star-icon">✦</div>
+      <h3>Freedom from Lock-In</h3>
+      <p>Own Your Tech, Not Rent It<br>from pricey, closed systems to open tools your team controls, no subscriptions, no dependencies.</p>
+      <div class="meta-wrapper">
+        <span class="meta">50 % average cost savings on software + maintenance</span>
+      </div>
+    </div>
+
+    <div class="star-card">
+      <div class="star-icon-circle">○</div>
+      <h3>Flexibility That Scales</h3>
+      <p>Adapt Tools to Your Mission<br>Modify, remix, or expand open-source systems to fit your programs as they grow.</p>
+      <div class="meta-wrapper">
+        <span class="meta">Scalable, adaptable, open tech that grows with your mission.</span>
+      </div>
+    </div>
+
+    <div class="star-card">
+      <div class="star-icon">❁</div>
+      <h3>Community That Sustains</h3>
+      <p>Built by many, for everyone.<br>Get constant improvements, peer support, and long-term reliability through our trusted open-source community.</p>
+      <div class="meta-wrapper">
+        <span class="meta">Supported by 200 k + users worldwide</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="pulse-section">
+  <div class="pulse-grid">
+  {{#if @member}}
+  <div class="pulse-newsletter pulse-joined">
+    <h3>You're already part of the Network.</h3>
+    <p>Thank you for supporting our work.</p>
+  </div>
+{{else}}
+  <div class="pulse-newsletter">
+    <h3>
+      We're building tech that works for good. From grassroots innovation to open-source breakthroughs,
+      our newsletter curates real stories, useful tools, and lessons from the field.
+    </h3>
+    <p>Join the movement, stay in the loop.</p>
+
+    <form data-members-form="subscribe" class="pulse-form">
+      <input
+        data-members-email
+        type="email"
+        placeholder="you@nonprofit.org"
+        required
+        aria-label="Email address"
+      >
+      <button type="submit">Subscribe</button>
+    </form>
+  </div>
+{{/if}}
+
+    {{#get "posts" filter="tag:latest" limit="1" include="tags,feature_image"}}
+      {{#foreach posts}}
+        <div class="pulse-update">
+          <a href="/tag/latest/" class="update-badge">LATEST</a>
+          <div class="update-content">
+            {{#if feature_image}}
+              <div class="update-img">
+                <img 
+                  src="{{img_url feature_image size="m"}}" 
+                  alt="{{title}}" 
+                  loading="lazy"
+                  class="lazy-load"
+                  onload="this.classList.add('lazy-loaded')"
+                  width="140"
+                  height="140">
+              </div>
+            {{/if}}
+            <div class="update-text">
+              <h4><a href="{{url}}">{{title}}</a></h4>
+              {{#if custom_excerpt}}
+                <p>{{custom_excerpt}}</p>
+              {{else}}
+                <p>{{excerpt words="18"}}</p>
+              {{/if}}
+              <a href="{{url}}" class="read-more">Read more →</a>
+            </div>
+          </div>
+        </div>
+      {{else}}
+        <div class="pulse-update no-update">
+          <p style="text-align:center; opacity:0.7; font-size:14px;">No latest updates available.</p>
+        </div>
+      {{/foreach}}
+    {{/get}}
+  </div>
+</section>
+
+<section class="ecosystem-ring">
+  <p class="ring-quote">"Five organisations. Shared intent. Collective effort"</p>
+
+  <div class="ring-logos">
+    <div class="ring-static">
+
+      <a href="https://aikyamfellows.org" target="_blank"><img src="{{asset 'images/alliance/aikyam.webp'}}" alt="Aikyam"></a>
+      <a href="https://aspire.ashoka.org" target="_blank"><img src="{{asset 'images/alliance/ashoka.webp'}}" alt="Ashoka"></a>
+      <a href="https://fossunited.org" target="_blank"><img src="{{asset 'images/alliance/fossunited.webp'}}" alt="FOSS United"></a>
+      <a href="https://github.com" target="_blank"><img src="{{asset 'images/alliance/github.webp'}}" alt="GitHub"></a>
+      <a href="https://reapbenefit.org" target="_blank"><img src="{{asset 'images/alliance/reap_benefit.webp'}}" alt="Reap Benefit"></a>
+      <a href="https://samagatha.org" target="_blank"><img src="{{asset 'images/alliance/samagata.webp'}}" alt="Samagatha"></a>
+      <a href="https://www.tech4goodcommunity.com" target="_blank"><img src="{{asset 'images/alliance/t4gc.webp'}}" alt="Tech4Good"></a>
+      <a href="https://tinkerhub.org" target="_blank"><img src="{{asset 'images/alliance/tinkerhub.webp'}}" alt="TinkerHub"></a>
+
+    </div>
+  </div>
+</section>
+
+<section class="stories-galaxy redesigned-stories">
+  <h2>Impact Stories</h2>
+
+  <div class="impact-static">
+    {{#get "posts" filter="tag:impact-stories" limit="5" include="tags,feature_image"}}
+      {{#if posts}}
+
+        {{#foreach posts}}
+          <a href="{{url}}" class="impact-card {{#unless feature_image}}no-image{{/unless}}">
+            
+            {{#if feature_image}}
+              <img src="{{img_url feature_image size="l"}}" alt="{{title}}" loading="lazy">
+            {{else}}
+              <img src="{{asset 'images/placeholder-impact.webp'}}" alt="placeholder">
+            {{/if}}
+
+            <div class="impact-overlay">
+              <span>{{title}} →</span>
+            </div>
+
+          </a>
+        {{/foreach}}
+
+      {{else}}
+        <div class="impact-placeholder">
+          <p>No impact stories yet. Add posts with the <strong>impact-stories</strong> tag.</p>
+        </div>
+      {{/if}}
+    {{/get}}
+  </div>
+
+  <a href="/tag/impact-stories/" class="view-all">View all stories →</a>
+</section>
+<section class="toolbox">
+  <div class="expert-tool-wrapper">
+
+    {{!-- TOOLS SECTION --}}
+    <div class="tools-orbit">
+      <div class="orbit-header">
+        <h3>Don't know which tool to choose?</h3>
+      </div>
+
+      {{#get "posts" filter="tag:tools" limit="4" include="feature_image"}}
+        <div class="static-grid">
+          {{#foreach posts}}
+            <a href="{{url}}" class="tool-card" title="{{title}}">
+              {{#if feature_image}}
+                <img
+                  class="img-bg"
+                  src="{{img_url feature_image size="xs"}}"
+                  alt=""
+                  aria-hidden="true"
+                >
+                <img
+                  class="img-fg"
+                  src="{{img_url feature_image size="xs"}}"
+                  alt="{{title}}"
+                >
+              {{else}}
+                <span class="tool-text">{{title}}</span>
+              {{/if}}
+            </a>
+          {{/foreach}}
+        </div>
+      {{/get}}
+
+      <a href="/tag/tools/" class="view-all-btn">View all tools</a>
+    </div>
+
+    {{!-- EXPERTS SECTION --}}
+    <div class="experts-orbit">
+      <div class="orbit-header">
+        <h3>OASIS verified experts</h3>
+      </div>
+
+      {{#get "posts" filter="tag:verified-experts" limit="4" include="feature_image"}}
+        <div class="static-grid">
+          {{#foreach posts}}
+            <a href="{{url}}" class="expert-card" title="{{title}}">
+              {{#if feature_image}}
+                <img
+                  class="img-bg"
+                  src="{{img_url feature_image size="xs"}}"
+                  alt=""
+                  aria-hidden="true"
+                >
+                <img
+                  class="img-fg"
+                  src="{{img_url feature_image size="xs"}}"
+                  alt="{{title}}"
+                >
+              {{else}}
+                <span class="expert-initial">{{title.[0]}}</span>
+              {{/if}}
+            </a>
+          {{/foreach}}
+        </div>
+      {{/get}}
+
+      <a href="/tag/verified-experts/" class="view-all-btn">Meet all experts</a>
+    </div>
+
+  </div>
+</section>

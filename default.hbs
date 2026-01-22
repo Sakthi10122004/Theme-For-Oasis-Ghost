@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="{{@site.locale}}">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />  {{!-- Use custom setting so Ghost stops warning --}}
+<meta name="x-color-scheme" content="{{@custom.color_scheme}}">
+
+  <title>{{meta_title}}</title>
+  {{block "head"}}
+  <script>document.documentElement.classList.add("js-ready");</script>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="{{asset "js/script.js"}}" defer></script>
+  <script src="{{asset "js/ghost-dropdown.js"}}" defer></script>
+  {{!-- <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script> --}}
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.min.js"></script>
+  {{!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/> --}}
+  {{!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"> --}}
+  {{!-- <link rel="preconnect" href="https://fonts.googleapis.com"> --}}
+  {{!-- <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin> --}}
+  {{!-- <link rel="preload" href="{{asset "fonts/Inter.woff2"}}" as="font" type="font/woff2" crossorigin> --}}
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{{asset "css/styles.css"}}" />
+  <link rel="stylesheet" href="{{asset "css/index.css"}}" />
+  <link rel="stylesheet" href="{{asset "css/about.css"}}" />
+  <link rel="stylesheet" href="{{asset "css/author.css"}}" />
+  <link rel="stylesheet" href="{{asset "css/tag.css"}}" />
+  <link rel="stylesheet" href="{{asset "css/post.css"}}" />
+  <link rel="stylesheet" href="{{asset "css/page.css"}}" />
+  <link rel="stylesheet" href="{{asset "css/error.css"}}" />
+  <link rel="stylesheet" href="{{asset "css/community.css"}}" />
+  <link rel="stylesheet" href="{{asset "css/blog.css"}}" />
+  <link rel="stylesheet" href="{{asset "css/events.css"}}" />
+  <link rel="stylesheet" href="{{asset "css/ghost-dropdown.css"}}" />
+  {{ghost_head}} 
+</head>
+<body class="{{body_class}}">
+ 
+<header class="nebula-header">
+  <div class="header-content">
+
+    <!-- Logo -->
+    <a href="{{@site.url}}" class="logo" aria-label="{{@site.title}}">
+      {{#if @site.logo}}
+        <img src="{{@site.logo}}" alt="{{@site.title}}">
+      {{else}}
+        <span>{{@site.title}}</span>
+      {{/if}}
+    </a>
+
+    <!-- Desktop Navigation -->
+    <nav class="nebula-nav-horizontal" aria-label="Main navigation">
+      <ul>
+        {{navigation}}
+      </ul>
+
+      <!-- Mobile only extra items inside nav -->
+      <div class="mobile-extra-items">
+        <button class="gh-search-icon" aria-label="Search" data-ghost-search>
+          🔍︎
+        </button>
+
+        
+          <a href="{{@site.url}}/get-started" class="join-cta">Get started</a>
+        
+      </div>
+    </nav>
+
+    <!-- Desktop Right Side -->
+    <div class="header-right-items">
+      <button class="gh-search-icon" aria-label="search" data-ghost-search>
+        🔍︎
+      </button>
+
+      
+        <a href="{{@site.url}}/get-started" class="join-cta">Get started</a>
+      
+    </div>
+
+    <!-- Hamburger -->
+    <button class="hamburger" aria-label="Toggle navigation menu">
+      <span></span><span></span><span></span>
+    </button>
+
+  </div>
+</header>
+<main class="cosmic-flow">
+  {{{body}}}
+</main>
+
+<footer class="stack-footer">
+  <div class="footer-inner">
+
+    <div class="footer-brand-social">
+      <div class="footer-social">
+        
+        <a href="https://www.linkedin.com/company/oasishq" target="_blank" aria-label="LinkedIn">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M4.98 3.5C4.98 4.88 3.86 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1 4.98 2.12 4.98 3.5zM.5 8h4V24h-4zM8 8h3.8v2.2h.06c.53-.92 1.84-2.2 4.14-2.2 4.42 0 5.2 2.7 5.2 6.2V24h-4V15.4c0-2-.04-4.6-2.8-4.6-2.8 0-3.2 2.2-3.2 4.4V24H8z"/>
+          </svg>
+        </a>
+
+        <a href="https://chat.whatsapp.com/ByCC1QMFniO40Yg4M3ex1W?mode=ems_copy_t" target="_blank" aria-label="WhatsApp">
+          <svg width="24" height="24" viewBox="0 0 32 32" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path d="M16.027 3C9.405 3 4 8.404 4 15.027c0 2.655.86 5.112 2.327 7.107L4 29l7.084-2.297a12.01 12.01 0 004.943 1.052c6.622 0 12.027-5.405 12.027-12.028C28.054 8.404 22.65 3 16.027 3zm0 21.833c-1.708 0-3.362-.45-4.83-1.297l-.346-.204-4.2 1.363 1.398-4.09-.226-.358A9.614 9.614 0 016.333 15c0-5.355 4.338-9.694 9.694-9.694 5.355 0 9.694 4.339 9.694 9.694 0 5.356-4.339 9.833-9.694 9.833zm5.534-7.44c-.301-.15-1.779-.889-2.056-.99-.277-.1-.478-.15-.678.15-.2.301-.777.99-.951 1.19-.175.2-.351.225-.652.075-.301-.15-1.251-.462-2.383-1.475-.879-.782-1.473-1.744-1.648-2.045-.175-.301-.018-.464.132-.614.136-.136.301-.351.452-.526.15-.175.2-.301.301-.502.1-.2.05-.376-.025-.526-.075-.15-.678-1.629-.928-2.23-.25-.602-.503-.602-.702-.614h-.602c-.2 0-.526.075-.802.376-.276.301-1.054 1.028-1.054 2.503 0 1.475 1.079 2.9 1.229 3.102.15.2 2.127 3.25 5.176 4.556.724.314 1.288.502 1.723.652.724.225 1.378.2 1.9.125.578-.088 1.779-.727 2.03-1.428.251-.702.251-1.302.175-1.427-.075-.125-.276-.2-.577-.351z"/>
+          </svg>
+        </a>
+
+        <a href="https://www.instagram.com/hq_oasis?igsh=MTJjeno5ZmNmMjJsaw==" target="_blank" aria-label="Instagram">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M7 2C4.2 2 2 4.2 2 7v10c0 2.8 2.2 5 5 5h10c2.8 0 5-2.2 5-5V7c0-2.8-2.2-5-5-5H7zm10 2c1.7 0 3 1.3 3 3v10c0 1.7-1.3 3-3 3H7c-1.7 0-3-1.3-3-3V7c0-1.7 1.3-3 3-3h10zm-5 3.3A4.7 4.7 0 1 0 16.7 12 4.7 4.7 0 0 0 12 7.3zm0 7.7a3 3 0 1 1 3-3 3 3 0 0 1-3 3zm4.8-8.9a1.1 1.1 0 1 1-1.1-1.1 1.1 1.1 0 0 1 1.1 1.1z"/>
+          </svg>
+        </a>
+
+      </div>
+    </div>
+
+    <p class="footer-copy">
+      © {{date format="YYYY"}} {{@site.title}}. CC-BY-SA.
+    </p>
+
+    <a href="mailto:hello@oasishq.org" class="footer-mail">
+      hello@oasishq.org
+    </a>
+
+  </div>
+</footer>
+{{ghost_foot}}
+</body>
+</html>

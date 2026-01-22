@@ -1,0 +1,462 @@
+/* =========================================
+   AUTHOR PAGE – OASIS THEME
+   ========================================= */
+
+/* Color tokens (align with your existing palette) */
+
+
+/* Layout wrapper */
+.author-page {
+  background: var(--oasis-bg);
+  padding: 4rem 1.5rem 5rem;
+}
+
+/* =========================================
+   HERO
+   ========================================= */
+
+.author-hero {
+  max-width: 1100px;
+  margin: 0 auto 3.5rem;
+  border-radius: 1.5rem;
+  overflow: hidden;
+  background: var(--oasis-surface);
+  box-shadow: var(--oasis-shadow-soft);
+  position: relative;
+}
+
+.author-hero-cover {
+  height: 160px;
+  background-size: cover;
+  background-position: center;
+  filter: saturate(1.2);
+}
+
+.author-hero-inner {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: 2rem;
+  padding: 2.5rem 2.75rem 2.75rem;
+  align-items: center;
+}
+
+.author-avatar-wrap {
+  margin-top: -4rem;
+}
+
+.author-avatar {
+  width: 110px;
+  height: 110px;
+  border-radius: 999px;
+  border: 4px solid var(--oasis-surface);
+  object-fit: cover;
+  box-shadow: 0 12px 30px rgba(15, 23, 42, 0.22);
+}
+
+.author-avatar.placeholder {
+  width: 110px;
+  height: 110px;
+  border-radius: 999px;
+  border: 4px solid var(--oasis-surface);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--oasis-accent-soft);
+  color: var(--oasis-accent);
+  font-size: 2.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  box-shadow: 0 12px 30px rgba(15, 23, 42, 0.22);
+}
+
+/* =========================================
+   HERO TEXT
+   ========================================= */
+
+.author-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.author-label {
+  font-size: 0.85rem;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--oasis-text-muted);
+}
+
+.author-name {
+  font-size: clamp(2rem, 3vw, 2.4rem);
+  line-height: 1.1;
+  font-weight: 700;
+  color: var(--oasis-text);
+}
+
+.author-bio {
+  margin-top: 0.25rem;
+  font-size: 0.98rem;
+  line-height: 1.6;
+  color: var(--oasis-text-muted);
+  max-width: 46rem;
+}
+
+.author-meta-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.25rem;
+  margin-top: 0.75rem;
+}
+
+.author-meta-item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.1rem;
+}
+
+.author-meta-label {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.11em;
+  color: var(--oasis-text-muted);
+}
+
+.author-meta-value,
+.author-meta-link {
+  font-size: 0.92rem;
+  font-weight: 500;
+  color: var(--oasis-text);
+  word-break: break-word;
+}
+
+.author-meta-link {
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: border-color 0.18s ease, color 0.18s ease;
+}
+
+.author-meta-link:hover {
+  color: var(--oasis-accent);
+  border-color: var(--oasis-accent-soft);
+}
+
+/* Social links */
+
+.author-social {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.55rem;
+  margin-top: 0.9rem;
+}
+
+.author-social-link {
+  font-size: 0.82rem;
+  font-weight: 500;
+  padding: 0.38rem 0.85rem;
+  border-radius: 999px;
+  background: var(--oasis-accent-soft);
+  color: var(--oasis-accent);
+  text-decoration: none;
+  border: 1px solid transparent;
+  transition: background 0.18s ease, border-color 0.18s ease, transform 0.18s ease;
+}
+
+.author-social-link:hover {
+  background: #ffffff;
+  border-color: var(--oasis-accent-soft);
+  transform: translateY(-1px);
+}
+
+/* Author stats chip */
+
+.author-stats {
+  margin-top: 1rem;
+}
+
+.author-stat-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.8rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  padding: 0.45rem 0.9rem;
+  border-radius: 999px;
+  background: var(--oasis-surface-soft);
+  color: var(--oasis-text-muted);
+}
+
+/* =========================================
+   POSTS SECTION
+   ========================================= */
+
+.author-posts {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.author-posts-header {
+  text-align: left;
+  margin-bottom: 1.75rem;
+}
+
+.author-posts-title {
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: var(--oasis-text);
+}
+
+.author-posts-subtitle {
+  margin-top: 0.3rem;
+  font-size: 0.95rem;
+  color: var(--oasis-text-muted);
+}
+
+/* Grid */
+
+.author-posts-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1.75rem;
+}
+
+/* Card */
+
+.author-post-card {
+  background: var(--oasis-surface);
+  border-radius: 1.25rem;
+  overflow: hidden;
+  border: 1x solid rgba(148, 163, 184, 0.18);
+  box-shadow: 0 16px 40px rgba(15, 23, 42, 0.06);
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+}
+
+.author-post-card-link {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  text-decoration: none;
+  color: inherit;
+}
+
+/* Media */
+
+.author-post-media {
+  position: relative;
+  padding-top: 60%;
+  overflow: hidden;
+}
+
+.author-post-media img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Card body */
+
+.author-post-body {
+  padding: 1.2rem 1.25rem 1.1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+}
+
+.author-post-title {
+  font-size: 1.02rem;
+  font-weight: 600;
+  line-height: 1.4;
+  color: var(--oasis-text);
+}
+
+.author-post-meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.7rem;
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: var(--oasis-text-muted);
+}
+
+.author-post-excerpt {
+  margin-top: 0.25rem;
+  font-size: 0.9rem;
+  line-height: 1.55;
+  color: var(--oasis-text-muted);
+}
+
+.author-post-cta {
+  margin-top: 0.35rem;
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--oasis-accent);
+}
+
+/* =========================================
+   RESPONSIVE
+   ========================================= */
+
+@media (max-width: 960px) {
+  .author-hero-inner {
+    grid-template-columns: minmax(0, 1fr);
+    padding: 2rem 1.75rem 2.1rem;
+  }
+
+  .author-avatar-wrap {
+    margin-top: -3.3rem;
+  }
+
+  .author-hero {
+    margin-bottom: 3rem;
+  }
+
+  .author-posts-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 640px) {
+  .author-page {
+    padding: 3rem 1.25rem 4rem;
+  }
+
+  .author-hero-inner {
+    padding: 1.75rem 1.4rem 1.9rem;
+  }
+
+  .author-posts-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .author-post-body {
+    padding: 1.05rem 1.1rem 1rem;
+  }
+}
+
+/* =========================================
+   EXTRA RESPONSIVE – MOBILE OPTIMIZATION
+   ========================================= */
+
+@media (max-width: 840px) {
+  .author-hero {
+    border-radius: 1rem;
+  }
+
+  .author-hero-inner {
+    gap: 1.25rem;
+  }
+
+  .author-name {
+    font-size: 1.8rem;
+  }
+
+  .author-post-body {
+    gap: 0.4rem;
+  }
+}
+
+@media (max-width: 560px) {
+  .author-hero-cover {
+    height: 120px;
+  }
+
+  .author-avatar {
+    width: 90px;
+    height: 90px;
+    border-width: 3px;
+  }
+
+  .author-hero-inner {
+    padding: 1.4rem 1.25rem 1.6rem;
+  }
+
+  .author-name {
+    font-size: 1.6rem;
+  }
+
+  .author-bio {
+    font-size: 0.93rem;
+    line-height: 1.55;
+  }
+
+  .author-meta-row {
+    gap: 0.9rem;
+  }
+
+  .author-social-link {
+    padding: 0.32rem 0.75rem;
+    font-size: 0.78rem;
+  }
+
+  .author-post-card {
+    border-radius: 1rem;
+  }
+
+  .author-post-body {
+    padding: 0.9rem 1rem 0.9rem;
+  }
+
+  .author-post-title {
+    font-size: 0.98rem;
+  }
+
+  .author-post-excerpt {
+    font-size: 0.85rem;
+  }
+}
+
+@media (max-width: 420px) {
+  .author-page {
+    padding: 2.5rem 1rem 3.5rem;
+  }
+
+  .author-hero-inner {
+    padding: 1.25rem 1rem 1.4rem;
+  }
+
+  .author-name {
+    font-size: 1.45rem;
+  }
+
+  .author-post-body {
+    padding: 0.8rem;
+  }
+
+  .author-post-title {
+    font-size: 0.92rem;
+  }
+
+  .author-meta {
+    gap: 0.55rem;
+  }
+
+  .author-social {
+    gap: 0.4rem;
+  }
+}
+
+/* =========================================
+   FIX AVATAR CUTTING
+   ========================================= */
+
+.author-hero {
+  overflow: visible;
+}
+
+@media (max-width: 640px) {
+  .author-avatar-wrap {
+    margin-top: -2rem;
+  }
+}
+
+@media (max-width: 420px) {
+  .author-avatar-wrap {
+    margin-top: 0;
+  }
+}

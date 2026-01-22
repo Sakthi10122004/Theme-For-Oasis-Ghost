@@ -1,0 +1,50 @@
+/* =========================
+   PAGE NOT AVAILABLE
+========================= */
+.error-page {
+    min-height: 80vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--color-background-light);
+    padding: 40px 20px;
+}
+
+.error-container {
+    max-width: 520px;
+    text-align: center;
+}
+
+/* =========================
+   TITLE
+========================= */
+.error-title {
+    font-size: 1.9rem;
+    font-weight: 700;
+    margin-bottom: 16px;
+    color: var(--color-text-dark);
+}
+
+/* =========================
+   MESSAGE
+========================= */
+.error-message {
+    font-size: 1rem;
+    line-height: 1.6;
+    color: var(--color-text-muted);
+    margin-bottom: 32px;
+}
+
+/* =========================
+   ACTION
+========================= */
+.error-actions {
+    display: flex;
+    justify-content: center;
+}
+
+.error-actions .btn-primary {
+    padding: 12px 26px;
+    border-radius: 6px;
+    font-weight: 600;
+}

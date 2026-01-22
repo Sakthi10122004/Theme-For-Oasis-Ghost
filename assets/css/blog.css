@@ -1,0 +1,125 @@
+
+/* Main Wrapper */
+.blog-wrapper {
+    padding: 3rem 0;
+    background-color: var(--color-page-background);
+}
+
+/* Header */
+.blog-header {
+    text-align: center;
+    margin-bottom: 3rem;
+    padding: 0 2rem;
+}
+
+.blog-title {
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 800;
+    color: var(--blog-primary);
+    margin: 0;
+}
+
+/* Grid Layout */
+.blog-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2.5rem;
+    padding: 0 4rem;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+/* Card */
+.blog-card {
+    background: var(--blog-bg-card);
+    border-radius: 20px;
+    border: 1px solid var(--blog-border-color);
+    box-shadow: 0 10px 25px var(--blog-shadow-color);
+    overflow: hidden;
+}
+
+/* Image */
+.blog-card-image {
+    width: 100%;
+    height: 220px;
+    overflow: hidden;
+    border-bottom: 1px solid var(--blog-border-color);
+}
+
+.blog-card-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Placeholder (if no feature image) */
+.blog-card-image.placeholder {
+    background: var(--blog-bg-placeholder);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.blog-card-image.placeholder::before {
+    content: "";
+    width: 60px;
+    height: 60px;
+    background-color: var(--color-accent-1);
+    border-radius: 50%;
+    opacity: 0.6;
+}
+
+/* Title */
+.blog-card-title {
+    text-align: center;
+    font-size: 1.2rem;
+    font-weight: 700;
+    padding: 1rem;
+    color: var(--blog-text-dark);
+    margin: 0;
+    line-height: 1.4;
+}
+
+.blog-card-link {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+}
+
+/* ============================
+   RESPONSIVE DESIGN
+============================ */
+@media (max-width: 1024px) {
+    .blog-grid {
+        padding: 0 3rem;
+        gap: 2rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .blog-grid {
+        padding: 0 2rem;
+        gap: 1.5rem;
+    }
+
+    .blog-wrapper {
+        padding: 2rem 0;
+    }
+}
+
+@media (max-width: 480px) {
+    .blog-grid {
+        padding: 0 1rem;
+        gap: 1rem;
+        grid-template-columns: 1fr;
+    }
+
+    .blog-title {
+        font-size: clamp(1.5rem, 4vw, 2.5rem);
+    }
+
+    .blog-header {
+        padding: 0 1rem;
+        margin-bottom: 2rem;
+    }
+}

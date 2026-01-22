@@ -1,0 +1,119 @@
+{{!< default}}
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        document.title = "Events";
+    });
+</script>
+<main class="events-page">
+
+  <header class="events-header">
+    <h1>Events</h1>
+  </header>
+
+  <!-- UPCOMING -->
+  <section class="events-section">
+    <h2 class="events-title">Upcoming Events</h2>
+    <div id="upcoming-events"></div>
+  </section>
+
+  <!-- PAST -->
+  <section class="events-section">
+    <h2 class="events-title">Past Events</h2>
+    <div id="past-events"></div>
+  </section>
+
+  <!-- ALL EVENTS (HIDDEN DATA SOURCE) -->
+  <div id="all-events" style="display:none;">
+  {{#get "posts" filter="tag:event" limit="all"}}
+    {{#foreach posts}}
+      <article class="event-row"
+        data-title="{{title}}"
+        data-url="{{url}}"
+        data-image="{{img_url feature_image}}"
+        data-raw="{{excerpt}}">
+      </article>
+    {{/foreach}}
+  {{/get}}
+</div>
+
+</main>
+
+<!-- Script remains the same -->
+<script>
+(function () {
+
+  const today = new Date();
+  today.setHours(0,0,0,0);
+
+  const upcomingBox = document.getElementById("upcoming-events");
+  const pastBox = document.getElementById("past-events");
+
+  const events = document.querySelectorAll("#all-events .event-row");
+
+  events.forEach(event => {
+
+    const raw = event.dataset.raw || "";
+    if (!raw.includes("Date:")) return;
+
+    const dateMatch  = raw.match(/Date:\s*(\d{2}-\d{2}-\d{4})/);
+    const timeMatch  = raw.match(/Time:\s*(.+)/);
+    const placeMatch = raw.match(/Place:\s*(.+)/);
+
+    if (!dateMatch) return;
+
+    const eventDateStr = dateMatch[1];
+    const [dd, mm, yyyy] = eventDateStr.split("-");
+    const eventDate = new Date(`${yyyy}-${mm}-${dd}`);
+    eventDate.setHours(0,0,0,0);
+
+    const title = event.dataset.title;
+    const url = event.dataset.url;
+    const image = event.dataset.image || "";
+    const time = timeMatch ? timeMatch[1] : "—";
+    const place = placeMatch ? placeMatch[1] : "—";
+
+    const isUpcoming = eventDate >= today;
+
+    const card = document.createElement("article");
+    card.className = "event-row";
+
+    card.innerHTML = `
+      <div class="event-poster">
+        <img src="${image}" alt="${title}">
+      </div>
+
+      <div class="event-info">
+        <h3 class="event-title">${title}</h3>
+        <p><strong>Date:</strong> ${eventDateStr}</p>
+
+        ${isUpcoming 
+          ? `<p><strong>Time:</strong> ${time}</p>` 
+          : ``}
+
+        <p><strong>Venue:</strong> ${place}</p>
+      </div>
+
+      <div class="event-action">
+        <a href="${url}" class="event-btn">View</a>
+      </div>
+    `;
+
+    if (isUpcoming) {
+      upcomingBox.appendChild(card);
+    } else {
+      pastBox.appendChild(card);
+    }
+
+  });
+
+  /* EMPTY STATES */
+  if (!upcomingBox.children.length) {
+    upcomingBox.innerHTML = `<p class="no-events-msg">No Upcoming Events</p>`;
+  }
+
+  if (!pastBox.children.length) {
+    pastBox.innerHTML = `<p class="no-events-msg">No Past Events Yet</p>`;
+  }
+
+})();
+</script>
