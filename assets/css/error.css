@@ -13,6 +13,7 @@
 .error-container {
     max-width: 520px;
     text-align: center;
+    padding: 0 20px;
 }
 
 /* =========================
@@ -36,15 +37,178 @@
 }
 
 /* =========================
-   ACTION
+   ACTION - USING SAME BUTTON STYLE AS COMMUNITY PAGE
 ========================= */
 .error-actions {
     display: flex;
     justify-content: center;
+    flex-wrap: wrap;
+    gap: 16px;
 }
 
+/* Same as .partners-cta from community page */
 .error-actions .btn-primary {
-    padding: 12px 26px;
-    border-radius: 6px;
+    display: inline-block;
+    background: var(--color-button);
+    color: var(--color-text-light);
+    padding: 1rem 2.5rem;
+    border-radius: var(--radius-button);
+    font-size: 1.1rem;
     font-weight: 600;
+    text-decoration: none;
+    box-shadow: 0 8px 24px var(--shadow-dark);
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-family: inherit;
+    text-align: center;
+}
+
+/* Same hover effect as .partners-cta */
+.error-actions .btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 16px rgba(28, 28, 28, 0.25);
+}
+
+/* =========================
+   RESPONSIVE DESIGN
+========================= */
+
+/* Tablet (768px and below) */
+@media (max-width: 768px) {
+    .error-page {
+        min-height: 70vh;
+        padding: 30px 16px;
+    }
+    
+    .error-container {
+        max-width: 480px;
+        padding: 0 16px;
+    }
+    
+    .error-title {
+        font-size: 1.7rem;
+        margin-bottom: 14px;
+    }
+    
+    .error-message {
+        font-size: 0.95rem;
+        margin-bottom: 28px;
+    }
+    
+    /* Same as .partners-cta tablet styles */
+    .error-actions .btn-primary {
+        padding: 0.9rem 2rem;
+        font-size: 1rem;
+    }
+}
+
+/* Mobile (576px and below) */
+@media (max-width: 576px) {
+    .error-page {
+        min-height: 60vh;
+        padding: 24px 12px;
+    }
+    
+    .error-container {
+        max-width: 100%;
+        padding: 0 12px;
+    }
+    
+    .error-title {
+        font-size: 1.5rem;
+        margin-bottom: 12px;
+    }
+    
+    .error-message {
+        font-size: 0.9rem;
+        line-height: 1.5;
+        margin-bottom: 24px;
+    }
+    
+    .error-actions {
+        flex-direction: column;
+        align-items: center;
+        gap: 12px;
+    }
+    
+    /* Same as .partners-cta mobile styles */
+    .error-actions .btn-primary {
+        width: 100%;
+        max-width: 280px;
+        padding: 0.8rem 1.5rem;
+        font-size: 0.95rem;
+        text-align: center;
+    }
+}
+
+/* Small Mobile (400px and below) */
+@media (max-width: 400px) {
+    .error-page {
+        min-height: 50vh;
+        padding: 20px 10px;
+    }
+    
+    .error-container {
+        padding: 0 10px;
+    }
+    
+    .error-title {
+        font-size: 1.3rem;
+        margin-bottom: 10px;
+    }
+    
+    .error-message {
+        font-size: 0.85rem;
+        margin-bottom: 20px;
+    }
+    
+    /* Same as .partners-cta small mobile styles */
+    .error-actions .btn-primary {
+        max-width: 100%;
+        padding: 0.75rem 1rem;
+        font-size: 0.9rem;
+    }
+}
+
+/* Landscape Mode Adjustments */
+@media (max-width: 768px) and (orientation: landscape) {
+    .error-page {
+        min-height: 90vh;
+        padding: 20px 16px;
+    }
+    
+    .error-container {
+        max-width: 90%;
+    }
+}
+
+/* High DPI Screens */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+    .error-title {
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+    }
+}
+
+/* Touch Device Optimizations - Same as community page */
+@media (hover: none) and (pointer: coarse) {
+    .error-actions .btn-primary {
+        transition: transform 0.2s ease;
+    }
+    
+    .error-actions .btn-primary:active {
+        transform: scale(0.98);
+    }
+}
+
+/* Reduce motion for accessibility - Same as community page */
+@media (prefers-reduced-motion: reduce) {
+    .error-actions .btn-primary {
+        transition: none;
+    }
+    
+    .error-actions .btn-primary:hover {
+        transform: none;
+    }
 }

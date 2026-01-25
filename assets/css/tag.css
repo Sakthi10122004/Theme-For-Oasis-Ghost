@@ -2,9 +2,9 @@
    TAG PAGE – OASIS THEME
    ========================================= */
 
-
 .tag-page {
   background: var(--oasis-bg);
+  padding: 3.5rem 2rem 4rem;
 }
 
 /* =========================================
@@ -218,22 +218,84 @@
    RESPONSIVE
    ========================================= */
 
-@media (max-width: 960px) {
+/* Large tablets / small laptops */
+@media (max-width: 1100px) {
   .tag-posts-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
 
-@media (max-width: 640px) {
+/* Tablets */
+@media (max-width: 768px) {
   .tag-page {
-    padding: 3rem 1.25rem 4rem;
+    padding: 3rem 1.5rem 4rem;
   }
+  
+  .tag-posts-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1.4rem;
+  }
+  
+  .tag-title {
+    font-size: clamp(2.1rem, 6vw, 2.6rem);
+  }
+  
+  .tag-description {
+    font-size: 0.98rem;
+    max-width: 520px;
+  }
+}
 
+/* Mobile - Grid transitions to single column */
+@media (max-width: 520px) {
   .tag-posts-grid {
     grid-template-columns: 1fr;
+    gap: 1.25rem;
   }
+  
+  .tag-post-card {
+    border-radius: 1rem;
+    box-shadow: 0 12px 30px rgba(15, 23, 42, 0.08);
+  }
+  
+  .tag-post-title {
+    font-size: 0.98rem;
+  }
+  
+  .tag-post-excerpt {
+    font-size: 0.88rem;
+  }
+  
+  .tag-post-meta {
+    font-size: 0.72rem;
+  }
+}
 
-  .tag-post-body {
-    padding: 1.05rem 1.1rem 1rem;
+/* Small mobile devices */
+@media (max-width: 480px) {
+  .tag-page {
+    padding: 2.5rem 1.1rem 3.5rem;
+  }
+  
+  .tag-title {
+    font-size: 1.85rem;
+    line-height: 1.2;
+  }
+  
+  .tag-description {
+    font-size: 0.95rem;
+    line-height: 1.55;
+  }
+  
+  .pagination {
+    flex-wrap: wrap;
+    gap: 0.6rem;
+  }
+  
+  .pagination a,
+  .pagination span {
+    min-width: 2.2rem;
+    height: 2.2rem;
+    font-size: 0.8rem;
   }
 }

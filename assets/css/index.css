@@ -16,17 +16,26 @@
 }
 
 /* ===============================
+   RESPONSIVE BASE STYLES
+   =============================== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* ===============================
    HERO SECTION - OPTIMIZED
    =============================== */
 .hero-orbit {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 0.9rem;
+  gap: 2rem;
   align-items: center;
   padding: 2rem;
   min-height: 80vh;
   background: var(--color-page-bg);
-  max-width: 1900px;
+  max-width: 100%;
   margin: 0 auto;
   position: relative;
 }
@@ -61,7 +70,7 @@
 }
 
 .hero-desc {
-  font-size: clamp(1.1rem, 1.5vw, 1.4rem);
+  font-size: clamp(1rem, 1.5vw, 1.4rem);
   color: var(--color-text-muted);
   margin-bottom: 2.5rem;
   line-height: 1.6;
@@ -73,15 +82,15 @@
   display: flex;
   justify-content: center;
   width: 100%;
-  max-width: 800px;
+  max-width: 100%;
   position: relative;
 }
 
 .floating-img {
   width: 100%;
   height: auto;
-  max-width: 2000px;
-  max-height: 600px;
+  max-width: 100%;
+  max-height: 500px;
   object-fit: cover;
   border-radius: 28px;
   box-shadow: 0 20px 50px var(--shadow-medium);
@@ -90,8 +99,10 @@
 /* Placeholder */
 .floating-placeholder {
   width: 100%;
-  max-width: 650px;
-  height: 550px;
+  max-width: 100%;
+  height: auto;
+  min-height: 400px;
+  aspect-ratio: 16/9;
   background: var(--color-card-bg);
   border-radius: 28px;
   display: flex;
@@ -102,11 +113,16 @@
   border: 2px dashed var(--color-border);
 }
 
-/* Enhanced Responsive Design */
+/* ===============================
+   RESPONSIVE BREAKPOINTS - HERO
+   =============================== */
+
+/* Extra Large Desktop */
 @media (min-width: 1920px) {
   .hero-orbit {
     padding: 8rem 10%;
     min-height: 90vh;
+    max-width: 1900px;
   }
 
   .orbit-content {
@@ -118,9 +134,11 @@
   }
 }
 
+/* Large Desktop */
 @media (min-width: 1440px) and (max-width: 1919px) {
   .hero-orbit {
     padding: 7rem 8%;
+    max-width: 1600px;
   }
 
   .orbit-content {
@@ -128,23 +146,47 @@
   }
 }
 
-@media (max-width: 1200px) {
+/* Desktop */
+@media (min-width: 1200px) and (max-width: 1439px) {
   .hero-orbit {
     padding: 5rem 5%;
+    max-width: 1400px;
   }
 
   .orbit-content {
     max-width: 500px;
   }
+  
+  .floating-img,
+  .floating-placeholder {
+    max-height: 450px;
+  }
 }
 
+/* Tablet Landscape */
+@media (min-width: 901px) and (max-width: 1199px) {
+  .hero-orbit {
+    padding: 4rem 5%;
+    gap: 3rem;
+  }
+  
+  .hero-title {
+    font-size: clamp(2rem, 3.5vw, 3rem);
+  }
+  
+  .hero-desc {
+    font-size: clamp(1.1rem, 1.8vw, 1.3rem);
+  }
+}
+
+/* Tablet Portrait & Mobile Large */
 @media (max-width: 900px) {
   .hero-orbit {
     grid-template-columns: 1fr;
     text-align: center;
-
     padding: 4rem 5%;
     min-height: auto;
+    gap: 3rem;
   }
 
   .orbit-content {
@@ -152,10 +194,15 @@
     justify-self: center;
   }
 
+  .hero-title {
+    text-align: center;
+  }
+
   .hero-desc {
     max-width: 100%;
     margin-left: auto;
     margin-right: auto;
+    font-size: clamp(1.1rem, 2vw, 1.3rem);
   }
 
   .orbit-visual {
@@ -166,7 +213,8 @@
 
   .floating-img {
     max-width: 100%;
-    height: 350px;
+    height: auto;
+    max-height: 400px;
   }
 
   .floating-placeholder {
@@ -175,9 +223,16 @@
   }
 }
 
+/* Mobile Large */
 @media (max-width: 768px) {
+  .hero-orbit {
+    padding: 3rem 4%;
+    gap: 2.5rem;
+  }
+
   .hero-title {
     font-size: clamp(1.8rem, 6vw, 2.5rem);
+    line-height: 1.2;
   }
 
   .hero-desc {
@@ -185,26 +240,65 @@
   }
 
   .floating-img {
-    border-radius: 16px;
+    border-radius: 20px;
+    max-height: 350px;
+  }
+  
+  .floating-placeholder {
+    height: 300px;
+    border-radius: 20px;
   }
 }
 
+/* Mobile */
 @media (max-width: 480px) {
   .hero-orbit {
     padding: 2rem 1rem;
-
+    gap: 2rem;
   }
 
   .hero-title {
     font-size: clamp(1.5rem, 7vw, 2rem);
+    line-height: 1.3;
   }
 
   .hero-desc {
     font-size: 1rem;
+    line-height: 1.5;
   }
 
   .floating-img {
-    border-radius: 12px;
+    border-radius: 16px;
+    max-height: 250px;
+  }
+  
+  .floating-placeholder {
+    height: 250px;
+    border-radius: 16px;
+    font-size: 1rem;
+  }
+}
+
+/* Small Mobile */
+@media (max-width: 360px) {
+  .hero-orbit {
+    padding: 1.5rem 0.75rem;
+  }
+  
+  .hero-title {
+    font-size: clamp(1.3rem, 6vw, 1.8rem);
+  }
+  
+  .hero-desc {
+    font-size: 0.95rem;
+  }
+  
+  .floating-img {
+    max-height: 200px;
+  }
+  
+  .floating-placeholder {
+    height: 200px;
   }
 }
 
@@ -273,21 +367,33 @@
   margin: 0;
   text-align: center;
   font-weight: 600;
-
 }
 
-@media (min-width: 768px) {
+/* ===============================
+   RESPONSIVE BREAKPOINTS - BBB
+   =============================== */
+
+/* Desktop */
+@media (min-width: 1024px) {
   .bbb-container {
     grid-template-columns: repeat(3, 1fr);
-    gap: 100px;
+    gap: 60px;
+    padding: 0 40px;
+  }
+  
+  .bbb-item {
+    height: 100%;
   }
 }
 
-@media (max-width: 992px) {
-  .bbb-section {
-    padding: 60px 20px;
+/* Tablet */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .bbb-container {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+    padding: 0 20px;
   }
-
+  
   .bbb-banner {
     font-size: 1.3rem;
     padding: 12px 20px;
@@ -302,14 +408,78 @@
   }
 }
 
-@media (max-width: 768px) {
+/* Mobile Large */
+@media (max-width: 767px) {
   .bbb-section {
-    padding: 50px 15px;
-    background: linear-gradient(to bottom, var(--color-page-bg) 15%, var(--color-accent-2) 15%);
+    padding: 40px 15px;
+    background: linear-gradient(to bottom, var(--color-page-bg) 20%, var(--color-accent-2) 20%);
   }
 
   .bbb-container {
     gap: 25px;
+    padding: 0 10px;
+  }
+  
+  .bbb-banner {
+    font-size: 1.25rem;
+    padding: 12px 15px;
+  }
+  
+  .bbb-img-wrapper {
+    height: 200px;
+  }
+}
+
+/* Mobile */
+@media (max-width: 480px) {
+  .bbb-section {
+    padding: 30px 10px;
+    background: linear-gradient(to bottom, var(--color-page-bg) 15%, var(--color-accent-2) 15%);
+  }
+  
+  .bbb-container {
+    gap: 20px;
+  }
+  
+  .bbb-banner {
+    font-size: 1.1rem;
+    padding: 10px 12px;
+  }
+  
+  .bbb-img-wrapper {
+    height: 160px;
+  }
+  
+  .bbb-content {
+    padding: 15px;
+  }
+  
+  .bbb-content p {
+    font-size: 0.95rem;
+  }
+}
+
+/* Small Mobile */
+@media (max-width: 360px) {
+  .bbb-section {
+    padding: 25px 8px;
+  }
+  
+  .bbb-banner {
+    font-size: 1rem;
+    padding: 8px 10px;
+  }
+  
+  .bbb-img-wrapper {
+    height: 140px;
+  }
+  
+  .bbb-content {
+    padding: 12px;
+  }
+  
+  .bbb-content p {
+    font-size: 0.9rem;
   }
 }
 
@@ -323,7 +493,7 @@
 }
 
 .wave-container h2 {
-  font-size: 2.5rem;
+  font-size: clamp(2rem, 4vw, 2.5rem);
   margin-bottom: 3rem;
   color: var(--color-text-primary);
 }
@@ -331,15 +501,19 @@
 .stats-orbit {
   display: flex;
   justify-content: center;
-  gap: 7rem;
+  gap: clamp(2rem, 6vw, 7rem);
   flex-wrap: wrap;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
 .stat-orbit {
   background: var(--color-card-bg);
-  padding: 2rem 1.5rem;
+  padding: clamp(1.5rem, 3vw, 2rem) clamp(1rem, 2vw, 1.5rem);
   border-radius: 20px;
-  min-width: 180px;
+  min-width: clamp(140px, 20vw, 180px);
+  flex: 1;
+  max-width: 220px;
   box-shadow: 0 6px 20px rgba(0, 0, 0, 0.05);
   border: 1px solid var(--color-border);
 }
@@ -352,14 +526,14 @@
 }
 
 .count {
-  font-size: 3rem;
+  font-size: clamp(2rem, 5vw, 3rem);
   font-weight: 800;
   display: inline-block;
   line-height: 1;
 }
 
 .plus {
-  font-size: 2rem;
+  font-size: clamp(1.5rem, 3vw, 2rem);
   font-weight: 700;
   line-height: 1;
 }
@@ -367,11 +541,16 @@
 .stat-orbit p {
   margin-top: 0.75rem;
   color: var(--color-text-muted);
-  font-size: 1rem;
-  max-width: 220px;
+  font-size: clamp(0.9rem, 1.5vw, 1rem);
+  max-width: 100%;
   line-height: 1.5;
 }
 
+/* ===============================
+   RESPONSIVE BREAKPOINTS - STATS
+   =============================== */
+
+/* Tablet */
 @media (max-width: 768px) {
   .impact-wave {
     padding: 4rem 5%;
@@ -383,7 +562,8 @@
 
   .stat-orbit {
     padding: 1.5rem 1rem;
-    min-width: 140px;
+    min-width: calc(50% - 2rem);
+    max-width: 180px;
   }
 
   .count {
@@ -395,26 +575,79 @@
   }
 }
 
-@media (max-width: 480px) {
-  .impact-wave {
-    padding: 3rem 5%;
-  }
-
+/* Mobile */
+@media (max-width: 600px) {
   .stats-orbit {
     gap: 1.5rem;
   }
+  
+  .stat-orbit {
+    min-width: calc(50% - 1.5rem);
+    padding: 1.25rem 0.75rem;
+  }
+  
+  .count {
+    font-size: 2.25rem;
+  }
+  
+  .plus {
+    font-size: 1.75rem;
+  }
+  
+  .stat-orbit p {
+    font-size: 0.95rem;
+  }
+}
+
+/* Mobile Small */
+@media (max-width: 480px) {
+  .impact-wave {
+    padding: 3rem 4%;
+  }
+
+  .stats-orbit {
+    gap: 1rem;
+    flex-direction: column;
+    align-items: center;
+  }
 
   .stat-orbit {
-    padding: 1rem 0.75rem;
-    min-width: 120px;
+    width: 100%;
+    max-width: 250px;
+    padding: 1.5rem 1rem;
+    min-width: auto;
   }
 
   .count {
-    font-size: 2rem;
+    font-size: 2.5rem;
   }
 
   .plus {
-    font-size: 1.2rem;
+    font-size: 1.75rem;
+  }
+}
+
+/* Extra Small Mobile */
+@media (max-width: 360px) {
+  .impact-wave {
+    padding: 2.5rem 3%;
+  }
+  
+  .wave-container h2 {
+    font-size: 1.75rem;
+    margin-bottom: 2rem;
+  }
+  
+  .stat-orbit {
+    padding: 1.25rem 0.75rem;
+  }
+  
+  .count {
+    font-size: 2rem;
+  }
+  
+  .plus {
+    font-size: 1.5rem;
   }
 }
 
@@ -430,18 +663,18 @@
 }
 
 .constellation-title {
-  font-size: 2.5rem;
+  font-size: clamp(2rem, 4vw, 2.5rem);
   font-weight: 700;
   color: var(--color-text-primary);
-  margin-bottom: 3rem;
+  margin-bottom: 2rem;
   position: relative;
 }
 
 .constellation-sub-title {
-  font-size: 1.2rem;
+  font-size: clamp(1rem, 1.8vw, 1.2rem);
   color: var(--color-text-primary);
   margin-bottom: 4rem;
-  max-width: 700px;
+  max-width: min(90%, 700px);
   margin-left: auto;
   margin-right: auto;
   line-height: 1.6;
@@ -451,7 +684,7 @@
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
-  gap: 7rem;
+  gap: clamp(2rem, 5vw, 7rem);
   max-width: 1400px;
   margin: 0 auto;
 }
@@ -461,8 +694,8 @@
   border: 1px solid var(--color-border);
   border-radius: 20px;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.06);
-  padding: 2.5rem 2rem;
-  width: 340px;
+  padding: clamp(2rem, 3vw, 2.5rem) clamp(1.5rem, 2.5vw, 2rem);
+  width: min(90%, 340px);
   display: flex;
   flex-direction: column;
 }
@@ -475,18 +708,18 @@
 }
 
 .star-icon {
-  font-size: 1.7rem;
+  font-size: clamp(1.5rem, 2vw, 1.7rem);
   color: var(--color-accent-1);
   margin-bottom: 0.8rem;
 }
 
 .star-icon-circle {
-  font-size: 2.2rem;
+  font-size: clamp(2rem, 2.5vw, 2.2rem);
   color: var(--color-accent-1);
 }
 
 .star-card h3 {
-  font-size: 1.35rem;
+  font-size: clamp(1.2rem, 1.8vw, 1.35rem);
   font-weight: 700;
   color: var(--color-text-primary);
   margin: 0.75rem 0 1rem;
@@ -494,7 +727,7 @@
 }
 
 .star-card p {
-  font-size: 1rem;
+  font-size: clamp(0.95rem, 1.3vw, 1rem);
   color: var(--color-text-muted);
   line-height: 1.6;
   margin: 0 0 1.2rem;
@@ -502,7 +735,7 @@
 }
 
 .meta {
-  font-size: 0.90rem;
+  font-size: clamp(0.8rem, 1vw, 0.9rem);
   font-weight: 550;
   color: var(--color-text-primary);
   background: var(--color-border);
@@ -511,26 +744,45 @@
   letter-spacing: 0.2px;
 }
 
-@media (max-width: 1024px) {
-  .constellation {
-    gap: 2rem;
-  }
+/* ===============================
+   RESPONSIVE BREAKPOINTS - FOSS
+   =============================== */
 
+/* Tablet */
+@media (max-width: 1024px) {
   .philosophy-constellation {
     padding: 5rem 5%;
   }
-
-  .constellation-title {
-    font-size: 2.2rem;
-    margin-bottom: 2.5rem;
+  
+  .constellation {
+    gap: 3rem;
+  }
+  
+  .star-card {
+    width: min(90%, 400px);
   }
 }
 
+/* Mobile Large */
 @media (max-width: 768px) {
-  .constellation-title {
-    font-size: 2rem;
+  .philosophy-constellation {
+    padding: 4rem 4%;
   }
-
+  
+  .constellation-title {
+    font-size: clamp(1.8rem, 3.5vw, 2.2rem);
+    margin-bottom: 1.5rem;
+  }
+  
+  .constellation-sub-title {
+    font-size: 1.1rem;
+    margin-bottom: 3rem;
+  }
+  
+  .constellation {
+    gap: 2rem;
+  }
+  
   .star-card {
     width: 100%;
     max-width: 420px;
@@ -538,40 +790,86 @@
   }
 }
 
+/* Mobile */
 @media (max-width: 480px) {
   .philosophy-constellation {
-    padding: 4rem 1.2rem;
+    padding: 3rem 3%;
   }
-
+  
   .constellation-title {
     font-size: 1.8rem;
-    margin-bottom: 2rem;
+    margin-bottom: 1.25rem;
   }
-
+  
+  .constellation-sub-title {
+    font-size: 1rem;
+    margin-bottom: 2.5rem;
+  }
+  
   .star-card {
-    padding: 1.8rem 1.2rem;
+    padding: 1.75rem 1.25rem;
   }
-
+  
   .star-card h3 {
     font-size: 1.25rem;
   }
+  
+  .star-card p {
+    font-size: 0.95rem;
+  }
+  
+  .meta {
+    font-size: 0.85rem;
+    padding: 6px 14px;
+  }
 }
+
+/* Small Mobile */
+@media (max-width: 360px) {
+  .philosophy-constellation {
+    padding: 2.5rem 2%;
+  }
+  
+  .constellation-title {
+    font-size: 1.6rem;
+  }
+  
+  .constellation-sub-title {
+    font-size: 0.95rem;
+    margin-bottom: 2rem;
+  }
+  
+  .star-card {
+    padding: 1.5rem 1rem;
+  }
+  
+  .star-card h3 {
+    font-size: 1.2rem;
+  }
+  
+  .star-card p {
+    font-size: 0.9rem;
+  }
+  
+  .meta {
+    font-size: 0.8rem;
+    padding: 5px 12px;
+  }
+}
+
 /* ===============================
    PULSE SECTION (Newsletter)
    =============================== */
 .pulse-section {
-  padding: 6rem 5%;
+  padding: clamp(3rem, 6vw, 6rem) 5%;
   background: var(--color-page-bg);
-  /* Prevent horizontal scroll on mobile */
-  overflow-x: hidden; 
+  overflow-x: hidden;
 }
 
 .pulse-grid {
   display: grid;
-  /* Switch to single column slightly earlier (900px) 
-     to prevent narrow columns on tablets */
-  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); 
-  gap: 3rem;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 350px), 1fr));
+  gap: clamp(2rem, 4vw, 3rem);
   max-width: 1200px;
   margin: 0 auto;
 }
@@ -581,9 +879,9 @@
 .pulse-update {
   background: var(--color-card-bg);
   border-radius: 18px;
-  padding: 2rem;
+  padding: clamp(1.5rem, 3vw, 2rem);
   box-shadow: 0 6px 28px var(--shadow-light);
-  height: 100%; /* Ensures both cards are same height if side-by-side */
+  height: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -591,7 +889,7 @@
 
 /* --- Newsletter Specifics --- */
 .pulse-newsletter h3 {
-  font-size: 1.4rem;
+  font-size: clamp(1.25rem, 2vw, 1.4rem);
   margin-bottom: 0.5rem;
   color: var(--color-text-primary);
   line-height: 1.3;
@@ -601,6 +899,7 @@
   color: var(--color-text-muted);
   margin-bottom: 1.5rem;
   line-height: 1.6;
+  font-size: clamp(0.95rem, 1.5vw, 1rem);
 }
 
 .pulse-form {
@@ -611,12 +910,12 @@
 
 .pulse-form input {
   flex: 1;
-  padding: 0.85rem 1rem; /* Slightly larger touch target */
+  padding: 0.85rem 1rem;
   border: 1px solid var(--color-border);
   border-radius: 8px;
   font-size: 1rem;
   background: var(--color-white);
-  min-width: 0; /* Prevents input from overflowing container */
+  min-width: 0;
 }
 
 .pulse-form button {
@@ -629,6 +928,7 @@
   cursor: pointer;
   white-space: nowrap;
   transition: opacity 0.2s ease;
+  min-height: 48px;
 }
 
 .pulse-form button:hover {
@@ -655,13 +955,13 @@
 
 .update-content {
   display: flex;
-  gap: 20px;
+  gap: clamp(1rem, 3vw, 20px);
   align-items: flex-start;
 }
 
 .update-img {
-  width: 140px;
-  height: 140px;
+  width: clamp(100px, 15vw, 140px);
+  height: clamp(100px, 15vw, 140px);
   border-radius: 12px;
   overflow: hidden;
   flex-shrink: 0;
@@ -677,15 +977,14 @@
 
 .update-text {
   flex: 1;
-  /* Fix for text overflowing in flex containers */
-  min-width: 0; 
+  min-width: 0;
 }
 
 .update-text h4 a {
   text-decoration: none;
   color: var(--color-text-primary);
   font-weight: 700;
-  font-size: 1.2rem;
+  font-size: clamp(1.1rem, 1.5vw, 1.2rem);
   line-height: 1.4;
   display: block;
 }
@@ -693,7 +992,7 @@
 .update-text p {
   color: var(--color-text-muted);
   margin: 0.5rem 0 1rem 0;
-  font-size: 1rem;
+  font-size: clamp(0.95rem, 1.3vw, 1rem);
   line-height: 1.5;
 }
 
@@ -703,62 +1002,89 @@
   color: var(--color-accent-1);
   text-decoration: none;
   font-weight: 600;
-  font-size: 0.95rem;
+  font-size: clamp(0.9rem, 1.2vw, 0.95rem);
 }
 
 /* ===============================
-   RESPONSIVE MEDIA QUERIES
+   RESPONSIVE BREAKPOINTS - PULSE
    =============================== */
 
-/* Tablet Portrait & Landscape Mobile (max-width: 900px) */
+/* Tablet */
 @media (max-width: 900px) {
   .pulse-section {
-    padding: 4rem 5%;
+    padding: 4rem 4%;
   }
 
   .pulse-grid {
-    grid-template-columns: 1fr; /* Stack the two cards */
+    grid-template-columns: 1fr;
     gap: 2rem;
+    max-width: 600px;
+  }
+  
+  .update-content {
+    gap: 1.5rem;
+  }
+  
+  .update-img {
+    width: 140px;
+    height: 140px;
   }
 }
 
-/* Standard Mobile (max-width: 600px) */
+/* Mobile Large */
+@media (max-width: 768px) {
+  .pulse-section {
+    padding: 3rem 4%;
+  }
+  
+  .pulse-newsletter h3 {
+    font-size: 1.3rem;
+  }
+}
+
+/* Mobile */
 @media (max-width: 600px) {
+  .pulse-section {
+    padding: 2.5rem 3%;
+  }
+  
   .pulse-newsletter, 
   .pulse-update {
     padding: 1.5rem;
   }
 
-  /* --- Form Adjustments --- */
   .pulse-form {
-    flex-direction: column; /* Stack input and button */
+    flex-direction: column;
   }
 
   .pulse-form button {
-    width: 100%; /* Full width button for better thumb reach */
-    padding: 1rem; /* Taller button for touch */
+    width: 100%;
+    padding: 1rem;
   }
 
-  /* --- Update Card Adjustments --- */
   .update-content {
-    flex-direction: column; /* Stack image and text */
+    flex-direction: column;
     gap: 15px;
   }
 
   .update-img {
-    width: 100%; /* Full width image */
-    height: 180px; /* Reduced height to save screen real estate */
+    width: 100%;
+    height: 180px;
   }
 
   .update-text h4 a {
     font-size: 1.15rem;
   }
+  
+  .update-text p {
+    font-size: 0.95rem;
+  }
 }
 
-/* Small Mobile (max-width: 380px) */
-@media (max-width: 380px) {
+/* Small Mobile */
+@media (max-width: 480px) {
   .pulse-section {
-    padding: 3rem 1rem; /* Reduce side padding significantly */
+    padding: 2rem 3%;
   }
   
   .pulse-newsletter, 
@@ -767,15 +1093,61 @@
   }
   
   .pulse-newsletter h3 {
-    font-size: 1.25rem;
+    font-size: 1.2rem;
+  }
+  
+  .pulse-newsletter p {
+    font-size: 0.95rem;
+  }
+  
+  .update-img {
+    height: 160px;
   }
 }
+
+/* Extra Small Mobile */
+@media (max-width: 380px) {
+  .pulse-section {
+    padding: 1.5rem 2%;
+  }
+  
+  .pulse-newsletter, 
+  .pulse-update {
+    padding: 1rem;
+  }
+  
+  .pulse-newsletter h3 {
+    font-size: 1.15rem;
+  }
+  
+  .pulse-form input {
+    padding: 0.75rem;
+    font-size: 0.95rem;
+  }
+  
+  .pulse-form button {
+    padding: 0.75rem;
+  }
+  
+  .update-img {
+    height: 140px;
+  }
+  
+  .update-text h4 a {
+    font-size: 1.1rem;
+  }
+  
+  .update-text p {
+    font-size: 0.9rem;
+  }
+}
+
 /* ===============================
    ECOSYSTEM RING (STATIC VERSION)
    =============================== */
 .ecosystem-ring {
   text-align: center;
-  padding: 5rem 2rem;
+  padding: clamp(3rem, 6vw, 5rem) clamp(1rem, 3vw, 2rem);
   background: var(--color-accent-2);
   position: relative;
   overflow: hidden;
@@ -783,17 +1155,18 @@
 
 /* Quote */
 .ring-quote {
-  font-size: 1.5rem;
+  font-size: clamp(1.25rem, 2.5vw, 1.5rem);
   color: var(--color-text-primary);
   font-style: italic;
-  margin-bottom: 3rem;
-  max-width: 800px;
+  margin-bottom: clamp(2rem, 4vw, 3rem);
+  max-width: min(90%, 800px);
   margin-left: auto;
   margin-right: auto;
   line-height: 1.6;
   position: relative;
-  padding: 0 2rem;
+  padding: 0 clamp(1rem, 3vw, 2rem);
 }
+
 /* Logo Container */
 .ring-logos {
   width: 100%;
@@ -805,7 +1178,7 @@
 .ring-static {
   display: flex;
   flex-wrap: wrap;
-  gap: 2rem;
+  gap: clamp(1rem, 3vw, 2rem);
   justify-content: center;
   align-items: center;
   width: 100%;
@@ -814,16 +1187,16 @@
 
 /* Logo Tiles */
 .ring-logos a {
-  flex-shrink: 0;
-  width: 150px;
-  height: 80px;
+  flex: 0 0 calc(33.333% - clamp(1rem, 3vw, 2rem));
+  max-width: clamp(120px, 20vw, 150px);
+  height: clamp(60px, 10vw, 80px);
   margin: 0;
   display: flex;
   align-items: center;
   justify-content: center;
   background: var(--color-card-bg);
   border-radius: 16px;
-  padding: 15px;
+  padding: clamp(10px, 2vw, 15px);
   box-shadow: 0 8px 25px var(--shadow-light);
   border: 1px solid var(--color-border);
   text-decoration: none;
@@ -834,6 +1207,27 @@
   max-height: 85%;
 }
 
+/* ===============================
+   RESPONSIVE BREAKPOINTS - ECOSYSTEM
+   =============================== */
+
+/* Tablet */
+@media (min-width: 768px) {
+  .ring-logos a {
+    flex: 0 0 calc(25% - clamp(1rem, 3vw, 2rem));
+    max-width: clamp(130px, 18vw, 160px);
+  }
+}
+
+/* Desktop */
+@media (min-width: 1024px) {
+  .ring-logos a {
+    flex: 0 0 calc(16.666% - clamp(1rem, 3vw, 2rem));
+    max-width: clamp(140px, 15vw, 180px);
+  }
+}
+
+/* Mobile */
 @media (max-width: 768px) {
   .ecosystem-ring {
     padding: 3rem 1rem;
@@ -845,21 +1239,47 @@
   }
 
   .ring-logos a {
-    width: 140px;
+    flex: 0 0 calc(50% - 1rem);
+    max-width: 140px;
     height: 70px;
     padding: 12px;
   }
 }
 
+/* Small Mobile */
 @media (max-width: 480px) {
+  .ecosystem-ring {
+    padding: 2.5rem 0.75rem;
+  }
+  
   .ring-quote {
     font-size: 1.1rem;
+    padding: 0 0.5rem;
   }
 
   .ring-logos a {
+    flex: 0 0 calc(50% - 0.75rem);
     width: 120px;
     height: 60px;
     padding: 10px;
+  }
+}
+
+/* Extra Small Mobile */
+@media (max-width: 360px) {
+  .ecosystem-ring {
+    padding: 2rem 0.5rem;
+  }
+  
+  .ring-quote {
+    font-size: 1rem;
+  }
+  
+  .ring-logos a {
+    flex: 0 0 calc(50% - 0.5rem);
+    width: 110px;
+    height: 55px;
+    padding: 8px;
   }
 }
 
@@ -867,16 +1287,17 @@
    IMPACT STORIES (STATIC VERSION)
    =============================== */
 .redesigned-stories {
-  padding: 80px 0;
+  padding: clamp(3rem, 8vw, 80px) 0;
   background: var(--color-page-bg);
   text-align: center;
 }
 
 .redesigned-stories h2 {
-  font-size: 2.5rem;
+  font-size: clamp(2rem, 4vw, 2.5rem);
   color: var(--color-text-primary);
   font-weight: 700;
-  margin-bottom: 60px;
+  margin-bottom: clamp(2rem, 6vw, 60px);
+  padding: 0 20px;
 }
 
 /* STATIC LAYOUT */
@@ -884,15 +1305,17 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  gap: 40px;
-  padding: 0 20px;
+  gap: clamp(1.5rem, 4vw, 40px);
+  padding: 0 clamp(1rem, 3vw, 20px);
+  max-width: 1400px;
+  margin: 0 auto;
 }
 
 /* Card Styling */
 .impact-card {
   position: relative;
-  flex: 0 0 320px;
-  height: 440px;
+  flex: 0 0 min(90%, 320px);
+  height: clamp(300px, 70vw, 440px);
   border-radius: 22px;
   overflow: hidden;
   background: var(--color-card-bg);
@@ -909,33 +1332,77 @@
 /* Overlay */
 .impact-overlay {
   position: absolute;
-  bottom: 18px;
+  bottom: clamp(12px, 3vw, 18px);
   left: 50%;
   transform: translateX(-50%);
   background: var(--color-white);
   color: var(--color-text-primary);
-  padding: 10px 22px;
+  padding: clamp(8px, 2vw, 10px) clamp(16px, 3vw, 22px);
   border-radius: 40px;
   font-weight: 600;
-  font-size: 0.95rem;
+  font-size: clamp(0.85rem, 1.5vw, 0.95rem);
   opacity: 0.92;
+  max-width: 90%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
+/* ===============================
+   RESPONSIVE BREAKPOINTS - STORIES
+   =============================== */
+
+/* Tablet */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .impact-card {
+    flex: 0 0 calc(50% - 20px);
+    max-width: 350px;
+  }
+}
+
+/* Mobile Large */
 @media (max-width: 900px) {
   .impact-card {
-    flex: 0 0 260px;
-    height: 360px;
+    flex: 0 0 min(85%, 280px);
+    height: clamp(280px, 60vw, 360px);
   }
 
   .redesigned-stories h2 {
     font-size: 2rem;
+    margin-bottom: 3rem;
   }
 }
 
-@media (max-width: 500px) {
+/* Mobile */
+@media (max-width: 600px) {
+  .impact-static {
+    flex-direction: column;
+    align-items: center;
+  }
+  
   .impact-card {
-    flex: 0 0 220px;
+    flex: 0 0 90%;
+    max-width: 400px;
+    height: 350px;
+  }
+}
+
+/* Small Mobile */
+@media (max-width: 500px) {
+  .redesigned-stories {
+    padding: 2.5rem 0;
+  }
+  
+  .redesigned-stories h2 {
+    font-size: 1.75rem;
+    margin-bottom: 2rem;
+    padding: 0 15px;
+  }
+  
+  .impact-card {
+    flex: 0 0 90%;
     height: 300px;
+    border-radius: 18px;
   }
 
   .impact-overlay {
@@ -943,17 +1410,37 @@
     padding: 8px 16px;
   }
 }
+
+/* Extra Small Mobile */
+@media (max-width: 360px) {
+  .redesigned-stories h2 {
+    font-size: 1.5rem;
+  }
+  
+  .impact-card {
+    height: 250px;
+    border-radius: 16px;
+  }
+  
+  .impact-overlay {
+    font-size: 0.8rem;
+    padding: 6px 14px;
+    bottom: 10px;
+  }
+}
+
 /* ==============================================
    TOOLBOX & EXPERTS SECTION
    ============================================== */
 .toolbox {
-  padding: 5rem 2rem;
+  padding: clamp(3rem, 6vw, 5rem) clamp(1rem, 3vw, 2rem);
   background: var(--color-page-bg);
 }
 
 .expert-tool-wrapper {
   display: flex;
-  gap: 40px;
+  flex-direction: column;
+  gap: clamp(2rem, 4vw, 40px);
   max-width: 1200px;
   margin: 0 auto;
 }
@@ -964,18 +1451,18 @@
   flex: 1;
   background: var(--color-card-bg);
   border-radius: 24px;
-  padding: 50px 30px;
+  padding: clamp(2rem, 4vw, 50px) clamp(1.5rem, 3vw, 30px);
   text-align: center;
   border: 1px solid var(--color-primary);
 }
 
 .orbit-header {
-  margin-bottom: 35px;
+  margin-bottom: clamp(1.5rem, 4vw, 35px);
 }
 
 .tools-orbit h3,
 .experts-orbit h3 {
-  font-size: 1.75rem;
+  font-size: clamp(1.5rem, 3vw, 1.75rem);
   font-weight: 800;
   color: var(--color-text-primary);
 }
@@ -987,7 +1474,7 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  gap: 22px;
+  gap: clamp(1rem, 2.5vw, 22px);
 }
 
 /* ==============================================
@@ -995,8 +1482,8 @@
    ============================================== */
 .tool-card,
 .expert-card {
-  width: 75px;
-  height: 75px;
+  width: clamp(60px, 8vw, 75px);
+  height: clamp(60px, 8vw, 75px);
   border-radius: 50%;
   position: relative;
   overflow: hidden;
@@ -1037,7 +1524,7 @@
    FALLBACK TEXT
    ============================================== */
 .tool-text {
-  font-size: 0.75rem;
+  font-size: clamp(0.65rem, 1vw, 0.75rem);
   font-weight: 700;
   color: var(--color-text-primary);
   text-align: center;
@@ -1045,21 +1532,56 @@
 }
 
 .expert-initial {
-  font-size: 1.2rem;
+  font-size: clamp(1rem, 1.5vw, 1.2rem);
   font-weight: 800;
   color: var(--color-accent-2);
 }
 
 /* ==============================================
-   RESPONSIVE
+   RESPONSIVE BREAKPOINTS - TOOLBOX
    ============================================== */
+
+/* Desktop */
+@media (min-width: 901px) {
+  .expert-tool-wrapper {
+    flex-direction: row;
+    gap: 40px;
+  }
+}
+
+/* Tablet */
 @media (max-width: 900px) {
   .expert-tool-wrapper {
     flex-direction: column;
   }
+  
+  .tools-orbit,
+  .experts-orbit {
+    width: 100%;
+  }
 }
 
+/* Mobile */
 @media (max-width: 480px) {
+  .toolbox {
+    padding: 2.5rem 1rem;
+  }
+  
+  .tools-orbit,
+  .experts-orbit {
+    padding: 1.5rem 1rem;
+    border-radius: 20px;
+  }
+  
+  .orbit-header {
+    margin-bottom: 1.5rem;
+  }
+  
+  .tools-orbit h3,
+  .experts-orbit h3 {
+    font-size: 1.5rem;
+  }
+
   .tool-card,
   .expert-card {
     width: 65px;
@@ -1070,5 +1592,44 @@
   .expert-card .img-fg {
     max-width: 75%;
     max-height: 75%;
+  }
+  
+  .static-grid {
+    gap: 1rem;
+  }
+}
+
+/* Small Mobile */
+@media (max-width: 360px) {
+  .toolbox {
+    padding: 2rem 0.75rem;
+  }
+  
+  .tools-orbit,
+  .experts-orbit {
+    padding: 1.25rem 0.75rem;
+  }
+  
+  .tools-orbit h3,
+  .experts-orbit h3 {
+    font-size: 1.3rem;
+  }
+  
+  .tool-card,
+  .expert-card {
+    width: 55px;
+    height: 55px;
+  }
+  
+  .tool-text {
+    font-size: 0.6rem;
+  }
+  
+  .expert-initial {
+    font-size: 0.9rem;
+  }
+  
+  .static-grid {
+    gap: 0.75rem;
   }
 }

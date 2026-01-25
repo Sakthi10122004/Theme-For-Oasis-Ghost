@@ -122,65 +122,31 @@ document.documentElement.classList.add("js-ready");
         });
     }
 
-    function initMobileDropdown() {
-        function closeAllDropdowns() {
-            $('.menu-item-has-children').removeClass('open');
-            $('.ghost-submenu').slideUp(200);
-        }
-
-        $(document).on('click', '.menu-item-has-children > a', function(e) {
-            if (window.innerWidth <= 768) {
-                const $parent = $(this).parent();
-                const $icon = $(e.target).closest('svg');
-
-                if ($icon.length > 0) {
-                    e.preventDefault();
-                    e.stopPropagation();
-
-                    $('.menu-item-has-children').not($parent).removeClass('open');
-                    $('.ghost-submenu').not($parent.find('.ghost-submenu')).slideUp(200);
-
-                    $parent.toggleClass('open');
-                } else {
-                    closeAllDropdowns();
-                }
-            }
-        });
-
-        $(document).on('click', function(e) {
-            if (window.innerWidth <= 768 && !$(e.target).closest('.menu-item-has-children').length) {
-                closeAllDropdowns();
-            }
-        });
-
-        $(window).on('resize', function() {
-            let resizeTimeout;
-            $(window).off('resize').on('resize', function() {
-                clearTimeout(resizeTimeout);
-                resizeTimeout = setTimeout(function() {
-                    if (window.innerWidth > 768) {
-                        $('.menu-item-has-children').removeClass('open');
-                        $('.ghost-submenu').removeAttr('style');
-                    }
-                }, 200);
-            });
-        });
-    }
-
     function initMobileMenu() {
         const $hamburger = $('.hamburger');
         const $mobileNav = $('.nebula-nav-horizontal');
         const $body = $('body');
 
+        // 🔥 PREVENT MULTIPLE BINDS
+        $hamburger.off('click.mobileMenu');
+        $mobileNav.off('click.mobileMenu');
+        $(document).off('click.mobileMenu');
+        $(document).off('keydown.mobileMenu');
+
         if ($hamburger.length && $mobileNav.length) {
-            $hamburger.on('click', function(e) {
+            $hamburger.on('click.mobileMenu', function(e) {
                 e.stopPropagation();
                 $(this).toggleClass('active');
                 $mobileNav.toggleClass('active');
                 $body.css('overflow', $mobileNav.hasClass('active') ? 'hidden' : '');
             });
 
-            $mobileNav.on('click', 'a', function(e) {
+            $mobileNav.on('click.mobileMenu', 'a', function(e) {
+                // Fixed - submenu links MUST navigate
+                if ($(this).closest('.ghost-submenu').length) {
+                    return true; // allow native navigation
+                }
+                
                 if ($(e.target).closest('svg').length > 0) {
                     return;
                 }
@@ -192,7 +158,7 @@ document.documentElement.classList.add("js-ready");
                 }
             });
 
-            $(document).on('click', function(e) {
+            $(document).on('click.mobileMenu', function(e) {
                 if (!$mobileNav.is(e.target) && $mobileNav.has(e.target).length === 0 && !$hamburger.is(e.target)) {
                     $mobileNav.removeClass('active');
                     $hamburger.removeClass('active');
@@ -200,7 +166,7 @@ document.documentElement.classList.add("js-ready");
                 }
             });
 
-            $(document).on('keydown', function(e) {
+            $(document).on('keydown.mobileMenu', function(e) {
                 if (e.key === 'Escape' && $mobileNav.hasClass('active')) {
                     $mobileNav.removeClass('active');
                     $hamburger.removeClass('active');
@@ -257,6 +223,8 @@ document.documentElement.classList.add("js-ready");
         });
 
         $(targetElement).css("opacity", "1");
+        
+        // ✅ RESTORE ORIGINAL SVG APPEND (DESKTOP SAFE)
         $(`.${hasChildrenClasses}`).append(hasChildrenIcon);
 
         for (let i = 0; i < parentLen; i++) {
@@ -292,7 +260,7 @@ document.documentElement.classList.add("js-ready");
             multiLevel();
         }
 
-        initMobileDropdown();
+        // ✅ REMOVED: initMobileDropdown() call
         initMobileMenu();
     }
 

@@ -1,4 +1,4 @@
-/* About Page Styles */
+/* About Page Styles - Responsive */
 
 * {
     margin: 0;
@@ -8,54 +8,58 @@
 .about-page {
     background-color: var(--color-background-light);
     min-height: 100vh;
+    width: 100%;
+    overflow-x: hidden;
 }
 
 /* Container */
 .container {
     max-width: 1200px;
     margin: 0 auto;
-    padding: 0 20px;
+    padding: 0 clamp(15px, 4vw, 40px);
+    width: 100%;
 }
 
 .container-wide {
     max-width: 1400px;
     margin: 0 auto;
-    padding: 0 20px;
+    padding: 0 clamp(15px, 4vw, 40px);
+    width: 100%;
 }
 
 /* Hero Section */
 .heros-section {
     background-color: var(--color-bg-light);
-    padding: 2rem 0;
+    padding: clamp(30px, 5vw, 80px) 0;
 }
 
 .heros-title {
-    font-size: 2rem;
+    font-size: clamp(1.5rem, 4vw, 2.5rem);
     font-weight: 700;
     text-align: center;
-    margin: 0 0 15px 0;
+    margin: 0 0 clamp(10px, 2vw, 25px) 0;
     color: var(--color-text-dark);
     line-height: 1.3;
     animation: fadeIn 0.6s ease-out;
+    padding: 0 10px;
 }
 
 .heros-subtitle {
-    font-size: 1rem;
+    font-size: clamp(0.9rem, 1.5vw, 1.1rem);
     text-align: center;
-    margin: 0 0 30px 0;
+    margin: 0 auto clamp(20px, 4vw, 40px) auto;
     color: var(--color-text-medium);
     line-height: 1.6;
-    max-width: 900px;
-    margin-left: auto;
-    margin-right: auto;
+    max-width: min(900px, 95%);
     animation: fadeIn 0.6s ease-out 0.1s backwards;
+    padding: 0 15px;
 }
 
 .heros-image-wrapper {
     width: 100%;
-    max-width: 1100px;
-    margin: 0 auto 30px auto;
-    border-radius: 12px;
+    max-width: min(1100px, 95%);
+    margin: 0 auto clamp(20px, 4vw, 40px) auto;
+    border-radius: clamp(8px, 2vw, 16px);
     overflow: hidden;
     box-shadow: 0 4px 15px rgba(0,0,0,0.1);
     animation: fadeIn 0.6s ease-out 0.2s backwards;
@@ -69,33 +73,35 @@
 }
 
 .heros-context {
-    font-size: 1.1rem;
+    font-size: clamp(0.95rem, 1.8vw, 1.2rem);
     text-align: center;
-    margin: 0;
+    margin: 0 auto;
     color: var(--color-text-dark);
     line-height: 1.5;
-    max-width: 950px;
-    margin: 0 auto;
+    max-width: min(950px, 95%);
     font-weight: 500;
     animation: fadeIn 0.6s ease-out 0.3s backwards;
+    padding: 0 15px;
 }
 
 /* Timeline Section */
 .timeline-section {
-    padding: 50px 0;
+    padding: clamp(40px, 6vw, 80px) 0;
     background: #fafaf5;
 }
 
 .section-title {
     text-align: center;
-    font-size: 1.8rem;
-    margin-bottom: 50px;
+    font-size: clamp(1.4rem, 3vw, 2.2rem);
+    margin-bottom: clamp(30px, 5vw, 60px);
     font-weight: 700;
+    padding: 0 15px;
 }
 
 /* Timeline Wrapper */
 .timeline {
     position: relative;
+    width: 100%;
 }
 
 /* Horizontal Line */
@@ -113,127 +119,133 @@
 .timeline-row {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    gap: 15px;
+    gap: clamp(10px, 2vw, 25px);
     position: relative;
     z-index: 2;
+    width: 100%;
 }
 
 /* Step */
 .timeline-step {
     text-align: center;
+    width: 100%;
 }
 
 /* Dot */
 .timeline-dot {
     display: inline-block;
-    width: 12px;
-    height: 12px;
+    width: clamp(10px, 1.5vw, 14px);
+    height: clamp(10px, 1.5vw, 14px);
     background: #111;
     border-radius: 50%;
-    margin-bottom: 15px;
+    margin-bottom: clamp(10px, 2vw, 20px);
 }
 
 /* Uniform Yellow Cards */
 .timeline-card {
     background: #ffef75;
-    border-radius: 10px;
-    padding: 20px;
-    font-size: 0.85rem;
+    border-radius: clamp(8px, 1.5vw, 12px);
+    padding: clamp(15px, 2.5vw, 25px);
+    font-size: clamp(0.8rem, 1.1vw, 0.95rem);
     line-height: 1.5;
-    min-height: 160px;
+    min-height: min(160px, fit-content);
     display: block;
     text-align: left;
     word-break: normal;
+    width: 100%;
 }
 
 .timeline-final-card {
     background: #f5f5f0;
-    max-width: 800px;
+    max-width: min(800px, 95%);
     margin: 0 auto;
     text-align: center;
 }
 
 /* OASIS heading */
 .timeline-title {
-    margin-bottom: 12px;
-    font-size: 1.3rem;
+    margin-bottom: clamp(8px, 1.5vw, 15px);
+    font-size: clamp(1.1rem, 2vw, 1.5rem);
     font-weight: 700;
 }
 
 /* Final Step */
 .timeline-final {
-    margin-top: 70px;
+    margin-top: clamp(40px, 8vw, 80px);
     text-align: center;
     position: relative;
+    width: 100%;
 }
 
 /* vertical connector */
 .timeline-final::before {
     content: '';
     position: absolute;
-    top: -50px;
+    top: clamp(-30px, -6vw, -50px);
     left: 50%;
     transform: translateX(-50%);
     width: 2px;
-    height: 50px;
+    height: clamp(30px, 6vw, 50px);
     background: rgba(0, 0, 0, 0.25);
 }
 
 /* Final Card */
 .timeline-final-card {
     background: #f5f5f0;
-    max-width: 800px;
+    max-width: min(800px, 95%);
     margin: 0 auto;
+    padding: clamp(20px, 3vw, 30px);
 }
 
 .timeline-final-card h3 {
-    margin-bottom: 10px;
-    font-size: 1.3rem;
+    margin-bottom: clamp(8px, 1.5vw, 12px);
+    font-size: clamp(1.1rem, 2vw, 1.5rem);
 }
 
 /* Board Section */
 .board-section {
-    padding: 50px 0;
+    padding: clamp(40px, 6vw, 80px) 0;
     background-color: var(--color-background-light);
 }
 
 .board-grid {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    gap: 20px;
-    margin-bottom: 30px;
+    gap: clamp(15px, 2vw, 30px);
+    margin-bottom: clamp(20px, 3vw, 40px);
 }
 
 .board-member {
     background: var(--color-background-card);
     border: 2px solid var(--color-border-light);
-    border-radius: 10px;
-    padding: 20px;
+    border-radius: clamp(8px, 1.5vw, 12px);
+    padding: clamp(15px, 2vw, 25px);
     text-align: center;
     transition: all 0.3s ease;
     animation: fadeIn 0.5s ease-out;
+    width: 100%;
 }
 
 .board-member img {
-    width: 80px;
-    height: 80px;
+    width: clamp(60px, 8vw, 100px);
+    height: clamp(60px, 8vw, 100px);
     border-radius: 50%;
     object-fit: cover;
-    margin: 0 auto 12px auto;
+    margin: 0 auto clamp(8px, 1.5vw, 15px) auto;
     display: block;
     border: 3px solid var(--color-border-light);
     transition: all 0.3s ease;
 }
 
 .board-member h3 {
-    font-size: 0.9rem;
-    margin: 0 0 6px 0;
+    font-size: clamp(0.85rem, 1.2vw, 1rem);
+    margin: 0 0 clamp(4px, 0.8vw, 8px) 0;
     color: var(--color-text-dark);
     font-weight: 600;
 }
 
 .board-member p {
-    font-size: 0.8rem;
+    font-size: clamp(0.75rem, 1vw, 0.9rem);
     margin: 0;
     color: var(--color-text-medium);
     line-height: 1.4;
@@ -241,32 +253,33 @@
 
 /* Team Section */
 .team-section {
-    padding: 50px 0;
+    padding: clamp(40px, 6vw, 80px) 0;
     background: var(--color-background-light);
 }
 
 .team-grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: 30px;
+    gap: clamp(20px, 3vw, 40px);
 }
 
 .team-member {
     background: var(--color-background-card);
     border: 1px solid var(--color-border-light);
-    border-radius: 10px;
-    padding: 30px;
+    border-radius: clamp(8px, 1.5vw, 12px);
+    padding: clamp(20px, 3vw, 35px);
     display: flex;
     flex-direction: column;
+    width: 100%;
 }
 
 .team-member img {
-    width: 150px;
-    height: 150px;
+    width: clamp(100px, 15vw, 180px);
+    height: clamp(100px, 15vw, 180px);
     object-fit: cover;
     border-radius: 50%;
     border: 3px solid var(--color-border-light);
-    margin: 0 auto 20px auto;
+    margin: 0 auto clamp(15px, 2.5vw, 25px) auto;
 }
 
 /* content */
@@ -277,40 +290,41 @@
 
 /* name */
 .team-member h3 {
-    font-size: 1.2rem;
+    font-size: clamp(1rem, 1.8vw, 1.4rem);
     color: var(--color-text-dark);
-    margin-bottom: 6px;
+    margin-bottom: clamp(4px, 0.8vw, 8px);
 }
 
 /* role */
 .team-role {
-    font-size: 1rem;
+    font-size: clamp(0.9rem, 1.4vw, 1.1rem);
     color: var(--color-text-medium);
     font-weight: 600;
-    margin-bottom: 12px;
+    margin-bottom: clamp(8px, 1.5vw, 15px);
 }
 
 /* bio */
 .team-bio {
     color: var(--color-text-dark);
-    font-size: 0.95rem;
+    font-size: clamp(0.85rem, 1.2vw, 1rem);
     line-height: 1.5;
-    margin-bottom: 20px;
+    margin-bottom: clamp(15px, 2.5vw, 25px);
 }
 
 /* LinkedIn Button */
 .team-link {
     display: inline-flex;
     align-self: center;
-    padding: 10px 24px;
+    padding: clamp(8px, 1.5vw, 12px) clamp(20px, 3vw, 28px);
     background: var(--color-button);
     color: var(--color-text-light);
     border-radius: var(--radius-button);
     font-weight: 600;
-    font-size: 0.85rem;
+    font-size: clamp(0.8rem, 1.1vw, 0.95rem);
     text-decoration: none;
     margin-top: auto;
     transition: all var(--anim-fast);
+    white-space: nowrap;
 }
 
 .team-link:hover {
@@ -320,7 +334,7 @@
 
 /* Mission Section */
 .mission-section {
-    padding: 50px 0;
+    padding: clamp(40px, 6vw, 80px) 0;
     background-color: #f9faf2;
     position: relative;
 }
@@ -338,40 +352,36 @@
 .mission-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 25px;
-    margin-top: 40px;
+    gap: clamp(15px, 2.5vw, 30px);
+    margin-top: clamp(30px, 5vw, 50px);
 }
 
 .mission-card {
     background: #fbe86b;
     border: 2px solid #ebe9de;
-    border-radius: 14px;
-    padding: 25px;
+    border-radius: clamp(10px, 1.8vw, 16px);
+    padding: clamp(20px, 3vw, 30px);
     position: relative;
     overflow: hidden;
+    width: 100%;
 }
 
 .card-icon {
-    width: 50px;
-    height: 50px;
+    width: clamp(40px, 6vw, 60px);
+    height: clamp(40px, 6vw, 60px);
     background: #1c1c1c;
-    border-radius: 10px;
+    border-radius: clamp(8px, 1.2vw, 12px);
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-bottom: 20px;
+    margin-bottom: clamp(15px, 2.5vw, 25px);
     color: #fafafa;
-}
-
-.mission-card-secondary .card-icon,
-.mission-card-accent .card-icon {
-    background: #1c1c1c;
-    color: #fafafa;
+    font-size: clamp(1rem, 1.5vw, 1.5rem);
 }
 
 .mission-card h3 {
-    font-size: 1.3rem;
-    margin: 0 0 15px 0;
+    font-size: clamp(1.1rem, 2vw, 1.5rem);
+    margin: 0 0 clamp(10px, 1.8vw, 20px) 0;
     color: #1c1c1c;
     font-weight: 700;
 }
@@ -380,7 +390,7 @@
     line-height: 1.6;
     color: #1c1c1c;
     margin: 0;
-    font-size: 0.9rem;
+    font-size: clamp(0.85rem, 1.1vw, 1rem);
     opacity: 0.85;
 }
 
@@ -391,12 +401,12 @@
 }
 
 .mission-card li {
-    margin-bottom: 12px;
+    margin-bottom: clamp(8px, 1.5vw, 15px);
     line-height: 1.6;
     color: #1c1c1c;
-    font-size: 0.9rem;
+    font-size: clamp(0.85rem, 1.1vw, 1rem);
     display: flex;
-    gap: 10px;
+    gap: clamp(8px, 1.2vw, 12px);
     align-items: flex-start;
     opacity: 0.85;
 }
@@ -407,9 +417,9 @@
 
 .value-icon {
     color: #1c1c1c;
-    font-size: 0.6rem;
+    font-size: clamp(0.5rem, 0.8vw, 0.7rem);
     flex-shrink: 0;
-    margin-top: 5px;
+    margin-top: 4px;
 }
 
 .mission-card li strong {
@@ -422,40 +432,41 @@
 
 /* CTA Section */
 .cta-section {
-    padding: 50px 0;
+    padding: clamp(40px, 6vw, 80px) 0;
     background-color: var(--color-primary);
     text-align: center;
 }
 
 .cta-content h2 {
-    font-size: 1.8rem;
+    font-size: clamp(1.4rem, 3vw, 2.2rem);
     color: var(--color-text-light);
-    margin: 0 0 12px 0;
+    margin: 0 0 clamp(8px, 1.5vw, 15px) 0;
     font-weight: 700;
+    padding: 0 15px;
 }
 
 .cta-content p {
-    font-size: 1rem;
+    font-size: clamp(0.9rem, 1.4vw, 1.1rem);
     color: var(--color-text-light);
-    margin: 0 0 24px 0;
-    max-width: 750px;
-    margin-left: auto;
-    margin-right: auto;
+    margin: 0 auto clamp(20px, 3vw, 30px) auto;
+    max-width: min(750px, 95%);
     line-height: 1.5;
     opacity: 0.9;
+    padding: 0 15px;
 }
 
 .cta-button {
     display: inline-block;
-    padding: 12px 30px;
+    padding: clamp(10px, 1.8vw, 14px) clamp(20px, 3vw, 35px);
     background: var(--color-background-dark);
     color: var(--color-text-light);
     text-decoration: none;
-    border-radius: 6px;
-    font-size: 0.95rem;
+    border-radius: clamp(5px, 0.8vw, 8px);
+    font-size: clamp(0.85rem, 1.2vw, 1rem);
     font-weight: 700;
     border: 2px solid var(--color-border-light);
     transition: all 0.3s ease;
+    white-space: nowrap;
 }
 
 .cta-button:hover {
@@ -467,102 +478,51 @@
 }
 
 /* ====================== */
-/* RESPONSIVE DESIGN */
+/* RESPONSIVE BREAKPOINTS */
 /* ====================== */
 
+/* Large Tablet & Small Desktop */
+@media (max-width: 1200px) {
+    .board-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+    
+    .mission-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .mission-card:nth-child(3) {
+        grid-column: 1 / -1;
+        max-width: min(800px, 100%);
+        margin: 0 auto;
+    }
+}
+
 /* Tablet */
-@media (max-width: 1024px) {
-    .heros-title {
-        font-size: 1.8rem;
-    }
-    
-    .heros-subtitle {
-        font-size: 0.95rem;
-    }
-    
-    .section-title {
-        font-size: 1.6rem;
-        margin-bottom: 40px;
-    }
-    
+@media (max-width: 992px) {
     .timeline-row {
         grid-template-columns: repeat(2, 1fr);
-        gap: 20px;
+        gap: clamp(20px, 3vw, 30px);
     }
     
     .timeline-line {
         display: none;
     }
     
-    .board-grid {
-        grid-template-columns: repeat(3, 1fr);
-        gap: 15px;
-    }
-    
     .team-grid {
-        gap: 20px;
+        gap: clamp(15px, 2.5vw, 25px);
     }
     
-    .mission-grid {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 20px;
-    }
-    
-    .team-member {
-        padding: 25px;
-    }
-    
-    .team-member img {
-        width: 130px;
-        height: 130px;
+    .mission-card {
+        padding: clamp(18px, 2.5vw, 25px);
     }
 }
 
 /* Large Mobile */
 @media (max-width: 768px) {
-    .container,
-    .container-wide {
-        padding: 0 15px;
-    }
-    
-    .heros-section {
-        padding: 30px 0 25px 0;
-    }
-    
-    .heros-title {
-        font-size: 1.5rem;
-    }
-    
-    .heros-subtitle {
-        font-size: 0.9rem;
-        margin-bottom: 25px;
-    }
-    
-    .heros-image-wrapper {
-        margin-bottom: 20px;
-        border-radius: 8px;
-    }
-    
-    .heros-context {
-        font-size: 1rem;
-    }
-    
-    .section-title {
-        font-size: 1.4rem;
-        margin-bottom: 30px;
-    }
-    
-    .timeline-section,
-    .board-section,
-    .team-section,
-    .mission-section,
-    .cta-section {
-        padding: 40px 0;
-    }
-    
     .timeline-row {
         grid-template-columns: 1fr;
-        gap: 30px;
+        gap: clamp(25px, 4vw, 35px);
     }
     
     .timeline-step {
@@ -571,222 +531,187 @@
     
     .timeline-dot {
         float: left;
-        margin-right: 15px;
+        margin-right: clamp(12px, 2vw, 18px);
         margin-bottom: 0;
         margin-top: 5px;
     }
     
     .timeline-card {
         min-height: auto;
-        margin-top: 10px;
+        margin-top: clamp(8px, 1.5vw, 12px);
     }
     
     .timeline-title {
-        margin-left: 30px;
-    }
-    
-    .timeline-final {
-        margin-top: 50px;
-    }
-    
-    .timeline-final::before {
-        height: 40px;
-        top: -40px;
+        margin-left: clamp(25px, 4vw, 35px);
     }
     
     .board-grid {
         grid-template-columns: repeat(2, 1fr);
-        gap: 12px;
-    }
-    
-    .board-member {
-        padding: 15px;
-    }
-    
-    .board-member img {
-        width: 70px;
-        height: 70px;
+        gap: clamp(10px, 2vw, 15px);
     }
     
     .team-grid {
         grid-template-columns: 1fr;
-        gap: 25px;
-    }
-    
-    .team-member {
-        padding: 25px 20px;
-    }
-    
-    .team-member img {
-        width: 120px;
-        height: 120px;
-    }
-    
-    .team-member h3 {
-        font-size: 1.1rem;
-    }
-    
-    .team-role {
-        font-size: 0.95rem;
-    }
-    
-    .team-bio {
-        font-size: 0.9rem;
+        gap: clamp(20px, 3vw, 30px);
     }
     
     .mission-grid {
         grid-template-columns: 1fr;
-        gap: 20px;
     }
     
-    .mission-card {
-        padding: 20px;
-    }
-    
-    .card-icon {
-        width: 45px;
-        height: 45px;
-        margin-bottom: 15px;
-    }
-    
-    .cta-content h2 {
-        font-size: 1.5rem;
-    }
-    
-    .cta-content p {
-        font-size: 0.9rem;
-    }
-    
-    .cta-button {
-        padding: 10px 25px;
-        font-size: 0.9rem;
+    .mission-card:nth-child(3) {
+        grid-column: auto;
+        max-width: 100%;
     }
 }
 
 /* Small Mobile */
-@media (max-width: 480px) {
-    .heros-title {
-        font-size: 1.3rem;
-    }
-    
-    .heros-subtitle {
-        font-size: 0.85rem;
-    }
-    
-    .heros-context {
-        font-size: 0.95rem;
-    }
-    
-    .section-title {
-        font-size: 1.3rem;
-    }
-    
+@media (max-width: 576px) {
     .board-grid {
         grid-template-columns: 1fr;
-        gap: 10px;
+        gap: clamp(8px, 1.5vw, 12px);
+    }
+    
+    .board-member {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        text-align: left;
+        gap: clamp(12px, 2vw, 18px);
     }
     
     .board-member img {
-        width: 60px;
-        height: 60px;
+        width: clamp(50px, 10vw, 70px);
+        height: clamp(50px, 10vw, 70px);
+        margin: 0;
+        flex-shrink: 0;
     }
     
-    .board-member h3 {
-        font-size: 0.85rem;
+    .board-content {
+        flex: 1;
     }
     
-    .board-member p {
-        font-size: 0.75rem;
+    .timeline-final::before {
+        top: clamp(-25px, -5vw, -35px);
+        height: clamp(25px, 5vw, 35px);
     }
     
-    .team-member {
-        padding: 20px 15px;
-    }
-    
-    .team-member img {
-        width: 100px;
-        height: 100px;
-    }
-    
-    .team-member h3 {
-        font-size: 1rem;
-    }
-    
-    .team-role {
-        font-size: 0.9rem;
-    }
-    
-    .team-bio {
-        font-size: 0.85rem;
-        line-height: 1.4;
-    }
-    
-    .team-link {
-        padding: 8px 20px;
-        font-size: 0.8rem;
-    }
-    
-    .mission-card h3 {
-        font-size: 1.2rem;
-    }
-    
-    .mission-card p,
-    .mission-card li {
-        font-size: 0.85rem;
-    }
-    
-    .timeline-card {
-        padding: 15px;
-        font-size: 0.8rem;
-    }
-    
-    .timeline-title {
-        font-size: 1.1rem;
-    }
-    
-    .cta-content h2 {
-        font-size: 1.3rem;
-    }
-    
-    .cta-content p {
-        font-size: 0.85rem;
-    }
-    
+    .team-link,
     .cta-button {
-        padding: 8px 20px;
-        font-size: 0.85rem;
+        width: 100%;
+        justify-content: center;
+        text-align: center;
     }
 }
 
 /* Extra Small Mobile */
-@media (max-width: 360px) {
+@media (max-width: 400px) {
     .container,
     .container-wide {
-        padding: 0 10px;
-    }
-    
-    .heros-title {
-        font-size: 1.2rem;
-    }
-    
-    .section-title {
-        font-size: 1.2rem;
+        padding: 0 clamp(10px, 3vw, 15px);
     }
     
     .team-member {
-        padding: 15px 12px;
-    }
-    
-    .team-member img {
-        width: 90px;
-        height: 90px;
+        padding: clamp(15px, 3vw, 20px);
     }
     
     .mission-card {
-        padding: 15px;
+        padding: clamp(15px, 3vw, 20px);
     }
     
     .board-member {
-        padding: 12px;
+        padding: clamp(12px, 2vw, 16px);
+    }
+}
+
+/* Desktop Adjustments */
+@media (min-width: 1200px) {
+    .heros-image-wrapper:hover {
+        transform: translateY(-5px);
+        transition: transform 0.3s ease;
+        box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+    }
+    
+    .board-member:hover {
+        transform: translateY(-5px);
+        border-color: var(--color-primary);
+        box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+    }
+    
+    .team-member:hover {
+        transform: translateY(-5px);
+        border-color: var(--color-primary);
+        box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        transition: all 0.3s ease;
+    }
+    
+    .mission-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+        transition: all 0.3s ease;
+    }
+}
+
+/* Landscape Mode for Mobile */
+@media (max-height: 600px) and (orientation: landscape) {
+    .heros-section {
+        padding: 20px 0;
+    }
+    
+    .timeline-section,
+    .board-section,
+    .team-section,
+    .mission-section,
+    .cta-section {
+        padding: 30px 0;
+    }
+    
+    .timeline-row {
+        gap: 15px;
+    }
+    
+    .team-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 15px;
+    }
+    
+    .team-member {
+        flex-direction: row;
+        gap: 20px;
+        align-items: center;
+    }
+    
+    .team-member img {
+        width: 80px;
+        height: 80px;
+        margin: 0;
+    }
+    
+    .team-content {
+        text-align: left;
+    }
+}
+
+/* High-resolution screens */
+@media (min-resolution: 192dpi) {
+    .timeline-line,
+    .timeline-final::before {
+        height: 1px;
+    }
+}
+
+/* Print Styles */
+@media print {
+    .about-page {
+        background: white;
+    }
+    
+    .team-link,
+    .cta-button {
+        display: none;
+    }
+    
+    .mission-section::before {
+        display: none;
     }
 }

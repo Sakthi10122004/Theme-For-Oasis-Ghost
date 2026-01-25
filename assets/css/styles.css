@@ -81,7 +81,7 @@
 
   /* ======================
      TRANSITION UTILS
-     ====================== */
+     ============================================== */
   --nav-transition-out: all 0.1s ease-out;
   --page-load-cover: rgba(249, 250, 242, 0.98);
 }
@@ -207,6 +207,7 @@ button {
   justify-content: space-between;
   gap: 1.5rem;
   height: 100%;
+  min-width: 0;
 }
 
 .logo {
@@ -292,8 +293,52 @@ button {
   z-index: 999;
 }
 
-@media (min-width: 1025px) {
-  .nebula-nav-horizontal li:hover > ul {
+/* ======================================================
+   SUBMENU TOGGLE BUTTON (NEW - REPLACES ARROW IN LINK)
+   ====================================================== */
+.submenu-toggle {
+  position: absolute;
+  right: 0;
+  top: 1.1rem;
+  background: none;
+  border: none;
+  padding: 6px;
+  cursor: pointer;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 4px;
+  transition: background-color var(--anim-fast);
+}
+
+.submenu-toggle:hover {
+  background: var(--color-button-lighter);
+}
+
+.submenu-toggle svg {
+  width: 20px;
+  height: 20px;
+  transition: transform 0.3s ease;
+}
+
+.menu-item-has-children.open .submenu-toggle svg {
+  transform: rotate(180deg);
+}
+
+/* ======================================================
+   ALLOW SUBMENU LINKS TO NAVIGATE
+   ====================================================== */
+.nebula-nav-horizontal li ul a {
+  pointer-events: auto;
+}
+
+/* ======================================================
+   CRITICAL FIX: Desktop hover ONLY when nav is NOT active
+   ====================================================== */
+@media (min-width: 1151px) {
+  .nebula-nav-horizontal:not(.active) li:hover > ul {
     display: flex;
   }
 
@@ -302,19 +347,10 @@ button {
     padding: 0.75rem 1.25rem;
     font-size: 0.95rem;
   }
-}
 
-/* --- LAPTOP / TABLET RESPONSIVE FIX (769px to 1150px) --- */
-@media (min-width: 769px) and (max-width: 1150px) {
-  .nebula-nav-horizontal ul {
-    gap: 0.3rem;
-  }
-  .nebula-nav-horizontal a {
-    padding: 0.5rem 0.6rem;
-    font-size: 0.9rem;
-  }
-  .header-content {
-    gap: 0.5rem;
+  /* Hide submenu toggle on desktop - hover works */
+  .submenu-toggle {
+    display: none;
   }
 }
 
@@ -370,6 +406,8 @@ button {
   font-size: 0.95rem;
   white-space: nowrap;
   transition: transform 0.2s ease, box-shadow 0.2s ease;
+  max-width: 100%;
+  flex-shrink: 0;
 }
 
 .profile-icon:hover,
@@ -414,35 +452,35 @@ button {
   transform: rotate(-45deg) translate(6px, -6px);
 }
 
-/* ======================================================
-   DESKTOP NAVIGATION (1025px and above)
-   ====================================================== */
-@media (min-width: 1025px) {
+/* ==============================================
+   MOBILE / TABLET DEFAULT STATE (CLOSED)
+   ============================================== */
+@media (max-width: 1150px) {
   .nebula-nav-horizontal {
-    display: flex;
-    opacity: 1;
-    transform: none;
-  }
+    position: fixed;
+    top: calc(var(--header-height) + 0.5rem);
+    left: 0;
+    width: 100%;
+    height: calc(100dvh - var(--header-height));
+    background: rgba(250, 250, 250, 0.98);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    overflow-y: auto;
+    z-index: 999;
+    flex-direction: column;
+    padding: 1rem 1.5rem 6rem;
+    border-top: 1px solid var(--color-border-light);
 
-  .header-right-items {
-    display: flex;
-  }
-
-  .hamburger {
-    display: none;
-  }
-}
-
-/* ======================================================
-   TABLET / SMALL LAPTOP (≤1024px)
-   ====================================================== */
-@media (max-width: 1024px) {
-  /* Hide desktop navigation */
-  .nebula-nav-horizontal {
+    /* CLOSED STATE */
     display: none;
   }
 
-  /* Hide right-side desktop actions */
+  /* OPEN STATE */
+  .nebula-nav-horizontal.active {
+    display: flex;
+  }
+
+  /* Hide desktop header actions */
   .header-right-items {
     display: none;
   }
@@ -451,64 +489,82 @@ button {
   .hamburger {
     display: flex;
   }
+
+  /* Submenus default closed */
+  .nebula-nav-horizontal li ul {
+    display: none;
+  }
+
+  /* Submenus open ONLY when .open exists */
+  .nebula-nav-horizontal .menu-item-has-children.open > ul {
+    display: block;
+  }
+
+  /* Show submenu toggle on mobile */
+  .submenu-toggle {
+    display: flex;
+  }
 }
 
 /* ======================================================
-   MOBILE (768px and below)
+   TABLET / MOBILE INTERACTION LOCK - HARD DISABLE HOVER
    ====================================================== */
-@media (max-width: 768px) {
-  /* Already hidden from tablet rules, but ensure it */
+@media (max-width: 1150px) {
+  /* HARD KILL hover on mobile/tablet (no exceptions) */
+  .nebula-nav-horizontal li:hover > ul {
+    display: none !important;
+  }
+
+  /* Prevent mouse from affecting submenu visibility */
+  .nebula-nav-horizontal li {
+    pointer-events: auto;
+  }
+
+  .nebula-nav-horizontal li ul {
+    pointer-events: auto;
+  }
+}
+
+/* ======================================================
+   DESKTOP NAVIGATION (1151px and above)
+   ====================================================== */
+@media (min-width: 1151px) {
   .nebula-nav-horizontal {
-    display: none;
+    display: flex;
+    opacity: 1;
+    transform: none;
+    position: static;
+    height: auto;
+    background: transparent;
+    backdrop-filter: none;
+    padding: 0;
+    border-top: none;
+    overflow: visible;
+  }
+
+  .nebula-nav-horizontal ul {
+    flex-direction: row;
   }
 
   .header-right-items {
-    display: none;
-  }
-
-  .hamburger {
     display: flex;
   }
 
-  .nebula-header {
-    border-radius: 1rem;
-    padding: 0.75rem 1rem;
-    min-height: 60px;
-    top: 0.5rem;
+  .hamburger {
+    display: none;
   }
+}
 
-  .logo img {
-    height: 2.2rem;
-  }
-
-  /* Active Menu State */
-  .nebula-nav-horizontal.active {
-    display: flex !important;
-    position: fixed;
-    top: calc(var(--header-height) + 0.5rem);
-    left: 0;
-    width: 100%;
-    height: calc(100vh - var(--header-height));
-    height: calc(100dvh - var(--header-height));
-    background: rgba(250, 250, 250, 0.98);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-    overflow-y: auto;
-    padding: 1rem 1.5rem 6rem;
-    z-index: 999;
-    flex-direction: column;
-    justify-content: flex-start;
-    border-top: 1px solid var(--color-border-light);
-    padding-bottom: calc(env(safe-area-inset-bottom) + 4rem);
-    opacity: 1 !important;
-    transform: none !important;
-  }
-
+/* ======================================================
+   MOBILE MENU SPECIFIC STYLES
+   ====================================================== */
+@media (max-width: 1150px) {
   .nebula-nav-horizontal.active ul {
-    flex-direction: column;
-    gap: 0;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    gap: 0 !important;
     width: 100%;
-    align-items: flex-start;
   }
 
   .nebula-nav-horizontal.active ul li {
@@ -518,35 +574,17 @@ button {
     position: relative;
   }
 
+  /* ✅ FIXED: Removed !important from background */
   .nebula-nav-horizontal.active ul li a {
     width: 100%;
     padding: 1.1rem 3rem 1.1rem 0;
     font-size: 1.15rem;
     text-align: left;
     border-radius: 0;
-    background: transparent !important;
+    background-color: transparent;
     display: flex;
     justify-content: flex-start;
     align-items: center;
-  }
-
-  /* Dropdown Arrows (SVG) */
-  .nebula-nav-horizontal.active .menu-item-has-children > a > svg {
-    display: block !important;
-    cursor: pointer;
-    transition: transform 0.3s ease;
-    position: absolute;
-    right: 0;
-    top: 1.1rem;
-    width: 24px;
-    height: 24px;
-    z-index: 50;
-    padding: 4px;
-    box-sizing: content-box;
-  }
-
-  .nebula-nav-horizontal.active .menu-item-has-children.open > a > svg {
-    transform: rotate(180deg);
   }
 
   /* Submenus */
@@ -558,11 +596,6 @@ button {
     border: none;
     background: transparent;
     padding: 0 0 0.5rem 0;
-    display: none;
-  }
-  
-  .nebula-nav-horizontal.active .menu-item-has-children.open > ul {
-    display: block !important;
   }
 
   .nebula-nav-horizontal.active li ul li {
@@ -574,6 +607,13 @@ button {
     font-size: 1rem;
     color: var(--color-text-secondary);
     font-weight: 500;
+  }
+
+  /* ✅ CRITICAL FIX: Submenu hover states - KEEP THIS */
+  .nebula-nav-horizontal.active li ul a:hover,
+  .nebula-nav-horizontal.active li ul a:focus-visible {
+    background: var(--color-accent-2-light);
+    color: var(--color-accent-1);
   }
 
   /* Mobile Extra Items (Search & Join) */
@@ -614,6 +654,89 @@ button {
   }
 }
 
+/* ======================================================
+   TOUCH DEVICE OPTIMIZATION
+   ====================================================== */
+@media (hover: none) {
+  .nebula-nav-horizontal li:hover > ul {
+    display: none !important;
+  }
+}
+
+/* ======================================================
+   MOBILE & TABLET: ALWAYS-OPEN SUBMENUS
+   ====================================================== */
+@media (max-width: 1150px) {
+  /* Kill hover completely */
+  .nebula-nav-horizontal li:hover > ul {
+    display: none !important;
+  }
+
+  /* Hide arrows on mobile/tablet */
+  .submenu-toggle,
+  .menu-item-has-children > svg {
+    display: none !important;
+  }
+
+  /* Force submenus open */
+  .nebula-nav-horizontal .menu-item-has-children > ul {
+    display: block !important;
+    position: relative;
+    box-shadow: none;
+    border: none;
+    background: transparent;
+  }
+}
+
+/* ======================================================
+   MOBILE & TABLET: SUBMENUS MUST STAY OPEN (NO HOVER CLOSE)
+   ====================================================== */
+@media (max-width: 1150px) {
+  /* Even if li is hovered, keep submenu open */
+  .nebula-nav-horizontal.active
+  .menu-item-has-children:hover > ul,
+  .nebula-nav-horizontal.active
+  .menu-item-has-children > ul {
+    display: block !important;
+  }
+}
+
+/* ======================================================
+   SUBMENU HOVER / ACTIVE STYLES (ALL DEVICES)
+   ====================================================== */
+
+/* Desktop */
+@media (min-width: 1151px) {
+  .nebula-nav-horizontal li ul a:hover {
+    background: var(--color-accent-2-light);
+    color: var(--color-accent-1);
+  }
+}
+
+/* ======================================================
+   MOBILE (768px and below) - Additional tweaks
+   ====================================================== */
+@media (max-width: 768px) {
+  .nebula-header {
+    border-radius: 1rem;
+    padding: 0.75rem 1rem;
+    min-height: 60px;
+    top: 0.5rem;
+  }
+
+  .logo img {
+    height: 2.2rem;
+  }
+
+  .nebula-nav-horizontal.active {
+    padding-bottom: calc(env(safe-area-inset-bottom) + 4rem);
+  }
+
+  .submenu-toggle {
+    top: 1rem;
+  }
+}
+
 /* Small Mobile Tweak (iPhone SE size) */
 @media (max-width: 400px) {
   .logo span {
@@ -622,6 +745,53 @@ button {
   .nebula-header {
     padding: 0.75rem;
   }
+}
+
+.gs-modal {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.65);
+  z-index: 9999;
+}
+
+.gs-modal-content {
+  background: #fff;
+  max-width: 420px;
+  margin: 12vh auto;
+  padding: 32px;
+  border-radius: 12px;
+  text-align: center;
+  position: relative;
+}
+
+.gs-modal-content h2 {
+  margin-bottom: 24px;
+}
+
+.gs-option {
+  display: block;
+  padding: 14px;
+  margin: 12px 0;
+  border-radius: 8px;
+  background: #f3f3f3;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.gs-option:hover {
+  background: #000;
+  color: #fff;
+}
+
+.gs-close {
+  position: absolute;
+  top: 12px;
+  right: 16px;
+  font-size: 26px;
+  background: none;
+  border: none;
+  cursor: pointer;
 }
 
 /* ==============================================
@@ -737,10 +907,10 @@ button {
   width: 100%;
   margin: 0;
 }
-
 /* ==============================================
-   FOOTER STYLES (Refined & Perfected)
+   FOOTER STYLES – FULLY RESPONSIVE
    ============================================== */
+
 .stack-footer {
   background: var(--color-surface);
   border-top: 1px solid var(--color-border-light);
@@ -757,40 +927,32 @@ button {
   gap: 1.5rem;
 }
 
-/* --- COLUMN 1: BRAND & SOCIALS --- */
+/* --- COLUMN 1: SOCIALS --- */
 .footer-brand-social {
-  grid-column: 1;
   display: flex;
-  align-items: center;
   justify-content: flex-start;
 }
 
 .footer-social {
   display: flex;
-  gap: 0.8rem;
-  align-items: center;
+  gap: 0.75rem;
 }
 
 .footer-social a {
+  width: 36px;
+  height: 36px;
   display: flex;
   align-items: center;
   justify-content: center;
-  color: var(--color-text-secondary);
-  width: 36px;
-  height: 36px;
-  min-width: 36px;
   border-radius: 50%;
-  transition: all 0.3s ease;
-  background: transparent;
-  padding: 0;
-  line-height: 0;
+  color: var(--color-text-secondary);
+  transition: all 0.25s ease;
 }
 
 .footer-social a svg {
   width: 20px;
   height: 20px;
   fill: currentColor;
-  display: block;
 }
 
 .footer-social a:hover {
@@ -801,72 +963,78 @@ button {
 
 /* --- COLUMN 2: COPYRIGHT --- */
 .footer-copy {
-  grid-column: 2;
   text-align: center;
   font-size: 0.95rem;
   color: var(--color-text-secondary);
-  margin: 0;
-  white-space: nowrap;
   font-weight: 600;
+  white-space: nowrap;
 }
 
 /* --- COLUMN 3: EMAIL --- */
 .footer-mail {
-  grid-column: 3;
   justify-self: end;
   font-size: 0.95rem;
   font-weight: 700;
   color: var(--color-text-primary);
   text-decoration: none;
   transition: color 0.2s ease;
-  padding: 0.5rem 0;
-  display: inline-flex;
-  align-items: center;
 }
 
 .footer-mail:hover {
   color: var(--color-accent-1);
 }
 
-/* --- MOBILE RESPONSIVE (Stacking) --- */
-@media (max-width: 800px) {
-  .stack-footer {
-    padding: 2.5rem 1.5rem;
-  }
-
+/* ==============================================
+   TABLET FIX (<= 1024px)
+   ============================================== */
+@media (max-width: 1024px) {
   .footer-inner {
     grid-template-columns: 1fr;
     text-align: center;
-    gap: 1.5rem;
   }
 
   .footer-brand-social,
   .footer-copy,
   .footer-mail {
-    grid-column: 1;
     justify-self: center;
-    width: 100%;
   }
 
   .footer-brand-social {
     justify-content: center;
-    order: 1;
-    margin-bottom: 0.2rem;
+  }
+
+  .footer-copy {
+    white-space: normal;
+  }
+}
+
+/* ==============================================
+   MOBILE FIX (<= 600px)
+   ============================================== */
+@media (max-width: 600px) {
+  .stack-footer {
+    padding: 2.5rem 1.25rem;
+  }
+
+  .footer-inner {
+    gap: 1.2rem;
+  }
+
+  .footer-social {
+    gap: 1rem;
   }
 
   .footer-mail {
-    order: 2;
     font-size: 1rem;
   }
 
   .footer-copy {
-    order: 3;
-    white-space: normal;
     font-size: 0.85rem;
-    opacity: 0.8;
+    opacity: 0.85;
     font-weight: 500;
   }
 }
+
 
 /* ==============================================
    PAGE UTILS & TRANSITIONS

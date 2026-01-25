@@ -80,57 +80,72 @@
 window.addEventListener('load', function () {
   // Newsletter form handling
   const form = document.querySelector('[data-members-form="subscribe"]');
-  if (form) {
-    const button = form.querySelector("button[type='submit']");
-    if (button) {
-      const defaultText = button.textContent;
 
-      const observer = new MutationObserver(() => {
-        button.classList.remove("state-checking", "state-success", "state-error");
+if (form) {
+  const button = form.querySelector("button[type='submit']");
+  if (!button) return;
 
-        if (form.classList.contains("loading")) {
-          button.textContent = "Checking...";
-          button.classList.add("state-checking");
-          button.disabled = true;
-          button.style.backgroundColor = "yellow";
-          button.style.color = "black";
-        }
-        else if (form.classList.contains("success")) {
-          button.textContent = "Done!";
-          button.classList.add("state-success");
-          button.disabled = true;
-          button.style.backgroundColor = "green";
-          button.style.color = "white";
-        }
-        else if (form.classList.contains("error")) {
-          button.textContent = "Try Again";
-          button.classList.add("state-error");
-          button.disabled = false;
-          button.style.backgroundColor = "red";
-          button.style.color = "white";
-          setTimeout(() => {
-            button.textContent = defaultText;
-            button.classList.remove("state-error");
-          }, 2000);
-        }
-        else {
-          button.textContent = defaultText;
-          button.disabled = false;
-          button.style.backgroundColor = "black";
-          button.style.color = "white";
-        }
-      });
+  const defaultText = button.textContent;
+  const defaultBg = button.style.backgroundColor || "black";
+  const defaultColor = button.style.color || "white";
 
-      observer.observe(form, { attributes: true, attributeFilter: ["class"] });
+  let resetTimer = null;
+
+  const resetButton = () => {
+    button.textContent = defaultText;
+    button.disabled = false;
+    button.style.backgroundColor = defaultBg;
+    button.style.color = defaultColor;
+    button.classList.remove("state-checking", "state-success", "state-error");
+  };
+
+  const observer = new MutationObserver(() => {
+    // Clear any previous reset
+    if (resetTimer) {
+      clearTimeout(resetTimer);
+      resetTimer = null;
     }
-  }
 
-  // Infinite scroll animations (non-critical)
-  const scrollContainer = document.querySelector(".impact-scroll");
-  if (scrollContainer && scrollContainer.children.length > 0) {
-    // Only duplicate if we have content
-    scrollContainer.innerHTML += scrollContainer.innerHTML;
-  }
+    button.classList.remove("state-checking", "state-success", "state-error");
+
+    if (form.classList.contains("loading")) {
+      button.textContent = "Checking...";
+      button.disabled = true;
+      button.classList.add("state-checking");
+      button.style.backgroundColor = "yellow";
+      button.style.color = "black";
+    }
+
+    else if (form.classList.contains("success")) {
+      button.textContent = "Done!";
+      button.disabled = true;
+      button.classList.add("state-success");
+      button.style.backgroundColor = "green";
+      button.style.color = "white";
+
+      resetTimer = setTimeout(resetButton, 4000);
+    }
+
+    else if (form.classList.contains("error")) {
+      button.textContent = "Try Again";
+      button.disabled = false;
+      button.classList.add("state-error");
+      button.style.backgroundColor = "red";
+      button.style.color = "white";
+
+      resetTimer = setTimeout(resetButton, 4000);
+    }
+
+    else {
+      resetButton();
+    }
+  });
+
+  observer.observe(form, {
+    attributes: true,
+    attributeFilter: ["class"]
+  });
+}
 
   // Add smooth scrolling for anchor links
   document.querySelectorAll('a[href^="#"], a[href^="/"]').forEach(anchor => {
@@ -189,51 +204,29 @@ window.addEventListener('load', function () {
   });
 
 
-  // COMMUNITY PAGE JS
-  // ================================
-  //      JS FOR SLIDER
-  // ================================ 
-  document.addEventListener('DOMContentLoaded', function () {
-    const sliders = document.querySelectorAll('[data-slider]');
-    sliders.forEach(function (slider) {
-      const track = slider.querySelector('[data-slider-track]');
-      const slides = Array.from(slider.querySelectorAll('[data-slider-slide]'));
-      if (!track || slides.length <= 1) return;
-      let currentIndex = 0;
-      const totalSlides = slides.length;
-      let autoTimer = null;
-      function updateUI() {
-        track.style.transform = 'translateX(-' + (currentIndex * 100) + '%)';
-      }
-      function nextSlide() {
-        currentIndex = (currentIndex + 1) % totalSlides;
-        updateUI();
-      }
-      function startAuto() {
-        if (autoTimer) clearInterval(autoTimer);
-        autoTimer = setInterval(nextSlide, 5000);
-      }
-      function stopAuto() {
-        if (autoTimer) clearInterval(autoTimer);
-      }
-      updateUI();
-      startAuto();
-      slider.addEventListener('mouseenter', stopAuto);
-      slider.addEventListener('mouseleave', startAuto);
-      let startX;
-      slider.addEventListener('touchstart', function (e) {
-        startX = e.touches[0].clientX;
-        stopAuto();
-      });
-      slider.addEventListener('touchend', function (e) {
-        const endX = e.changedTouches[0].clientX;
-        if (startX - endX > 50) nextSlide();
-        else if (endX - startX > 50) {
-          currentIndex = (currentIndex - 1 + totalSlides) % totalSlides;
-          updateUI();
-        }
-        startAuto();
-      });
+  
+  const modal = document.getElementById('getStartedModal');
+  const triggers = document.querySelectorAll('.js-get-started');
+  const closeBtn = modal.querySelector('.gs-close');
+
+  triggers.forEach(btn => {
+    btn.addEventListener('click', e => {
+      e.preventDefault();
+      modal.style.display = 'block';
+      modal.setAttribute('aria-hidden', 'false');
     });
   });
+
+  closeBtn.addEventListener('click', () => {
+    modal.style.display = 'none';
+    modal.setAttribute('aria-hidden', 'true');
   });
+
+  window.addEventListener('click', e => {
+    if (e.target === modal) {
+      modal.style.display = 'none';
+      modal.setAttribute('aria-hidden', 'true');
+    }
+  });
+
+});
