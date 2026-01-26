@@ -1,0 +1,41 @@
+{{!< default}}
+
+<main id="site-main" class="site-main full-width">
+
+{{#post}}
+
+<article class="article {{post_class}}">
+
+    <header class="article-header">
+        <h1 class="article-title">{{title}}</h1>
+
+        {{#if custom_excerpt}}
+            <p class="article-excerpt">{{custom_excerpt}}</p>
+        {{/if}}
+
+        <div class="article-meta">
+            <time datetime="{{date format="YYYY-MM-DD"}}">{{date format="DD MMM YYYY"}}</time>
+        </div>
+    </header>
+
+    {{#if feature_image}}
+    <figure class="post-feature-image">
+        <img src="{{img_url feature_image size="xl"}}" alt="{{title}}">
+    </figure>
+    {{/if}}
+
+    <section class="gh-content">
+        {{content}}
+    </section>
+
+</article>
+
+{{/post}}
+
+</main>
+
+{{#if comments}}
+<section class="article-comments">
+    {{comments}}
+</section>
+{{/if}}

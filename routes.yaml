@@ -1,0 +1,18 @@
+routes:
+  /about/:
+    template: about
+  /community/:
+    template: community
+  /blog/:
+    template: blog
+  /events/:
+    template: events
+collections:
+  /:
+    permalink: /{slug}/
+    template: index
+
+taxonomies:
+  tag: /tag/{slug}/
+  author: /author/{slug}/
+

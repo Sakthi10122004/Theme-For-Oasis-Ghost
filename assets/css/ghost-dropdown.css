@@ -1,0 +1,270 @@
+
+.menu-item-has-children {
+    position: relative;
+    padding-right: 12px !important;
+}
+
+/* Arrow icon */
+.menu-item-has-children svg {
+    width: 14px;
+    height: 14px;
+    position: absolute;
+    right: -4px;
+    top: 50%;
+    transform: translateY(-50%);
+    opacity: 0.7;
+    transition: 0.25s ease;
+}
+
+.menu-item-has-children:hover svg {
+    opacity: 1;
+    transform: translateY(-50%) rotate(180deg);
+}
+
+/* Dropdown container */
+ul.ghost-submenu {
+    background: var(--menu-bg);
+    padding: 14px 0;
+    border-radius: 16px;
+    width: 220px;
+    position: absolute;
+    top: 60px;
+    left: 0;
+    visibility: hidden;
+    opacity: 0;
+    transform: translateY(5px);
+    transition: all 0.25s ease;
+    box-shadow: 0 12px 35px var(--menu-shadow);
+    border: 1px solid var(--menu-border);
+    z-index: 999;
+}
+
+/* Hover shows dropdown */
+.menu-item-has-children:hover ul.ghost-submenu {
+    visibility: visible;
+    opacity: 1;
+    transform: translateY(0px);
+}
+
+/* Items inside dropdown */
+ul.ghost-submenu li {
+    list-style: none;
+    padding: 6px 18px;
+}
+
+ul.ghost-submenu li a {
+    display: block;
+    font-weight: 600;
+    color: var(--menu-text-dark);
+    padding: 8px 10px;
+    border-radius: 10px;
+    transition: 0.2s ease;
+}
+
+/* Hover effect */
+ul.ghost-submenu li a:hover {
+    background: var(--menu-bg-hover);
+    color: var(--menu-text-hover);
+}
+
+/* ================================
+   SAFETY RESET: PREVENT PARENT CLICK HIGHLIGHTING CHILDREN
+   ================================ */
+/* This ensures that clicking the parent (.menu-item-has-children:active or :focus)
+   does NOT turn the children background red. Children only turn red on their OWN hover. */
+.menu-item-has-children:active > ul.ghost-submenu li a,
+.menu-item-has-children:focus > ul.ghost-submenu li a,
+.menu-item-has-children:focus-within > ul.ghost-submenu li a,
+.nav-current > ul.ghost-submenu li a {
+    background-color: transparent !important;
+    color: var(--menu-text-dark) !important;
+}
+
+/* Re-apply hover specifically for the child items to ensure they still work */
+ul.ghost-submenu li a:hover {
+    background-color: var(--menu-bg-hover) !important;
+    color: var(--menu-text-hover) !important;
+}
+
+/* ================================
+   TABLET STYLES (769px - 1024px)
+   ================================ */
+@media (max-width: 1024px) and (min-width: 769px) {
+    .menu-item-has-children {
+        padding-right: 10px !important;
+    }
+    
+    .menu-item-has-children svg {
+        width: 12px;
+        height: 12px;
+        right: -2px;
+    }
+    
+    ul.ghost-submenu {
+        width: 200px;
+        top: 55px;
+        padding: 12px 0;
+    }
+    
+    ul.ghost-submenu li {
+        padding: 5px 16px;
+    }
+    
+    ul.ghost-submenu li a {
+        padding: 7px 8px;
+        font-size: 0.95rem;
+    }
+}
+
+/* ================================
+   MOBILE STYLES (768px and below)
+   ================================ */
+@media (max-width: 768px) {
+    .menu-item-has-children {
+        width: 100%;
+        padding-right: 0 !important;
+        border-bottom: 1px solid var(--menu-border-mobile);
+    }
+
+    .menu-item-has-children:last-child {
+        border-bottom: none;
+    }
+
+    .menu-item-has-children.open > a::after {
+        transform: rotate(90deg);
+    }
+
+    /* Hide SVG arrows on mobile */
+    .menu-item-has-children svg {
+        display: none;
+    }
+
+    /* Mobile submenu styling */
+    ul.ghost-submenu {
+        position: relative;
+        box-shadow: none;
+        border-radius: 0;
+        border: none;
+        width: 100%;
+        padding: 0;
+        margin: 0;
+        opacity: 1 !important;
+        visibility: visible !important;
+        transform: translateY(0) !important;
+        display: none;
+        background: var(--menu-bg-mobile);
+        border-left: 3px solid var(--menu-border-accent);
+    }
+
+    ul.ghost-submenu li {
+        padding: 0;
+        border-bottom: 1px solid var(--menu-border-subtle);
+    }
+
+    ul.ghost-submenu li:last-child {
+        border-bottom: none;
+    }
+
+    ul.ghost-submenu li a {
+        padding: 0.875rem 1rem 0.875rem 1.5rem;
+        font-size: 0.95rem;
+        border-radius: 0;
+        margin: 0;
+        font-weight: 500;
+        color: var(--menu-text-medium);
+        display: flex;
+        align-items: center;
+        background-color: transparent !important; /* Force Reset for Mobile */
+    }
+
+    ul.ghost-submenu li a:hover {
+        background: var(--menu-bg-hover) !important;
+        color: var(--menu-text-hover) !important;
+    }
+}
+
+/* FIX: Force dropdown items to stack vertically */
+.ghost-submenu,
+.ghost-submenu li,
+.ghost-submenu li a {
+    display: block !important;
+    flex-direction: column !important;
+}
+
+/* ================================
+   SMALL MOBILE STYLES (480px and below)
+   ================================ */
+@media (max-width: 480px) {
+    .menu-item-has-children {
+        padding: 0.875rem 0 !important;
+    }
+
+    ul.ghost-submenu li a {
+        padding: 0.75rem 1rem 0.75rem 1.25rem;
+        font-size: 0.9rem;
+    }
+}
+
+/* ================================
+   ANIMATIONS
+   ================================ */
+@keyframes slideDown {
+    0% {
+        opacity: 0;
+        max-height: 0;
+        transform: translateY(-10px);
+    }
+    100% {
+        opacity: 1;
+        max-height: 500px;
+        transform: translateY(0);
+    }
+}
+
+/* ================================
+   TOUCH DEVICE OPTIMIZATIONS
+   ================================ */
+@media (hover: none) and (pointer: coarse) {
+    .menu-item-has-children:hover ul.ghost-submenu {
+        visibility: hidden;
+        opacity: 0;
+        transform: translateY(5px);
+    }
+    
+    .menu-item-has-children:hover svg {
+        transform: translateY(-50%) rotate(0deg);
+        opacity: 0.7;
+    }
+}
+
+/* ================================
+   ACCESSIBILITY IMPROVEMENTS
+   ================================ */
+.menu-item-has-children:focus-within ul.ghost-submenu {
+    visibility: visible;
+    opacity: 1;
+    transform: translateY(0px);
+}
+
+.menu-item-has-children:focus-within svg {
+    transform: translateY(-50%) rotate(180deg);
+    opacity: 1;
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+    .menu-item-has-children svg,
+    ul.ghost-submenu,
+    ul.ghost-submenu li a {
+        transition: none;
+    }
+    
+    @keyframes slideDown {
+        0% {
+            opacity: 0;
+        }
+        100% {
+            opacity: 1;
+        }
+    }
+}

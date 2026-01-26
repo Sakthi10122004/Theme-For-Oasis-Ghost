@@ -1,0 +1,13 @@
+{{!-- post-card.hbs --}}
+<article class="post-card">
+  <header>
+    <h2><a href="{{url}}">{{title}}</a></h2>
+  </header>
+  <section class="post-excerpt">
+    {{#if custom_excerpt}}
+      <p>{{custom_excerpt}}</p>
+    {{else}}
+      <p>{{excerpt words="20"}}</p>
+    {{/if}}
+  </section>
+</article>

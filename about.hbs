@@ -1,0 +1,265 @@
+{{!< default}}
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        document.title = "About";
+    });
+</script>
+
+<main class="about-page">
+    <section class="heros-section">
+        <div class="container">
+            <h1 class="heros-title">How Filter Coffee,<span class="highlight">FOSS</span>, and a Few Restless Minds Started a Movement.</h1>
+            <p class="heros-subtitle">Discover the story behind OASIS – where passion for open-source meets the drive to transform the social sector.</p>
+            
+            <div class="heros-image-wrapper">
+                <img 
+                    src="{{asset 'images/team.webp'}}" 
+                    srcset="{{asset 'images/team.webp'}} 1200w, {{asset 'images/team.webp'}} 600w" 
+                    sizes="(max-width: 600px) 100vw, 1200px"
+                    alt="Group photo at OASIS event" 
+                    class="hero-image" 
+                    loading="eager">
+            </div>
+            
+            <h2 class="heros-context">Being long-time FOSS advocates, we knew high-quality, low-cost open tech was everywhere, so the real "wait a minute…" moment was this:</h2>
+        </div>
+    </section>
+
+    <section class="timeline-section">
+  <div class="container-wide">
+
+    <h2 class="section-title">
+      Why does the social sector still struggle with tech?
+    </h2>
+
+    <div class="timeline">
+
+      <!-- horizontal line -->
+      <div class="timeline-line"></div>
+
+      <!-- TOP ROW -->
+      <div class="timeline-row">
+
+        <div class="timeline-step">
+          <span class="timeline-dot"></span>
+          <div class="timeline-card">
+            When the world's biggest servers hum on open-source code, it's ironic
+            that nonprofits still run on Google Sheets.
+          </div>
+        </div>
+
+        <div class="timeline-step">
+          <span class="timeline-dot"></span>
+          <div class="timeline-card">
+            <strong>FOSS United, Tech4Good Community, Reap Benefit, Aikyam,
+            & TinkerHub</strong> began experimenting—from tech volunteering
+            to open-source pilots for NGOs.
+          </div>
+        </div>
+
+        <div class="timeline-step">
+          <span class="timeline-dot"></span>
+          <div class="timeline-card">
+            Scattered efforts and caffeine-fueled chats at the
+            <strong>JP Nagar office</strong> drew tinkerers together to
+            build real tech muscle.
+          </div>
+        </div>
+
+        <div class="timeline-step">
+          <span class="timeline-dot"></span>
+          <div class="timeline-card">
+            Fixes couldn’t be quick hacks. The sector needed a shift—
+            from <strong>“good-to-have”</strong> to
+            <strong>essential</strong>.
+          </div>
+        </div>
+
+      </div>
+
+      <!-- FINAL -->
+      <div class="timeline-final">
+       <div class="timeline-card timeline-final-card">
+  <h3 class="timeline-title">OASIS</h3>
+  <p>
+    In 2023, we hosted the first-ever OASIS Summit at BIC Bengaluru.
+    By mid-2024, with support from the Samagata Foundation,
+    OASIS became a full-time team and a growing movement
+    proving open tech can drive open change.
+  </p>
+</div>
+
+      </div>
+
+    </div>
+  </div>
+</section>
+
+    <section class="board-section">
+        <div class="container">
+            <h2 class="section-title">Our Board</h2>
+            
+            <div class="board-grid">
+    <div class="board-member">
+        <img src="{{asset 'images/Akhila-oasis-webp.webp'}}" alt="Akhila Somanath" loading="lazy">
+        <h3>Akhila Somanath</h3>
+        <p>Co-founder, Tech4Good Community</p>
+    </div>
+
+    <div class="board-member">
+        <img src="{{asset 'images/Irina.webp'}}" alt="Irina Snissar Lobo" loading="lazy">
+        <h3>Irina Snissar Lobo</h3>
+        <p>System Change Practicioner, Curator & Writer</p>
+    </div>
+
+    <div class="board-member">
+        <img src="{{asset 'images/Kailash.webp'}}" alt="Kailash Nath" loading="lazy">
+        <h3>Kailash Nath</h3>
+        <p>CTO, Zerodha, Co-founder, Rainmatter and Samagata Foundation</p>
+    </div>
+
+    <div class="board-member">
+        <img src="{{asset 'images/Moosa.webp'}}" alt="Moosa MP" loading="lazy">
+        <h3>Moosa Mehar MP</h3>
+        <p>Co-founder, TinkerHub</p>
+    </div>
+
+    <div class="board-member">
+        <img src="{{asset 'images/Rahul.webp'}}" alt="Poruri Sai Rahul" loading="lazy">
+        <h3>Poruri Sai Rahul</h3>
+        <p>CEO, FOSS United</p>
+    </div>
+
+    <div class="board-member">
+        <img src="{{asset 'images/Shemeer.webp'}}" alt="Shameer Babu" loading="lazy">
+        <h3>Shameer Babu</h3>
+        <p>Co-founder, Aikyam Fellows</p>
+    </div>
+
+    <div class="board-member">
+        <img src="{{asset 'images/Vinay.webp'}}" alt="Vinay Kumar" loading="lazy">
+        <h3>Vinay Kumar</h3>
+        <p>Software Engineer, Zerodha</p>
+    </div>
+
+    <div class="board-member">
+        <img src="{{asset 'images/Vishnu.webp'}}" alt="Vishu Sudharan" loading="lazy">
+        <h3>Vishu Sudhakaran</h3>
+        <p>Software Engineer, Zerodha</p>
+    </div>
+</div>
+        </div>
+    </section>
+
+    <section class="team-section">
+  <div class="container">
+    <h2 class="section-title">Our Team</h2>
+
+    <div class="team-grid">
+
+      {{!-- member --}}
+      <div class="team-member">
+        <img src="{{asset 'images/pranav.webp'}}" alt="Pranav Prabhu" loading="lazy">
+
+        <div class="team-content">
+          <h3>Pranav Prabhu</h3>
+          <div class="team-role">Head of OASIS</div>
+          <p class="team-bio">
+            Growth hacker turned open-source tinkerer currently obsessed with imagining FOSS solutions for nonprofits. Once grew a brand from soil up, now growing open systems instead. Still chasing the dream of a self-sustaining farm-for the day Wi-Fi fails!
+          </p>
+        </div>
+
+        <a href="https://www.linkedin.com/in/ipranavprabhu/" class="team-link" target="_blank">
+          Connect on LinkedIn
+        </a>
+      </div>
+
+      {{!-- member --}}
+      <div class="team-member">
+        <img src="{{asset 'images/Yashaswi.webp'}}" alt="Yashaswi" loading="lazy">
+
+        <div class="team-content">
+          <h3>Yashaswi</h3>
+          <div class="team-role">Partnerships & Programs Associate</div>
+          <p class="team-bio">
+            Architect turned nonprofit tinkerer, building systems that make more sense than most buildings. Dog behaviorist on weekends, just for balance.
+          </p>
+        </div>
+        <a href="https://www.linkedin.com/in/Yashaswi-bg-45a611176/" class="team-link" target="_blank">
+          Connect on LinkedIn
+        </a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+   <section class="mission-section">
+    <div class="container">
+        <h2 class="section-title">Our Vision & Impact</h2>
+        <div class="mission-grid">
+            <div class="mission-card mission-card-primary">
+                <div class="card-icon">
+                    <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M12 2L2 7l10 5 10-5-10-5z"/>
+                        <path d="M2 17l10 5 10-5"/>
+                        <path d="M2 12l10 5 10-5"/>
+                    </svg>
+                </div>
+                <h3>Our Mission</h3>
+                <p>To bridge the technology gap in the social sector by fostering open-source innovation, collaboration, and sustainable solutions that empower nonprofits and social enterprises worldwide.</p>
+            </div>
+            <div class="mission-card mission-card-secondary">
+                <div class="card-icon">
+                    <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+                        <circle cx="12" cy="7" r="4"/>
+                    </svg>
+                </div>
+                <h3>Our Values</h3>
+                <ul>
+                    <li>
+                        <span class="value-icon">◆</span>
+                        <div>
+                            <strong>Open Collaboration & Innovation:</strong> Co-creating transparent, community-led solutions that push what’s possible.
+                        </div>
+                    </li>
+                    <li>
+                        <span class="value-icon">◆</span>
+                        <div>
+                            <strong>Sustainability:</strong>  Building tech that lasts—affordable, adaptable, and accessible over time.
+                        </div>
+                    </li>
+                    <li>
+                        <span class="value-icon">◆</span>
+                        <div>
+                            <strong>Inclusion:</strong> Ensuring everyone can use, shape, and benefit from open technology.
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <div class="mission-card mission-card-accent">
+                <div class="card-icon">
+                    <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>
+                    </svg>
+                </div>
+                <h3>Our Impact</h3>
+                <p>Since our inception, OASIS has catalyzed numerous open-source projects, trained numerous developers and partnered with leading nonprofits to deliver technology solutions that create lasting social change.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+    <section class="cta-section">
+        <div class="container">
+            <div class="cta-content">
+                <h2>Join the Movement</h2>
+                <p>Be part of the open-source revolution transforming the social sector. Whether you're a developer, nonprofit leader, or a philanthropic institution, there's a place for you in our community.</p>
+                <a href="/get-started" class="cta-button">Get Started</a>
+            </div>
+        </div>
+    </section>
+</main>

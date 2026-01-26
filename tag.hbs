@@ -1,0 +1,133 @@
+{{!< default}}
+
+{{#tag}}
+<script>
+(() => {
+    const slug = "{{slug}}";
+    const titles = {
+        "verified-experts": "Verified Experts",
+        "tools": "Our Suite of Tools",
+        "tech-experts-says": "Tech Experts Says",
+        "npo-says": "NPO Says",
+        "impact-stories": "Impact Stories",
+        "npo": "NPO",
+        "event": "Events"
+    };
+
+    // Set browser tab title immediately
+    document.title = titles[slug] || "{{name}}";
+})();
+</script>
+{{/tag}}
+
+<main class="tag-page">
+
+  {{#tag}}
+
+  <header class="tag-hero">
+
+    {{#if feature_image}}
+      <div class="tag-hero-cover" style="background-image:url({{img_url feature_image size="xl"}});"></div>
+    {{/if}}
+
+    <div class="tag-hero-inner">
+
+      <p class="tag-label">Topic</p>
+
+      <h1 class="tag-title">
+        {{#match slug "=" "verified-experts"}}Verified Experts
+        {{else match slug "=" "tools"}}Our Suite of Tools
+        {{else match slug "=" "tech-experts-says"}}Tech Experts Says
+        {{else match slug "=" "npo-says"}}NPO Says
+        {{else match slug "=" "impact-stories"}}Impact Stories
+        {{else match slug "=" "npo"}}NPO
+        {{else match slug "=" "event"}}Events
+        {{else}}{{name}}{{/match}}
+      </h1>
+
+      {{#if description}}
+        <p class="tag-description">{{description}}</p>
+      {{/if}}
+
+      <div class="tag-stat-chip">
+        {{plural ../pagination.total empty="No posts yet" singular="% post" plural="% posts"}}
+      </div>
+
+    </div>
+  </header>
+
+  {{/tag}}
+
+  <section class="tag-posts">
+
+    <div class="tag-posts-grid">
+
+      {{#foreach posts}}
+
+      <article class="tag-post-card {{post_class}}">
+
+        {{!-- NON-clickable if verified-experts or npo --}}
+        {{#match ../tag.slug "=" "verified-experts"}}
+          <div class="tag-post-card-link">
+
+        {{else match ../tag.slug "=" "npo"}}
+          <div class="tag-post-card-link">
+
+        {{!-- All other tags clickable --}}
+        {{else}}
+          <a href="{{url}}" class="tag-post-card-link">
+        {{/match}}
+
+          {{#if feature_image}}
+          <div class="tag-post-media">
+            <img src="{{img_url feature_image size="m"}}" alt="{{title}}">
+          </div>
+          {{/if}}
+
+          <div class="tag-post-body">
+
+            <h3 class="tag-post-title">{{title}}</h3>
+
+            <div class="tag-post-meta">
+              <time datetime="{{date format="YYYY-MM-DD"}}">
+                {{date format="DD MMM YYYY"}}
+              </time>
+
+              {{#if primary_tag}}
+              <span class="tag-post-tag">{{primary_tag.name}}</span>
+              {{/if}}
+            </div>
+
+            <p class="tag-post-excerpt">
+              {{excerpt words="24"}}
+            </p>
+
+            {{!-- Hide CTA for verified-experts and npo --}}
+            {{#match ../tag.slug "=" "verified-experts"}}
+              {{!-- no read story --}}
+            {{else match ../tag.slug "=" "npo"}}
+              {{!-- no read story --}}
+            {{else}}
+              <span class="tag-post-cta">Read More →</span>
+            {{/match}}
+
+          </div>
+
+        {{!-- closing --}}
+        {{#match ../tag.slug "=" "verified-experts"}}
+          </div>
+        {{else match ../tag.slug "=" "npo"}}
+          </div>
+        {{else}}
+          </a>
+        {{/match}}
+
+      </article>
+
+      {{/foreach}}
+
+    </div>
+
+  </section>
+
+</main>

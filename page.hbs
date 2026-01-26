@@ -1,0 +1,135 @@
+{{!< default}}
+
+{{#post}}
+
+<main id="site-main" class="page-wrapper">
+
+    <!-- FEATURE IMAGE -->
+    {{#if feature_image}}
+    <figure class="page-feature-image gh-canvas">
+        <img
+            src="{{img_url feature_image}}"
+            srcset="{{img_url feature_image size="s"}} 300w,
+                    {{img_url feature_image size="m"}} 600w"
+            sizes="(max-width: 768px) 100vw, 92vw"
+            loading="lazy"
+            decoding="async"
+            alt="{{feature_image_alt}}"
+        />
+    </figure>
+    {{/if}}
+
+    <!-- HEADER -->
+    <header class="page-header gh-canvas">
+        <h1 class="page-title">{{title}}</h1>
+        {{#if custom_excerpt}}
+            <p class="page-subtitle">{{custom_excerpt}}</p>
+        {{/if}}
+    </header>
+
+    <!-- MAIN CONTENT -->
+    <section class="page-content gh-canvas">
+        <div class="dynamic-content">
+            {{content}}
+        </div>
+    </section>
+
+</main>
+
+{{/post}}
+
+<!-- Load PDF.js from CDN -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+<script>
+     document.addEventListener("DOMContentLoaded", function () {
+    const fileCards = document.querySelectorAll(".kg-file-card a");
+
+    fileCards.forEach(function (link) {
+      link.removeAttribute("download");
+      link.setAttribute("target", "_blank");
+      link.setAttribute("rel", "noopener noreferrer");
+    });
+
+    // Generate PDF previews if PDF.js is available
+    generatePDFPreviews();
+  });
+
+  // Function to generate PDF previews
+  async function generatePDFPreviews() {
+    // Check if PDF.js is loaded
+    if (typeof pdfjsLib === 'undefined') {
+      console.warn('PDF.js library not loaded. PDF previews disabled.');
+      return;
+    }
+
+    // Configure PDF.js worker
+    pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+
+    // Get all PDF file cards
+    const pdfCards = document.querySelectorAll(".kg-file-card a");
+
+    // Process each PDF card
+    pdfCards.forEach(async (link) => {
+      const url = link.href;
+
+      // Only process PDF files
+      if (!url.toLowerCase().endsWith('.pdf')) {
+        return;
+      }
+
+      try {
+        // Load the PDF
+        const pdf = await pdfjsLib.getDocument(url).promise;
+
+        // Get the first page
+        const page = await pdf.getPage(1);
+
+        // Set preview scale
+        const scale = 0.3;
+        const viewport = page.getViewport({ scale });
+
+        // Create canvas for preview
+        const canvas = document.createElement("canvas");
+        const context = canvas.getContext("2d");
+
+        canvas.width = viewport.width;
+        canvas.height = viewport.height;
+        canvas.className = "pdf-preview";
+
+        // Render PDF page to canvas
+        await page.render({
+          canvasContext: context,
+          viewport: viewport
+        }).promise;
+
+        // Find or create icon container
+        let iconBox = link.querySelector(".kg-file-card-icon");
+        if (!iconBox) {
+          // Create icon container if it doesn't exist
+          iconBox = document.createElement("div");
+          iconBox.className = "kg-file-card-icon";
+          link.insertBefore(iconBox, link.firstChild);
+        }
+
+        // Clear existing content and add preview
+        iconBox.innerHTML = "";
+        iconBox.appendChild(canvas);
+
+        // Add PDF label
+        const pdfLabel = document.createElement("div");
+        pdfLabel.className = "pdf-label";
+        pdfLabel.textContent = "PDF";
+        iconBox.appendChild(pdfLabel);
+
+      } catch (err) {
+        console.error("Error generating PDF preview:", err);
+        // Fallback to default icon
+        const iconBox = link.querySelector(".kg-file-card-icon");
+        if (iconBox) {
+          iconBox.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><path d="M16 13H8"></path><path d="M16 17H8"></path><path d="M10 9H8"></path></svg>';
+        }
+      }
+    });
+  }
+
+</script>
