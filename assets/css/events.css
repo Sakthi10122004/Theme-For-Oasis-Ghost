@@ -156,10 +156,6 @@
   transition: background-color 0.3s ease;
 }
 
-.event-btn:hover {
-  background-color: var(--color-button-hover);
-}
-
 /* ================================
    NO EVENTS MESSAGE
 ================================ */
