@@ -1,186 +1,271 @@
-{{!< default}}
+{{!< default}} <script>
+  document.addEventListener("DOMContentLoaded", function () {
+  document.title = "About";
+  });
+  </script>
 
-<main class="about-page redesigned">
-  <!-- Hero Section: Story Title and Group Photo -->
-  <section class="hero-section redesigned-hero">
-    <div class="hero-overlay"></div>
-    <div class="hero-wrapper">
-      <div class="hero-content">
-        <h1 class="hero-title">How Filter Coffee, FOSS, and a Few Restless Minds Started a Movement.</h1>
-      </div>
-      <div class="hero-flex">
-        <div class="hero-left">
-          <h2 class="hero-subtitle">Being long-time FOSS advocates, we knew high-quality, low-cost open tech was everywhere, so the real “wait a minute…” moment was this:</h2>
-          <div class="hero-image">
-             <img src="{{asset 'images/hero-about.jpg'}}" alt="Group photo at OASIS event" class="full-width-img" loading="lazy">
-          </div>
-        </div>
-        <div class="social-links redesigned-social">
-          <div class="social-item">
-            <a href="#" class="social-icon fb" aria-label="Follow on Facebook">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20" fill="currentColor">
-                <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
-              </svg>
-            </a>
-            <span>Follow on Facebook</span>
-          </div>
-          <div class="social-item">
-            <a href="#" class="social-icon li" aria-label="Connect on LinkedIn">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="32" height="32" fill="currentColor">
-                <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
-              </svg>
-            </a>
-            <span>Connect on LinkedIn</span>
-          </div>
-          <div class="social-item">
-            <a href="#" class="social-icon bs" aria-label="Follow on Bluesky">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="32" height="32" fill="currentColor">
-                <path d="M22.772 10.506l-5.618-2.192-2.16-6.5c-.102-.307-.39-.514-.7-.514s-.598.207-.7.514l-2.16 6.5-5.618 2.192c-.287.112-.487.39-.487.7s.2.588.487.7l5.618 2.192 2.16 6.5c.102.307.39.514.7.514s.598-.207.7-.514l2.16-6.5 5.618-2.192c.287-.112.487-.39.487-.7s-.2-.588-.487-.7z"/>
-              </svg>
-            </a>
-            <span>Follow on Bluesky</span>
-          </div>
-          <div class="social-item">
-            <a href="#" class="social-icon th" aria-label="Follow on Threads">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="32" height="32" fill="currentColor">
-                <circle cx="12" cy="12" r="10"/>
-                <path d="M10.5 7.25a2.75 2.75 0 1 1 5.5 0 .75.75 0 0 1-1.5 0 1.25 1.25 0 1 1-2.5 0 .75.75 0 0 1 1.5 0 2.75 2.75 0 0 1-5.5 0z"/>
-                <path d="M10.75 17a6.75 6.75 0 0 1 0-13.5.75.75 0 0 1 0 1.5 5.25 5.25 0 0 0 0 10.5.75.75 0 0 1 0 1.5z"/>
-              </svg>
-            </a>
-            <span>Follow on Threads</span>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
+  <main class="about-page">
+    <section class="heros-section">
+      <div class="container">
+        <h1 class="heros-title">How Filter Coffee,<span class="highlight">FOSS</span>, and a Few Restless Minds Started
+          a Movement.</h1>
+        <p class="heros-subtitle">Discover the story behind OASIS – where passion for open-source meets the drive to
+          transform the social sector.</p>
 
-  <!-- Systemic Gap Section -->
-<section class="gap-section redesigned-gap">
-  <div class="container">
-    <div class="gap-header">
-      <div class="section-icon">
-        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M12 2L13.09 8.26L20 9L13.09 9.74L12 16L10.91 9.74L4 9L10.91 8.26L12 2Z" fill="currentColor"/>
-        </svg>
-      </div>
-      <h2 class="section-title">Why is there such a systemic technology gap in the social sector?</h2>
-    </div>
-    <div class="gap-content">
-      <div class="gap-paragraph">
-        <span class="highlight-quote">When the world's biggest servers hum to open-source code,</span>
-        <p>it's ironic non-profits still run on Google Sheets.</p>
-      </div>
-      <div class="gap-paragraph">
-        <p>Experiments had already started in 2021 by <strong>FOSS United</strong>, <strong>Tech4Good community</strong>, <strong>Reap Benefit</strong>, <strong>Aikyam Fellows</strong> and <strong>TinkerHub</strong> in the form of tech volunteering, some software development, partnering with various NGOs.</p>
-      </div>
-      <div class="gap-paragraph">
-        <p>What began as scattered experiments and caffeine-fueled conversations, slowly drew a circle of like-minded tinkers, people trying in their own corners, to gather at the <strong>Zerodha office, J.P. Nagar</strong> one fine day. They decided to build meaningful tech muscle for the social sector.</p>
-      </div>
-      <div class="gap-paragraph">
-        <p>While unpacking social sector roadblocks <em>one filter coffee at a time</em>, we realised the fixes couldn't come from quick hacks. Addressing these challenges requires a multi-faceted approach, one that turns digital potential from a 'good-to-have' into an absolute essential.</p>
-      </div>
-      <div class="gap-paragraph highlight-end">
-        <p>Soon after, the group was formalized as an alliance, <strong>OASIS (Open-source Alliance for Social Innovation and Sustainability)</strong>.</p>
-        <div class="oasis-logo">
-          <svg width="80" height="80" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M12 2L13.09 8.26L20 9L13.09 9.74L12 16L10.91 9.74L4 9L10.91 8.26L12 2Z" stroke="currentColor" stroke-width="2" fill="none"/>
-            <text x="12" y="14" font-family="Arial" font-size="12" text-anchor="middle" fill="currentColor">OASIS</text>
-          </svg>
+        <div class="heros-image-wrapper">
+          <img src="{{asset 'images/team.webp'}}"
+            srcset="{{asset 'images/team.webp'}} 1200w, {{asset 'images/team.webp'}} 600w"
+            sizes="(max-width: 600px) 100vw, 1200px" alt="Group photo at OASIS event" class="hero-image"
+            loading="eager">
         </div>
-      </div>
-    </div>
-  </div>
-</section>
 
-  <!-- Board Section -->
-  <section class="board-section redesigned-board">
-    <div class="container">
-      <h2 class="section-title">Board</h2>
-      <div class="board-grid">
-        <div class="board-member redesigned-member">
-          <img src="{{asset 'images/Akhila.jpeg'}}" alt="Akhila Somanath" class="member-img" loading="lazy">
-          <h3>Akhila Somanath</h3>
-          <p>Co-Founder, Tech4Good Community</p>
-        </div>
-        <div class="board-member redesigned-member">
-           <img src="{{asset 'images/Kailash.png'}}" alt="Kailash Nath" class="member-img" loading="lazy">
-          <h3>Kailash Nath</h3>
-          <p>Co-founder, Zerodha</p>
-        </div>
-        <div class="board-member redesigned-member">
-           <img src="{{asset 'images/Kuldeep.png'}}" alt="Kuldeep Dantewadia" class="member-img" loading="lazy">
-          <h3>Kuldeep Dantewadia</h3>
-          <p>Co-founder, Reap Benefit</p>
-        </div>
-        <div class="board-member redesigned-member">
-           <img src="{{asset 'images/Moosa.png'}}" alt="Moosa MP" class="member-img" loading="lazy">
-          <h3>Moosa Mehar MP</h3>
-          <p>Co-founder, TinkerHub</p>
-        </div>
-        <div class="board-member redesigned-member">
-           <img src="{{asset 'images/Rahul.jpg'}}" alt="Puru Sahul" class="member-img" loading="lazy">
-          <h3>Poruri Sai Rahul</h3>
-          <p>CEO, FOSS United</p>
-        </div>
-        <div class="board-member redesigned-member">
-           <img src="{{asset 'images/Shemeer.png'}}" alt="Sameer Babu" class="member-img" loading="lazy">
-          <h3>Shameer Babu</h3>
-          <p>Co-founder, Aikyam Fellows</p>
-        </div>
-        <div class="board-member redesigned-member">
-          <img src="{{asset 'images/Vinay.jpeg'}}" alt="Vinay Kumar" class="member-img" loading="lazy">
-          <h3>Vinay Kumar</h3>
-          <p>Software Engineer, Zerodha</p>
-        </div>
-        <div class="board-member redesigned-member">
-          <img src="{{asset 'images/Vishnu.jpeg'}}" alt="Vishu Sudharan" class="member-img" loading="lazy">
-          <h3>Vishu Sudhakaran</h3>
-          <p>Software Engineer, Zerodha</p>
-        </div>
-        <div class="board-member redesigned-member">
-          <img src="{{asset 'images/Irina.jpeg'}}" alt="Priya Grincho" class="member-img" loading="lazy">
-          <h3>Irina Snissar Lobo</h3>
-          <p>System Change Practicioner, Curator & Writer</p>
-        </div>
-        {{!-- <div class="board-member redesigned-member">
-          <img src="{{asset 'images/Irina.jpeg'}}" alt="Priya Grincho" class="member-img" loading="lazy">
-          <h3></h3>
-          <p>System Change Practicioner, Curator & Writer</p>
-        </div> --}}
+        <h2 class="heros-context">Being long-time FOSS advocates, we knew high-quality, low-cost open tech was
+          everywhere, so the real "wait a minute…" moment was this:</h2>
       </div>
-      <p class="board-description">Followed by a first of its kind summit, a large conference specifically focused on FOSS for the social sector, the first of its kind, was held at BIC Bengaluru on 14 Sep 2022. OASIS governing council and secretariat formed by select members from the original founding organisations became operational, with the secretariat hiring and setting up a full time team with funding from the Samagata Foundation.</p>
-    </div>
-  </section>
+    </section>
 
-  <!-- Team Section -->
-  <section class="team-section redesigned-team">
-    <div class="container">
-      <h2 class="section-title">Team</h2>
-      <div class="team-grid">
-        <div class="team-member redesigned-member">
-           <img src="{{asset 'images/pranav.jpeg'}}" alt="Pranav Prabhu" class="team-member-img" loading="lazy">
-          <h3>Pranav Prabhu</h3>
-          <p>Head of OASIS</p>
-          <a href="https://www.linkedin.com/in/ipranavprabhu/" class="linkedin-link redesigned-link">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
-              <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
-            </svg>
-            Connect on LinkedIn
-          </a>
-        </div>
-        <div class="team-member redesigned-member">
-          <img src="{{asset 'images/yashaswi.jpeg'}}" alt="Yashaswi Bg" class="team-member-img" loading="lazy">
-          <h3>Yashaswi Bg</h3>
-          <p>An Architect that turned nonprofit tinkerer; building systems that make more sense than most buildings. Dog behaviorist on weekends, just balance haha</p>
-          <a href="https://www.linkedin.com/in/yashaswi-bg-45a611176/" class="linkedin-link redesigned-link">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
-              <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
-            </svg>
-            Connect on LinkedIn
-          </a>
+    <section class="timeline-section">
+      <div class="container-wide">
+
+        <h2 class="section-title">
+          Why does the social sector still struggle with tech?
+        </h2>
+
+        <div class="timeline">
+
+          <!-- horizontal line -->
+          <div class="timeline-line"></div>
+
+          <!-- TOP ROW -->
+          <div class="timeline-row">
+
+            <div class="timeline-step">
+              <span class="timeline-dot"></span>
+              <div class="timeline-card">
+                When the world's biggest servers hum on open-source code, it's ironic
+                that nonprofits still run on Google Sheets.
+              </div>
+            </div>
+
+            <div class="timeline-step">
+              <span class="timeline-dot"></span>
+              <div class="timeline-card">
+                <strong>FOSS United, Tech4Good Community, Reap Benefit, Aikyam,
+                  & TinkerHub</strong> began experimenting—from tech volunteering
+                to open-source pilots for NGOs.
+              </div>
+            </div>
+
+            <div class="timeline-step">
+              <span class="timeline-dot"></span>
+              <div class="timeline-card">
+                Scattered efforts and caffeine-fueled chats at the
+                <strong>JP Nagar office</strong> drew tinkerers together to
+                build real tech muscle.
+              </div>
+            </div>
+
+            <div class="timeline-step">
+              <span class="timeline-dot"></span>
+              <div class="timeline-card">
+                Fixes couldn’t be quick hacks. The sector needed a shift—
+                from <strong>“good-to-have”</strong> to
+                <strong>essential</strong>.
+              </div>
+            </div>
+
+          </div>
+
+          <!-- FINAL -->
+          <div class="timeline-final">
+            <div class="timeline-card timeline-final-card">
+              <h3 class="timeline-title">OASIS</h3>
+              <p>
+                In 2023, we hosted the first-ever OASIS Summit at BIC Bengaluru.
+                By mid-2024, with support from the Samagata Foundation,
+                OASIS became a full-time team and a growing movement
+                proving open tech can drive open change.
+              </p>
+            </div>
+
+          </div>
+
         </div>
       </div>
-    </div>
-  </section>
-</main>
+    </section>
+
+    <section class="board-section">
+      <div class="container">
+        <h2 class="section-title">Our Board</h2>
+
+        <div class="board-grid">
+          <div class="board-member">
+            <img src="{{asset 'images/Akhila-oasis-webp.webp'}}" alt="Akhila Somanath" loading="lazy">
+            <h3>Akhila Somanath</h3>
+            <p>Co-founder, Tech4Good Community</p>
+          </div>
+
+          <div class="board-member">
+            <img src="{{asset 'images/Irina.webp'}}" alt="Irina Snissar Lobo" loading="lazy">
+            <h3>Irina Snissar Lobo</h3>
+            <p>System Change Practicioner, Curator & Writer</p>
+          </div>
+
+          <div class="board-member">
+            <img src="{{asset 'images/Kailash.webp'}}" alt="Kailash Nath" loading="lazy">
+            <h3>Kailash Nath</h3>
+            <p>CTO, Zerodha, Co-founder, Rainmatter and Samagata Foundation</p>
+          </div>
+
+          <div class="board-member">
+            <img src="{{asset 'images/Moosa.webp'}}" alt="Moosa MP" loading="lazy">
+            <h3>Moosa Mehar MP</h3>
+            <p>Co-founder, TinkerHub</p>
+          </div>
+
+          <div class="board-member">
+            <img src="{{asset 'images/Rahul.webp'}}" alt="Poruri Sai Rahul" loading="lazy">
+            <h3>Poruri Sai Rahul</h3>
+            <p>CEO, FOSS United</p>
+          </div>
+
+          <div class="board-member">
+            <img src="{{asset 'images/Shemeer.webp'}}" alt="Shameer Babu" loading="lazy">
+            <h3>Shameer Babu</h3>
+            <p>Co-founder, Aikyam Fellows</p>
+          </div>
+
+          <div class="board-member">
+            <img src="{{asset 'images/Vinay.webp'}}" alt="Vinay Kumar" loading="lazy">
+            <h3>Vinay Kumar</h3>
+            <p>Software Engineer, Zerodha</p>
+          </div>
+
+          <div class="board-member">
+            <img src="{{asset 'images/Vishnu.webp'}}" alt="Vishu Sudharan" loading="lazy">
+            <h3>Vishu Sudhakaran</h3>
+            <p>Software Engineer, Zerodha</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="team-section">
+      <div class="container">
+        <h2 class="section-title">Our Team</h2>
+
+        <div class="team-grid">
+
+          {{!-- member --}}
+          <div class="team-member">
+            <img src="{{asset 'images/pranav.webp'}}" alt="Pranav Prabhu" loading="lazy">
+
+            <div class="team-content">
+              <h3>Pranav Prabhu</h3>
+              <div class="team-role">Head of OASIS</div>
+              <p class="team-bio">
+                Growth hacker turned open-source tinkerer currently obsessed with imagining FOSS solutions for
+                nonprofits. Once grew a brand from soil up, now growing open systems instead. Still chasing the dream of
+                a self-sustaining farm-for the day Wi-Fi fails!
+              </p>
+            </div>
+
+            <a href="https://www.linkedin.com/in/ipranavprabhu/" class="team-link" target="_blank">
+              Connect on LinkedIn
+            </a>
+          </div>
+
+          {{!-- member --}}
+          <div class="team-member">
+            <img src="{{asset 'images/Yashaswi.webp'}}" alt="Yashaswi" loading="lazy">
+
+            <div class="team-content">
+              <h3>Yashaswi</h3>
+              <div class="team-role">Partnerships & Programs Associate</div>
+              <p class="team-bio">
+                Architect turned nonprofit tinkerer, building systems that make more sense than most buildings. Dog
+                behaviorist on weekends, just for balance.
+              </p>
+            </div>
+            <a href="https://www.linkedin.com/in/Yashaswi-bg-45a611176/" class="team-link" target="_blank">
+              Connect on LinkedIn
+            </a>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+
+    <section class="mission-section">
+      <div class="container">
+        <h2 class="section-title">Our Vision & Impact</h2>
+        <div class="mission-grid">
+          <div class="mission-card mission-card-primary">
+            <div class="card-icon">
+              <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M12 2L2 7l10 5 10-5-10-5z" />
+                <path d="M2 17l10 5 10-5" />
+                <path d="M2 12l10 5 10-5" />
+              </svg>
+            </div>
+            <h3>Our Mission</h3>
+            <p>To bridge the technology gap in the social sector by fostering open-source innovation, collaboration, and
+              sustainable solutions that empower nonprofits and social enterprises worldwide.</p>
+          </div>
+          <div class="mission-card mission-card-secondary">
+            <div class="card-icon">
+              <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+                <circle cx="12" cy="7" r="4" />
+              </svg>
+            </div>
+            <h3>Our Values</h3>
+            <ul>
+              <li>
+                <span class="value-icon">◆</span>
+                <div>
+                  <strong>Open Collaboration & Innovation:</strong> Co-creating transparent, community-led solutions
+                  that push what’s possible.
+                </div>
+              </li>
+              <li>
+                <span class="value-icon">◆</span>
+                <div>
+                  <strong>Sustainability:</strong> Building tech that lasts—affordable, adaptable, and accessible over
+                  time.
+                </div>
+              </li>
+              <li>
+                <span class="value-icon">◆</span>
+                <div>
+                  <strong>Inclusion:</strong> Ensuring everyone can use, shape, and benefit from open technology.
+                </div>
+              </li>
+            </ul>
+          </div>
+          <div class="mission-card mission-card-accent">
+            <div class="card-icon">
+              <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polyline points="22 12 18 12 15 21 9 3 6 12 2 12" />
+              </svg>
+            </div>
+            <h3>Our Impact</h3>
+            <p>Since our inception, OASIS has catalyzed numerous open-source projects, trained numerous developers and
+              partnered with leading nonprofits to deliver technology solutions that create lasting social change.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="cta-section">
+      <div class="container">
+        <div class="cta-content">
+          <h2>Join the Movement</h2>
+          <p>Be part of the open-source revolution transforming the social sector. Whether you're a developer, nonprofit
+            leader, or a philanthropic institution, there's a place for you in our community.</p>
+          <a href="#" class="cta-button js-get-started">Get Started</a>
+        </div>
+      </div>
+    </section>
+  </main>
