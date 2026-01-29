@@ -541,10 +541,6 @@
         margin-top: clamp(8px, 1.5vw, 12px);
     }
 
-    /* .timeline-title {
-        margin-left: clamp(25px, 4vw, 35px);
-    } */
-
     .board-grid {
         grid-template-columns: repeat(2, 1fr);
         gap: clamp(10px, 2vw, 15px);
