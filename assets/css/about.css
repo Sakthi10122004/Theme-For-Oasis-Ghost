@@ -61,7 +61,7 @@
     margin: 0 auto clamp(20px, 4vw, 40px) auto;
     border-radius: clamp(8px, 2vw, 16px);
     overflow: hidden;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
     animation: fadeIn 0.6s ease-out 0.2s backwards;
 }
 
@@ -486,11 +486,11 @@
     .board-grid {
         grid-template-columns: repeat(3, 1fr);
     }
-    
+
     .mission-grid {
         grid-template-columns: repeat(2, 1fr);
     }
-    
+
     .mission-card:nth-child(3) {
         grid-column: 1 / -1;
         max-width: min(800px, 100%);
@@ -504,15 +504,15 @@
         grid-template-columns: repeat(2, 1fr);
         gap: clamp(20px, 3vw, 30px);
     }
-    
+
     .timeline-line {
         display: none;
     }
-    
+
     .team-grid {
         gap: clamp(15px, 2.5vw, 25px);
     }
-    
+
     .mission-card {
         padding: clamp(18px, 2.5vw, 25px);
     }
@@ -524,41 +524,41 @@
         grid-template-columns: 1fr;
         gap: clamp(25px, 4vw, 35px);
     }
-    
+
     .timeline-step {
         text-align: left;
     }
-    
+
     .timeline-dot {
         float: left;
         margin-right: clamp(12px, 2vw, 18px);
         margin-bottom: 0;
         margin-top: 5px;
     }
-    
+
     .timeline-card {
         min-height: auto;
         margin-top: clamp(8px, 1.5vw, 12px);
     }
-    
+
     /* .timeline-title {
         margin-left: clamp(25px, 4vw, 35px);
     } */
-    
+
     .board-grid {
         grid-template-columns: repeat(2, 1fr);
         gap: clamp(10px, 2vw, 15px);
     }
-    
+
     .team-grid {
         grid-template-columns: 1fr;
         gap: clamp(20px, 3vw, 30px);
     }
-    
+
     .mission-grid {
         grid-template-columns: 1fr;
     }
-    
+
     .mission-card:nth-child(3) {
         grid-column: auto;
         max-width: 100%;
@@ -571,7 +571,7 @@
         grid-template-columns: 1fr;
         gap: clamp(8px, 1.5vw, 12px);
     }
-    
+
     .board-member {
         display: flex;
         flex-direction: row;
@@ -579,23 +579,23 @@
         text-align: left;
         gap: clamp(12px, 2vw, 18px);
     }
-    
+
     .board-member img {
         width: clamp(50px, 10vw, 70px);
         height: clamp(50px, 10vw, 70px);
         margin: 0;
         flex-shrink: 0;
     }
-    
+
     .board-content {
         flex: 1;
     }
-    
+
     .timeline-final::before {
         top: clamp(-25px, -5vw, -35px);
         height: clamp(25px, 5vw, 35px);
     }
-    
+
     .team-link,
     .cta-button {
         width: 100%;
@@ -606,19 +606,20 @@
 
 /* Extra Small Mobile */
 @media (max-width: 400px) {
+
     .container,
     .container-wide {
         padding: 0 clamp(10px, 3vw, 15px);
     }
-    
+
     .team-member {
         padding: clamp(15px, 3vw, 20px);
     }
-    
+
     .mission-card {
         padding: clamp(15px, 3vw, 20px);
     }
-    
+
     .board-member {
         padding: clamp(12px, 2vw, 16px);
     }
@@ -629,25 +630,25 @@
     .heros-image-wrapper:hover {
         transform: translateY(-5px);
         transition: transform 0.3s ease;
-        box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
     }
-    
+
     .board-member:hover {
         transform: translateY(-5px);
         border-color: var(--color-primary);
-        box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
     }
-    
+
     .team-member:hover {
         transform: translateY(-5px);
         border-color: var(--color-primary);
-        box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
         transition: all 0.3s ease;
     }
-    
+
     .mission-card:hover {
         transform: translateY(-5px);
-        box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
         transition: all 0.3s ease;
     }
 }
@@ -657,7 +658,7 @@
     .heros-section {
         padding: 20px 0;
     }
-    
+
     .timeline-section,
     .board-section,
     .team-section,
@@ -665,28 +666,28 @@
     .cta-section {
         padding: 30px 0;
     }
-    
+
     .timeline-row {
         gap: 15px;
     }
-    
+
     .team-grid {
         grid-template-columns: repeat(2, 1fr);
         gap: 15px;
     }
-    
+
     .team-member {
         flex-direction: row;
         gap: 20px;
         align-items: center;
     }
-    
+
     .team-member img {
         width: 80px;
         height: 80px;
         margin: 0;
     }
-    
+
     .team-content {
         text-align: left;
     }
@@ -694,6 +695,7 @@
 
 /* High-resolution screens */
 @media (min-resolution: 192dpi) {
+
     .timeline-line,
     .timeline-final::before {
         height: 1px;
@@ -705,12 +707,12 @@
     .about-page {
         background: white;
     }
-    
+
     .team-link,
     .cta-button {
         display: none;
     }
-    
+
     .mission-section::before {
         display: none;
     }
