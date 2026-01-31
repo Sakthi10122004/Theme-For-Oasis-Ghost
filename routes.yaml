@@ -1,8 +1,8 @@
 routes:
   /about/:
     template: about
-  /community/:
-    template: community
+  /network/:
+    template: network
   /blog/:
     template: blog
   /events/:
