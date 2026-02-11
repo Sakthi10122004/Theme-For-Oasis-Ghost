@@ -251,85 +251,134 @@
     line-height: 1.4;
 }
 
-/* Team Section */
+/* =========================
+   TEAM SECTION
+========================= */
+
 .team-section {
     padding: clamp(40px, 6vw, 80px) 0;
     background: var(--color-background-light);
 }
 
+/* Responsive grid */
 .team-grid {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: clamp(20px, 3vw, 40px);
+    max-width: 1200px;
+    margin: 0 auto;
 }
+
+/* Center if only one member */
+.team-grid:has(.team-member:only-child) {
+    grid-template-columns: minmax(300px, 420px);
+    justify-content: center;
+}
+
+/* =========================
+   TEAM CARD
+========================= */
 
 .team-member {
     background: var(--color-background-card);
     border: 1px solid var(--color-border-light);
-    border-radius: clamp(8px, 1.5vw, 12px);
-    padding: clamp(20px, 3vw, 35px);
+    border-radius: 12px;
+    padding: 35px;
     display: flex;
     flex-direction: column;
-    width: 100%;
+    height: 100%;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
+.team-member:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
+}
+
+/* Profile image */
 .team-member img {
-    width: clamp(100px, 15vw, 180px);
-    height: clamp(100px, 15vw, 180px);
+    width: 160px;
+    height: 160px;
     object-fit: cover;
     border-radius: 50%;
     border: 3px solid var(--color-border-light);
-    margin: 0 auto clamp(15px, 2.5vw, 25px) auto;
+    margin: 0 auto 25px auto;
 }
 
-/* content */
+/* =========================
+   CONTENT STRUCTURE
+========================= */
+
 .team-content {
+    display: flex;
+    flex-direction: column;
     flex: 1;
     text-align: center;
 }
 
-/* name */
+/* Name */
 .team-member h3 {
-    font-size: clamp(1rem, 1.8vw, 1.4rem);
+    font-size: 1.3rem;
+    margin-bottom: 6px;
     color: var(--color-text-dark);
-    margin-bottom: clamp(4px, 0.8vw, 8px);
 }
 
-/* role */
+/* Role */
 .team-role {
-    font-size: clamp(0.9rem, 1.4vw, 1.1rem);
+    font-size: 1rem;
+    font-weight: 600;
+    margin-bottom: 15px;
     color: var(--color-text-medium);
-    font-weight: 600;
-    margin-bottom: clamp(8px, 1.5vw, 15px);
 }
 
-/* bio */
+/* Bio */
 .team-bio {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    font-size: 0.95rem;
+    line-height: 1.6;
     color: var(--color-text-dark);
-    font-size: clamp(0.85rem, 1.2vw, 1rem);
-    line-height: 1.5;
-    margin-bottom: clamp(15px, 2.5vw, 25px);
+    text-align: justify;
 }
 
-/* LinkedIn Button */
-.team-link {
-    display: inline-flex;
-    align-self: center;
-    padding: clamp(8px, 1.5vw, 12px) clamp(20px, 3vw, 28px);
-    background: var(--color-button);
-    color: var(--color-text-light);
-    border-radius: var(--radius-button);
-    font-weight: 600;
-    font-size: clamp(0.8rem, 1.1vw, 0.95rem);
-    text-decoration: none;
+/* =========================
+   GHOST BUTTON FIX
+========================= */
+
+/* Push button to bottom */
+.team-bio .kg-button-card {
     margin-top: auto;
-    transition: all var(--anim-fast);
-    white-space: nowrap;
+    padding: 20px;
 }
 
-.team-link:hover {
+/* Override Ghost accent button ONLY inside team */
+.team-section .kg-btn-accent {
+    background: #000 !important;
+    color: #fff !important;
+    border-radius: 999px !important;
+    padding: 12px 30px !important;
+    font-weight: 600;
+    font-size: 0.9rem;
+    text-decoration: none !important;
+    transition: all 0.3s ease;
+}
+
+/* Hover */
+.team-section .kg-btn-accent:hover {
+    background: #111 !important;
     transform: translateY(-2px);
-    box-shadow: 0 4px 16px rgba(28, 28, 28, 0.25);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media (max-width: 768px) {
+    .team-grid {
+        grid-template-columns: 1fr;
+    }
 }
 
 /* Mission Section */

@@ -150,53 +150,48 @@
       </div>
     </section>
 
-    <section class="team-section">
-      <div class="container">
-        <h2 class="section-title">Our Team</h2>
+  {{#get "posts" 
+    filter="tag:team" 
+    limit="99" 
+    order="published_at asc"}}
 
-        <div class="team-grid">
+  {{#if posts}}
 
-          {{!-- member --}}
-          <div class="team-member">
-            <img src="{{asset 'images/pranav.webp'}}" alt="Pranav Prabhu" loading="lazy">
+  <section class="team-section">
+    <div class="container">
+      <h2 class="section-title">Our Team</h2>
 
-            <div class="team-content">
-              <h3>Pranav Prabhu</h3>
-              <div class="team-role">Head of OASIS</div>
-              <p class="team-bio">
-                Growth hacker turned open-source tinkerer currently obsessed with imagining FOSS solutions for
-                nonprofits. Once grew a brand from soil up, now growing open systems instead. Still chasing the dream of
-                a self-sustaining farm-for the day Wi-Fi fails!
-              </p>
+      <div class="team-grid">
+
+        {{#foreach posts}}
+        <div class="team-member">
+
+          {{#if feature_image}}
+            <img src="{{img_url feature_image size="m"}}" alt="{{title}}" loading="lazy">
+          {{/if}}
+
+          <div class="team-content">
+            <h3>{{title}}</h3>
+
+            {{#if custom_excerpt}}
+              <div class="team-role">{{custom_excerpt}}</div>
+            {{/if}}
+
+            <div class="team-bio">
+              {{content}}
             </div>
-
-            <a href="https://www.linkedin.com/in/ipranavprabhu/" class="team-link" target="_blank">
-              Connect on LinkedIn
-            </a>
-          </div>
-
-          {{!-- member --}}
-          <div class="team-member">
-            <img src="{{asset 'images/Yashaswi.webp'}}" alt="Yashaswi" loading="lazy">
-
-            <div class="team-content">
-              <h3>Yashaswi</h3>
-              <div class="team-role">Partnerships & Programs Associate</div>
-              <p class="team-bio">
-                Architect turned nonprofit tinkerer, building systems that make more sense than most buildings. Dog
-                behaviorist on weekends, just for balance.
-              </p>
-            </div>
-            <a href="https://www.linkedin.com/in/Yashaswi-bg-45a611176/" class="team-link" target="_blank">
-              Connect on LinkedIn
-            </a>
           </div>
 
         </div>
+        {{/foreach}}
+
       </div>
-    </section>
+    </div>
+  </section>
 
-
+  {{/if}}
+{{/get}}
+ 
     <section class="mission-section">
       <div class="container">
         <h2 class="section-title">Our Vision & Impact</h2>
