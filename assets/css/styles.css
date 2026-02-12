@@ -786,13 +786,20 @@ button {
 
 .gs-close {
   position: absolute;
-  top: 12px;
+  top: 16px;
   right: 16px;
-  font-size: 26px;
-  background: none;
-  border: none;
+  font-size: 24px;
+  line-height: 1;
+  background: transparent !important;
+  border: none !important;
   cursor: pointer;
+  padding: 0;
+  width: auto;
+  height: auto;
+  color: #000 !important;      /* Force black */
+  opacity: 1 !important;       /* Prevent faded look */
 }
+
 
 /* ==============================================
    BUTTON STYLES
