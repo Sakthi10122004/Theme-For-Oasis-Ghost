@@ -756,7 +756,7 @@ button {
 }
 
 .gs-modal-content {
-  background: #fff;
+  background: var(--color-accent-2);
   max-width: 420px;
   margin: 12vh auto;
   padding: 32px;
