@@ -42,20 +42,79 @@
         "desktop": "assets/screenshot-desktop.jpg",
         "mobile": "assets/screenshot-mobile.jpg"
     },
-  "config": {
-    "custom": {
-        "color_scheme": {
-            "type": "select",
-            "options": [
-                "Light",
-                "Dark",
-                "Auto"
-            ],
-            "default": "Light"
-        }
-    },
-    "posts_per_page": 100,
-    "card_assets": true
+    "config": {
+        "custom": {
+            "color_scheme": {
+                "type": "select",
+                "options": [
+                    "Light",
+                    "Dark",
+                    "Auto"
+                ],
+                "default": "Light"
+            },
+            "stat_1_number": {
+                "type": "text",
+                "default": "120",
+                "description": "First stat number"
+            },
+            "stat_1_label": {
+                "type": "text",
+                "default": "NPO's have reached out to us",
+                "description": "First stat label"
+            },
+            "stat_2_number": {
+                "type": "text",
+                "default": "200",
+                "description": "Second stat number"
+            },
+            "stat_2_label": {
+                "type": "text",
+                "default": "Tech vendors have attended our events",
+                "description": "Second stat label"
+            },
+            "stat_3_number": {
+                "type": "text",
+                "default": "30",
+                "description": "Third stat number"
+            },
+            "stat_3_label": {
+                "type": "text",
+                "default": "NPO's have engaged with us",
+                "description": "Third stat label"
+            },
+            "hero_line_1": {
+                "type": "text",
+                "default": "The open-source",
+                "description": "Hero title - Line 1"
+            },
+            "hero_line_2": {
+                "type": "text",
+                "default": "collective",
+                "description": "Hero title - Line 2"
+            },
+            "hero_line_3": {
+                "type": "text",
+                "default": "fueling",
+                "description": "Hero title - Line 3 (before highlight)"
+            },
+            "hero_title_highlight": {
+                "type": "text",
+                "default": "social impact.",
+                "description": "Hero highlighted/glowing text"
+            },
+            "hero_cta_text": {
+                "type": "text",
+                "default": "Start your journey",
+                "description": "Hero button text"
+            },
+            "hero_cta_link": {
+                "type": "text",
+                "default": "/network",
+                "description": "Hero button link URL"
+            }
+        },
+        "posts_per_page": 100,
+        "card_assets": true
     }
 }
-

@@ -1571,6 +1571,14 @@
   color: var(--color-accent-2);
 }
 
+.section-placeholder {
+  padding: 2rem 1rem;
+  text-align: center;
+  color: var(--color-text-muted, #888);
+  font-size: 0.95rem;
+  opacity: 0.7;
+}
+
 /* ==============================================
    RESPONSIVE BREAKPOINTS - TOOLBOX
    ============================================== */

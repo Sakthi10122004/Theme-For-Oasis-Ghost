@@ -23,6 +23,10 @@
     color: #1c1c1c;
     }
 
+    .hero-title .line {
+    display: block;
+    }
+
     .orbit-visual {
     display: flex;
     justify-content: center;
@@ -67,12 +71,13 @@
     <div class="hero-orbit">
         <div class="orbit-content">
             <h1 class="hero-title">
-                <span class="line">The open-source</span>
-                <span>collective </span>
-                <span class="line">fueling <span class="glow">social impact.</span></span>
+                <span class="line">{{@custom.hero_line_1}}</span>
+                <span class="line">{{@custom.hero_line_2}}</span>
+                <span class="line">{{@custom.hero_line_3}} <span
+                        class="glow">{{@custom.hero_title_highlight}}</span></span>
             </h1>
             <p class="hero-desc">{{@site.description}}</p>
-            <a href="/network" class="hero-cta">Start your journey</a>
+            <a href="{{@custom.hero_cta_link}}" class="hero-cta">{{@custom.hero_cta_text}}</a>
         </div>
         <div class="orbit-visual">
             {{#if @site.cover_image}}
@@ -90,24 +95,24 @@
             <div class="stats-orbit">
                 <div class="stat-orbit">
                     <div class="count-wrap">
-                        <span class="count" data-target="120">0</span>
+                        <span class="count" data-target="{{@custom.stat_1_number}}">0</span>
                         <span class="plus">+</span>
                     </div>
-                    <p>NPO's have reached out to us</p>
+                    <p>{{@custom.stat_1_label}}</p>
                 </div>
                 <div class="stat-orbit">
                     <div class="count-wrap">
-                        <span class="count" data-target="200">0</span>
+                        <span class="count" data-target="{{@custom.stat_2_number}}">0</span>
                         <span class="plus">+</span>
                     </div>
-                    <p>Tech vendors have attended our events</p>
+                    <p>{{@custom.stat_2_label}}</p>
                 </div>
                 <div class="stat-orbit">
                     <div class="count-wrap">
-                        <span class="count" data-target="30">0</span>
+                        <span class="count" data-target="{{@custom.stat_3_number}}">0</span>
                         <span class="plus">+</span>
                     </div>
-                    <p>NPO’s have engaged with us</p>
+                    <p>{{@custom.stat_3_label}}</p>
                 </div>
             </div>
         </div>
@@ -312,6 +317,7 @@
                 </div>
 
                 {{#get "posts" filter="tag:tools" limit="4" include="feature_image"}}
+                {{#if posts}}
                 <div class="static-grid">
                     {{#foreach posts}}
                     <a href="{{url}}" class="tool-card" title="{{title}}">
@@ -324,6 +330,11 @@
                     </a>
                     {{/foreach}}
                 </div>
+                {{else}}
+                <div class="section-placeholder">
+                    <p>No tools yet. Add posts with the <strong>tools</strong> tag.</p>
+                </div>
+                {{/if}}
                 {{/get}}
 
                 <a href="/tag/tools/" class="view-all-btn">View all tools</a>
@@ -336,6 +347,7 @@
                 </div>
 
                 {{#get "posts" filter="tag:verified-experts" limit="4" include="feature_image"}}
+                {{#if posts}}
                 <div class="static-grid">
                     {{#foreach posts}}
                     <a href="{{url}}" class="expert-card" title="{{title}}">
@@ -348,6 +360,11 @@
                     </a>
                     {{/foreach}}
                 </div>
+                {{else}}
+                <div class="section-placeholder">
+                    <p>No verified experts yet. Add posts with the <strong>verified-experts</strong> tag.</p>
+                </div>
+                {{/if}}
                 {{/get}}
 
                 <a href="/tag/verified-experts/" class="view-all-btn">Meet all experts</a>
