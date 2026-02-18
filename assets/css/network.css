@@ -61,7 +61,7 @@
     justify-content: center;
 }
 
-.hero-image {  
+.hero-image {
     width: 100%;
     height: auto;
     max-height: 560px;
@@ -78,12 +78,12 @@
     .hero {
         padding: 3rem 0.5rem 0.5rem;
     }
-    
+
     .hero-container {
         padding: 0 1rem;
         margin-bottom: 2rem;
     }
-    
+
     .hero-image-wrapper {
         width: 90%;
         margin: 2rem auto;
@@ -94,27 +94,27 @@
     .hero {
         padding: 2.5rem 0.5rem 0.5rem;
     }
-    
+
     .hero-container {
         margin-bottom: 1.5rem;
         padding: 0 0.5rem;
     }
-    
+
     .hero-title {
         font-size: 1.6rem;
         margin-bottom: 1rem;
     }
-    
+
     .hero-description {
         font-size: 1rem;
         line-height: 1.6;
     }
-    
+
     .hero-image-wrapper {
         margin: 2.5rem auto 2.5rem;
         width: 100%;
     }
-    
+
     .hero-image {
         border-radius: 1.4rem;
         max-height: 380px;
@@ -418,12 +418,15 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    min-width: 120px;
-    height: 60px;
+    width: 100px;
+    height: 100px;
     opacity: 0.7;
     transition: opacity 0.3s ease;
     flex-shrink: 0;
     will-change: opacity;
+    overflow: hidden;
+    border-radius: 12px;
+    background: #f5f5f0;
 }
 
 .partner-item:hover {
@@ -431,9 +434,9 @@
 }
 
 .partner-item img {
-    max-width: 120px;
-    max-height: 60px;
-    object-fit: contain;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
     filter: grayscale(100%);
     transition: filter 0.3s ease;
 }
@@ -446,6 +449,7 @@
     0% {
         transform: translateX(0);
     }
+
     100% {
         transform: translateX(-50%);
     }
@@ -532,7 +536,7 @@
     .container {
         padding: 0 1.25rem;
     }
-    
+
     /* Section adjustments */
     .who-section,
     .benefits-section,
@@ -541,87 +545,87 @@
     .partners-section {
         padding: 50px 0;
     }
-    
+
     .section-title {
         font-size: 32px;
     }
-    
+
     .section-lead {
         font-size: 17px;
         margin-bottom: 40px;
     }
-    
+
     /* Category Grid */
     .category-grid {
         grid-template-columns: repeat(2, 1fr);
         gap: 20px;
     }
-    
+
     /* Benefits Grid */
     .benefits-grid {
         gap: 24px;
     }
-    
+
     .benefit-card {
         padding: 32px;
     }
-    
+
     .benefit-card h3 {
         font-size: 22px;
         margin-bottom: 20px;
     }
-    
+
     /* Join Section */
     .join-card-horizontal {
         gap: 40px;
         padding: 40px;
     }
-    
+
     .join-left h3 {
         font-size: 22px;
     }
-    
+
     .join-right {
         padding: 32px;
     }
-    
+
     .join-right h3 {
         font-size: 20px;
     }
-    
+
     /* Testimonials */
     .testimonial-columns {
         gap: 24px;
     }
-    
+
     /* Partners */
     .partners-marquee {
         padding: 28px 0;
     }
-    
+
     .partners-track {
         gap: 40px;
     }
-    
+
     .partner-item {
-        min-width: 100px;
-        height: 50px;
+        width: 85px;
+        height: 85px;
     }
-    
+
     .partner-item img {
-        max-width: 100px;
-        max-height: 50px;
+        width: 100%;
+        height: 100%;
     }
-    
+
     /* Final CTA */
     .final-cta {
         padding: 70px 0;
     }
-    
+
     .cta-content h2 {
         font-size: 36px;
     }
-    
+
     .cta-content p {
         font-size: 17px;
     }
@@ -632,16 +636,16 @@
     .container {
         padding: 0 1rem;
     }
-    
+
     /* Hero */
     .hero {
         padding: 3rem 0.5rem 0.5rem;
     }
-    
+
     .hero-container {
         margin-bottom: 2rem;
     }
-    
+
     /* Sections */
     .who-section,
     .benefits-section,
@@ -650,153 +654,154 @@
     .partners-section {
         padding: 40px 0;
     }
-    
+
     .section-title {
         font-size: 28px;
         margin-bottom: 12px;
     }
-    
+
     .section-lead {
         font-size: 16px;
         margin-bottom: 32px;
         padding: 0 0.5rem;
     }
-    
+
     /* Category Grid */
     .category-grid {
         grid-template-columns: 1fr;
         gap: 16px;
     }
-    
+
     .category-card {
         padding: 24px;
     }
-    
+
     .category-card h3 {
         font-size: 18px;
         margin-bottom: 10px;
     }
-    
+
     .category-card p {
         font-size: 14px;
     }
-    
+
     /* Benefits Grid */
     .benefits-grid {
         grid-template-columns: 1fr;
         gap: 20px;
     }
-    
+
     .benefit-card {
         padding: 28px;
     }
-    
+
     .benefit-card h3 {
         font-size: 20px;
         margin-bottom: 18px;
     }
-    
+
     .benefit-list li {
         font-size: 14px;
         margin-bottom: 12px;
         padding-left: 18px;
     }
-    
+
     /* Join Section */
     .join-section {
         padding: 3rem 0;
     }
-    
+
     .join-card-horizontal {
         grid-template-columns: 1fr;
         gap: 32px;
         padding: 32px;
     }
-    
+
     .join-left h3 {
         font-size: 20px;
     }
-    
+
     .join-left p {
         font-size: 15px;
     }
-    
+
     .join-steps li {
         font-size: 14px;
     }
-    
+
     .join-right {
         text-align: left;
         padding: 28px;
     }
-    
+
     .join-right h3 {
         font-size: 18px;
     }
-    
+
     /* Testimonials */
     .testimonial-columns {
         grid-template-columns: 1fr;
         gap: 20px;
     }
-    
+
     .testimonial-heading {
         font-size: 18px;
         margin-bottom: 20px;
     }
-    
+
     .testimonial-item blockquote {
         padding: 24px;
     }
-    
+
     .testimonial-item p {
         font-size: 15px;
     }
-    
+
     .testimonial-item cite {
         font-size: 13px;
         padding: 0.2rem 0.8rem;
     }
-    
+
     /* Partners */
     .partners-marquee {
         padding: 24px 0;
         margin-bottom: 28px;
     }
-    
+
     .partners-track {
         gap: 32px;
     }
-    
+
     .partner-item {
-        min-width: 90px;
-        height: 45px;
+        width: 75px;
+        height: 75px;
+        border-radius: 10px;
     }
-    
+
     .partner-item img {
-        max-width: 90px;
-        max-height: 45px;
+        width: 100%;
+        height: 100%;
     }
-    
+
     .partners-cta {
         padding: 0.9rem 2rem;
         font-size: 1rem;
     }
-    
+
     /* Final CTA */
     .final-cta {
         padding: 60px 0;
     }
-    
+
     .cta-content h2 {
         font-size: 32px;
     }
-    
+
     .cta-content p {
         font-size: 16px;
         margin-bottom: 28px;
     }
-    
+
     .cta-button {
         padding: 12px 32px;
         font-size: 0.95rem;
@@ -808,36 +813,36 @@
     .container {
         padding: 0 0.75rem;
     }
-    
+
     /* Hero */
     .hero {
         padding: 2.5rem 0.5rem 0.5rem;
     }
-    
+
     .hero-container {
         margin-bottom: 1.5rem;
         padding: 0 0.5rem;
     }
-    
+
     .hero-title {
         font-size: 1.8rem;
         margin-bottom: 0.8rem;
     }
-    
+
     .hero-description {
         font-size: 0.95rem;
         line-height: 1.6;
     }
-    
+
     .hero-image-wrapper {
         margin: 2rem auto;
     }
-    
+
     .hero-image {
         border-radius: 1.2rem;
         max-height: 300px;
     }
-    
+
     /* Sections */
     .who-section,
     .benefits-section,
@@ -846,144 +851,145 @@
     .partners-section {
         padding: 32px 0;
     }
-    
+
     .section-title {
         font-size: 24px;
         margin-bottom: 10px;
     }
-    
+
     .section-lead {
         font-size: 15px;
         margin-bottom: 24px;
         padding: 0;
     }
-    
+
     /* Category Grid */
     .category-card {
         padding: 20px;
     }
-    
+
     .category-card h3 {
         font-size: 17px;
     }
-    
+
     /* Benefits Grid */
     .benefit-card {
         padding: 24px;
     }
-    
+
     .benefit-card h3 {
         font-size: 18px;
         margin-bottom: 16px;
     }
-    
+
     .benefit-list li {
         font-size: 13px;
         padding-left: 16px;
     }
-    
+
     /* Join Section */
     .join-section {
         padding: 2.5rem 0;
     }
-    
+
     .join-card-horizontal {
         gap: 24px;
         padding: 24px;
         border-radius: 16px;
     }
-    
+
     .join-left h3 {
         font-size: 18px;
         margin-bottom: 12px;
     }
-    
+
     .join-left p {
         font-size: 14px;
         margin-bottom: 20px;
     }
-    
+
     .join-steps li {
         font-size: 13px;
         margin-bottom: 10px;
     }
-    
+
     .join-right {
         padding: 24px;
         border-radius: 12px;
     }
-    
+
     .join-right h3 {
         font-size: 17px;
         margin-bottom: 12px;
     }
-    
+
     .join-right p {
         font-size: 14px;
         margin-bottom: 20px;
     }
-    
+
     /* Testimonials */
     .testimonial-item blockquote {
         padding: 20px;
     }
-    
+
     .testimonial-item p {
         font-size: 14px;
     }
-    
+
     .testimonial-item cite {
         font-size: 12px;
         padding: 0.2rem 0.6rem;
     }
-    
+
     /* Partners */
     .partners-marquee {
         padding: 20px 0;
         margin-bottom: 24px;
         border-radius: 8px;
     }
-    
+
     .partners-track {
         gap: 24px;
     }
-    
+
     .partner-item {
-        min-width: 80px;
-        height: 40px;
+        width: 65px;
+        height: 65px;
+        border-radius: 8px;
     }
-    
+
     .partner-item img {
-        max-width: 80px;
-        max-height: 40px;
+        width: 100%;
+        height: 100%;
     }
-    
+
     .partners-cta {
         width: 100%;
         text-align: center;
         padding: 0.8rem 1.5rem;
         font-size: 0.95rem;
     }
-    
+
     /* Final CTA */
     .final-cta {
         padding: 50px 0;
     }
-    
+
     .cta-content {
         padding: 0 0.5rem;
     }
-    
+
     .cta-content h2 {
         font-size: 28px;
         margin-bottom: 12px;
     }
-    
+
     .cta-content p {
         font-size: 15px;
         margin-bottom: 24px;
     }
-    
+
     .cta-button {
         width: 100%;
         text-align: center;
@@ -997,27 +1003,27 @@
     .hero-title {
         font-size: 1.6rem;
     }
-    
+
     .hero-description {
         font-size: 0.9rem;
     }
-    
+
     .hero-image {
         max-height: 250px;
     }
-    
+
     .section-title {
         font-size: 22px;
     }
-    
+
     .category-card {
         padding: 18px;
     }
-    
+
     .benefit-card {
         padding: 20px;
     }
-    
+
     .join-card-horizontal {
         padding: 20px;
     }
@@ -1029,11 +1035,11 @@
         width: 70%;
         max-height: 50vh;
     }
-    
+
     .hero-image {
         max-height: 50vh;
     }
-    
+
     .category-grid,
     .benefits-grid {
         grid-template-columns: repeat(2, 1fr);
@@ -1042,6 +1048,7 @@
 
 /* Touch Device Optimizations */
 @media (hover: none) and (pointer: coarse) {
+
     .category-card,
     .benefit-card,
     .join-card-horizontal,
@@ -1050,13 +1057,13 @@
     .cta-button {
         transition: transform 0.2s ease;
     }
-    
+
     .category-card:active,
     .benefit-card:active,
     .cta-button:active {
         transform: scale(0.98);
     }
-    
+
     .benefit-list li,
     .join-steps li {
         padding: 4px 0;
@@ -1065,19 +1072,20 @@
 
 /* Reduce motion for accessibility */
 @media (prefers-reduced-motion: reduce) {
+
     .category-card,
     .benefit-card,
     .join-card,
     .testimonial-item blockquote {
         transition: none;
     }
-    
+
     .category-card:hover,
     .benefit-card:hover,
     .join-card:hover {
         transform: none;
     }
-    
+
     .partners-track {
         animation: none;
     }

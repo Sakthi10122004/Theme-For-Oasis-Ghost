@@ -112,6 +112,16 @@
                 "type": "text",
                 "default": "/network",
                 "description": "Hero button link URL"
+            },
+            "footer_license": {
+                "type": "text",
+                "default": "CC-BY-SA.",
+                "description": "Footer copyright license text (e.g. CC-BY-SA.)"
+            },
+            "footer_email": {
+                "type": "text",
+                "default": "",
+                "description": "Footer contact email address"
             }
         },
         "posts_per_page": 100,

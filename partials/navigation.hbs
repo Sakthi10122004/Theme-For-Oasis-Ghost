@@ -1,0 +1,25 @@
+{{#if isSecondary}}
+{{#foreach navigation}}
+<a href="{{url}}" target="_blank" rel="noopener noreferrer" aria-label="{{label}}" class="footer-social-link">
+    {{#match slug "linkedin"}}{{> "icons/linkedin"}}{{/match}}
+    {{#match slug "whatsapp"}}{{> "icons/whatsapp"}}{{/match}}
+    {{#match slug "instagram"}}{{> "icons/instagram"}}{{/match}}
+    {{#match slug "facebook"}}{{> "icons/facebook"}}{{/match}}
+    {{#match slug "x"}}{{> "icons/twitter"}}{{/match}}
+    {{#match slug "twitter"}}{{> "icons/twitter"}}{{/match}}
+    {{#match slug "youtube"}}{{> "icons/youtube"}}{{/match}}
+    {{#match slug "github"}}{{> "icons/github"}}{{/match}}
+    {{#match slug "bluesky"}}{{> "icons/bluesky"}}{{/match}}
+    {{#match slug "tiktok"}}{{> "icons/tiktok"}}{{/match}}
+    {{#match slug "threads"}}{{> "icons/threads"}}{{/match}}
+    {{#match slug "mastodon"}}{{> "icons/mastodon"}}{{/match}}
+    {{#match slug "rss"}}{{> "icons/rss"}}{{/match}}
+</a>
+{{/foreach}}
+{{else}}
+{{#foreach navigation}}
+<li class="{{link_class for=(url) class=(concat " nav-" slug)}}" role="menuitem">
+    <a href="{{url absolute=" true"}}">{{label}}</a>
+</li>
+{{/foreach}}
+{{/if}}
