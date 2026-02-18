@@ -25,16 +25,13 @@
 .article-title {
   font-size: clamp(2.2rem, 4vw, 3.2rem);
   font-weight: 800;
-  background: linear-gradient(135deg, var(--blog-primary), var(--blog-primary));
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
+  color: var(--color-primary);
   margin-bottom: .75rem;
 }
 
 .article-excerpt {
   font-size: 1.2rem;
-  color: #666;
+  color: var(--color-secondary);
   margin: 0 0 30px;
   max-width: 600px;
   margin-left: auto;
