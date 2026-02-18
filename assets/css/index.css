@@ -156,7 +156,7 @@
   .orbit-content {
     max-width: 500px;
   }
-  
+
   .floating-img,
   .floating-placeholder {
     max-height: 450px;
@@ -169,11 +169,11 @@
     padding: 4rem 5%;
     gap: 3rem;
   }
-  
+
   .hero-title {
     font-size: clamp(2rem, 3.5vw, 3rem);
   }
-  
+
   .hero-desc {
     font-size: clamp(1.1rem, 1.8vw, 1.3rem);
   }
@@ -243,7 +243,7 @@
     border-radius: 20px;
     max-height: 350px;
   }
-  
+
   .floating-placeholder {
     height: 300px;
     border-radius: 20px;
@@ -271,7 +271,7 @@
     border-radius: 16px;
     max-height: 250px;
   }
-  
+
   .floating-placeholder {
     height: 250px;
     border-radius: 16px;
@@ -284,19 +284,19 @@
   .hero-orbit {
     padding: 1.5rem 0.75rem;
   }
-  
+
   .hero-title {
     font-size: clamp(1.3rem, 6vw, 1.8rem);
   }
-  
+
   .hero-desc {
     font-size: 0.95rem;
   }
-  
+
   .floating-img {
     max-height: 200px;
   }
-  
+
   .floating-placeholder {
     height: 200px;
   }
@@ -380,7 +380,7 @@
     gap: 60px;
     padding: 0 40px;
   }
-  
+
   .bbb-item {
     height: 100%;
   }
@@ -393,7 +393,7 @@
     gap: 30px;
     padding: 0 20px;
   }
-  
+
   .bbb-banner {
     font-size: 1.3rem;
     padding: 12px 20px;
@@ -419,12 +419,12 @@
     gap: 25px;
     padding: 0 10px;
   }
-  
+
   .bbb-banner {
     font-size: 1.25rem;
     padding: 12px 15px;
   }
-  
+
   .bbb-img-wrapper {
     height: 200px;
   }
@@ -436,24 +436,24 @@
     padding: 30px 10px;
     background: linear-gradient(to bottom, var(--color-page-bg) 15%, var(--color-accent-2) 15%);
   }
-  
+
   .bbb-container {
     gap: 20px;
   }
-  
+
   .bbb-banner {
     font-size: 1.1rem;
     padding: 10px 12px;
   }
-  
+
   .bbb-img-wrapper {
     height: 160px;
   }
-  
+
   .bbb-content {
     padding: 15px;
   }
-  
+
   .bbb-content p {
     font-size: 0.95rem;
   }
@@ -464,20 +464,20 @@
   .bbb-section {
     padding: 25px 8px;
   }
-  
+
   .bbb-banner {
     font-size: 1rem;
     padding: 8px 10px;
   }
-  
+
   .bbb-img-wrapper {
     height: 140px;
   }
-  
+
   .bbb-content {
     padding: 12px;
   }
-  
+
   .bbb-content p {
     font-size: 0.9rem;
   }
@@ -580,20 +580,20 @@
   .stats-orbit {
     gap: 1.5rem;
   }
-  
+
   .stat-orbit {
     min-width: calc(50% - 1.5rem);
     padding: 1.25rem 0.75rem;
   }
-  
+
   .count {
     font-size: 2.25rem;
   }
-  
+
   .plus {
     font-size: 1.75rem;
   }
-  
+
   .stat-orbit p {
     font-size: 0.95rem;
   }
@@ -632,20 +632,20 @@
   .impact-wave {
     padding: 2.5rem 3%;
   }
-  
+
   .wave-container h2 {
     font-size: 1.75rem;
     margin-bottom: 2rem;
   }
-  
+
   .stat-orbit {
     padding: 1.25rem 0.75rem;
   }
-  
+
   .count {
     font-size: 2rem;
   }
-  
+
   .plus {
     font-size: 1.5rem;
   }
@@ -753,11 +753,11 @@
   .philosophy-constellation {
     padding: 5rem 5%;
   }
-  
+
   .constellation {
     gap: 3rem;
   }
-  
+
   .star-card {
     width: min(90%, 400px);
   }
@@ -768,21 +768,21 @@
   .philosophy-constellation {
     padding: 4rem 4%;
   }
-  
+
   .constellation-title {
     font-size: clamp(1.8rem, 3.5vw, 2.2rem);
     margin-bottom: 1.5rem;
   }
-  
+
   .constellation-sub-title {
     font-size: 1.1rem;
     margin-bottom: 3rem;
   }
-  
+
   .constellation {
     gap: 2rem;
   }
-  
+
   .star-card {
     width: 100%;
     max-width: 420px;
@@ -795,29 +795,29 @@
   .philosophy-constellation {
     padding: 3rem 3%;
   }
-  
+
   .constellation-title {
     font-size: 1.8rem;
     margin-bottom: 1.25rem;
   }
-  
+
   .constellation-sub-title {
     font-size: 1rem;
     margin-bottom: 2.5rem;
   }
-  
+
   .star-card {
     padding: 1.75rem 1.25rem;
   }
-  
+
   .star-card h3 {
     font-size: 1.25rem;
   }
-  
+
   .star-card p {
     font-size: 0.95rem;
   }
-  
+
   .meta {
     font-size: 0.85rem;
     padding: 6px 14px;
@@ -829,28 +829,28 @@
   .philosophy-constellation {
     padding: 2.5rem 2%;
   }
-  
+
   .constellation-title {
     font-size: 1.6rem;
   }
-  
+
   .constellation-sub-title {
     font-size: 0.95rem;
     margin-bottom: 2rem;
   }
-  
+
   .star-card {
     padding: 1.5rem 1rem;
   }
-  
+
   .star-card h3 {
     font-size: 1.2rem;
   }
-  
+
   .star-card p {
     font-size: 0.9rem;
   }
-  
+
   .meta {
     font-size: 0.8rem;
     padding: 5px 12px;
@@ -1020,11 +1020,11 @@
     gap: 2rem;
     max-width: 600px;
   }
-  
+
   .update-content {
     gap: 1.5rem;
   }
-  
+
   .update-img {
     width: 140px;
     height: 140px;
@@ -1036,7 +1036,7 @@
   .pulse-section {
     padding: 3rem 4%;
   }
-  
+
   .pulse-newsletter h3 {
     font-size: 1.3rem;
   }
@@ -1047,8 +1047,8 @@
   .pulse-section {
     padding: 2.5rem 3%;
   }
-  
-  .pulse-newsletter, 
+
+  .pulse-newsletter,
   .pulse-update {
     padding: 1.5rem;
   }
@@ -1075,7 +1075,7 @@
   .update-text h4 a {
     font-size: 1.15rem;
   }
-  
+
   .update-text p {
     font-size: 0.95rem;
   }
@@ -1086,20 +1086,20 @@
   .pulse-section {
     padding: 2rem 3%;
   }
-  
-  .pulse-newsletter, 
+
+  .pulse-newsletter,
   .pulse-update {
     padding: 1.25rem;
   }
-  
+
   .pulse-newsletter h3 {
     font-size: 1.2rem;
   }
-  
+
   .pulse-newsletter p {
     font-size: 0.95rem;
   }
-  
+
   .update-img {
     height: 160px;
   }
@@ -1110,33 +1110,33 @@
   .pulse-section {
     padding: 1.5rem 2%;
   }
-  
-  .pulse-newsletter, 
+
+  .pulse-newsletter,
   .pulse-update {
     padding: 1rem;
   }
-  
+
   .pulse-newsletter h3 {
     font-size: 1.15rem;
   }
-  
+
   .pulse-form input {
     padding: 0.75rem;
     font-size: 0.95rem;
   }
-  
+
   .pulse-form button {
     padding: 0.75rem;
   }
-  
+
   .update-img {
     height: 140px;
   }
-  
+
   .update-text h4 a {
     font-size: 1.1rem;
   }
-  
+
   .update-text p {
     font-size: 0.9rem;
   }
@@ -1251,7 +1251,7 @@
   .ecosystem-ring {
     padding: 2.5rem 0.75rem;
   }
-  
+
   .ring-quote {
     font-size: 1.1rem;
     padding: 0 0.5rem;
@@ -1270,11 +1270,11 @@
   .ecosystem-ring {
     padding: 2rem 0.5rem;
   }
-  
+
   .ring-quote {
     font-size: 1rem;
   }
-  
+
   .ring-logos a {
     flex: 0 0 calc(50% - 0.5rem);
     width: 110px;
@@ -1307,7 +1307,8 @@
 
 .impact-static {
   display: flex;
-  flex-direction: column;   /* STACK */
+  flex-direction: column;
+  /* STACK */
   align-items: center;
   gap: 32px;
   max-width: 1400px;
@@ -1360,16 +1361,18 @@
 
 @media (min-width: 1024px) {
   .impact-static {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr); /* ONE LINE */
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
     gap: 40px;
-    align-items: stretch;
   }
 
   .impact-card {
-    max-width: none;
+    max-width: 300px;
     width: 100%;
     height: 420px;
+    flex: 0 1 300px;
   }
 }
 
@@ -1392,7 +1395,7 @@
     align-items: center;
     gap: 32px;
   }
-  
+
   .impact-card {
     max-width: 420px;
     height: 360px;
@@ -1405,7 +1408,7 @@
     height: 320px;
     max-width: 380px;
   }
-  
+
   .redesigned-stories h2 {
     font-size: 2rem;
     margin-bottom: 3rem;
@@ -1425,13 +1428,13 @@
   .redesigned-stories {
     padding: 2.5rem 0;
   }
-  
+
   .redesigned-stories h2 {
     font-size: 1.75rem;
     margin-bottom: 2rem;
     padding: 0 15px;
   }
-  
+
   .impact-card {
     height: 280px;
     border-radius: 18px;
@@ -1448,12 +1451,12 @@
   .redesigned-stories h2 {
     font-size: 1.5rem;
   }
-  
+
   .impact-card {
     height: 250px;
     border-radius: 16px;
   }
-  
+
   .impact-overlay {
     font-size: 0.8rem;
     padding: 6px 14px;
@@ -1524,7 +1527,7 @@
   align-items: center;
   justify-content: center;
   text-decoration: none;
-  box-shadow: 0 5px 15px rgba(0,0,0,.08);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, .08);
 }
 
 /* Blurred background image (fills circle) */
@@ -1540,16 +1543,15 @@
   opacity: 0.9;
 }
 
-/* Foreground image (fully visible) */
+/* Foreground image (fills circle) */
 .tool-card .img-fg,
 .expert-card .img-fg {
   position: relative;
   z-index: 2;
-  max-width: 70%;
-  max-height: 70%;
-  width: auto;
-  height: auto;
-  object-fit: contain;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
 }
 
 /* ==============================================
@@ -1586,7 +1588,7 @@
   .expert-tool-wrapper {
     flex-direction: column;
   }
-  
+
   .tools-orbit,
   .experts-orbit {
     width: 100%;
@@ -1598,17 +1600,17 @@
   .toolbox {
     padding: 2.5rem 1rem;
   }
-  
+
   .tools-orbit,
   .experts-orbit {
     padding: 1.5rem 1rem;
     border-radius: 20px;
   }
-  
+
   .orbit-header {
     margin-bottom: 1.5rem;
   }
-  
+
   .tools-orbit h3,
   .experts-orbit h3 {
     font-size: 1.5rem;
@@ -1625,7 +1627,7 @@
     max-width: 75%;
     max-height: 75%;
   }
-  
+
   .static-grid {
     gap: 1rem;
   }
@@ -1636,31 +1638,31 @@
   .toolbox {
     padding: 2rem 0.75rem;
   }
-  
+
   .tools-orbit,
   .experts-orbit {
     padding: 1.25rem 0.75rem;
   }
-  
+
   .tools-orbit h3,
   .experts-orbit h3 {
     font-size: 1.3rem;
   }
-  
+
   .tool-card,
   .expert-card {
     width: 55px;
     height: 55px;
   }
-  
+
   .tool-text {
     font-size: 0.6rem;
   }
-  
+
   .expert-initial {
     font-size: 0.9rem;
   }
-  
+
   .static-grid {
     gap: 0.75rem;
   }
