@@ -229,11 +229,7 @@
                     {{/if}}
                     <div class="update-text">
                         <h4><a href="{{url}}">{{title}}</a></h4>
-                        {{#if custom_excerpt}}
-                        <p>{{custom_excerpt}}</p>
-                        {{else}}
-                        <p>{{excerpt words="18"}}</p>
-                        {{/if}}
+                        <p class="update-excerpt">{{excerpt words="18"}}...</p>
                         <a href="{{url}}" class="read-more">Read more →</a>
                     </div>
                 </div>

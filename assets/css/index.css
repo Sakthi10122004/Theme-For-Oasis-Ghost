@@ -996,6 +996,15 @@
   line-height: 1.5;
 }
 
+.update-excerpt {
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  line-clamp: 4;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
 .read-more {
   display: inline-flex;
   align-items: center;
