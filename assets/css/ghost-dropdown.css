@@ -1,3 +1,15 @@
+:root {
+    --menu-bg: var(--color-surface, #ffffff);
+    --menu-bg-hover: var(--color-accent-2-light, rgba(237, 62, 41, 0.08));
+    --menu-text-dark: var(--color-primary, #1c1c1c);
+    --menu-text-hover: var(--color-accent-1, #fd635a);
+    --menu-border: var(--color-border-light, #ebe9de);
+    --menu-shadow: rgba(0, 0, 0, 0.1);
+    --menu-bg-mobile: transparent;
+    --menu-border-mobile: var(--color-border-light);
+    --menu-border-accent: var(--color-accent-1);
+    --menu-text-medium: var(--color-text-secondary, #6b6b6b);
+}
 
 .menu-item-has-children {
     position: relative;
@@ -39,11 +51,13 @@ ul.ghost-submenu {
     z-index: 999;
 }
 
-/* Hover shows dropdown */
-.menu-item-has-children:hover ul.ghost-submenu {
-    visibility: visible;
-    opacity: 1;
-    transform: translateY(0px);
+/* Hover shows dropdown - Desktop only */
+@media (min-width: 1151px) {
+    .menu-item-has-children:hover ul.ghost-submenu {
+        visibility: visible;
+        opacity: 1;
+        transform: translateY(0px);
+    }
 }
 
 /* Items inside dropdown */
@@ -62,9 +76,11 @@ ul.ghost-submenu li a {
 }
 
 /* Hover effect */
-ul.ghost-submenu li a:hover {
-    background: var(--menu-bg-hover);
-    color: var(--menu-text-hover);
+ul.ghost-submenu li a:hover,
+ul.ghost-submenu li a:focus {
+    background: var(--menu-bg-hover) !important;
+    color: var(--menu-text-hover) !important;
+    text-decoration: none;
 }
 
 /* ================================
@@ -72,18 +88,10 @@ ul.ghost-submenu li a:hover {
    ================================ */
 /* This ensures that clicking the parent (.menu-item-has-children:active or :focus)
    does NOT turn the children background red. Children only turn red on their OWN hover. */
-.menu-item-has-children:active > ul.ghost-submenu li a,
-.menu-item-has-children:focus > ul.ghost-submenu li a,
-.menu-item-has-children:focus-within > ul.ghost-submenu li a,
-.nav-current > ul.ghost-submenu li a {
-    background-color: transparent !important;
-    color: var(--menu-text-dark) !important;
-}
-
-/* Re-apply hover specifically for the child items to ensure they still work */
-ul.ghost-submenu li a:hover {
-    background-color: var(--menu-bg-hover) !important;
-    color: var(--menu-text-hover) !important;
+.menu-item-has-children:active>ul.ghost-submenu li a,
+.nav-current>ul.ghost-submenu li a {
+    background-color: transparent;
+    color: var(--menu-text-dark);
 }
 
 /* ================================
@@ -93,23 +101,23 @@ ul.ghost-submenu li a:hover {
     .menu-item-has-children {
         padding-right: 10px !important;
     }
-    
+
     .menu-item-has-children svg {
         width: 12px;
         height: 12px;
         right: -2px;
     }
-    
+
     ul.ghost-submenu {
         width: 200px;
         top: 55px;
         padding: 12px 0;
     }
-    
+
     ul.ghost-submenu li {
         padding: 5px 16px;
     }
-    
+
     ul.ghost-submenu li a {
         padding: 7px 8px;
         font-size: 0.95rem;
@@ -117,9 +125,10 @@ ul.ghost-submenu li a:hover {
 }
 
 /* ================================
-   MOBILE STYLES (768px and below)
+   MOBILE STYLES (1150px and below)
+   Synchronized with styles.css mobile breakpoint
    ================================ */
-@media (max-width: 768px) {
+@media (max-width: 1150px) {
     .menu-item-has-children {
         width: 100%;
         padding-right: 0 !important;
@@ -130,35 +139,38 @@ ul.ghost-submenu li a:hover {
         border-bottom: none;
     }
 
-    .menu-item-has-children.open > a::after {
-        transform: rotate(90deg);
+    /* Hide desktop SVG arrows */
+    .menu-item-has-children>svg {
+        display: none !important;
     }
 
-    /* Hide SVG arrows on mobile */
-    .menu-item-has-children svg {
-        display: none;
-    }
-
-    /* Mobile submenu styling */
+    /* Mobile submenu styling: Reset from absolute to relative */
     ul.ghost-submenu {
-        position: relative;
-        box-shadow: none;
-        border-radius: 0;
-        border: none;
-        width: 100%;
-        padding: 0;
-        margin: 0;
+        position: relative !important;
+        top: 0 !important;
+        left: 0 !important;
+        box-shadow: none !important;
+        border-radius: 0 !important;
+        border: none !important;
+        width: 100% !important;
+        padding: 0 !important;
+        margin: 0 !important;
         opacity: 1 !important;
         visibility: visible !important;
         transform: translateY(0) !important;
         display: none;
-        background: var(--menu-bg-mobile);
-        border-left: 3px solid var(--menu-border-accent);
+        /* Controlled by .open class */
+        background: var(--menu-bg-mobile) !important;
+        border-left: 3px solid var(--menu-border-accent) !important;
+    }
+
+    .menu-item-has-children.open>ul.ghost-submenu {
+        display: block !important;
     }
 
     ul.ghost-submenu li {
         padding: 0;
-        border-bottom: 1px solid var(--menu-border-subtle);
+        border-bottom: 1px solid var(--color-border-light);
     }
 
     ul.ghost-submenu li:last-child {
@@ -166,18 +178,20 @@ ul.ghost-submenu li a:hover {
     }
 
     ul.ghost-submenu li a {
-        padding: 0.875rem 1rem 0.875rem 1.5rem;
-        font-size: 0.95rem;
-        border-radius: 0;
-        margin: 0;
-        font-weight: 500;
-        color: var(--menu-text-medium);
-        display: flex;
-        align-items: center;
-        background-color: transparent !important; /* Force Reset for Mobile */
+        padding: 0.875rem 1rem 0.875rem 1.5rem !important;
+        font-size: 0.95rem !important;
+        border-radius: 0 !important;
+        margin: 0 !important;
+        font-weight: 500 !important;
+        color: var(--menu-text-medium) !important;
+        display: flex !important;
+        align-items: center !important;
+        background-color: transparent !important;
+        transition: 0.2s ease !important;
     }
 
-    ul.ghost-submenu li a:hover {
+    ul.ghost-submenu li a:hover,
+    ul.ghost-submenu li a:active {
         background: var(--menu-bg-hover) !important;
         color: var(--menu-text-hover) !important;
     }
@@ -214,6 +228,7 @@ ul.ghost-submenu li a:hover {
         max-height: 0;
         transform: translateY(-10px);
     }
+
     100% {
         opacity: 1;
         max-height: 500px;
@@ -230,7 +245,7 @@ ul.ghost-submenu li a:hover {
         opacity: 0;
         transform: translateY(5px);
     }
-    
+
     .menu-item-has-children:hover svg {
         transform: translateY(-50%) rotate(0deg);
         opacity: 0.7;
@@ -253,16 +268,18 @@ ul.ghost-submenu li a:hover {
 
 /* Reduced motion support */
 @media (prefers-reduced-motion: reduce) {
+
     .menu-item-has-children svg,
     ul.ghost-submenu,
     ul.ghost-submenu li a {
         transition: none;
     }
-    
+
     @keyframes slideDown {
         0% {
             opacity: 0;
         }
+
         100% {
             opacity: 1;
         }

@@ -1,13 +1,30 @@
 {{!< default}} <script>
   document.addEventListener("DOMContentLoaded", function () {
   document.title = "Oasis Network";
+
+  // Slider Logic
+  const sliders = document.querySelectorAll("[data-slider]");
+  sliders.forEach((slider) => {
+  const track = slider.querySelector("[data-slider-track]");
+  const slides = Array.from(track.querySelectorAll("[data-slider-slide]"));
+  let currentIndex = 0;
+
+  function updateSlider() {
+  currentIndex = (currentIndex + 1) % slides.length;
+  const offset = currentIndex * -100;
+  track.style.transform = `translateX(${offset}%)`;
+  }
+
+  // Auto-slide every 5 seconds
+  setInterval(updateSlider, 5000);
+  });
   });
   </script>
   <main class="oasis-community">
     <section class="hero">
       <div class="hero-container">
 
-        <h1 class="heros-title">
+        <h1 class="hero-title">
           Join the <span class="hero-highlight">OASIS</span> Network
         </h1>
 
@@ -112,12 +129,15 @@
             <h3 class="testimonial-heading">NPOs</h3>
             <div class="testimonial-slider" data-slider>
               <div class="testimonial-track" data-slider-track>
-                {{#get "posts" filter="tag:npo-says" order="published_at desc" limit="5"}}
+                {{#get "posts" filter="tag:npo-says" order="published_at desc" limit="99"}}
                 {{#foreach posts}}
                 <div class="testimonial-item" data-slider-slide>
-                  <blockquote>
+                  <blockquote onclick="window.location.href='{{url}}'" style="cursor: pointer;">
                     <p>"{{#if custom_excerpt}}{{custom_excerpt}}{{else}}{{excerpt words="5"}}{{/if}}"</p>
-                    <cite>{{title}}</cite>
+                    <div class="testimonial-meta">
+                      <cite>{{title}}</cite>
+                      <span class="read-story-link">Read full story →</span>
+                    </div>
                   </blockquote>
                 </div>
                 {{/foreach}}
@@ -130,12 +150,15 @@
             <h3 class="testimonial-heading">Tech Experts</h3>
             <div class="testimonial-slider" data-slider>
               <div class="testimonial-track" data-slider-track>
-                {{#get "posts" filter="tag:tech-experts-says" order="published_at desc" limit="5"}}
+                {{#get "posts" filter="tag:tech-experts-says" order="published_at desc" limit="99"}}
                 {{#foreach posts}}
                 <div class="testimonial-item" data-slider-slide>
-                  <blockquote>
+                  <blockquote onclick="window.location.href='{{url}}'" style="cursor: pointer;">
                     <p>"{{#if custom_excerpt}}{{custom_excerpt}}{{else}}{{excerpt words="5"}}{{/if}}"</p>
-                    <cite>{{title}}</cite>
+                    <div class="testimonial-meta">
+                      <cite>{{title}}</cite>
+                      <span class="read-story-link">Read full story →</span>
+                    </div>
                   </blockquote>
                 </div>
                 {{/foreach}}

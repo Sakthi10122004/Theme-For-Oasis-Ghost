@@ -81,71 +81,71 @@ window.addEventListener('load', function () {
   // Newsletter form handling
   const form = document.querySelector('[data-members-form="subscribe"]');
 
-if (form) {
-  const button = form.querySelector("button[type='submit']");
-  if (!button) return;
+  if (form) {
+    const button = form.querySelector("button[type='submit']");
+    if (!button) return;
 
-  const defaultText = button.textContent;
-  const defaultBg = button.style.backgroundColor || "black";
-  const defaultColor = button.style.color || "white";
+    const defaultText = button.textContent;
+    const defaultBg = button.style.backgroundColor || "black";
+    const defaultColor = button.style.color || "white";
 
-  let resetTimer = null;
+    let resetTimer = null;
 
-  const resetButton = () => {
-    button.textContent = defaultText;
-    button.disabled = false;
-    button.style.backgroundColor = defaultBg;
-    button.style.color = defaultColor;
-    button.classList.remove("state-checking", "state-success", "state-error");
-  };
-
-  const observer = new MutationObserver(() => {
-    // Clear any previous reset
-    if (resetTimer) {
-      clearTimeout(resetTimer);
-      resetTimer = null;
-    }
-
-    button.classList.remove("state-checking", "state-success", "state-error");
-
-    if (form.classList.contains("loading")) {
-      button.textContent = "Checking...";
-      button.disabled = true;
-      button.classList.add("state-checking");
-      button.style.backgroundColor = "yellow";
-      button.style.color = "black";
-    }
-
-    else if (form.classList.contains("success")) {
-      button.textContent = "Done!";
-      button.disabled = true;
-      button.classList.add("state-success");
-      button.style.backgroundColor = "green";
-      button.style.color = "white";
-
-      resetTimer = setTimeout(resetButton, 4000);
-    }
-
-    else if (form.classList.contains("error")) {
-      button.textContent = "Try Again";
+    const resetButton = () => {
+      button.textContent = defaultText;
       button.disabled = false;
-      button.classList.add("state-error");
-      button.style.backgroundColor = "red";
-      button.style.color = "white";
+      button.style.backgroundColor = defaultBg;
+      button.style.color = defaultColor;
+      button.classList.remove("state-checking", "state-success", "state-error");
+    };
 
-      resetTimer = setTimeout(resetButton, 4000);
-    }
+    const observer = new MutationObserver(() => {
+      // Clear any previous reset
+      if (resetTimer) {
+        clearTimeout(resetTimer);
+        resetTimer = null;
+      }
 
-    else {
-      resetButton();
-    }
-  });
+      button.classList.remove("state-checking", "state-success", "state-error");
 
-  observer.observe(form, {
-    attributes: true,
-    attributeFilter: ["class"]
-  });
-}
+      if (form.classList.contains("loading")) {
+        button.textContent = "Checking...";
+        button.disabled = true;
+        button.classList.add("state-checking");
+        button.style.backgroundColor = "yellow";
+        button.style.color = "black";
+      }
+
+      else if (form.classList.contains("success")) {
+        button.textContent = "Done!";
+        button.disabled = true;
+        button.classList.add("state-success");
+        button.style.backgroundColor = "green";
+        button.style.color = "white";
+
+        resetTimer = setTimeout(resetButton, 4000);
+      }
+
+      else if (form.classList.contains("error")) {
+        button.textContent = "Try Again";
+        button.disabled = false;
+        button.classList.add("state-error");
+        button.style.backgroundColor = "red";
+        button.style.color = "white";
+
+        resetTimer = setTimeout(resetButton, 4000);
+      }
+
+      else {
+        resetButton();
+      }
+    });
+
+    observer.observe(form, {
+      attributes: true,
+      attributeFilter: ["class"]
+    });
+  }
 
   // Add smooth scrolling for anchor links
   document.querySelectorAll('a[href^="#"], a[href^="/"]').forEach(anchor => {
@@ -204,28 +204,43 @@ if (form) {
   });
 
 
-  
+
   const modal = document.getElementById('getStartedModal');
   const triggers = document.querySelectorAll('.js-get-started');
   const closeBtn = modal.querySelector('.gs-close');
+  const body = document.body;
+
+  const openModal = () => {
+    modal.classList.add('active');
+    modal.setAttribute('aria-hidden', 'false');
+    body.classList.add('modal-open');
+  };
+
+  const closeModal = () => {
+    modal.classList.remove('active');
+    modal.setAttribute('aria-hidden', 'true');
+    body.classList.remove('modal-open');
+  };
 
   triggers.forEach(btn => {
     btn.addEventListener('click', e => {
       e.preventDefault();
-      modal.style.display = 'block';
-      modal.setAttribute('aria-hidden', 'false');
+      openModal();
     });
   });
 
-  closeBtn.addEventListener('click', () => {
-    modal.style.display = 'none';
-    modal.setAttribute('aria-hidden', 'true');
-  });
+  closeBtn.addEventListener('click', closeModal);
 
   window.addEventListener('click', e => {
     if (e.target === modal) {
-      modal.style.display = 'none';
-      modal.setAttribute('aria-hidden', 'true');
+      closeModal();
+    }
+  });
+
+  // ESC to close
+  window.addEventListener('keydown', e => {
+    if (e.key === 'Escape' && modal.classList.contains('active')) {
+      closeModal();
     }
   });
 

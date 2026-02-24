@@ -134,8 +134,8 @@
     font-size: 36px;
     font-weight: 700;
     text-align: center;
-    margin: 0 0 16px;
-    padding: 0%;
+    margin: 0 auto 16px;
+    width: 100%;
 }
 
 .section-lead {
@@ -159,6 +159,10 @@
     padding: 32px;
     border-radius: 12px;
     border: 1px solid var(--color-border-light);
+    display: flex;
+    /* Equal height behavior */
+    flex-direction: column;
+    height: 100%;
     transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
     will-change: transform;
 }
@@ -331,12 +335,24 @@
     display: inline-block;
 }
 
-/* Testimonials */
+/* ==========================================
+   TESTIMONIALS — PERFECT SYMMETRY FIX
+   ========================================== */
+
 .testimonial-columns {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 32px;
+    align-items: stretch;
     margin-bottom: 32px;
+}
+
+.testimonial-col {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    width: 100%;
+    min-width: 0;
 }
 
 .testimonial-heading {
@@ -347,54 +363,112 @@
 }
 
 .testimonial-slider {
+    flex: 1 1 auto;
+    display: flex;
+    flex-direction: column;
+    min-height: 0;
+    width: 100%;
     overflow: hidden;
+    /* Prevent horizontal scrollbar */
     margin-bottom: 24px;
     position: relative;
 }
 
 .testimonial-track {
     display: flex;
-    transition: transform 0.5s ease;
+    /* Restore horizontal layout for slides */
+    flex: 1;
+    transition: transform 0.5s cubic-bezier(0.165, 0.84, 0.44, 1);
+    height: 100%;
+    width: 100%;
 }
 
 .testimonial-item {
+    flex: 1;
+    display: flex;
+    width: 100%;
     min-width: 100%;
     flex-shrink: 0;
 }
 
 .testimonial-item blockquote {
-    background-color: var(--color-card-bg);
-    padding: 32px;
-    border-radius: 12px;
-    border: 1px solid var(--color-primary);
-    margin: 0;
-}
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
 
-.testimonial-item blockquote:hover {
-    border-color: var(--color-secondary-accent);
-    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+    background-color: var(--color-card-bg);
+    padding: 40px 32px;
+    border-radius: 20px;
+    border: 1px solid var(--color-border-light);
+    margin: 0;
+    width: 100%;
+    box-sizing: border-box;
+
+    height: 100%;
+    min-height: 0;
+
+    transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+    cursor: pointer;
 }
 
 .testimonial-item p {
-    font-size: 16px;
-    line-height: 1.6;
-    margin: 0 0 16px;
+    width: 100%;
+    font-size: 1.05rem;
+    line-height: 1.7;
+    margin: 0;
     font-style: italic;
+    text-align: center;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+    word-break: break-word;
+}
+
+.testimonial-meta {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    width: 100%;
 }
 
 .testimonial-item cite {
-    font-size: 14px;
-    font-weight: 600;
+    display: inline-flex;
+    align-items: center;
+    font-size: 13px;
+    font-weight: 700;
     font-style: normal;
-    opacity: 0.8;
+    color: var(--color-text-primary);
     background-color: var(--color-accent-2);
-    border: 0.5px solid var(--color-primary);
-    border-radius: var(--radius-button);
-    padding: 0.2rem 1rem;
+    border: 1px solid var(--color-border-light);
+    border-radius: 30px;
+    padding: 0.3rem 1.1rem;
+    letter-spacing: 0.01em;
+    width: fit-content;
 }
 
-.testimonial-col {
-    text-align: center;
+.read-story-link {
+    font-size: 11px;
+    font-weight: 800;
+    color: var(--color-accent-1);
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    opacity: 0.7;
+    margin-top: 4px;
+    transition: all 0.3s ease;
+}
+
+.testimonial-item blockquote:hover .read-story-link {
+    opacity: 1;
+    letter-spacing: 0.15em;
+}
+
+.testimonial-col .hero-cta {
+    margin-top: 32px;
+    align-self: center;
+    width: fit-content;
+    padding: 0.9rem 2.2rem;
 }
 
 /* Partners Section */
@@ -557,7 +631,8 @@
 
     /* Category Grid */
     .category-grid {
-        grid-template-columns: repeat(2, 1fr);
+        grid-template-columns: repeat(3, 1fr);
+        /* Keep 3 columns for 3 cards on tablet */
         gap: 20px;
     }
 
@@ -596,6 +671,10 @@
     /* Testimonials */
     .testimonial-columns {
         gap: 24px;
+    }
+
+    .testimonial-item blockquote {
+        padding: 32px 28px;
     }
 
     /* Partners */
@@ -741,7 +820,11 @@
     /* Testimonials */
     .testimonial-columns {
         grid-template-columns: 1fr;
-        gap: 20px;
+        gap: 40px;
+    }
+
+    .testimonial-col {
+        width: 100%;
     }
 
     .testimonial-heading {
@@ -750,7 +833,7 @@
     }
 
     .testimonial-item blockquote {
-        padding: 24px;
+        padding: 28px 24px;
     }
 
     .testimonial-item p {
@@ -760,6 +843,11 @@
     .testimonial-item cite {
         font-size: 13px;
         padding: 0.2rem 0.8rem;
+    }
+
+    .testimonial-col .hero-cta {
+        margin-top: 28px;
+        padding: 0.8rem 2rem;
     }
 
     /* Partners */
@@ -930,16 +1018,27 @@
 
     /* Testimonials */
     .testimonial-item blockquote {
-        padding: 20px;
+        padding: 24px 20px;
     }
 
     .testimonial-item p {
         font-size: 14px;
+        line-height: 1.6;
     }
 
     .testimonial-item cite {
         font-size: 12px;
         padding: 0.2rem 0.6rem;
+    }
+
+    .read-story-link {
+        font-size: 10px;
+    }
+
+    .testimonial-col .hero-cta {
+        margin-top: 24px;
+        padding: 0.7rem 1.8rem;
+        font-size: 0.9rem;
     }
 
     /* Partners */
@@ -1027,6 +1126,14 @@
     .join-card-horizontal {
         padding: 20px;
     }
+
+    .testimonial-item blockquote {
+        padding: 20px 16px;
+    }
+
+    .testimonial-meta {
+        gap: 8px;
+    }
 }
 
 /* Landscape Orientation Adjustments */
@@ -1064,6 +1171,10 @@
         transform: scale(0.98);
     }
 
+    .testimonial-item blockquote:active {
+        transform: scale(0.98);
+    }
+
     .benefit-list li,
     .join-steps li {
         padding: 4px 0;
@@ -1083,6 +1194,10 @@
     .category-card:hover,
     .benefit-card:hover,
     .join-card:hover {
+        transform: none;
+    }
+
+    .testimonial-item blockquote:hover {
         transform: none;
     }
 

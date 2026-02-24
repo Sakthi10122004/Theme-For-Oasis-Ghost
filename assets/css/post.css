@@ -1,7 +1,7 @@
 /* Single Post Page CSS */
 
 #site-main.site-main.full-width {
-  font-family: 'Arial', sans-serif;
+  font-family: var(--gh-font-body);
   line-height: 1.6;
   color: var(--blog-text-dark);
   background: var(--color-page-background);
@@ -12,7 +12,8 @@
 
 .article {
   background: var(--color-page-background);
-  padding: 60px 0;
+  padding: 30px 0;
+  /* Reduced from 60px */
 }
 
 .article-header {

@@ -8,6 +8,24 @@
   <meta name="x-color-scheme" content="{{@custom.color_scheme}}">
 
   <title>{{meta_title}}</title>
+  {{!-- Critical CSS to prevent FOUC (Flash of Unstyled Content) --}}
+  <style>
+    /* Unified Reveal: Hold entire page until header is ready */
+    .nebula-header,
+    .cosmic-flow {
+      opacity: 0 !important;
+      visibility: hidden !important;
+      will-change: opacity, transform;
+    }
+
+    /* Simultaneous bloom for professional look */
+    .header-ready .nebula-header,
+    .header-ready .cosmic-flow {
+      opacity: 1 !important;
+      visibility: visible !important;
+      transition: opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+    }
+  </style>
   {{block "head"}}
   <script>document.documentElement.classList.add("js-ready");</script>
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -65,7 +83,7 @@
         <!-- Mobile only extra items inside nav -->
         <div class="mobile-extra-items">
           <button class="gh-search-icon" aria-label="Search" data-ghost-search>
-            🔍︎
+            🔍︎ <span>Search</span>
           </button>
 
 
@@ -92,20 +110,6 @@
 
     </div>
 
-    <div id="getStartedModal" class="gs-modal" aria-hidden="true">
-      <div class="gs-modal-content">
-        <h2>Get Started as</h2>
-
-        <a href="/tech-vendor/" class="gs-option">Tech Vendor</a>
-        <a href="/non-profits/" class="gs-option">Non-Profit</a>
-        <a href="/freelancer-volunteer/" class="gs-option">
-          Freelancer / Volunteer
-        </a>
-
-        <button class="gs-close" aria-label="Close">&times;</button>
-      </div>
-    </div>
-
   </header>
   <main class="cosmic-flow">
     {{{body}}}
@@ -115,28 +119,39 @@
     <div class="footer-inner">
 
       <div class="footer-brand-social">
-      <div class="footer-social">
+        <div class="footer-social">
 
-        <a href="https://www.linkedin.com/company/oasishq" target="_blank" aria-label="LinkedIn">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-            <path d="M4.98 3.5C4.98 4.88 3.86 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1 4.98 2.12 4.98 3.5zM.5 8h4V24h-4zM8 8h3.8v2.2h.06c.53-.92 1.84-2.2 4.14-2.2 4.42 0 5.2 2.7 5.2 6.2V24h-4V15.4c0-2-.04-4.6-2.8-4.6-2.8 0-3.2 2.2-3.2 4.4V24H8z"/>
-          </svg>
-        </a>
+          <a href="https://www.linkedin.com/company/oasishq" target="_blank" aria-label="LinkedIn">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+              stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="4" y="4" width="16" height="16" rx="2" />
+              <line x1="8" y1="11" x2="8" y2="16" />
+              <line x1="8" y1="8" x2="8" y2="8.01" />
+              <path d="M12 16v-5a2 2 0 0 1 2 -2a2 2 0 0 1 2 2v5" />
+            </svg>
+          </a>
 
-        <a href="https://chat.whatsapp.com/ByCC1QMFniO40Yg4M3ex1W?mode=ems_copy_t" target="_blank" aria-label="WhatsApp">
-          <svg width="24" height="24" viewBox="0 0 32 32" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-            <path d="M16.027 3C9.405 3 4 8.404 4 15.027c0 2.655.86 5.112 2.327 7.107L4 29l7.084-2.297a12.01 12.01 0 004.943 1.052c6.622 0 12.027-5.405 12.027-12.028C28.054 8.404 22.65 3 16.027 3zm0 21.833c-1.708 0-3.362-.45-4.83-1.297l-.346-.204-4.2 1.363 1.398-4.09-.226-.358A9.614 9.614 0 016.333 15c0-5.355 4.338-9.694 9.694-9.694 5.355 0 9.694 4.339 9.694 9.694 0 5.356-4.339 9.833-9.694 9.833zm5.534-7.44c-.301-.15-1.779-.889-2.056-.99-.277-.1-.478-.15-.678.15-.2.301-.777.99-.951 1.19-.175.2-.351.225-.652.075-.301-.15-1.251-.462-2.383-1.475-.879-.782-1.473-1.744-1.648-2.045-.175-.301-.018-.464.132-.614.136-.136.301-.351.452-.526.15-.175.2-.301.301-.502.1-.2.05-.376-.025-.526-.075-.15-.678-1.629-.928-2.23-.25-.602-.503-.602-.702-.614h-.602c-.2 0-.526.075-.802.376-.276.301-1.054 1.028-1.054 2.503 0 1.475 1.079 2.9 1.229 3.102.15.2 2.127 3.25 5.176 4.556.724.314 1.288.502 1.723.652.724.225 1.378.2 1.9.125.578-.088 1.779-.727 2.03-1.428.251-.702.251-1.302.175-1.427-.075-.125-.276-.2-.577-.351z"/>
-          </svg>
-        </a>
+          <a href="https://chat.whatsapp.com/ByCC1QMFniO40Yg4M3ex1W?mode=ems_copy_t" target="_blank"
+            aria-label="WhatsApp">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+              stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M3 21l1.65 -3.8a9 9 0 1 1 3.4 2.9l-5.05 .9" />
+              <path
+                d="M9 10a.5 .5 0 0 0 1 0v-1a.5 .5 0 0 0 -1 0v1a5 5 0 0 0 5 5h1a.5 .5 0 0 0 0 -1h-1a.5 .5 0 0 0 0 1" />
+            </svg>
+          </a>
 
-        <a href="https://www.instagram.com/hq_oasis?igsh=MTJjeno5ZmNmMjJsaw==" target="_blank" aria-label="Instagram">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-            <path d="M7 2C4.2 2 2 4.2 2 7v10c0 2.8 2.2 5 5 5h10c2.8 0 5-2.2 5-5V7c0-2.8-2.2-5-5-5H7zm10 2c1.7 0 3 1.3 3 3v10c0 1.7-1.3 3-3 3H7c-1.7 0-3-1.3-3-3V7c0-1.7 1.3-3 3-3h10zm-5 3.3A4.7 4.7 0 1 0 16.7 12 4.7 4.7 0 0 0 12 7.3zm0 7.7a3 3 0 1 1 3-3 3 3 0 0 1-3 3zm4.8-8.9a1.1 1.1 0 1 1-1.1-1.1 1.1 1.1 0 0 1 1.1 1.1z"/>
-          </svg>
-        </a>
+          <a href="https://www.instagram.com/hq_oasis?igsh=MTJjeno5ZmNmMjJsaw==" target="_blank" aria-label="Instagram">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+              stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="4" y="4" width="16" height="16" rx="4" />
+              <circle cx="12" cy="12" r="3" />
+              <line x1="16.5" y1="7.5" x2="16.5" y2="7.501" />
+            </svg>
+          </a>
 
+        </div>
       </div>
-    </div>
 
       <p class="footer-copy">
         © {{date format="YYYY"}} {{@site.title}}. {{@custom.footer_license}}
@@ -150,6 +165,21 @@
 
     </div>
   </footer>
+
+  <div id="getStartedModal" class="gs-modal" aria-hidden="true">
+    <div class="gs-modal-content">
+      <h2>Get Started as</h2>
+
+      <a href="/tech-vendor/" class="gs-option">Tech Vendor</a>
+      <a href="/non-profits/" class="gs-option">Non-Profit</a>
+      <a href="/freelancer-volunteer/" class="gs-option">
+        Freelancer / Volunteer
+      </a>
+
+      <button class="gs-close" aria-label="Close">&times;</button>
+    </div>
+  </div>
+
   {{ghost_foot}}
 </body>
 

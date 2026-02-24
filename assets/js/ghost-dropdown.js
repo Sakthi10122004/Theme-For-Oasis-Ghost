@@ -1,5 +1,5 @@
 document.documentElement.classList.add("js-ready");
-(function($) {
+(function ($) {
     "use strict";
 
     /* =============================================================
@@ -36,7 +36,7 @@ document.documentElement.classList.add("js-ready");
         let mLparentIndex = [];
         let mLparentLen = 0;
 
-        $(`${targetElement} li`).each(function(index, element) {
+        $(`${targetElement} li`).each(function (index, element) {
             if ($(this).text().includes(mLparentDetecttext)) {
                 mLparentIndex.push(index);
                 mLparentLen++;
@@ -55,7 +55,7 @@ document.documentElement.classList.add("js-ready");
         for (let i = 0; i < mLparentLen; i++) {
             elIndex = 0;
 
-            $(`${targetElement} li`).each(function(index, element) {
+            $(`${targetElement} li`).each(function (index, element) {
                 let mLsubitem = $(this).text().includes(mLchildDetectText);
 
                 if (mLsubitem) {
@@ -81,7 +81,7 @@ document.documentElement.classList.add("js-ready");
         let lastChildIndex = 0,
             lastChildElementText;
 
-        $(`${targetElement} li`).each(function(index, element) {
+        $(`${targetElement} li`).each(function (index, element) {
             let lastMlElement = $(this).text().includes(lastMlElementText);
 
             if (lastMlElement) {
@@ -111,7 +111,7 @@ document.documentElement.classList.add("js-ready");
 
     function remove_text(textClass, replacedText) {
         const mLhasSubmenuEL = $(`.${textClass}`);
-        mLhasSubmenuEL.each(function() {
+        mLhasSubmenuEL.each(function () {
             $(this).css('display', '');
             $(this).find('li').css('display', '');
 
@@ -134,19 +134,31 @@ document.documentElement.classList.add("js-ready");
         $(document).off('keydown.mobileMenu');
 
         if ($hamburger.length && $mobileNav.length) {
-            $hamburger.on('click.mobileMenu', function(e) {
+            $hamburger.on('click.mobileMenu', function (e) {
                 e.stopPropagation();
                 $(this).toggleClass('active');
                 $mobileNav.toggleClass('active');
-                $body.css('overflow', $mobileNav.hasClass('active') ? 'hidden' : '');
+                $body.toggleClass('menu-open');
             });
 
-            $mobileNav.on('click.mobileMenu', 'a', function(e) {
+            $mobileNav.on('click.mobileMenu', 'a', function (e) {
                 // Fixed - submenu links MUST navigate
                 if ($(this).closest('.ghost-submenu').length) {
-                    return true; // allow native navigation
+                    return true;
                 }
-                
+
+                // Parent item with children
+                if ($(this).parent().hasClass('menu-item-has-children')) {
+                    const href = $(this).attr('href');
+                    // If it's a placeholder link (#), toggle instead of navigating
+                    if (href === '#' || href === 'javascript:void(0)' || !href) {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        $(this).parent().toggleClass('open');
+                        return false;
+                    }
+                }
+
                 if ($(e.target).closest('svg').length > 0) {
                     return;
                 }
@@ -154,24 +166,31 @@ document.documentElement.classList.add("js-ready");
                 if (!$(this).parent().hasClass('menu-item-has-children')) {
                     $mobileNav.removeClass('active');
                     $hamburger.removeClass('active');
-                    $body.css('overflow', '');
+                    $body.removeClass('menu-open');
                 }
             });
 
-            $(document).on('click.mobileMenu', function(e) {
+            $(document).on('click.mobileMenu', function (e) {
                 if (!$mobileNav.is(e.target) && $mobileNav.has(e.target).length === 0 && !$hamburger.is(e.target)) {
                     $mobileNav.removeClass('active');
                     $hamburger.removeClass('active');
-                    $body.css('overflow', '');
+                    $body.removeClass('menu-open');
                 }
             });
 
-            $(document).on('keydown.mobileMenu', function(e) {
+            $(document).on('keydown.mobileMenu', function (e) {
                 if (e.key === 'Escape' && $mobileNav.hasClass('active')) {
                     $mobileNav.removeClass('active');
                     $hamburger.removeClass('active');
-                    $body.css('overflow', '');
+                    $body.removeClass('menu-open');
                 }
+            });
+
+            // ✅ NEW: MOBILE SUBMENU TOGGLE HANDLER (Icon click)
+            $mobileNav.on('click.mobileMenu', '.submenu-toggle', function (e) {
+                e.preventDefault();
+                e.stopPropagation();
+                $(this).parent().toggleClass('open');
             });
         }
     }
@@ -210,7 +229,7 @@ document.documentElement.classList.add("js-ready");
 
         $(`${targetElement}`).parent().addClass('ghost-dropdown-menu');
 
-        parentEl.each(function(index, element) {
+        parentEl.each(function (index, element) {
             if ($(this).text().indexOf(hasChildDetectText) >= 0) {
                 parentIndex.push(index);
                 parentLen++;
@@ -218,19 +237,27 @@ document.documentElement.classList.add("js-ready");
                 $(this).push(element);
                 $(this).addClass(hasChildrenClasses);
                 $(this).append(`<ul class='${submenuUlClasses}'></ul>`);
-                $(targetElement).css("opacity", "1");
             }
         });
 
-        $(targetElement).css("opacity", "1");
-        
+
+
         // ✅ RESTORE ORIGINAL SVG APPEND (DESKTOP SAFE)
         $(`.${hasChildrenClasses}`).append(hasChildrenIcon);
+
+        // ✅ NEW: ADD TOGGLE BUTTON FOR MOBILE
+        if ($('.nebula-nav-horizontal').length) {
+            $(`.${hasChildrenClasses}`).each(function () {
+                if (!$(this).find('.submenu-toggle').length) {
+                    $(this).append('<button class="submenu-toggle" aria-label="Toggle Submenu"><svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg></button>');
+                }
+            });
+        }
 
         for (let i = 0; i < parentLen; i++) {
             elIndex = 0;
 
-            childEL.each(function(index, element) {
+            childEL.each(function (index, element) {
                 let subitem = $(this).text().includes(subitemDetectText);
 
                 if (subitem) {
@@ -265,7 +292,7 @@ document.documentElement.classList.add("js-ready");
     }
 
     function initGhostDropdown() {
-        const checkNavReady = setInterval(function() {
+        const checkNavReady = setInterval(function () {
             const $nav = $('.nebula-nav-horizontal ul li');
             if ($nav.length > 3 && $nav.first().text().trim()) {
                 clearInterval(checkNavReady);
@@ -281,20 +308,22 @@ document.documentElement.classList.add("js-ready");
                     mega_menu: false
                 });
 
-                document.querySelector(".nebula-nav-horizontal")?.classList.add("nav-ready");
+                const body = document.body;
+                const nav = document.querySelector(".nebula-nav-horizontal");
+                if (nav) nav.classList.add("nav-ready");
+                body.classList.add("header-ready");
             }
-        }, 50);
+        }, 0);
     }
 
-    $(document).ready(function() {
+    $(document).ready(function () {
         initGhostDropdown();
     });
 
 }(jQuery));
 
-$(window).on('load pageshow', function() {
+$(window).on('load pageshow', function () {
     $('body').addClass('loaded');
-    $('.nebula-nav-horizontal').css({ opacity: 1, visibility: 'visible' });
 });
 
 setTimeout(() => {

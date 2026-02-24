@@ -84,12 +84,28 @@
      ============================================== */
   --nav-transition-out: all 0.1s ease-out;
   --page-load-cover: rgba(249, 250, 242, 0.98);
+
+  /* ======================
+     BLOG & POST THEME MAPPING
+     ====================== */
+  --blog-primary: var(--color-primary);
+  --blog-secondary: var(--color-accent-1);
+  --blog-bg-card: var(--color-surface);
+  --blog-border-color: var(--color-border-light);
+  --blog-shadow-color: var(--shadow-light);
+  --blog-bg-placeholder: var(--color-button-lighter);
+  --blog-text-dark: var(--color-primary);
+
+  /* Alias for legacy/typo compatibility */
+  --color-page-background: var(--color-page-bg);
 }
 
 /* ======================================================
    GLOBAL RESET
    ====================================================== */
-*, *::before, *::after {
+*,
+*::before,
+*::after {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
@@ -111,18 +127,47 @@ html {
 /* ======================================================
    GLOBAL TYPOGRAPHY
    ====================================================== */
-html, body, button, input, textarea, select, a, p, span, div, ul, li, h1, h2, h3, h4, h5, h6 {
+html,
+body,
+button,
+input,
+textarea,
+select,
+a,
+p,
+span,
+div,
+ul,
+li,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   font-family: var(--gh-font-body) !important;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
 /* ======================================================
-   CRITICAL: HARD BLOCK RAW SUBITEMS
+   CRITICAL: STABLE HEADER ENTRANCE
+   Hides header internal components until JS restructuring is complete
+   to avoid visible layout shifts and flickering.
    ====================================================== */
-.nebula-nav-horizontal li:has(a[href*="subitem"]),
-.nebula-nav-horizontal li:has(a[href*="has_child"]) {
-  display: none !important;
+.header-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+  height: 100%;
+  min-width: 0;
+}
+
+/* Remove hard-blocking of individual li as the parent now handles it */
+.nebula-nav-horizontal:not(.nav-ready) ul li {
+  visibility: hidden;
+  opacity: 0;
 }
 
 /* Unblock items ONLY when they are safely inside a submenu */
@@ -148,9 +193,15 @@ body.menu-open {
 /* ======================================================
    TYPOGRAPHY UTILITIES
    ====================================================== */
-.subtitle, .section-title, .card-title, .oasis-subtitle, .oasis-card h3, 
-.benefit-content strong, .join-steps.redesigned-steps li::before, 
-.testimonial-subheading, strong {
+.subtitle,
+.section-title,
+.card-title,
+.oasis-subtitle,
+.oasis-card h3,
+.benefit-content strong,
+.join-steps.redesigned-steps li::before,
+.testimonial-subheading,
+strong {
   font-family: var(--gh-font-heading);
   font-weight: 600;
 }
@@ -195,7 +246,7 @@ button {
   border-radius: 3.125rem;
   padding: 0.875rem 1.875rem;
   box-shadow: 0 8px 25px var(--shadow-dark);
-  z-index: 1000;
+  z-index: 3000;
   transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
   will-change: transform;
   isolation: isolate;
@@ -238,10 +289,63 @@ button {
   display: flex;
   justify-content: center;
   min-height: 22px;
-  opacity: 1;
-  transform: none;
   flex: 1 1 auto;
   min-width: 0;
+}
+
+/* Desktop only: Hide until JS restructured the menu */
+@media (min-width: 1151px) {
+  .nebula-nav-horizontal {
+    opacity: 1 !important;
+    visibility: visible !important;
+    flex: 1 1 0%;
+    /* Reserve space to stabilize the "bar" */
+  }
+
+  /* Items enter seamlessly when ready */
+  .nebula-nav-horizontal.nav-ready ul li {
+    visibility: visible;
+    opacity: 1;
+    animation: nebulaItemEntrance 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
+    will-change: transform, opacity;
+  }
+
+  /* Staggered entrance */
+  .nebula-nav-horizontal.nav-ready ul li:nth-child(1) {
+    animation-delay: 0.05s;
+  }
+
+  .nebula-nav-horizontal.nav-ready ul li:nth-child(2) {
+    animation-delay: 0.10s;
+  }
+
+  .nebula-nav-horizontal.nav-ready ul li:nth-child(3) {
+    animation-delay: 0.15s;
+  }
+
+  .nebula-nav-horizontal.nav-ready ul li:nth-child(4) {
+    animation-delay: 0.20s;
+  }
+
+  .nebula-nav-horizontal.nav-ready ul li:nth-child(5) {
+    animation-delay: 0.25s;
+  }
+
+  .nebula-nav-horizontal.nav-ready ul li:nth-child(6) {
+    animation-delay: 0.30s;
+  }
+}
+
+@keyframes nebulaItemEntrance {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .nebula-nav-horizontal ul {
@@ -327,6 +431,13 @@ button {
   transform: rotate(180deg);
 }
 
+/* Hide the legacy desktop-only has-children icon on mobile */
+@media (max-width: 1150px) {
+  .menu-item-has-children>svg {
+    display: none !important;
+  }
+}
+
 /* ======================================================
    ALLOW SUBMENU LINKS TO NAVIGATE
    ====================================================== */
@@ -338,7 +449,7 @@ button {
    CRITICAL FIX: Desktop hover ONLY when nav is NOT active
    ====================================================== */
 @media (min-width: 1151px) {
-  .nebula-nav-horizontal:not(.active) li:hover > ul {
+  .nebula-nav-horizontal:not(.active) li:hover>ul {
     display: flex;
   }
 
@@ -426,7 +537,7 @@ button {
   background: none;
   cursor: pointer;
   padding: 0;
-  z-index: 1001;
+  z-index: 3100;
   margin-left: 0.5rem;
   flex-shrink: 0;
 }
@@ -452,114 +563,90 @@ button {
   transform: rotate(-45deg) translate(6px, -6px);
 }
 
-/* ==============================================
-   MOBILE / TABLET DEFAULT STATE (CLOSED)
-   ============================================== */
+/* ==========================================
+   CLEAN SLIDE-IN MOBILE NAV
+   ========================================== */
 @media (max-width: 1150px) {
+
   .nebula-nav-horizontal {
     position: fixed;
-    top: calc(var(--header-height) + 0.5rem);
-    left: 0;
-    width: 100%;
-    height: calc(100dvh - var(--header-height));
-    background: rgba(250, 250, 250, 0.98);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-    overflow-y: auto;
-    z-index: 999;
-    flex-direction: column;
-    padding: 1rem 1.5rem 6rem;
-    border-top: 1px solid var(--color-border-light);
+    top: 6.5rem;
+    right: 2.5%;
+    height: auto;
+    max-height: calc(100vh - 8rem);
+    width: 90%;
+    max-width: 360px;
 
-    /* CLOSED STATE */
-    display: none;
-  }
+    background: var(--color-page-bg);
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+    border-radius: 1.5rem;
+    border: 1px solid var(--color-border-light);
 
-  /* OPEN STATE */
-  .nebula-nav-horizontal.active {
+    transform: translateX(120%);
+    visibility: hidden;
+    pointer-events: none;
+    transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1), visibility 0.4s;
+
     display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+
+    padding: 1.5rem;
+    overflow-y: auto;
+    z-index: 2000;
   }
 
-  /* Hide desktop header actions */
+  .nebula-nav-horizontal.active {
+    transform: translateX(0);
+    visibility: visible;
+    pointer-events: auto;
+  }
+
+  body.menu-open::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(6px);
+    z-index: 1500;
+  }
+
+  body.menu-open {
+    overflow: hidden;
+  }
+
+  /* Hide desktop header actions on mobile */
   .header-right-items {
     display: none;
   }
 
-  /* Show hamburger */
+  /* Show hamburger on mobile */
   .hamburger {
     display: flex;
   }
-
-  /* Submenus default closed */
-  .nebula-nav-horizontal li ul {
-    display: none;
-  }
-
-  /* Submenus open ONLY when .open exists */
-  .nebula-nav-horizontal .menu-item-has-children.open > ul {
-    display: block;
-  }
-
-  /* Show submenu toggle on mobile */
-  .submenu-toggle {
-    display: flex;
-  }
 }
 
 /* ======================================================
-   TABLET / MOBILE INTERACTION LOCK - HARD DISABLE HOVER
-   ====================================================== */
-@media (max-width: 1150px) {
-  /* HARD KILL hover on mobile/tablet (no exceptions) */
-  .nebula-nav-horizontal li:hover > ul {
-    display: none !important;
-  }
-
-  /* Prevent mouse from affecting submenu visibility */
-  .nebula-nav-horizontal li {
-    pointer-events: auto;
-  }
-
-  .nebula-nav-horizontal li ul {
-    pointer-events: auto;
-  }
-}
-
-/* ======================================================
-   DESKTOP NAVIGATION (1151px and above)
+   DESKTOP RESPONSIVE VISIBILITY (1151px and above)
    ====================================================== */
 @media (min-width: 1151px) {
-  .nebula-nav-horizontal {
-    display: flex;
-    opacity: 1;
-    transform: none;
-    position: static;
-    height: auto;
-    background: transparent;
-    backdrop-filter: none;
-    padding: 0;
-    border-top: none;
-    overflow: visible;
-  }
 
-  .nebula-nav-horizontal ul {
-    flex-direction: row;
-  }
-
+  /* Show desktop header actions */
   .header-right-items {
     display: flex;
   }
 
+  /* Hide hamburger on desktop */
   .hamburger {
     display: none;
   }
 }
 
 /* ======================================================
-   MOBILE MENU SPECIFIC STYLES
+   MOBILE MENU CONTENT STYLES
    ====================================================== */
 @media (max-width: 1150px) {
-  .nebula-nav-horizontal.active ul {
+  .nebula-nav-horizontal ul {
     display: flex !important;
     flex-direction: column !important;
     align-items: flex-start !important;
@@ -567,15 +654,18 @@ button {
     width: 100%;
   }
 
-  .nebula-nav-horizontal.active ul li {
+  .nebula-nav-horizontal ul li {
     width: 100%;
     border-bottom: 1px solid var(--color-border-light);
     margin: 0;
     position: relative;
   }
 
-  /* ✅ FIXED: Removed !important from background */
-  .nebula-nav-horizontal.active ul li a {
+  .nebula-nav-horizontal ul li:last-child {
+    border-bottom: none;
+  }
+
+  .nebula-nav-horizontal ul li a {
     width: 100%;
     padding: 1.1rem 3rem 1.1rem 0;
     font-size: 1.15rem;
@@ -588,69 +678,134 @@ button {
   }
 
   /* Submenus */
-  .nebula-nav-horizontal.active li ul,
-  .nebula-nav-horizontal.active ul.ghost-submenu {
+  .nebula-nav-horizontal li ul,
+  .nebula-nav-horizontal ul.ghost-submenu {
     position: relative;
     top: 0;
     box-shadow: none;
     border: none;
     background: transparent;
-    padding: 0 0 0.5rem 0;
+    padding: 0;
+    display: none;
+    overflow: hidden;
+    width: 100%;
   }
 
-  .nebula-nav-horizontal.active li ul li {
+  /* Explicitly prevent any hover-based reveal on mobile */
+  .nebula-nav-horizontal li:hover>ul {
+    display: none;
+  }
+
+  .nebula-nav-horizontal .menu-item-has-children.open>ul {
+    display: block !important;
+    animation: nebulaSubmenuFadeIn 0.3s ease-out forwards;
+  }
+
+  /* Make the parent link look active when submenu is open */
+  .nebula-nav-horizontal .menu-item-has-children.open>a {
+    color: var(--color-accent-1);
+    background: var(--color-accent-2-light);
+  }
+
+  .submenu-toggle {
+    display: flex !important;
+    /* Force visible on mobile */
+    top: 0.85rem;
+    right: 0.5rem;
+    color: var(--color-text-secondary);
+    z-index: 5;
+    background: var(--color-accent-2-light) !important;
+    border-radius: 50% !important;
+  }
+
+  .menu-item-has-children.open .submenu-toggle {
+    color: var(--color-accent-1);
+    transform: rotate(180deg);
+  }
+
+  @keyframes nebulaSubmenuFadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(-5px);
+    }
+
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .nebula-nav-horizontal li ul li {
     border-bottom: none;
   }
 
-  .nebula-nav-horizontal.active li ul a {
+  .nebula-nav-horizontal li ul a {
     padding: 0.75rem 0 0.75rem 1.5rem;
     font-size: 1rem;
     color: var(--color-text-secondary);
     font-weight: 500;
   }
 
-  /* ✅ CRITICAL FIX: Submenu hover states - KEEP THIS */
-  .nebula-nav-horizontal.active li ul a:hover,
-  .nebula-nav-horizontal.active li ul a:focus-visible {
+  .nebula-nav-horizontal li ul a:hover,
+  .nebula-nav-horizontal li ul a:focus-visible {
     background: var(--color-accent-2-light);
     color: var(--color-accent-1);
   }
 
   /* Mobile Extra Items (Search & Join) */
-  .nebula-nav-horizontal.active .mobile-extra-items {
+  .nebula-nav-horizontal .mobile-extra-items {
     display: flex;
     flex-direction: column;
-    margin-top: 2rem;
-    gap: 1rem;
+    gap: 1.25rem;
     padding-top: 1.5rem;
-    border-top: 2px solid var(--color-border-light);
+    margin-top: 0.5rem;
+    border-top: 1px solid var(--color-border-light);
     width: 100%;
   }
 
-  .nebula-nav-horizontal.active .mobile-extra-items .gh-search-icon {
+  .nebula-nav-horizontal .mobile-extra-items .gh-search-icon {
     width: 100%;
-    height: auto;
-    padding: 0.8rem;
+    height: 54px;
+    padding: 0 1.5rem;
     border-radius: var(--radius-button);
     border: 1px solid var(--color-border-light);
     font-size: 1.1rem;
     justify-content: flex-start;
-    gap: 10px;
+    gap: 12px;
     color: var(--color-text-primary);
-  }
-  
-  .gh-search-icon span {
-    font-family: var(--gh-font-body);
-    font-weight: 600;
+    background: var(--color-surface);
+    transition: transform 0.2s ease, border-color 0.2s ease;
   }
 
-  .nebula-nav-horizontal.active .mobile-extra-items .profile-icon,
-  .nebula-nav-horizontal.active .mobile-extra-items .join-cta {
+  .nebula-nav-horizontal .mobile-extra-items .gh-search-icon:active {
+    transform: scale(0.98);
+    border-color: var(--color-accent-1);
+  }
+
+  .nebula-nav-horizontal .mobile-extra-items .profile-icon,
+  .nebula-nav-horizontal .mobile-extra-items .join-cta {
     width: 100%;
-    text-align: center;
-    padding: 1rem 1.5rem;
-    display: block;
-    color: var(--color-text-light);
+    height: 54px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.1rem;
+    font-weight: 700;
+    padding: 0;
+    color: var(--color-white) !important;
+    background: var(--color-button) !important;
+    border-radius: var(--radius-button);
+
+    /* Reset desktop block/static overrides */
+    position: relative;
+    transform: none;
+    transition: transform 0.2s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.2s ease;
+  }
+
+  /* Premium Hover/Active state for Mobile */
+  .nebula-nav-horizontal .mobile-extra-items .join-cta:active {
+    transform: scale(0.97);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
   }
 }
 
@@ -658,7 +813,7 @@ button {
    TOUCH DEVICE OPTIMIZATION
    ====================================================== */
 @media (hover: none) {
-  .nebula-nav-horizontal li:hover > ul {
+  .nebula-nav-horizontal li:hover>ul {
     display: none !important;
   }
 }
@@ -667,19 +822,16 @@ button {
    MOBILE & TABLET: ALWAYS-OPEN SUBMENUS
    ====================================================== */
 @media (max-width: 1150px) {
-  /* Kill hover completely */
-  .nebula-nav-horizontal li:hover > ul {
+  .nebula-nav-horizontal li:hover>ul {
     display: none !important;
   }
 
-  /* Hide arrows on mobile/tablet */
   .submenu-toggle,
-  .menu-item-has-children > svg {
+  .menu-item-has-children>svg {
     display: none !important;
   }
 
-  /* Force submenus open */
-  .nebula-nav-horizontal .menu-item-has-children > ul {
+  .nebula-nav-horizontal .menu-item-has-children>ul {
     display: block !important;
     position: relative;
     box-shadow: none;
@@ -688,15 +840,10 @@ button {
   }
 }
 
-/* ======================================================
-   MOBILE & TABLET: SUBMENUS MUST STAY OPEN (NO HOVER CLOSE)
-   ====================================================== */
 @media (max-width: 1150px) {
-  /* Even if li is hovered, keep submenu open */
-  .nebula-nav-horizontal.active
-  .menu-item-has-children:hover > ul,
-  .nebula-nav-horizontal.active
-  .menu-item-has-children > ul {
+
+  .nebula-nav-horizontal.active .menu-item-has-children:hover>ul,
+  .nebula-nav-horizontal.active .menu-item-has-children>ul {
     display: block !important;
   }
 }
@@ -704,8 +851,6 @@ button {
 /* ======================================================
    SUBMENU HOVER / ACTIVE STYLES (ALL DEVICES)
    ====================================================== */
-
-/* Desktop */
 @media (min-width: 1151px) {
   .nebula-nav-horizontal li ul a:hover {
     background: var(--color-accent-2-light);
@@ -728,8 +873,14 @@ button {
     height: 2.2rem;
   }
 
+  .nebula-nav-horizontal {
+    top: 5rem;
+    max-height: calc(100vh - 6rem);
+    padding-bottom: 2rem;
+  }
+
   .nebula-nav-horizontal.active {
-    padding-bottom: calc(env(safe-area-inset-bottom) + 4rem);
+    padding-bottom: 2rem;
   }
 
   .submenu-toggle {
@@ -737,74 +888,126 @@ button {
   }
 }
 
-/* Small Mobile Tweak (iPhone SE size) */
 @media (max-width: 400px) {
   .logo span {
     font-size: 1.2rem;
   }
+
   .nebula-header {
     padding: 0.75rem;
   }
 }
 
 .gs-modal {
-  display: none;
   position: fixed;
   inset: 0;
-  background: rgba(0,0,0,0.65);
+  background: rgba(0, 0, 0, 0);
+  backdrop-filter: blur(0px);
+  -webkit-backdrop-filter: blur(0px);
   z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity 0.4s cubic-bezier(0.165, 0.84, 0.44, 1),
+    background-color 0.4s ease,
+    backdrop-filter 0.4s ease;
+}
+
+.gs-modal.active {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
 }
 
 .gs-modal-content {
-  background: var(--color-accent-2);
-  max-width: 420px;
-  margin: 12vh auto;
-  padding: 32px;
-  border-radius: 12px;
+  background: var(--color-white);
+  width: 90%;
+  max-width: 440px;
+  padding: 2.5rem;
+  border-radius: 1.5rem;
   text-align: center;
   position: relative;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.2);
+  transform: scale(0.9) translateY(20px);
+  transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.gs-modal.active .gs-modal-content {
+  transform: scale(1) translateY(0);
 }
 
 .gs-modal-content h2 {
-  margin-bottom: 24px;
+  font-size: 1.75rem;
+  font-weight: 800;
+  color: var(--color-primary);
+  margin-bottom: 1.5rem;
+  letter-spacing: -0.02em;
 }
 
 .gs-option {
-  display: block;
-  padding: 14px;
-  margin: 12px 0;
-  border-radius: 8px;
-  background: #f3f3f3;
-  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  margin: 0.75rem 0;
+  border-radius: 0.875rem;
+  background: #f8f8f8;
+  color: var(--color-primary);
+  font-weight: 700;
+  font-size: 1rem;
   text-decoration: none;
+  border: 1px solid #eeeeee;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .gs-option:hover {
-  background: #000;
-  color: #fff;
+  background: var(--color-primary);
+  color: var(--color-white);
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+  border-color: var(--color-primary);
 }
 
 .gs-close {
   position: absolute;
-  top: 16px;
-  right: 16px;
-  font-size: 24px;
-  line-height: 1;
-  background: transparent !important;
-  border: none !important;
+  top: 1.25rem;
+  right: 1.25rem;
+  width: 2rem;
+  height: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  color: var(--color-text-secondary);
+  background: #f0f0f0 !important;
+  border-radius: 50% !important;
   cursor: pointer;
-  padding: 0;
-  width: auto;
-  height: auto;
-  color: #000 !important;      /* Force black */
-  opacity: 1 !important;       /* Prevent faded look */
+  transition: all 0.2s ease;
+  z-index: 10;
 }
 
+.gs-close:hover {
+  background: #e0e0e0 !important;
+  color: var(--color-primary);
+  transform: rotate(90deg);
+}
+
+/* Modal Open Body Lock */
+body.modal-open {
+  overflow: hidden;
+}
 
 /* ==============================================
    BUTTON STYLES
    ============================================== */
-.hero-cta, .event-btn {
+.hero-cta,
+.event-btn {
   background: var(--color-button);
   color: var(--color-text-light);
   padding: 1rem 2.5rem;
@@ -816,7 +1019,8 @@ button {
   transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
-.hero-cta:hover, .event-btn:hover {
+.hero-cta:hover,
+.event-btn:hover {
   transform: translateY(-2px);
   box-shadow: 0 4px 16px rgba(28, 28, 28, 0.25);
 }
@@ -852,7 +1056,8 @@ button {
    MAIN CONTENT & UTILITIES
    ============================================== */
 .cosmic-flow {
-  padding-top: 7rem;
+  padding-top: 7.5rem;
+  /* Reduced to pull content closer to the floating header */
   min-height: 100vh;
 }
 
@@ -914,10 +1119,10 @@ button {
   width: 100%;
   margin: 0;
 }
+
 /* ==============================================
    FOOTER STYLES – FULLY RESPONSIVE
    ============================================== */
-
 .stack-footer {
   background: var(--color-surface);
   border-top: 1px solid var(--color-border-light);
@@ -934,7 +1139,6 @@ button {
   gap: 1.5rem;
 }
 
-/* --- COLUMN 1: SOCIALS --- */
 .footer-brand-social {
   display: flex;
   justify-content: flex-start;
@@ -957,9 +1161,10 @@ button {
 }
 
 .footer-social a svg {
-  width: 20px;
-  height: 20px;
-  fill: currentColor;
+  width: 22px;
+  /* Slightly larger for better visibility */
+  height: 22px;
+  display: block;
 }
 
 .footer-social a:hover {
@@ -968,7 +1173,6 @@ button {
   transform: translateY(-2px);
 }
 
-/* --- COLUMN 2: COPYRIGHT --- */
 .footer-copy {
   text-align: center;
   font-size: 0.95rem;
@@ -977,7 +1181,6 @@ button {
   white-space: nowrap;
 }
 
-/* --- COLUMN 3: EMAIL --- */
 .footer-mail {
   justify-self: end;
   font-size: 0.95rem;
@@ -991,9 +1194,6 @@ button {
   color: var(--color-accent-1);
 }
 
-/* ==============================================
-   TABLET FIX (<= 1024px)
-   ============================================== */
 @media (max-width: 1024px) {
   .footer-inner {
     grid-template-columns: 1fr;
@@ -1015,9 +1215,6 @@ button {
   }
 }
 
-/* ==============================================
-   MOBILE FIX (<= 600px)
-   ============================================== */
 @media (max-width: 600px) {
   .stack-footer {
     padding: 2.5rem 1.25rem;
@@ -1041,7 +1238,6 @@ button {
     font-weight: 500;
   }
 }
-
 
 /* ==============================================
    PAGE UTILS & TRANSITIONS
@@ -1069,14 +1265,8 @@ body::before {
   transition: opacity 0.08s cubic-bezier(0.4, 0, 1, 1);
 }
 
-body.loaded::before,
-body *::before {
-  opacity: 0 !important;
-  pointer-events: none !important;
-}
-
 /* ==============================================
-   FINAL FIX: Remove page-load overlay from render tree
+   FINAL FIX 2: LOWER Z-INDEX OF PAGE OVERLAY
    ============================================== */
 body.loaded::before {
   display: none !important;
@@ -1090,6 +1280,7 @@ body::after {
   width: 100%;
   height: calc(var(--header-height) + 1.5rem);
   background: var(--color-page-bg);
-  z-index: 999;
+  z-index: 998;
+  /* FIX 2: Changed from 999 to 998 so it sits BELOW the mobile menu */
   pointer-events: none;
 }
