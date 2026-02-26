@@ -1188,6 +1188,19 @@ body.modal-open {
   color: var(--color-accent-1);
 }
 
+/* Social media SVG icons in footer */
+.footer-nav-secondary li a svg.icon {
+  width: 22px;
+  height: 22px;
+  display: block;
+  fill: currentColor;
+  transition: transform 0.2s ease;
+}
+
+.footer-nav-secondary li a:hover svg.icon {
+  transform: translateY(-2px);
+}
+
 .footer-brand-social {
   display: flex;
   justify-content: flex-start;
