@@ -552,10 +552,16 @@ body.has-announcement-bar {
   }
 
   .nebula-nav-horizontal li ul a {
-    border-radius: 0;
-    padding: 0.75rem 1.25rem;
-    font-size: 0.95rem;
-  }
+  border-radius: 10px;   /* rounded square */
+  padding: 0.75rem 1.25rem;
+  font-size: 0.95rem;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+/* Add spacing so rounded edges are visible */
+.nebula-nav-horizontal li ul li {
+  padding: 0 0.5rem;
+}
 
   /* Hide the legacy inline SVG arrow (appended by ghost-dropdown.js) */
   .menu-item-has-children>svg {
