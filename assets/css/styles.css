@@ -397,11 +397,31 @@ body.has-announcement-bar {
   white-space: nowrap;
 }
 
-.nebula-nav-horizontal a:hover,
-.nebula-nav-horizontal .nav-current a {
+/* Hover only */
+.nebula-nav-horizontal a:hover {
   color: var(--color-accent-1);
   background: var(--color-accent-2-light);
 }
+
+
+/* =========================================
+   UNIVERSAL ACTIVE NAV STATE (Desktop + Mobile)
+   ========================================= */
+
+/* Highlight current page link */
+.nebula-nav-horizontal li.nav-current > a {
+  color: var(--color-accent-1);
+  background: var(--color-accent-2-light);
+  border-radius: 14px;
+  font-weight: 700; /* Optional: slight font emphasis */
+}
+
+/* Submenu active item */
+.nebula-nav-horizontal li ul li.nav-current > a {
+  color: var(--color-accent-1);
+  background: var(--color-accent-2-light);
+}
+
 
 /* Submenu Base Styles */
 .nebula-nav-horizontal li ul {
@@ -454,11 +474,9 @@ body.has-announcement-bar {
   transform: rotate(180deg);
 }
 
-/* Hide the legacy desktop-only has-children icon on mobile */
-@media (max-width: 1150px) {
-  .menu-item-has-children>svg {
-    display: none !important;
-  }
+/* Hide the legacy inline SVG arrow on all screens — toggle button replaces it */
+.menu-item-has-children>svg {
+  display: none !important;
 }
 
 /* ======================================================
@@ -469,11 +487,68 @@ body.has-announcement-bar {
 }
 
 /* ======================================================
-   CRITICAL FIX: Desktop hover ONLY when nav is NOT active
+   DESKTOP: Click-to-open submenus (via .open class)
    ====================================================== */
 @media (min-width: 1151px) {
-  .nebula-nav-horizontal:not(.active) li:hover>ul {
+
+  /* Make parent items flex so link + toggle sit side-by-side naturally */
+  .nebula-nav-horizontal .menu-item-has-children {
     display: flex;
+    align-items: center;
+    position: relative;
+    padding: 0;
+    gap: 0;
+  }
+
+  /* Link takes natural width */
+  .nebula-nav-horizontal .menu-item-has-children>a {
+    display: block;
+    margin: 0;
+    padding-right: 4px;
+    /* Small cushion before arrow */
+  }
+
+  /* Toggle arrow sits natively next to the link */
+  .menu-item-has-children>.submenu-toggle {
+    position: static !important;
+    display: flex !important;
+    width: 20px;
+    height: 20px;
+    padding: 2px;
+    margin: 0;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background: transparent !important;
+    transform: none !important;
+  }
+
+  .menu-item-has-children>.submenu-toggle svg {
+    width: 14px;
+    height: 14px;
+    transition: transform 0.3s ease;
+  }
+
+  /* Rotate chevron when open */
+  .menu-item-has-children.open>.submenu-toggle svg {
+    transform: rotate(180deg);
+  }
+
+  /* Submenu dropdown is absolutely positioned below the li */
+  .nebula-nav-horizontal .menu-item-has-children>ul {
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    margin-top: 10px;
+    min-width: 220px;
+    z-index: 1000;
+  }
+
+  /* Click-based open via JS-toggled .open class */
+  .nebula-nav-horizontal .menu-item-has-children.open>ul,
+  .nebula-nav-horizontal .menu-item-has-children.open:hover>ul {
+    display: flex !important;
   }
 
   .nebula-nav-horizontal li ul a {
@@ -482,9 +557,9 @@ body.has-announcement-bar {
     font-size: 0.95rem;
   }
 
-  /* Hide submenu toggle on desktop - hover works */
-  .submenu-toggle {
-    display: none;
+  /* Hide the legacy inline SVG arrow (appended by ghost-dropdown.js) */
+  .menu-item-has-children>svg {
+    display: none !important;
   }
 }
 
@@ -714,21 +789,13 @@ body.has-announcement-bar {
     width: 100%;
   }
 
-  /* Explicitly prevent any hover-based reveal on mobile */
-  .nebula-nav-horizontal li:hover>ul {
-    display: none;
-  }
-
   .nebula-nav-horizontal .menu-item-has-children.open>ul {
     display: block !important;
     animation: nebulaSubmenuFadeIn 0.3s ease-out forwards;
   }
 
-  /* Make the parent link look active when submenu is open */
-  .nebula-nav-horizontal .menu-item-has-children.open>a {
-    color: var(--color-accent-1);
-    background: var(--color-accent-2-light);
-  }
+  /* Remove the rule that made "open" look like "active" */
+  /* .menu-item-has-children.open > a { ... }  [REMOVED] */
 
   .submenu-toggle {
     display: flex !important;
@@ -762,17 +829,34 @@ body.has-announcement-bar {
     border-bottom: none;
   }
 
+  /* Cleaner mobile submenu links */
   .nebula-nav-horizontal li ul a {
-    padding: 0.75rem 0 0.75rem 1.5rem;
-    font-size: 1rem;
-    color: var(--color-text-secondary);
+    padding: 0.85rem 0 0.85rem 2rem;
+    font-size: 0.98rem;
     font-weight: 500;
+    color: var(--color-text-secondary);
+    background: transparent;
+    border-radius: 10px;
+    transition: background 0.2s ease, color 0.2s ease;
   }
 
   .nebula-nav-horizontal li ul a:hover,
   .nebula-nav-horizontal li ul a:focus-visible {
     background: var(--color-accent-2-light);
     color: var(--color-accent-1);
+  }
+
+  /* Clean mobile submenu container */
+  .nebula-nav-horizontal .menu-item-has-children > ul {
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    padding-top: 0.4rem;
+  }
+
+  /* Subtle divider between parent and children */
+  .menu-item-has-children.open > ul {
+    margin-top: 0.3rem;
   }
 
   /* Mobile Extra Items (Search & Join) */
@@ -830,49 +914,15 @@ body.has-announcement-bar {
     transform: scale(0.97);
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
   }
+ /* Remove dropdown arrow on mobile */
+.submenu-toggle {
+  display: none !important;
+}
+
 }
 
 /* ======================================================
-   TOUCH DEVICE OPTIMIZATION
-   ====================================================== */
-@media (hover: none) {
-  .nebula-nav-horizontal li:hover>ul {
-    display: none !important;
-  }
-}
-
-/* ======================================================
-   MOBILE & TABLET: ALWAYS-OPEN SUBMENUS
-   ====================================================== */
-@media (max-width: 1150px) {
-  .nebula-nav-horizontal li:hover>ul {
-    display: none !important;
-  }
-
-  .submenu-toggle,
-  .menu-item-has-children>svg {
-    display: none !important;
-  }
-
-  .nebula-nav-horizontal .menu-item-has-children>ul {
-    display: block !important;
-    position: relative;
-    box-shadow: none;
-    border: none;
-    background: transparent;
-  }
-}
-
-@media (max-width: 1150px) {
-
-  .nebula-nav-horizontal.active .menu-item-has-children:hover>ul,
-  .nebula-nav-horizontal.active .menu-item-has-children>ul {
-    display: block !important;
-  }
-}
-
-/* ======================================================
-   SUBMENU HOVER / ACTIVE STYLES (ALL DEVICES)
+   DESKTOP: Submenu item hover highlight
    ====================================================== */
 @media (min-width: 1151px) {
   .nebula-nav-horizontal li ul a:hover {

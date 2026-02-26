@@ -149,7 +149,27 @@ window.addEventListener('load', function () {
     const defaultBg = button.style.backgroundColor || "black";
     const defaultColor = button.style.color || "white";
 
+    // Create inline message element
+    let msgEl = form.parentElement.querySelector('.subscribe-msg');
+    if (!msgEl) {
+      msgEl = document.createElement('p');
+      msgEl.className = 'subscribe-msg';
+      msgEl.style.cssText = 'margin-top:0.75rem;font-size:0.9rem;font-weight:600;text-align:center;min-height:1.4em;transition:opacity 0.3s ease;';
+      form.insertAdjacentElement('afterend', msgEl);
+    }
+
     let resetTimer = null;
+
+    const setMsg = (text, color) => {
+      msgEl.textContent = text;
+      msgEl.style.color = color;
+      msgEl.style.opacity = '1';
+    };
+
+    const clearMsg = () => {
+      msgEl.style.opacity = '0';
+      setTimeout(() => { msgEl.textContent = ''; }, 300);
+    };
 
     const resetButton = () => {
       button.textContent = defaultText;
@@ -157,10 +177,25 @@ window.addEventListener('load', function () {
       button.style.backgroundColor = defaultBg;
       button.style.color = defaultColor;
       button.classList.remove("state-checking", "state-success", "state-error");
+      clearMsg();
+    };
+
+    // Intercept Ghost's magic-link fetch to detect 429 rate limiting
+    const originalFetch = window.fetch;
+    window.fetch = function () {
+      return originalFetch.apply(this, arguments).then(function (response) {
+        if (arguments[0] && String(arguments[0]).indexOf('send-magic-link') !== -1) {
+          if (response.status === 429) {
+            form._rateLimited = true;
+          } else {
+            form._rateLimited = false;
+          }
+        }
+        return response;
+      });
     };
 
     const observer = new MutationObserver(() => {
-      // Clear any previous reset
       if (resetTimer) {
         clearTimeout(resetTimer);
         resetTimer = null;
@@ -174,6 +209,7 @@ window.addEventListener('load', function () {
         button.classList.add("state-checking");
         button.style.backgroundColor = "yellow";
         button.style.color = "black";
+        setMsg('', 'transparent');
       }
 
       else if (form.classList.contains("success")) {
@@ -182,18 +218,27 @@ window.addEventListener('load', function () {
         button.classList.add("state-success");
         button.style.backgroundColor = "green";
         button.style.color = "white";
+        setMsg('✓ Check your inbox for a confirmation link!', '#16a34a');
 
-        resetTimer = setTimeout(resetButton, 4000);
+        resetTimer = setTimeout(resetButton, 6000);
       }
 
       else if (form.classList.contains("error")) {
-        button.textContent = "Try Again";
-        button.disabled = false;
         button.classList.add("state-error");
         button.style.backgroundColor = "red";
         button.style.color = "white";
 
-        resetTimer = setTimeout(resetButton, 4000);
+        if (form._rateLimited) {
+          button.textContent = "Slow down";
+          button.disabled = true;
+          setMsg('Too many attempts — please try again in 10 minutes.', '#dc2626');
+          resetTimer = setTimeout(resetButton, 10000);
+        } else {
+          button.textContent = "Try Again";
+          button.disabled = false;
+          setMsg('Something went wrong. Please check your email and try again.', '#dc2626');
+          resetTimer = setTimeout(resetButton, 5000);
+        }
       }
 
       else {
@@ -261,14 +306,21 @@ window.addEventListener('load', function () {
     var footerNav = document.querySelector('.footer-nav-secondary');
     if (!footerNav) return;
 
-    var links = footerNav.querySelectorAll('a');
-    links.forEach(function (link) {
-      // Skip if Ghost already rendered an SVG icon for this link
-      if (link.querySelector('svg')) return;
-      var label = link.textContent.trim().toLowerCase();
-      if (socialIcons[label]) {
-        link.innerHTML = socialIcons[label];
-        link.setAttribute('aria-label', label.charAt(0).toUpperCase() + label.slice(1));
+    var items = footerNav.querySelectorAll('li');
+    items.forEach(function (li) {
+      var className = li.className || '';
+      var link = li.querySelector('a');
+      if (!link) return;
+
+      // Match social platform from Ghost's auto-generated nav-xxx class
+      var matched = null;
+      Object.keys(socialIcons).forEach(function (key) {
+        if (className.indexOf('nav-' + key) !== -1) matched = key;
+      });
+
+      if (matched) {
+        link.innerHTML = socialIcons[matched];
+        link.setAttribute('aria-label', matched.charAt(0).toUpperCase() + matched.slice(1));
         link.setAttribute('target', '_blank');
         link.setAttribute('rel', 'noopener noreferrer');
       }

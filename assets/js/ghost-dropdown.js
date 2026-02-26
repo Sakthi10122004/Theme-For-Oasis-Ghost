@@ -132,6 +132,7 @@ document.documentElement.classList.add("js-ready");
         $mobileNav.off('click.mobileMenu');
         $(document).off('click.mobileMenu');
         $(document).off('keydown.mobileMenu');
+        $(document).off('click.desktopSubmenu');
 
         if ($hamburger.length && $mobileNav.length) {
             $hamburger.on('click.mobileMenu', function (e) {
@@ -148,16 +149,21 @@ document.documentElement.classList.add("js-ready");
                 }
 
                 // Parent item with children
-                if ($(this).parent().hasClass('menu-item-has-children')) {
-                    const href = $(this).attr('href');
-                    // If it's a placeholder link (#), toggle instead of navigating
-                    if (href === '#' || href === 'javascript:void(0)' || !href) {
-                        e.preventDefault();
-                        e.stopPropagation();
-                        $(this).parent().toggleClass('open');
-                        return false;
-                    }
-                }
+                if ($(window).width() <= 1150 && $(this).parent().hasClass('menu-item-has-children')) {
+
+    const $parent = $(this).parent();
+
+    // Always open submenu visually
+    $parent.siblings('.menu-item-has-children.open').removeClass('open');
+    $parent.addClass('open');
+
+    // Close mobile menu before navigating
+    $('.nebula-nav-horizontal').removeClass('active');
+    $('.hamburger').removeClass('active');
+    $('body').removeClass('menu-open');
+
+    return true; // allow navigation immediately
+}
 
                 if ($(e.target).closest('svg').length > 0) {
                     return;
@@ -185,13 +191,38 @@ document.documentElement.classList.add("js-ready");
                     $body.removeClass('menu-open');
                 }
             });
+        }
 
-            // ✅ NEW: MOBILE SUBMENU TOGGLE HANDLER (Icon click)
-            $mobileNav.on('click.mobileMenu', '.submenu-toggle', function (e) {
-                e.preventDefault();
-                e.stopPropagation();
-                $(this).parent().toggleClass('open');
-            });
+        // ✅ UNIVERSAL: Submenu toggle click handler (works on desktop + mobile)
+        $(document).off('click.submenuToggle').on('click.submenuToggle', '.submenu-toggle', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+            var $parent = $(this).parent();
+
+            // Close any other open siblings (accordion behavior)
+            $parent.siblings('.menu-item-has-children.open').removeClass('open');
+
+            $parent.toggleClass('open');
+        });
+
+        // ✅ DESKTOP: Close submenus when clicking outside
+        $(document).on('click.desktopSubmenu', function (e) {
+            if (!$(e.target).closest('.menu-item-has-children').length) {
+                $('.menu-item-has-children.open').removeClass('open');
+            }
+        });
+
+        // ✅ ESC to close desktop submenus
+        $(document).on('keydown.desktopSubmenu', function (e) {
+            if (e.key === 'Escape') {
+                $('.menu-item-has-children.open').removeClass('open');
+            }
+        });
+        // Auto open parent if a child is active
+        if ($(window).width() <= 1150) {
+            $('.nebula-nav-horizontal li.nav-current')
+                .closest('.menu-item-has-children')
+                .addClass('open');
         }
     }
 
