@@ -263,6 +263,8 @@ window.addEventListener('load', function () {
 
     var links = footerNav.querySelectorAll('a');
     links.forEach(function (link) {
+      // Skip if Ghost already rendered an SVG icon for this link
+      if (link.querySelector('svg')) return;
       var label = link.textContent.trim().toLowerCase();
       if (socialIcons[label]) {
         link.innerHTML = socialIcons[label];
