@@ -409,15 +409,16 @@ body.has-announcement-bar {
    ========================================= */
 
 /* Highlight current page link */
-.nebula-nav-horizontal li.nav-current > a {
+.nebula-nav-horizontal li.nav-current>a {
   color: var(--color-accent-1);
   background: var(--color-accent-2-light);
-  border-radius: var(--radius-button); /* match hover */
+  border-radius: var(--radius-button);
+  /* match hover */
   font-weight: 700;
 }
 
 /* Submenu active item */
-.nebula-nav-horizontal li ul li.nav-current > a {
+.nebula-nav-horizontal li ul li.nav-current>a {
   color: var(--color-accent-1);
   background: var(--color-accent-2-light);
 }
@@ -497,15 +498,16 @@ body.has-announcement-bar {
   }
 
   /* Make anchor wrap text cleanly */
-  .nebula-nav-horizontal .menu-item-has-children > a {
+  .nebula-nav-horizontal .menu-item-has-children>a {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    padding: 0.5rem 1.75rem 0.5rem 1rem; /* extra right space */
+    padding: 0.5rem 1.75rem 0.5rem 1rem;
+    /* extra right space */
   }
 
   /* Position arrow inside the pill */
-  .menu-item-has-children > .submenu-toggle {
+  .menu-item-has-children>.submenu-toggle {
     position: absolute !important;
     right: 0.75rem;
     top: 50%;
@@ -516,7 +518,7 @@ body.has-announcement-bar {
     background: transparent !important;
   }
 
-  .menu-item-has-children > .submenu-toggle svg {
+  .menu-item-has-children>.submenu-toggle svg {
     width: 14px;
     height: 14px;
   }
@@ -539,22 +541,23 @@ body.has-announcement-bar {
     display: flex !important;
   }
 
-.nebula-nav-horizontal li ul a {
-  border-radius: var(--radius-button); /* make pill */
-  padding: 0.65rem 1.25rem;
-  font-size: 0.95rem;
-  transition: background 0.2s ease, color 0.2s ease;
-}
+  .nebula-nav-horizontal li ul a {
+    border-radius: var(--radius-button);
+    /* make pill */
+    padding: 0.65rem 1.25rem;
+    font-size: 0.95rem;
+    transition: background 0.2s ease, color 0.2s ease;
+  }
 
-/* Add spacing so pill does not touch container edges */
-.nebula-nav-horizontal li ul li {
-  padding: 0.25rem 0.5rem;
-}
+  /* Add spacing so pill does not touch container edges */
+  .nebula-nav-horizontal li ul li {
+    padding: 0.25rem 0.5rem;
+  }
 
-/* Add spacing so rounded edges are visible */
-.nebula-nav-horizontal li ul li {
-  padding: 0 0.5rem;
-}
+  /* Add spacing so rounded edges are visible */
+  .nebula-nav-horizontal li ul li {
+    padding: 0 0.5rem;
+  }
 
   /* Hide the legacy inline SVG arrow (appended by ghost-dropdown.js) */
   .menu-item-has-children>svg {
@@ -763,15 +766,16 @@ body.has-announcement-bar {
   }
 
   .nebula-nav-horizontal ul li a {
-  width: 100%;
-  padding: 0.9rem 1.2rem;
-  font-size: 1.1rem;
-  text-align: left;
-  border-radius: var(--radius-button); /* make pill */
-  background-color: transparent;
-  display: flex;
-  align-items: center;
-}
+    width: 100%;
+    padding: 0.9rem 1.2rem;
+    font-size: 1.1rem;
+    text-align: left;
+    border-radius: var(--radius-button);
+    /* make pill */
+    background-color: transparent;
+    display: flex;
+    align-items: center;
+  }
 
 
   /* Submenus */
@@ -846,7 +850,7 @@ body.has-announcement-bar {
   }
 
   /* Clean mobile submenu container */
-  .nebula-nav-horizontal .menu-item-has-children > ul {
+  .nebula-nav-horizontal .menu-item-has-children>ul {
     background: transparent !important;
     border: none !important;
     box-shadow: none !important;
@@ -854,7 +858,7 @@ body.has-announcement-bar {
   }
 
   /* Subtle divider between parent and children */
-  .menu-item-has-children.open > ul {
+  .menu-item-has-children.open>ul {
     margin-top: 0.3rem;
   }
 
@@ -913,10 +917,11 @@ body.has-announcement-bar {
     transform: scale(0.97);
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
   }
- /* Remove dropdown arrow on mobile */
-.submenu-toggle {
-  display: none !important;
-}
+
+  /* Remove dropdown arrow on mobile */
+  .submenu-toggle {
+    display: none !important;
+  }
 
 }
 
@@ -1056,6 +1061,9 @@ body.has-announcement-bar {
   align-items: center;
   justify-content: center;
   font-size: 1.5rem;
+  line-height: 1;
+  padding: 0;
+  border: none;
   color: var(--color-text-secondary);
   background: #f0f0f0 !important;
   border-radius: 50% !important;

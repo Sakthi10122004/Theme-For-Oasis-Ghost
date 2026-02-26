@@ -1,0 +1,222 @@
+{{!< default}} <div class="oasis-tech-form">
+
+    <!-- Intro -->
+    <div class="oasis-tech-intro">
+        <p>
+            OASIS is building a trusted network of tech service providers to support nonprofits with open-source
+            solutions.
+            By joining, you’ll get matched with business opportunities from social sector organisations looking for
+            ethical, impact-focused tech support.
+            Fill this quick form so we can understand your skills and match you with the right projects.
+            Let’s power social change through open tech.
+        </p>
+        <p class="oasis-tech-link">
+            Visit us at
+            <a href="https://www.oasishq.org" target="_blank">www.oasishq.org</a>
+        </p>
+    </div>
+
+    <div class="oasis-tech-container">
+
+        <iframe name="tech_hidden_iframe" style="display:none;"></iframe>
+
+        <h2>Tech Vendor Registration</h2>
+
+        <form id="techForm"
+            action="https://docs.google.com/forms/d/e/1FAIpQLSfC55-Z-8pQhei08pxdwFXrE2i7VxH3WqTS6pPgJPzJzXixpQ/formResponse"
+            method="POST" target="tech_hidden_iframe">
+
+            <input type="hidden" name="entry.758351188" value="NA">
+
+            <div class="form-group">
+                <label>Organization Name *</label>
+                <input type="text" name="entry.2108504704" placeholder="e.g., Tech for Good" required>
+            </div>
+
+            <div class="form-group">
+                <label>Contact Person Name & Designation *</label>
+                <input type="text" name="entry.2115205576" placeholder="e.g., Jane Doe, Director" required>
+            </div>
+
+            <div class="form-group">
+                <label>Current Team Size *</label>
+                <input type="number" name="entry.1364735784" min="1" placeholder="e.g., 15" required>
+            </div>
+
+            <div class="form-group">
+                <label>Email *</label>
+                <input type="email" name="entry.1832784688" placeholder="e.g., jane@example.com" required>
+            </div>
+
+            <div class="form-group">
+                <label>Phone Number *</label>
+                <input type="tel" id="techPhone" name="entry.168600532" pattern="[6-9][0-9]{9}" maxlength="10"
+                    placeholder="e.g., 9876543210" required>
+            </div>
+
+            <div class="form-group">
+                <label>Website *</label>
+                <input type="url" name="entry.2035328917" placeholder="https://example.com" required>
+            </div>
+
+            <div class="form-group">
+                <label>Github Link</label>
+                <input type="url" name="entry.323152931" placeholder="https://github.com/organization">
+            </div>
+
+            <div class="form-group">
+                <label>Location (City) *</label>
+                <input type="text" name="entry.236934013" placeholder="e.g., New Delhi" required>
+            </div>
+
+            <div class="form-group">
+                <label>Brief Description *</label>
+                <textarea name="entry.1328235464" placeholder="Briefly describe what your organization does..."
+                    required></textarea>
+            </div>
+
+            <div class="form-group">
+                <label>Years of Experience *</label>
+                <input type="number" name="entry.1391496117" min="0" placeholder="e.g., 5" required>
+            </div>
+
+            <div class="form-group">
+                <label>Core Areas of Expertise *</label>
+
+                <label class="option-label"><input type="checkbox" name="entry.1077340798" value="Web development"> Web
+                    development</label>
+                <label class="option-label"><input type="checkbox" name="entry.1077340798" value="CRM systems"> CRM
+                    systems</label>
+                <label class="option-label"><input type="checkbox" name="entry.1077340798"
+                        value="Data analytics & Dashboards"> Data analytics & Dashboards</label>
+                <label class="option-label"><input type="checkbox" name="entry.1077340798" value="Cloud hosting"> Cloud
+                    hosting</label>
+                <label class="option-label"><input type="checkbox" name="entry.1077340798" value="App development"> App
+                    development</label>
+                <label class="option-label"><input type="checkbox" name="entry.1077340798" value="UI/UX"> UI/UX</label>
+                <label class="option-label"><input type="checkbox" name="entry.1077340798" value="Cybersecurity">
+                    Cybersecurity</label>
+                <label class="option-label"><input type="checkbox" name="entry.1077340798"
+                        value="Training & Capacity Building"> Training & Capacity Building</label>
+                <label class="option-label"><input type="checkbox" name="entry.1077340798" value="Other"
+                        id="other_checkbox"> Others</label>
+            </div>
+
+            <div class="form-group" id="other_input_group" style="display:none;">
+                <label>Specify Other *</label>
+                <input type="text" name="entry.1140841764" id="other_text_field" placeholder="Please specify">
+            </div>
+
+            <div class="form-group">
+                <label>Worked with NGOs before? *</label>
+                <select name="entry.1245604957" required>
+                    <option value="">Select...</option>
+                    <option value="Yes">Yes</option>
+                    <option value="No">No</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label>FOSS Tools Experience *</label>
+                <textarea name="entry.480567182" placeholder="List FOSS tools you have experience with..."
+                    required></textarea>
+            </div>
+
+            <div class="form-group">
+                <label>Open to FOSS-first solutions? *</label>
+                <select name="entry.1736665925" required>
+                    <option value="">Select...</option>
+                    <option value="Yes">Yes</option>
+                    <option value="No">No</option>
+                    <option value="Yes, but we also use proprietary tools when needed.">
+                        Yes, but we also use proprietary tools when needed.
+                    </option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label>Provide Capacity Building? *</label>
+                <select name="entry.1303175931" required>
+                    <option value="">Select...</option>
+                    <option value="Yes">Yes</option>
+                    <option value="No">No</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label>Typical Project Size *</label>
+                <select name="entry.1384175742" required>
+                    <option value="">Select...</option>
+                    <option value="Below 50,000 INR">Below 50,000 INR</option>
+                    <option value="50,000 - 1,00,000 INR">50,000 - 1,00,000 INR</option>
+                    <option value="1,00,000 - 5,00,000 INR">1,00,000 - 5,00,000 INR</option>
+                    <option value="Above 5,00,000 INR">Above 5,00,000 INR</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label>Accept Smaller Projects? *</label>
+                <select name="entry.1370310837" required>
+                    <option value="">Select...</option>
+                    <option value="Yes">Yes</option>
+                    <option value="No">No</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label>Challenges Observed *</label>
+                <textarea name="entry.1524588635"
+                    placeholder="What challenges have you observed working with open-source tech?" required></textarea>
+            </div>
+
+            <div class="form-group">
+                <label>Available for Projects (Next 3–6 Months)? *</label>
+                <select name="entry.232285309" required>
+                    <option value="">Select...</option>
+                    <option value="Yes">Yes</option>
+                    <option value="No">No</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label>Past Project Examples *</label>
+                <textarea name="entry.563392097" placeholder="Share some past project examples..." required></textarea>
+            </div>
+
+            <div class="form-group">
+                <label>Aligned with Open-Source Values? *</label>
+                <select name="entry.830670607" required>
+                    <option value="">Select...</option>
+                    <option value="Yes">Yes</option>
+                    <option value="No">No</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label>Why Join OASIS? *</label>
+                <textarea name="entry.1725889589" placeholder="Why do you want to join our network?"
+                    required></textarea>
+            </div>
+
+            <div class="form-group">
+                <label>Expected Support from OASIS *</label>
+                <textarea name="entry.1012315740" placeholder="What kind of support are you looking for?"
+                    required></textarea>
+            </div>
+
+            <button type="submit">Submit Registration</button>
+        </form>
+    </div>
+
+    <div class="tech-overlay" id="techOverlay">
+        <div class="tech-popup">
+            <div class="tick">✓</div>
+            <h3>Submission Successful</h3>
+            <p>Your data has been securely recorded.</p>
+            <div class="countdown">
+                Redirecting in <span id="techTimer">5</span> seconds...
+            </div>
+        </div>
+    </div>
+
+    </div>

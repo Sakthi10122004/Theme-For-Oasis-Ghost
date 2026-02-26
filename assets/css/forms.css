@@ -1,0 +1,485 @@
+/* OASIS FORMS - MASTER STYLESHEET */
+/* Version: 2.0 | Updated: 2024 */
+
+/* ===== CSS VARIABLES ===== */
+:root {
+    /* Colors */
+    --oasis-bg: #f9faf2;
+    --oasis-surface: #fafafa;
+    --oasis-border: #ebe9de;
+    --oasis-text: #1c1c1c;
+    --oasis-accent: #fd635a;
+    --oasis-highlight: #fbe86b;
+    --oasis-success: #16a34a;
+    --oasis-white: #ffffff;
+    --oasis-black: #000000;
+    --oasis-overlay: rgba(28, 28, 28, 0.6);
+
+    /* Spacing */
+    --oasis-spacing-xs: 4px;
+    --oasis-spacing-sm: 8px;
+    --oasis-spacing-md: 16px;
+    --oasis-spacing-lg: 24px;
+    --oasis-spacing-xl: 32px;
+    --oasis-spacing-2xl: 40px;
+
+    /* Typography */
+    --oasis-font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    --oasis-font-size-sm: 14px;
+    --oasis-font-size-md: 15px;
+    --oasis-font-size-lg: 16px;
+
+    /* Borders */
+    --oasis-radius-sm: 8px;
+    --oasis-radius-md: 10px;
+    --oasis-radius-lg: 14px;
+
+    /* Transitions */
+    --oasis-transition: 0.2s ease;
+    --oasis-transition-slow: 0.25s ease;
+
+    /* Shadows */
+    --oasis-shadow: 0 0 0 3px rgba(253, 99, 90, 0.15);
+    --oasis-overlay-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+/* ===== BASE STYLES ===== */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+/* ===== SHARED UTILITIES ===== */
+.oasis-hidden {
+    display: none !important;
+}
+
+.oasis-text-center {
+    text-align: center;
+}
+
+/* ===== FORM WRAPPERS ===== */
+.oasis-tech-form,
+.oasis-org-form,
+.oasis-contributor-form {
+    background: var(--oasis-bg);
+    padding: 60px 20px;
+    font-family: var(--oasis-font-family);
+    min-height: 100vh;
+}
+
+/* ===== INTRO SECTIONS ===== */
+.oasis-tech-form .oasis-tech-intro,
+.oasis-org-form .oasis-org-intro,
+.oasis-contributor-form .oasis-form-intro {
+    max-width: 750px;
+    margin: 0 auto var(--oasis-spacing-2xl);
+    text-align: justify;
+    line-height: 1.8;
+    color: var(--oasis-text);
+}
+
+/* ===== LINK STYLES ===== */
+.oasis-tech-form .oasis-tech-link a,
+.oasis-org-form .oasis-org-link a,
+.oasis-contributor-form .oasis-form-intro a {
+    color: var(--oasis-accent);
+    text-decoration: none;
+    border-bottom: 2px solid var(--oasis-highlight);
+    padding-bottom: 2px;
+    font-weight: 600;
+    transition: var(--oasis-transition);
+}
+
+.oasis-tech-form .oasis-tech-link a:hover,
+.oasis-org-form .oasis-org-link a:hover,
+.oasis-contributor-form .oasis-form-intro a:hover {
+    opacity: 0.8;
+}
+
+/* ===== CONTAINERS / CARDS ===== */
+.oasis-tech-form .oasis-tech-container,
+.oasis-org-form .oasis-org-container,
+.oasis-contributor-form .container {
+    max-width: 720px;
+    margin: 0 auto;
+    background: var(--oasis-surface);
+    padding: 45px;
+    border-radius: var(--oasis-radius-lg);
+    border: 1px solid var(--oasis-border);
+    box-shadow: var(--oasis-overlay-shadow);
+}
+
+.oasis-org-form .oasis-org-container {
+    max-width: 560px;
+    padding: 38px;
+}
+
+.oasis-contributor-form .container {
+    max-width: 600px;
+    padding: 40px;
+}
+
+/* ===== HEADINGS ===== */
+.oasis-tech-form h2,
+.oasis-org-form h2,
+.oasis-contributor-form h2 {
+    text-align: center;
+    margin-bottom: 35px;
+    color: var(--oasis-text);
+    font-weight: 600;
+    font-size: 1.5rem;
+}
+
+/* ===== FORM GROUPS ===== */
+.oasis-tech-form .form-group,
+.oasis-org-form .form-group,
+.oasis-contributor-form .form-group {
+    margin-bottom: var(--oasis-spacing-lg);
+}
+
+/* ===== LABELS ===== */
+.oasis-tech-form label,
+.oasis-org-form label,
+.oasis-contributor-form label {
+    display: block;
+    margin-bottom: var(--oasis-spacing-sm);
+    font-weight: 600;
+    font-size: var(--oasis-font-size-sm);
+    color: var(--oasis-text);
+}
+
+/* ===== INPUT FIELDS ===== */
+.oasis-tech-form input:not([type="checkbox"]),
+.oasis-tech-form textarea,
+.oasis-tech-form select,
+.oasis-org-form input,
+.oasis-contributor-form input,
+.oasis-contributor-form textarea {
+    width: 100%;
+    padding: 13px 14px;
+    font-size: var(--oasis-font-size-sm);
+    border-radius: var(--oasis-radius-md);
+    border: 1px solid var(--oasis-border);
+    background: var(--oasis-white);
+    transition: var(--oasis-transition);
+}
+
+.oasis-org-form input {
+    padding: 12px;
+    border-radius: var(--oasis-radius-sm);
+}
+
+.oasis-contributor-form textarea {
+    min-height: 110px;
+    resize: vertical;
+}
+
+/* ===== FOCUS STATES ===== */
+.oasis-tech-form input:focus,
+.oasis-tech-form textarea:focus,
+.oasis-tech-form select:focus,
+.oasis-org-form input:focus,
+.oasis-contributor-form input:focus,
+.oasis-contributor-form textarea:focus {
+    outline: none;
+    border-color: var(--oasis-accent);
+    box-shadow: var(--oasis-shadow);
+}
+
+/* ===== CHECKBOX STYLES ===== */
+.oasis-tech-form .option-label {
+    font-weight: 400;
+    display: flex;
+    align-items: center;
+    margin-bottom: var(--oasis-spacing-sm);
+    cursor: pointer;
+    font-size: var(--oasis-font-size-sm);
+}
+
+.oasis-tech-form .option-label input[type="checkbox"] {
+    width: auto;
+    margin-right: var(--oasis-spacing-sm);
+    transform: scale(1.1);
+    accent-color: var(--oasis-accent);
+}
+
+/* ===== ERROR MESSAGES ===== */
+.oasis-tech-form .error,
+.oasis-org-form .error,
+.oasis-contributor-form .error-message {
+    color: var(--oasis-accent);
+    font-size: 12px;
+    margin-top: 5px;
+    display: none;
+}
+
+.oasis-contributor-form .error-message {
+    margin-top: 6px;
+}
+
+/* ===== BUTTONS ===== */
+.oasis-tech-form button,
+.oasis-org-form button,
+.oasis-contributor-form button {
+    width: 100%;
+    padding: 15px;
+    background: var(--oasis-text);
+    color: var(--oasis-highlight);
+    border: none;
+    border-radius: var(--oasis-radius-md);
+    font-size: var(--oasis-font-size-md);
+    font-weight: 600;
+    cursor: pointer;
+    transition: var(--oasis-transition-slow);
+}
+
+.oasis-org-form button {
+    padding: 14px;
+    border-radius: var(--oasis-radius-sm);
+}
+
+.oasis-contributor-form button {
+    background: var(--oasis-text);
+    color: var(--oasis-white);
+}
+
+.oasis-tech-form button:hover,
+.oasis-org-form button:hover,
+.oasis-contributor-form button:hover {
+    background: var(--oasis-black);
+}
+
+.oasis-contributor-form button:active {
+    transform: translateY(1px);
+}
+
+.oasis-contributor-form button.loading {
+    opacity: 0.6;
+    pointer-events: none;
+    position: relative;
+}
+
+.oasis-contributor-form button.loading::after {
+    content: '';
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    border: 2px solid transparent;
+    border-top-color: var(--oasis-highlight);
+    border-radius: 50%;
+    animation: oasisSpin 0.8s linear infinite;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+/* ===== OVERLAY / POPUP ===== */
+.oasis-tech-form .tech-overlay,
+.oasis-org-form .overlay,
+.oasis-contributor-form .overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: var(--oasis-overlay);
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+    backdrop-filter: blur(4px);
+}
+
+.oasis-tech-form .tech-popup,
+.oasis-org-form .popup,
+.oasis-contributor-form .popup {
+    background: var(--oasis-surface);
+    padding: 40px 45px;
+    border-radius: var(--oasis-radius-lg);
+    border: 1px solid var(--oasis-border);
+    text-align: center;
+    max-width: 400px;
+    width: 90%;
+    animation: oasisFadeIn 0.25s ease;
+    box-shadow: var(--oasis-overlay-shadow);
+}
+
+.oasis-org-form .popup {
+    padding: 30px 40px;
+    border-radius: var(--oasis-radius-sm);
+}
+
+.oasis-contributor-form .popup {
+    padding: 35px 45px;
+}
+
+/* ===== POPUP ICONS ===== */
+.oasis-tech-form .tick,
+.oasis-org-form .tick,
+.oasis-contributor-form .tick {
+    font-size: 48px;
+    color: var(--oasis-success);
+    margin-bottom: 12px;
+    line-height: 1;
+}
+
+.oasis-org-form .tick {
+    font-size: 40px;
+    margin-bottom: 10px;
+}
+
+.oasis-contributor-form .tick {
+    color: var(--oasis-accent);
+    font-size: 42px;
+}
+
+/* ===== POPUP TEXT ===== */
+.oasis-tech-form .tech-popup h3,
+.oasis-org-form .popup h3,
+.oasis-contributor-form .popup h3 {
+    margin-bottom: var(--oasis-spacing-sm);
+    color: var(--oasis-text);
+    font-size: 1.25rem;
+}
+
+.oasis-tech-form .tech-popup p,
+.oasis-org-form .popup p {
+    font-size: var(--oasis-font-size-sm);
+    color: #444;
+}
+
+.oasis-tech-form .countdown,
+.oasis-contributor-form .countdown {
+    margin-top: 10px;
+    font-size: 13px;
+    color: var(--oasis-accent);
+}
+
+.oasis-contributor-form .countdown {
+    font-size: 14px;
+    color: #666;
+}
+
+/* ===== ANIMATIONS ===== */
+@keyframes oasisFadeIn {
+    from {
+        transform: scale(0.95);
+        opacity: 0;
+    }
+
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+@keyframes oasisSpin {
+    to {
+        transform: translateY(-50%) rotate(360deg);
+    }
+}
+
+/* ===== RESPONSIVE DESIGN ===== */
+@media (max-width: 768px) {
+    .oasis-tech-form .oasis-tech-container {
+        padding: 30px 20px;
+    }
+
+    .oasis-tech-form .tech-popup,
+    .oasis-org-form .popup,
+    .oasis-contributor-form .popup {
+        padding: 30px 25px;
+        width: 95%;
+    }
+
+    .oasis-tech-form .tick,
+    .oasis-org-form .tick,
+    .oasis-contributor-form .tick {
+        font-size: 40px;
+    }
+}
+
+@media (max-width: 600px) {
+
+    .oasis-contributor-form .container,
+    .oasis-org-form .oasis-org-container,
+    .oasis-tech-form .oasis-tech-container {
+        padding: 25px 15px;
+    }
+
+    .oasis-tech-form,
+    .oasis-org-form,
+    .oasis-contributor-form {
+        padding: 40px 15px;
+    }
+
+    h2 {
+        font-size: 1.3rem;
+        margin-bottom: 25px;
+    }
+}
+
+@media (max-width: 480px) {
+    .oasis-tech-form .option-label {
+        flex-wrap: wrap;
+    }
+
+    .oasis-tech-form .option-label input[type="checkbox"] {
+        margin-right: var(--oasis-spacing-xs);
+    }
+
+    .oasis-tech-form .tech-popup,
+    .oasis-org-form .popup,
+    .oasis-contributor-form .popup {
+        padding: 25px 20px;
+    }
+
+    .oasis-tech-form button,
+    .oasis-org-form button,
+    .oasis-contributor-form button {
+        padding: 12px;
+        font-size: var(--oasis-font-size-sm);
+    }
+}
+
+/* ===== PRINT STYLES ===== */
+@media print {
+
+    .oasis-tech-form,
+    .oasis-org-form,
+    .oasis-contributor-form {
+        background: white;
+        padding: 20px;
+    }
+
+    .oasis-tech-form .tech-overlay,
+    .oasis-org-form .overlay,
+    .oasis-contributor-form .overlay {
+        display: none !important;
+    }
+
+    button {
+        display: none !important;
+    }
+}
+
+/* ===== ACCESSIBILITY ===== */
+@media (prefers-reduced-motion: reduce) {
+
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+
+.oasis-tech-form button:focus-visible,
+.oasis-org-form button:focus-visible,
+.oasis-contributor-form button:focus-visible,
+.oasis-tech-form input:focus-visible,
+.oasis-org-form input:focus-visible,
+.oasis-contributor-form input:focus-visible {
+    outline: 2px solid var(--oasis-accent);
+    outline-offset: 2px;
+}

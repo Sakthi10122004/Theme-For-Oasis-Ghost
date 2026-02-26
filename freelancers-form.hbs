@@ -1,0 +1,75 @@
+{{!< default}} <div class="oasis-contributor-form">
+    <div class="oasis-form-intro">
+        <p>
+            OASIS is building a trusted network of tech service providers to support nonprofits with open-source
+            solutions.
+            By joining, you’ll get matched with business opportunities from social sector organisations looking for
+            ethical, impact-focused tech support.
+            Fill this quick form so we can understand your skills and match you with the right projects.
+            Let’s power social change through open tech.
+        </p>
+
+        <p class="oasis-form-link">
+            Visit us at
+            <a href="https://www.oasishq.org" target="_blank" rel="noopener">
+                www.oasishq.org
+            </a>
+        </p>
+    </div>
+    <div class="container">
+
+        <iframe name="hidden_iframe" id="hidden_iframe" style="display:none;"></iframe>
+
+        <h2>
+            Freelancers/Volunteers
+        </h2>
+
+        <form id="contributorForm"
+            action="https://docs.google.com/forms/d/e/1FAIpQLSfIdXLYJF1UDnGH6-Ya4Akylj3ujX_6c_NR-eoPiMJlk22izQ/formResponse"
+            method="POST" target="hidden_iframe">
+
+            <div class="form-group">
+                <label>Name *</label>
+                <input type="text" name="entry.1019023588" id="contributor_name" pattern="[A-Za-z .-]{2,50}"
+                    title="Only letters, spaces, dots and hyphens (2-50 characters)" placeholder="e.g., Alex Johnson"
+                    required>
+            </div>
+
+            <div class="form-group">
+                <label>Phone *</label>
+                <input type="tel" name="entry.1255077368" id="contributor_phone" pattern="[6-9][0-9]{9}" maxlength="10"
+                    inputmode="numeric" placeholder="e.g., 9876543210" required>
+            </div>
+
+            <div class="form-group">
+                <label>Mail *</label>
+                <input type="email" name="entry.1843735612" placeholder="e.g., alex@example.com" required>
+            </div>
+
+            <div class="form-group">
+                <label>Area of expertise *</label>
+                <input name="entry.1613848900" placeholder="e.g., Frontend Development, Data Analysis" required>
+            </div>
+
+            <div class="form-group">
+                <label>How would you like to contribute? *</label>
+                <textarea name="entry.618267979" placeholder="Describe how you'd like to help..." required></textarea>
+            </div>
+
+            <button type="submit">
+                Submit registration
+            </button>
+        </form>
+    </div>
+
+    <div class="overlay" id="overlay">
+        <div class="popup">
+            <div class="tick">✓</div>
+            <h3>Response Saved</h3>
+            <p>Thank you for your interest.</p>
+            <div class="countdown">
+                Redirecting in <span id="timer">5</span> seconds
+            </div>
+        </div>
+    </div>
+    </div>
