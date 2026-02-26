@@ -98,6 +98,9 @@
 
   /* Alias for legacy/typo compatibility */
   --color-page-background: var(--color-page-bg);
+
+  /* Dynamic Offsets */
+  --announcement-bar-height: 0px;
 }
 
 /* ======================================================
@@ -227,13 +230,19 @@ button {
   font-family: inherit;
 }
 
-/* Adjust header when Ghost's native announcement bar is present */
-:root:has(.gh-announcement-bar) .nebula-header,
-body:has(.gh-announcement-bar) .nebula-header,
-.gh-announcement-bar~.nebula-header,
-.gh-announcement-bar+.nebula-header {
-  top: calc(48px + 1rem) !important;
-  /* Slightly more space for the native bar */
+/* Adjust offsets when Ghost's native announcement bar is present */
+:root:has(.gh-announcement-bar),
+body:has(.gh-announcement-bar) {
+  --announcement-bar-height: 48px;
+}
+
+.gh-announcement-bar {
+  z-index: 4001 !important;
+}
+
+/* Base header top position adjusted by dynamic variable */
+.nebula-header {
+  top: calc(var(--announcement-bar-height) + 1rem) !important;
 }
 
 /* Adjust mobile nav position when native bar is present */
@@ -241,14 +250,9 @@ body:has(.gh-announcement-bar) .nebula-header,
 body:has(.gh-announcement-bar) .nebula-nav-horizontal,
 .gh-announcement-bar~.nebula-nav-horizontal,
 .gh-announcement-bar+.nebula-nav-horizontal {
-  top: calc(48px + 6.5rem) !important;
+  top: calc(var(--announcement-bar-height) + 6.5rem) !important;
 }
 
-/* Ensure the native bar is visible and header doesn't hide it */
-.gh-announcement-bar {
-  z-index: 4001 !important;
-  /* Move bar above header if necessary, but shifting is better */
-}
 
 /* ==============================================
    HEADER CONTAINER & LAYOUT
@@ -593,10 +597,10 @@ body:has(.gh-announcement-bar) .nebula-nav-horizontal,
 
   .nebula-nav-horizontal {
     position: fixed;
-    top: 6.5rem;
+    top: calc(var(--announcement-bar-height) + 5rem) !important;
     right: 2.5%;
     height: auto;
-    max-height: calc(100vh - 8rem);
+    max-height: calc(100dvh - var(--announcement-bar-height) - 6rem);
     width: 90%;
     max-width: 360px;
 

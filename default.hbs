@@ -120,36 +120,27 @@
 
       <div class="footer-brand-social">
         <div class="footer-social">
-
-          <a href="https://www.linkedin.com/company/oasishq" target="_blank" aria-label="LinkedIn">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-              stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <rect x="4" y="4" width="16" height="16" rx="2" />
-              <line x1="8" y1="11" x2="8" y2="16" />
-              <line x1="8" y1="8" x2="8" y2="8.01" />
-              <path d="M12 16v-5a2 2 0 0 1 2 -2a2 2 0 0 1 2 2v5" />
-            </svg>
+          {{#foreach @site.secondary_navigation}}
+          <a href="{{url}}" target="_blank" rel="noopener" aria-label="{{label}}">
+            {{#match url "~" "facebook.com"}}{{> "icons/facebook"}}
+            {{else match url "~" "twitter.com"}}{{> "icons/twitter"}}
+            {{else match url "~" "x.com"}}{{> "icons/twitter"}}
+            {{else match url "~" "instagram.com"}}{{> "icons/instagram"}}
+            {{else match url "~" "linkedin.com"}}{{> "icons/linkedin"}}
+            {{else match url "~" "youtube.com"}}{{> "icons/youtube"}}
+            {{else match url "~" "github.com"}}{{> "icons/github"}}
+            {{else match url "~" "tiktok.com"}}{{> "icons/tiktok"}}
+            {{else match url "~" "threads.net"}}{{> "icons/threads"}}
+            {{else match url "~" "mastodon"}}{{> "icons/mastodon"}}
+            {{else match url "~" "bsky.app"}}{{> "icons/bluesky"}}
+            {{else match url "~" "whatsapp.com"}}{{> "icons/whatsapp"}}
+            {{else match url "~" "wa.me"}}{{> "icons/whatsapp"}}
+            {{else match url "~" "chat.whatsapp"}}{{> "icons/whatsapp"}}
+            {{else}}
+            <span>{{label}}</span>
+            {{/match}}
           </a>
-
-          <a href="https://chat.whatsapp.com/ByCC1QMFniO40Yg4M3ex1W?mode=ems_copy_t" target="_blank"
-            aria-label="WhatsApp">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-              stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M3 21l1.65 -3.8a9 9 0 1 1 3.4 2.9l-5.05 .9" />
-              <path
-                d="M9 10a.5 .5 0 0 0 1 0v-1a.5 .5 0 0 0 -1 0v1a5 5 0 0 0 5 5h1a.5 .5 0 0 0 0 -1h-1a.5 .5 0 0 0 0 1" />
-            </svg>
-          </a>
-
-          <a href="https://www.instagram.com/hq_oasis?igsh=MTJjeno5ZmNmMjJsaw==" target="_blank" aria-label="Instagram">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-              stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <rect x="4" y="4" width="16" height="16" rx="4" />
-              <circle cx="12" cy="12" r="3" />
-              <line x1="16.5" y1="7.5" x2="16.5" y2="7.501" />
-            </svg>
-          </a>
-
+          {{/foreach}}
         </div>
       </div>
 
