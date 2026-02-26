@@ -412,8 +412,8 @@ body.has-announcement-bar {
 .nebula-nav-horizontal li.nav-current > a {
   color: var(--color-accent-1);
   background: var(--color-accent-2-light);
-  border-radius: 14px;
-  font-weight: 700; /* Optional: slight font emphasis */
+  border-radius: var(--radius-button); /* match hover */
+  font-weight: 700;
 }
 
 /* Submenu active item */
@@ -491,48 +491,36 @@ body.has-announcement-bar {
    ====================================================== */
 @media (min-width: 1151px) {
 
-  /* Make parent items flex so link + toggle sit side-by-side naturally */
+  /* Keep li normal */
   .nebula-nav-horizontal .menu-item-has-children {
-    display: flex;
-    align-items: center;
     position: relative;
-    padding: 0;
-    gap: 0;
   }
 
-  /* Link takes natural width */
-  .nebula-nav-horizontal .menu-item-has-children>a {
-    display: block;
-    margin: 0;
-    padding-right: 4px;
-    /* Small cushion before arrow */
-  }
-
-  /* Toggle arrow sits natively next to the link */
-  .menu-item-has-children>.submenu-toggle {
-    position: static !important;
-    display: flex !important;
-    width: 20px;
-    height: 20px;
-    padding: 2px;
-    margin: 0;
+  /* Make anchor wrap text cleanly */
+  .nebula-nav-horizontal .menu-item-has-children > a {
+    display: inline-flex;
     align-items: center;
     justify-content: center;
-    border-radius: 50%;
-    background: transparent !important;
-    transform: none !important;
+    padding: 0.5rem 1.75rem 0.5rem 1rem; /* extra right space */
   }
 
-  .menu-item-has-children>.submenu-toggle svg {
+  /* Position arrow inside the pill */
+  .menu-item-has-children > .submenu-toggle {
+    position: absolute !important;
+    right: 0.75rem;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 18px;
+    height: 18px;
+    padding: 0;
+    background: transparent !important;
+  }
+
+  .menu-item-has-children > .submenu-toggle svg {
     width: 14px;
     height: 14px;
-    transition: transform 0.3s ease;
   }
 
-  /* Rotate chevron when open */
-  .menu-item-has-children.open>.submenu-toggle svg {
-    transform: rotate(180deg);
-  }
 
   /* Submenu dropdown is absolutely positioned below the li */
   .nebula-nav-horizontal .menu-item-has-children>ul {
@@ -551,11 +539,16 @@ body.has-announcement-bar {
     display: flex !important;
   }
 
-  .nebula-nav-horizontal li ul a {
-  border-radius: 10px;   /* rounded square */
-  padding: 0.75rem 1.25rem;
+.nebula-nav-horizontal li ul a {
+  border-radius: var(--radius-button); /* make pill */
+  padding: 0.65rem 1.25rem;
   font-size: 0.95rem;
   transition: background 0.2s ease, color 0.2s ease;
+}
+
+/* Add spacing so pill does not touch container edges */
+.nebula-nav-horizontal li ul li {
+  padding: 0.25rem 0.5rem;
 }
 
 /* Add spacing so rounded edges are visible */
@@ -770,16 +763,16 @@ body.has-announcement-bar {
   }
 
   .nebula-nav-horizontal ul li a {
-    width: 100%;
-    padding: 1.1rem 3rem 1.1rem 0;
-    font-size: 1.15rem;
-    text-align: left;
-    border-radius: 0;
-    background-color: transparent;
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-  }
+  width: 100%;
+  padding: 0.9rem 1.2rem;
+  font-size: 1.1rem;
+  text-align: left;
+  border-radius: var(--radius-button); /* make pill */
+  background-color: transparent;
+  display: flex;
+  align-items: center;
+}
+
 
   /* Submenus */
   .nebula-nav-horizontal li ul,
