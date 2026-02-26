@@ -122,32 +122,6 @@
         {{navigation type="secondary"}}
       </nav>
 
-      <div class="footer-brand-social">
-        <div class="footer-social">
-          {{#foreach @site.secondary_navigation}}
-          <a href="{{url}}" target="_blank" rel="noopener" aria-label="{{label}}">
-            {{#match url "~" "facebook.com"}}{{> "icons/facebook"}}
-            {{else match url "~" "twitter.com"}}{{> "icons/twitter"}}
-            {{else match url "~" "x.com"}}{{> "icons/twitter"}}
-            {{else match url "~" "instagram.com"}}{{> "icons/instagram"}}
-            {{else match url "~" "linkedin.com"}}{{> "icons/linkedin"}}
-            {{else match url "~" "youtube.com"}}{{> "icons/youtube"}}
-            {{else match url "~" "github.com"}}{{> "icons/github"}}
-            {{else match url "~" "tiktok.com"}}{{> "icons/tiktok"}}
-            {{else match url "~" "threads.net"}}{{> "icons/threads"}}
-            {{else match url "~" "mastodon"}}{{> "icons/mastodon"}}
-            {{else match url "~" "bsky.app"}}{{> "icons/bluesky"}}
-            {{else match url "~" "whatsapp.com"}}{{> "icons/whatsapp"}}
-            {{else match url "~" "wa.me"}}{{> "icons/whatsapp"}}
-            {{else match url "~" "chat.whatsapp"}}{{> "icons/whatsapp"}}
-            {{else}}
-            <span>{{label}}</span>
-            {{/match}}
-          </a>
-          {{/foreach}}
-        </div>
-      </div>
-
       <p class="footer-copy">
         © {{date format="YYYY"}} {{@site.title}}. {{@custom.footer_license}}
       </p>
