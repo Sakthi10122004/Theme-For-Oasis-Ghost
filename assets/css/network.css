@@ -186,19 +186,16 @@
     min-height: 1.8rem;
 }
 
-/* Fixed arrow positioning - perfectly aligned at the top */
+/* Fixed checkmark positioning - naturally aligned at the top */
 .benefit-list li::before {
-    content: "→";
+    content: "✓";
     position: absolute;
     left: 0;
-    bottom: 1.5rem;
-    /* Pushes the arrow down slightly to align with the text */
+    top: 0;
     color: var(--color-accent-1);
-    font-weight: 700;
+    font-weight: 800;
     font-size: 1.2rem;
     line-height: 1.6;
-    width: 1.5rem;
-    text-align: left;
 }
 
 /* No hover effects on arrows */
@@ -213,12 +210,6 @@
 @media (min-width: 1025px) {
     .benefit-list li {
         padding-left: 2.2rem;
-    }
-
-    .benefit-list li::before {
-        font-size: 1.25rem;
-        width: 1.6rem;
-        line-height: 1.6;
     }
 }
 
@@ -238,13 +229,6 @@
         padding-left: 1.75rem;
         margin-bottom: 0.875rem;
         min-height: 1.6rem;
-    }
-
-    .benefit-list li::before {
-        font-size: 1.1rem;
-        width: 1.3rem;
-        line-height: 1.6;
-        bottom: 1.5rem;
     }
 }
 
@@ -270,13 +254,6 @@
         line-height: 1.5;
         min-height: 1.5rem;
     }
-
-    .benefit-list li::before {
-        font-size: 1rem;
-        width: 1.2rem;
-        line-height: 1.5;
-        bottom: 1.25rem;
-    }
 }
 
 /* Small mobile (480px and below) */
@@ -290,13 +267,6 @@
         font-size: 0.8125rem;
         min-height: 1.4rem;
         margin-bottom: 0.625rem;
-    }
-
-    .benefit-list li::before {
-        width: 1.1rem;
-        font-size: 0.9375rem;
-        line-height: 1.6;
-        bottom: 1.25rem;
     }
 }
 
