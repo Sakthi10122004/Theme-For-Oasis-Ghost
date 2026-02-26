@@ -120,8 +120,33 @@
             },
             "footer_email": {
                 "type": "text",
-                "default": "",
+                "default": "notifications@oasishq.org",
                 "description": "Footer contact email address"
+            },
+            "about_hero_image": {
+                "type": "image",
+                "label": "About Page Hero Image",
+                "description": "Upload image for About page hero section"
+            },
+            "bridge_image": {
+                "type": "image",
+                "label": "Bridge Illustration",
+                "description": "Upload image for Bridge section on home page"
+            },
+            "build_image": {
+                "type": "image",
+                "label": "Build Illustration",
+                "description": "Upload image for Build section on home page"
+            },
+            "belong_image": {
+                "type": "image",
+                "label": "Belong Illustration",
+                "description": "Upload image for Belong section on home page"
+            },
+            "network_hero_image": {
+                "type": "image",
+                "label": "Network Page Hero Image",
+                "description": "Upload image for Network page hero section"
             }
         },
         "posts_per_page": 100,

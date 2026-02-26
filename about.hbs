@@ -13,10 +13,9 @@
           transform the social sector.</p>
 
         <div class="heros-image-wrapper">
-          <img src="{{asset 'images/team.webp'}}"
-            srcset="{{asset 'images/team.webp'}} 1200w, {{asset 'images/team.webp'}} 600w"
-            sizes="(max-width: 600px) 100vw, 1200px" alt="Group photo at OASIS event" class="hero-image"
-            loading="eager">
+          <img
+            src="{{#if @custom.about_hero_image}}{{@custom.about_hero_image}}{{else}}{{asset 'images/team.webp'}}{{/if}}"
+            alt="Group photo at OASIS event" class="hero-image" loading="eager">
         </div>
 
         <h2 class="heros-context">Being long-time FOSS advocates, we knew high-quality, low-cost open tech was

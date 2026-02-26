@@ -36,8 +36,9 @@
       </div>
 
       <div class="hero-image-wrapper">
-        <img src="{{asset 'images/community_group.webp'}}" alt="OASIS Community" {{!-- width="900" height="800"
-          loading="eager" decoding="async" --}} class="hero-image" />
+        <img
+          src="{{#if @custom.network_hero_image}}{{@custom.network_hero_image}}{{else}}{{asset 'images/community_group.webp'}}{{/if}}"
+          alt="OASIS Community" class="hero-image" loading="eager" />
       </div>
     </section>
     <section class="who-section">

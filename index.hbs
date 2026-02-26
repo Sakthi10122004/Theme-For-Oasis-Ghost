@@ -124,7 +124,8 @@
             <div class="bbb-item">
                 <h4 class="bbb-banner">BRIDGE</h4>
                 <div class="bbb-img-wrapper">
-                    <img src="{{asset 'images/bridge.webp'}}" alt="Bridge illustration" loading="lazy" class="lazy-load"
+                    <img src="{{#if @custom.bridge_image}}{{@custom.bridge_image}}{{else}}{{asset 'images/bridge.webp'}}{{/if}}"
+                        alt="Bridge illustration" loading="lazy" class="lazy-load"
                         onload="this.classList.add('lazy-loaded')">
                 </div>
                 <div class="bbb-content">
@@ -135,7 +136,8 @@
             <div class="bbb-item">
                 <h4 class="bbb-banner">BUILD</h4>
                 <div class="bbb-img-wrapper">
-                    <img src="{{asset 'images/build.webp'}}" alt="Build illustration" loading="lazy" class="lazy-load"
+                    <img src="{{#if @custom.build_image}}{{@custom.build_image}}{{else}}{{asset 'images/build.webp'}}{{/if}}"
+                        alt="Build illustration" loading="lazy" class="lazy-load"
                         onload="this.classList.add('lazy-loaded')">
                 </div>
                 <div class="bbb-content">
@@ -146,7 +148,8 @@
             <div class="bbb-item">
                 <h4 class="bbb-banner">BELONG</h4>
                 <div class="bbb-img-wrapper">
-                    <img src="{{asset 'images/belong.webp'}}" alt="Belong illustration" loading="lazy" class="lazy-load"
+                    <img src="{{#if @custom.belong_image}}{{@custom.belong_image}}{{else}}{{asset 'images/belong.webp'}}{{/if}}"
+                        alt="Belong illustration" loading="lazy" class="lazy-load"
                         onload="this.classList.add('lazy-loaded')">
                 </div>
                 <div class="bbb-content">

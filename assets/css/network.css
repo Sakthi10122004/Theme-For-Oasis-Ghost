@@ -36,6 +36,8 @@
     line-height: 1.15;
     color: var(--color-text-primary);
     margin-bottom: 1.3rem;
+    text-align: center;
+    width: 100%;
 }
 
 .hero-highlight {

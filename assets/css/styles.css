@@ -230,27 +230,23 @@ button {
   font-family: inherit;
 }
 
-/* Adjust offsets when Ghost's native announcement bar is present */
-:root:has(.gh-announcement-bar),
-body:has(.gh-announcement-bar) {
-  --announcement-bar-height: 48px;
-}
-
+/* ==============================================
+   GHOST NATIVE ANNOUNCEMENT BAR SUPPORT
+   JS sets --announcement-bar-height and adds
+   body.has-announcement-bar. :has() is a fallback.
+   ============================================== */
 .gh-announcement-bar {
   z-index: 4001 !important;
 }
 
-/* Base header top position adjusted by dynamic variable */
-.nebula-header {
-  top: calc(var(--announcement-bar-height) + 1rem) !important;
+/* Fallback: CSS :has() for browsers that support it (sets a default until JS measures) */
+:root:has(.gh-announcement-bar) {
+  --announcement-bar-height: 48px;
 }
 
-/* Adjust mobile nav position when native bar is present */
-:root:has(.gh-announcement-bar) .nebula-nav-horizontal,
-body:has(.gh-announcement-bar) .nebula-nav-horizontal,
-.gh-announcement-bar~.nebula-nav-horizontal,
-.gh-announcement-bar+.nebula-nav-horizontal {
-  top: calc(var(--announcement-bar-height) + 6.5rem) !important;
+/* Primary: JS-driven class (always correct, uses measured height) */
+body.has-announcement-bar {
+  --announcement-bar-height: var(--announcement-bar-height-js, 48px);
 }
 
 
@@ -259,7 +255,7 @@ body:has(.gh-announcement-bar) .nebula-nav-horizontal,
    ============================================== */
 .nebula-header {
   position: fixed;
-  top: 1rem;
+  top: calc(var(--announcement-bar-height) + 1rem);
   left: 50%;
   transform: translateX(-50%);
   width: 95%;
@@ -893,7 +889,7 @@ body:has(.gh-announcement-bar) .nebula-nav-horizontal,
     border-radius: 1rem;
     padding: 0.75rem 1rem;
     min-height: 60px;
-    top: 0.5rem;
+    top: calc(var(--announcement-bar-height) + 0.5rem);
   }
 
   .logo img {
@@ -901,8 +897,8 @@ body:has(.gh-announcement-bar) .nebula-nav-horizontal,
   }
 
   .nebula-nav-horizontal {
-    top: 5rem;
-    max-height: calc(100vh - 6rem);
+    top: calc(var(--announcement-bar-height) + 5rem);
+    max-height: calc(100vh - var(--announcement-bar-height) - 6rem);
     padding-bottom: 2rem;
   }
 
@@ -1083,8 +1079,7 @@ body.modal-open {
    MAIN CONTENT & UTILITIES
    ============================================== */
 .cosmic-flow {
-  padding-top: 7.5rem;
-  /* Reduced to pull content closer to the floating header */
+  padding-top: calc(7.5rem + var(--announcement-bar-height));
   min-height: 100vh;
 }
 
@@ -1336,9 +1331,8 @@ body::after {
   top: 0;
   left: 0;
   width: 100%;
-  height: calc(var(--header-height) + 1.5rem);
+  height: calc(var(--header-height) + var(--announcement-bar-height) + 1.5rem);
   background: var(--color-page-bg);
   z-index: 998;
-  /* FIX 2: Changed from 999 to 998 so it sits BELOW the mobile menu */
   pointer-events: none;
 }

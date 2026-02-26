@@ -3,6 +3,66 @@
 // Critical JavaScript (loads immediately)
 
 (function () {
+  // =====================================================
+  //  GHOST NATIVE ANNOUNCEMENT BAR DETECTION
+  //  Dynamically measures the bar height and sets the
+  //  CSS variable so header + content offset correctly.
+  // =====================================================
+  (function detectAnnouncementBar() {
+    var root = document.documentElement;
+    var resizeObs = null;
+
+    function applyBarHeight(bar) {
+      var h = bar.getBoundingClientRect().height;
+      root.style.setProperty('--announcement-bar-height', h + 'px');
+      root.style.setProperty('--announcement-bar-height-js', h + 'px');
+      document.body.classList.add('has-announcement-bar');
+    }
+
+    function removeBarHeight() {
+      root.style.setProperty('--announcement-bar-height', '0px');
+      root.style.removeProperty('--announcement-bar-height-js');
+      document.body.classList.remove('has-announcement-bar');
+      if (resizeObs) { resizeObs.disconnect(); resizeObs = null; }
+    }
+
+    function watchBar(bar) {
+      applyBarHeight(bar);
+      if (typeof ResizeObserver !== 'undefined') {
+        resizeObs = new ResizeObserver(function () { applyBarHeight(bar); });
+        resizeObs.observe(bar);
+      }
+    }
+
+    // Check if bar already exists (e.g. cached DOM)
+    var existing = document.querySelector('.gh-announcement-bar');
+    if (existing) { watchBar(existing); }
+
+    // Watch for Ghost to inject it (or remove it)
+    new MutationObserver(function (mutations) {
+      for (var i = 0; i < mutations.length; i++) {
+        var added = mutations[i].addedNodes;
+        for (var j = 0; j < added.length; j++) {
+          var node = added[j];
+          if (node.nodeType === 1) {
+            if (node.classList && node.classList.contains('gh-announcement-bar')) {
+              watchBar(node); return;
+            }
+            var inner = node.querySelector && node.querySelector('.gh-announcement-bar');
+            if (inner) { watchBar(inner); return; }
+          }
+        }
+        var removed = mutations[i].removedNodes;
+        for (var k = 0; k < removed.length; k++) {
+          var rn = removed[k];
+          if (rn.nodeType === 1 && rn.classList && rn.classList.contains('gh-announcement-bar')) {
+            removeBarHeight(); return;
+          }
+        }
+      }
+    }).observe(document.documentElement, { childList: true, subtree: true });
+  })();
+
   // Load deferred CSS
   var deferred = document.querySelector('link[rel="preload"][as="style"]');
   if (deferred) {
@@ -154,10 +214,10 @@ window.addEventListener('load', function () {
     anchor.addEventListener('click', function (e) {
       const href = this.getAttribute('href');
 
-      // 👇 allow ghost portal
-      if (href.startsWith('#/portal')) return;
+      // Skip ghost portal links and bare "#" anchors
+      if (href === '#' || href.startsWith('#/portal')) return;
 
-      if (href.startsWith('#')) {
+      if (href.startsWith('#') && href.length > 1) {
         e.preventDefault();
         const target = document.querySelector(href);
         if (target) {
