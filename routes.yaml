@@ -7,6 +7,12 @@ routes:
     template: blog
   /events/:
     template: events
+  /freelancers-form/:
+    template: freelancers-form
+  /non-profits-form/:
+    template: non-profits-form
+  /tech-vendor-form/:
+    template: tech-vendor-form
 collections:
   /:
     permalink: /{slug}/
@@ -15,4 +21,3 @@ collections:
 taxonomies:
   tag: /tag/{slug}/
   author: /author/{slug}/
-

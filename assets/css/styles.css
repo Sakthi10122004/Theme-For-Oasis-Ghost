@@ -193,6 +193,24 @@ body.menu-open {
   overflow: hidden;
 }
 
+/* Blur everything except the header + nav when menu is open */
+@media (max-width: 1150px) {
+
+  body.menu-open .cosmic-flow,
+  body.menu-open .stack-footer {
+    filter: blur(4px);
+    transition: filter 0.3s ease;
+    pointer-events: none;
+  }
+}
+
+/* Smooth unblur when menu closes */
+body:not(.menu-open) .cosmic-flow,
+body:not(.menu-open) .stack-footer {
+  filter: blur(0px);
+  transition: filter 0.3s ease;
+}
+
 /* ======================================================
    TYPOGRAPHY UTILITIES
    ====================================================== */
@@ -664,51 +682,74 @@ body.has-announcement-bar {
 }
 
 /* ==========================================
-   CLEAN SLIDE-IN MOBILE NAV
+   CLEAN SLIDE-IN MOBILE NAV - UPDATED
+   Now matches header alignment exactly
    ========================================== */
 @media (max-width: 1150px) {
 
   .nebula-nav-horizontal {
     position: fixed;
-    top: calc(var(--announcement-bar-height) + 5rem) !important;
-    right: 2.5%;
-    height: auto;
-    max-height: calc(100dvh - var(--announcement-bar-height) - 6rem);
-    width: 90%;
-    max-width: 360px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+    max-width: 87.5rem;
+
+    top: calc(var(--announcement-bar-height) + var(--header-height) + 1rem);
+    max-height: calc(100dvh - var(--announcement-bar-height) - var(--header-height) - 3rem);
 
     background: var(--color-page-bg);
-    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
-    border-radius: 1.5rem;
+    border-radius: 1.25rem;
     border: 1px solid var(--color-border-light);
+    box-shadow: 0 12px 35px rgba(0, 0, 0, 0.15);
 
-    transform: translateX(120%);
     visibility: hidden;
+    opacity: 0;
     pointer-events: none;
-    transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1), visibility 0.4s;
+
+    /* Slide-down entrance: clip from top inward */
+    clip-path: inset(0 0 100% 0 round 1.25rem);
+    transition:
+      opacity 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+      clip-path 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+      visibility 0s linear 0.35s;
 
     display: flex;
     flex-direction: column;
-    justify-content: flex-start;
-
-    padding: 1.5rem;
+    padding: 0;
     overflow-y: auto;
     z-index: 2000;
   }
 
   .nebula-nav-horizontal.active {
-    transform: translateX(0);
     visibility: visible;
+    opacity: 1;
     pointer-events: auto;
+    clip-path: inset(0 0 0% 0 round 1.25rem);
+    transition:
+      opacity 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+      clip-path 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+      visibility 0s linear 0s;
   }
 
   body.menu-open::before {
     content: "";
     position: fixed;
     inset: 0;
-    background: rgba(0, 0, 0, 0.4);
+    background: rgba(0, 0, 0, 0.3);
     backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
     z-index: 1500;
+    animation: backdropFadeIn 0.3s ease forwards;
+  }
+
+  @keyframes backdropFadeIn {
+    from {
+      opacity: 0;
+    }
+
+    to {
+      opacity: 1;
+    }
   }
 
   body.menu-open {
@@ -723,6 +764,12 @@ body.has-announcement-bar {
   /* Show hamburger on mobile */
   .hamburger {
     display: flex;
+  }
+
+  /* Uniform header style across all mobile/tablet breakpoints */
+  .nebula-header {
+    border-radius: 1.5rem;
+    padding: 0.75rem 1.25rem;
   }
 }
 
@@ -754,6 +801,11 @@ body.has-announcement-bar {
     width: 100%;
   }
 
+  /* Only add top spacing to the very first item, so it sits flush like others  */
+  .nebula-nav-horizontal>ul>li:first-child {
+    padding-top: 0.25rem;
+  }
+
   .nebula-nav-horizontal ul li {
     width: 100%;
     border-bottom: 1px solid var(--color-border-light);
@@ -767,8 +819,8 @@ body.has-announcement-bar {
 
   .nebula-nav-horizontal ul li a {
     width: 100%;
-    padding: 0.9rem 1.2rem;
-    font-size: 1.1rem;
+    padding: 0.7rem 1.2rem;
+    font-size: 1rem;
     text-align: left;
     border-radius: var(--radius-button);
     /* make pill */
@@ -832,14 +884,14 @@ body.has-announcement-bar {
     border-bottom: none;
   }
 
-  /* Cleaner mobile submenu links */
+  /* Mobile submenu links — uniform with parent items */
   .nebula-nav-horizontal li ul a {
-    padding: 0.85rem 0 0.85rem 2rem;
-    font-size: 0.98rem;
+    padding: 0.7rem 1.2rem 0.7rem 2.2rem;
+    font-size: 0.97rem;
     font-weight: 500;
     color: var(--color-text-secondary);
     background: transparent;
-    border-radius: 10px;
+    border-radius: var(--radius-button);
     transition: background 0.2s ease, color 0.2s ease;
   }
 
@@ -866,11 +918,16 @@ body.has-announcement-bar {
   .nebula-nav-horizontal .mobile-extra-items {
     display: flex;
     flex-direction: column;
-    gap: 1.25rem;
-    padding-top: 1.5rem;
-    margin-top: 0.5rem;
+    gap: 1.2rem;
+    padding-top: 1rem;
+    padding-bottom: 1.5rem;
+    padding-left: 1.2rem;
+    padding-right: 1.2rem;
+    /* Safari overflow fix: padding on child, not parent */
+    margin-top: 0;
     border-top: 1px solid var(--color-border-light);
     width: 100%;
+    /* full-width so border goes edge-to-edge */
   }
 
   .nebula-nav-horizontal .mobile-extra-items .gh-search-icon {
@@ -939,10 +996,14 @@ body.has-announcement-bar {
    MOBILE (768px and below) - Additional tweaks
    ====================================================== */
 @media (max-width: 768px) {
+
+  /* Override --header-height so every calc() below uses the real 60px mobile value */
+  :root {
+    --header-height: 60px;
+  }
+
   .nebula-header {
-    border-radius: 1rem;
-    padding: 0.75rem 1rem;
-    min-height: 60px;
+    height: var(--header-height);
     top: calc(var(--announcement-bar-height) + 0.5rem);
   }
 
@@ -950,9 +1011,10 @@ body.has-announcement-bar {
     height: 2.2rem;
   }
 
+  /* nav top and max-height now correctly derived from --header-height: 60px */
   .nebula-nav-horizontal {
-    top: calc(var(--announcement-bar-height) + 5rem);
-    max-height: calc(100vh - var(--announcement-bar-height) - 6rem);
+    top: calc(var(--announcement-bar-height) + var(--header-height) + 0.5rem);
+    max-height: calc(100dvh - var(--announcement-bar-height) - var(--header-height) - 0.5rem);
     padding-bottom: 2rem;
   }
 
@@ -1395,14 +1457,36 @@ body.loaded::before {
   display: none !important;
 }
 
-body::after {
+body:not(.menu-open)::after {
   content: "";
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
-  height: calc(var(--header-height) + var(--announcement-bar-height) + 1.5rem);
+  height: calc(var(--header-height) + var(--announcement-bar-height));
   background: var(--color-page-bg);
   z-index: 998;
   pointer-events: none;
+}
+
+body.menu-open::after {
+  display: none !important;
+}
+
+@media (max-width: 1150px) {
+  body.menu-open .nebula-header {
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+    /* Suppress downward shadow bleed into the seam */
+    box-shadow: 0 0 0 rgba(0, 0, 0, 0);
+  }
+
+  body.menu-open .nebula-nav-horizontal {
+    /* Move flush to header bottom — remove the 1rem floating gap */
+    top: calc(var(--announcement-bar-height) + var(--header-height));
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+    /* Active clip-path must also have flat top corners */
+    clip-path: inset(0 0 0% 0 round 0 0 1.25rem 1.25rem) !important;
+  }
 }
