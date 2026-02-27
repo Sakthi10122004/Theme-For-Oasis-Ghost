@@ -177,13 +177,24 @@ document.documentElement.classList.add("js-ready");
 
             $mobileNav.on('touchend.fastNav', 'a', function (e) {
                 if (_touchMoved) return; // was a scroll, not a tap
+
+                const rawHref = this.getAttribute('href') || '';
                 const href = this.href;
-                if (href && href.startsWith(window.location.origin) &&
-                    !$(this).parent().hasClass('menu-item-has-children')) {
-                    e.preventDefault();
-                    // Navigate directly — bypasses jQuery click overhead entirely
-                    window.location.href = href;
+
+                // Skip: hash links, portal links, JS-trigger classes, non-internal, parent items
+                if (!href ||
+                    rawHref === '#' ||
+                    rawHref.startsWith('#') ||
+                    rawHref.includes('/portal/') ||
+                    this.classList.contains('js-get-started') ||
+                    this.classList.contains('js-portal') ||
+                    !href.startsWith(window.location.origin) ||
+                    $(this).parent().hasClass('menu-item-has-children')) {
+                    return; // let default click/Ghost handler take over
                 }
+
+                e.preventDefault();
+                window.location.href = href;
             });
 
             $mobileNav.on('click.mobileMenu', 'a', function (e) {
