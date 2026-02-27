@@ -193,22 +193,14 @@ body.menu-open {
   overflow: hidden;
 }
 
-/* Blur everything except the header + nav when menu is open */
+/* Block interaction with page content while menu is open.
+   NO filter:blur — it forces GPU layer recompositing which glitches on mobile. */
 @media (max-width: 1150px) {
 
   body.menu-open .cosmic-flow,
   body.menu-open .stack-footer {
-    filter: blur(4px);
-    transition: filter 0.3s ease;
     pointer-events: none;
   }
-}
-
-/* Smooth unblur when menu closes */
-body:not(.menu-open) .cosmic-flow,
-body:not(.menu-open) .stack-footer {
-  filter: blur(0px);
-  transition: filter 0.3s ease;
 }
 
 /* ======================================================
@@ -706,12 +698,8 @@ body.has-announcement-bar {
     opacity: 0;
     pointer-events: none;
 
-    /* Slide-down entrance: clip from top inward */
-    clip-path: inset(0 0 100% 0 round 1.25rem);
-    transition:
-      opacity 0.35s cubic-bezier(0.22, 1, 0.36, 1),
-      clip-path 0.35s cubic-bezier(0.22, 1, 0.36, 1),
-      visibility 0s linear 0.35s;
+    /* No transition on close — instant disappear prevents navigation glitch */
+    transition: none;
 
     display: flex;
     flex-direction: column;
@@ -724,22 +712,18 @@ body.has-announcement-bar {
     visibility: visible;
     opacity: 1;
     pointer-events: auto;
-    clip-path: inset(0 0 0% 0 round 1.25rem);
-    transition:
-      opacity 0.35s cubic-bezier(0.22, 1, 0.36, 1),
-      clip-path 0.35s cubic-bezier(0.22, 1, 0.36, 1),
-      visibility 0s linear 0s;
+    /* Fade in only when opening */
+    transition: opacity 0.25s ease;
   }
 
   body.menu-open::before {
     content: "";
     position: fixed;
     inset: 0;
-    background: rgba(0, 0, 0, 0.3);
-    backdrop-filter: blur(6px);
-    -webkit-backdrop-filter: blur(6px);
+    /* Simple dark tint — no backdrop-filter blur (GPU-intensive, delays nav handoff on mobile) */
+    background: rgba(0, 0, 0, 0.45);
     z-index: 1500;
-    animation: backdropFadeIn 0.3s ease forwards;
+    animation: backdropFadeIn 0.25s ease forwards;
   }
 
   @keyframes backdropFadeIn {
@@ -770,6 +754,12 @@ body.has-announcement-bar {
   .nebula-header {
     border-radius: 1.5rem;
     padding: 0.75rem 1.25rem;
+  }
+
+  /* Eliminate iOS 300ms tap delay on all nav links */
+  .nebula-nav-horizontal a,
+  .nebula-nav-horizontal button {
+    touch-action: manipulation;
   }
 }
 
@@ -1437,25 +1427,8 @@ body {
   position: relative;
 }
 
-body::before {
-  content: '';
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100vh;
-  background: var(--page-load-cover);
-  z-index: 9999;
-  opacity: 1;
-  transition: opacity 0.08s cubic-bezier(0.4, 0, 1, 1);
-}
-
-/* ==============================================
-   FINAL FIX 2: LOWER Z-INDEX OF PAGE OVERLAY
-   ============================================== */
-body.loaded::before {
-  display: none !important;
-}
+/* body::before page-load cover removed — the inline critical CSS opacity:0
+   on .nebula-header and .cosmic-flow already prevents FOUC without any flash. */
 
 body:not(.menu-open)::after {
   content: "";
@@ -1486,7 +1459,5 @@ body.menu-open::after {
     top: calc(var(--announcement-bar-height) + var(--header-height));
     border-top-left-radius: 0;
     border-top-right-radius: 0;
-    /* Active clip-path must also have flat top corners */
-    clip-path: inset(0 0 0% 0 round 0 0 1.25rem 1.25rem) !important;
   }
 }

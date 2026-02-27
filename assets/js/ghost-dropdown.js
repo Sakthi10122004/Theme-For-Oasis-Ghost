@@ -142,38 +142,69 @@ document.documentElement.classList.add("js-ready");
                 $body.toggleClass('menu-open');
             });
 
+            // ─── INSTANT NAVIGATION: prefetch on touchstart, navigate on touchend ─────
+            // Fires 100-200ms BEFORE click registers, so the page starts loading
+            // the moment a finger touches the link. Navigation feels instantaneous.
+            let _touchMoved = false;
+            let _touchStartY = 0;
+
+            $mobileNav.on('touchstart.fastNav', 'a', function (e) {
+                const touch = e.originalEvent.touches[0];
+                _touchStartY = touch.clientY;
+                _touchMoved = false;
+
+                const href = this.href;
+                // Only prefetch same-origin internal links
+                if (href && href.startsWith(window.location.origin) &&
+                    !$(this).parent().hasClass('menu-item-has-children')) {
+                    // Prefetch the target page immediately on first touch
+                    const existing = document.querySelector(`link[rel="prefetch"][href="${href}"]`);
+                    if (!existing) {
+                        const prefetch = document.createElement('link');
+                        prefetch.rel = 'prefetch';
+                        prefetch.href = href;
+                        document.head.appendChild(prefetch);
+                    }
+                }
+            });
+
+            $mobileNav.on('touchmove.fastNav', 'a', function (e) {
+                // Detect scroll so we don't navigate when user is scrolling
+                if (Math.abs(e.originalEvent.touches[0].clientY - _touchStartY) > 8) {
+                    _touchMoved = true;
+                }
+            });
+
+            $mobileNav.on('touchend.fastNav', 'a', function (e) {
+                if (_touchMoved) return; // was a scroll, not a tap
+                const href = this.href;
+                if (href && href.startsWith(window.location.origin) &&
+                    !$(this).parent().hasClass('menu-item-has-children')) {
+                    e.preventDefault();
+                    // Navigate directly — bypasses jQuery click overhead entirely
+                    window.location.href = href;
+                }
+            });
+
             $mobileNav.on('click.mobileMenu', 'a', function (e) {
-                // Fixed - submenu links MUST navigate
+                // Submenu links: navigate immediately
                 if ($(this).closest('.ghost-submenu').length) {
                     return true;
                 }
 
-                // Parent item with children
+                // Parent item with children on mobile: open submenu, then navigate
                 if ($(window).width() <= 1150 && $(this).parent().hasClass('menu-item-has-children')) {
-
-    const $parent = $(this).parent();
-
-    // Always open submenu visually
-    $parent.siblings('.menu-item-has-children.open').removeClass('open');
-    $parent.addClass('open');
-
-    // Close mobile menu before navigating
-    $('.nebula-nav-horizontal').removeClass('active');
-    $('.hamburger').removeClass('active');
-    $('body').removeClass('menu-open');
-
-    return true; // allow navigation immediately
-}
+                    const $parent = $(this).parent();
+                    $parent.siblings('.menu-item-has-children.open').removeClass('open');
+                    $parent.addClass('open');
+                    return true;
+                }
 
                 if ($(e.target).closest('svg').length > 0) {
                     return;
                 }
 
-                if (!$(this).parent().hasClass('menu-item-has-children')) {
-                    $mobileNav.removeClass('active');
-                    $hamburger.removeClass('active');
-                    $body.removeClass('menu-open');
-                }
+                return true;
             });
 
             $(document).on('click.mobileMenu', function (e) {

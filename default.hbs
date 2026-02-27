@@ -8,26 +8,19 @@
   <meta name="x-color-scheme" content="{{@custom.color_scheme}}">
 
   <title>{{meta_title}}</title>
-  {{!-- Critical CSS to prevent FOUC (Flash of Unstyled Content) --}}
+  {{!-- Add header-ready synchronously so content is NEVER hidden during navigation --}}
   <style>
-    /* Unified Reveal: Hold entire page until header is ready */
-    .nebula-header,
-    .cosmic-flow {
-      opacity: 0 !important;
-      visibility: hidden !important;
-      will-change: opacity, transform;
-    }
-
-    /* Simultaneous bloom for professional look */
-    .header-ready .nebula-header,
-    .header-ready .cosmic-flow {
-      opacity: 1 !important;
-      visibility: visible !important;
-      transition: opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+    /* Only prevent FOUC for nav elements that JS must initialise */
+    .nebula-nav-horizontal:not(.nav-ready) .menu-item-has-children>ul {
+      display: none !important;
     }
   </style>
-  {{block "head"}}
-  <script>document.documentElement.classList.add("js-ready");</script>
+  <script>
+    // Runs synchronously in <head> — before any HTML is painted.
+    // header-ready is set here so .cosmic-flow and .nebula-header
+    // are NEVER hidden, eliminating the blank-screen flash on navigation.
+    document.documentElement.classList.add('js-ready', 'header-ready');
+  </script>
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <script src="{{asset "js/script.js"}}" defer></script>
   <script src="{{asset "js/ghost-dropdown.js"}}" defer></script>
@@ -120,7 +113,7 @@
     <div class="footer-inner">
 
       <nav class="footer-nav-secondary">
-         {{navigation type="secondary"}}
+        {{navigation type="secondary"}}
       </nav>
 
       <p class="footer-copy">
