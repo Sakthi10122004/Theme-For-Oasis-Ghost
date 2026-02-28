@@ -226,7 +226,8 @@
 /* Mobile Large */
 @media (max-width: 768px) {
   .hero-orbit {
-    padding: 3rem 4%;
+    /* Remove top padding — cosmic-flow already clears the fixed header */
+    padding: 0 4% 2rem;
     gap: 2.5rem;
   }
 
@@ -253,7 +254,7 @@
 /* Mobile */
 @media (max-width: 480px) {
   .hero-orbit {
-    padding: 2rem 1rem;
+    padding: 0 1rem 1.5rem;
     gap: 2rem;
   }
 
@@ -282,7 +283,7 @@
 /* Small Mobile */
 @media (max-width: 360px) {
   .hero-orbit {
-    padding: 1.5rem 0.75rem;
+    padding: 0 0.75rem 1.25rem;
   }
 
   .hero-title {

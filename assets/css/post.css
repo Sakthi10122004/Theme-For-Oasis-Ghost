@@ -182,7 +182,8 @@
   }
 
   .article {
-    padding: 40px 0;
+    /* Remove top padding — cosmic-flow already clears the fixed header */
+    padding: 0 0 30px;
   }
 
   .article-header {

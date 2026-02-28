@@ -226,7 +226,8 @@
 /* Mobile (1 Column) */
 @media (max-width: 768px) {
     .page-wrapper {
-        padding: 2rem 0;
+        /* Remove top padding — cosmic-flow already clears the fixed header */
+        padding: 0 0 2rem;
     }
 
     .page-content:has(.kg-file-card) {

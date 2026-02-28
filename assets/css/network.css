@@ -58,15 +58,15 @@
     color: var(--color-text-muted);
 }
 
-/* Image block (perfectly centered) */
-.hero-image-wrapper {
+/* Image block — scoped to network page only */
+.oasis-community .hero-image-wrapper {
     width: min(90%, 55%, 1600px);
     margin: clamp(1rem, 3vw, 2rem) auto;
     display: flex;
     justify-content: center;
 }
 
-.hero-image {
+.oasis-community .hero-image {
     width: 100%;
     height: auto;
     max-height: min(560px, 60vh);
@@ -607,7 +607,7 @@
 
 /* Extra large devices (large desktops, 1200px and up) */
 @media (min-width: 1200px) {
-    .hero-image-wrapper {
+    .oasis-community .hero-image-wrapper {
         width: 55%;
     }
 }
@@ -618,43 +618,45 @@
 
 /* Mobile (767px and below) - Increased hero image size */
 @media (max-width: 767px) {
-    .hero-image-wrapper {
+
+    /* Remove top padding — cosmic-flow already clears the fixed header */
+    .hero {
+        padding-top: 0;
+    }
+
+    .oasis-community .hero-image-wrapper {
         width: 100%;
-        /* Full width on mobile */
         margin: 1.5rem auto 1rem;
     }
 
-    .hero-image {
+    .oasis-community .hero-image {
         max-height: 70vh;
-        /* Increased from 60vh to 70vh */
         border-radius: 1.5rem;
     }
 }
 
 /* Small mobile (480px and below) - Even larger */
 @media (max-width: 480px) {
-    .hero-image-wrapper {
+    .oasis-community .hero-image-wrapper {
         width: 100%;
         margin: 1rem auto 0.5rem;
     }
 
-    .hero-image {
+    .oasis-community .hero-image {
         max-height: 75vh;
-        /* Increased to 75vh for small mobile */
         border-radius: 1.2rem;
     }
 }
 
 /* Very small mobile (375px and below) */
 @media (max-width: 375px) {
-    .hero-image-wrapper {
+    .oasis-community .hero-image-wrapper {
         width: 100%;
         margin: 0.75rem auto 0.25rem;
     }
 
-    .hero-image {
+    .oasis-community .hero-image {
         max-height: 80vh;
-        /* Even larger for very small screens */
         border-radius: 1rem;
     }
 }
@@ -698,11 +700,11 @@
         padding: 1.5rem 1rem 0.5rem;
     }
 
-    .hero-image-wrapper {
+    .oasis-community .hero-image-wrapper {
         max-height: 60vh;
     }
 
-    .hero-image {
+    .oasis-community .hero-image {
         max-height: 60vh;
     }
 }
@@ -713,7 +715,7 @@
 
 @media (-webkit-min-device-pixel-ratio: 2),
 (min-resolution: 192dpi) {
-    .hero-image {
+    .oasis-community .hero-image {
         image-rendering: -webkit-optimize-contrast;
         image-rendering: crisp-edges;
     }

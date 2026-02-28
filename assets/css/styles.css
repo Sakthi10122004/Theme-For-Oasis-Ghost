@@ -1015,6 +1015,11 @@ body.has-announcement-bar {
   .submenu-toggle {
     top: 1rem;
   }
+
+  /* Fix gap: align content start exactly with header bottom — each page's own section padding provides breathing room */
+  .cosmic-flow {
+    padding-top: calc(var(--announcement-bar-height) + var(--header-height) + 0.5rem);
+  }
 }
 
 @media (max-width: 400px) {

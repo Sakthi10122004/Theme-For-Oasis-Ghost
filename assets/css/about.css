@@ -61,15 +61,16 @@
     margin: 0 auto clamp(20px, 4vw, 40px) auto;
     border-radius: clamp(8px, 2vw, 16px);
     overflow: hidden;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.12);
     animation: fadeIn 0.6s ease-out 0.2s backwards;
+    /* No fixed height — wrapper fits the image naturally */
 }
 
-.heros-image {
+/* Full image, no cropping — scales to container width at any screen/zoom size */
+.hero-image {
     width: 100%;
-    display: flex;
-    justify-content: center;
-    aspect-ratio: 16 / 9;
+    height: auto;
+    display: block;
 }
 
 .heros-context {
@@ -557,10 +558,12 @@
     .mission-card {
         padding: clamp(18px, 2.5vw, 25px);
     }
+
 }
 
 /* Large Mobile */
 @media (max-width: 768px) {
+
     .timeline-row {
         grid-template-columns: 1fr;
         gap: clamp(25px, 4vw, 35px);
@@ -599,6 +602,11 @@
     .mission-card:nth-child(3) {
         grid-column: auto;
         max-width: 100%;
+    }
+
+    .heros-image-wrapper {
+        max-width: 100%;
+        border-radius: clamp(6px, 2vw, 12px);
     }
 }
 
