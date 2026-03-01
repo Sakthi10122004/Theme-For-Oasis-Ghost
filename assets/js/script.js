@@ -169,6 +169,53 @@
       }, stepTime);
     }
   }
+
+  // ── Global broken-image handler ─────────────────────────────────────────
+  // Registered synchronously (before images load) so no failure is missed.
+  // Matches the blog page placeholder style: muted bg + red circle icon.
+  (function () {
+    function applyPlaceholder(img) {
+      if (img.dataset.brokenHandled) return;
+      img.dataset.brokenHandled = '1';
+
+      // Use naturalWidth/Height if available, else the rendered size, else fallback
+      var w = img.naturalWidth || img.offsetWidth || img.width || 400;
+      var h = img.naturalHeight || img.offsetHeight || img.height || 300;
+      if (w < 1) w = 400;
+      if (h < 1) h = 300;
+
+      // Build an SVG that looks like the blog placeholder:
+      // muted background + centred red circle — same as .blog-card-image.placeholder
+      var svgContent =
+        '<svg xmlns="http://www.w3.org/2000/svg" width="' + w + '" height="' + h + '">' +
+        '<rect width="100%" height="100%" fill="#ebe9de"/>' +
+        '<circle cx="50%" cy="50%" r="15%" fill="#fd635a" opacity="0.4"/>' +
+        '</svg>';
+
+      // Swap src — the <img> stays in the DOM so layout is unchanged
+      img.src = 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(svgContent);
+
+      // Ensure it still fills its container properly
+      img.style.objectFit = 'cover';
+      img.removeAttribute('srcset');
+    }
+
+    // (A) Live listener — catches every img error as it happens
+    document.addEventListener('error', function (e) {
+      if (e.target && e.target.tagName === 'IMG') {
+        applyPlaceholder(e.target);
+      }
+    }, true);
+
+    // (B) Sweep — catches images that already errored before JS ran
+    document.addEventListener('DOMContentLoaded', function () {
+      document.querySelectorAll('img').forEach(function (img) {
+        if (img.complete && img.naturalWidth === 0 && img.src && img.src !== window.location.href) {
+          applyPlaceholder(img);
+        }
+      });
+    });
+  })();
 })();
 
 // Deferred JavaScript (loads after page is interactive)
@@ -310,19 +357,7 @@ window.addEventListener('load', function () {
     });
   });
 
-  // Add error handling for images
-  document.addEventListener('error', function (e) {
-    if (e.target.tagName === 'IMG') {
-      e.target.style.opacity = '0';
-      setTimeout(() => {
-        e.target.style.display = 'none';
-        const parent = e.target.parentElement;
-        if (parent && parent.classList.contains('bbb-img')) {
-          parent.innerHTML = '<div style="width:100%;height:100%;background:#f0f0f0;border-radius:12px;display:flex;align-items:center;justify-content:center;color:#999;">Image not available</div>';
-        }
-      }, 300);
-    }
-  }, true);
+
 
   // TAG PAGE JS
   // ================================
