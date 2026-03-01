@@ -564,6 +564,11 @@
 /* Large Mobile */
 @media (max-width: 768px) {
 
+    /* Remove top padding — cosmic-flow already clears the fixed header */
+    .heros-section {
+        padding-top: 0;
+    }
+
     .timeline-row {
         grid-template-columns: 1fr;
         gap: clamp(25px, 4vw, 35px);

@@ -500,19 +500,3 @@
   gap: 0.5rem;
   margin-top: 0.5rem;
 }
-
-/* Animation for loading events */
-@keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-.event-row {
-  animation: fadeInUp 0.5s ease forwards;
-}

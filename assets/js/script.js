@@ -8,37 +8,79 @@
   //  Dynamically measures the bar height and sets the
   //  CSS variable so header + content offset correctly.
   // =====================================================
-  (function detectAnnouncementBar() {
-    var root = document.documentElement;
-    var resizeObs = null;
+  (function initAnnouncementPopup() {
+    // =====================================================
+    //  ANNOUNCEMENT POPUP
+    //  Intercepts Ghost's native .gh-announcement-bar,
+    //  hides it, and shows a branded popup modal instead.
+    //  Shown once per session via sessionStorage.
+    // =====================================================
 
-    function applyBarHeight(bar) {
-      var h = bar.getBoundingClientRect().height;
-      root.style.setProperty('--announcement-bar-height', h + 'px');
-      root.style.setProperty('--announcement-bar-height-js', h + 'px');
-      document.body.classList.add('has-announcement-bar');
+    var SESSION_KEY = 'oasis_announcement_seen';
+
+    function getBarText(bar) {
+      // Ghost puts the message in .gh-announcement-bar-content or as direct text
+      var inner = bar.querySelector('.gh-announcement-bar-content');
+      return (inner ? inner.innerHTML : bar.innerHTML).trim();
     }
 
-    function removeBarHeight() {
-      root.style.setProperty('--announcement-bar-height', '0px');
-      root.style.removeProperty('--announcement-bar-height-js');
-      document.body.classList.remove('has-announcement-bar');
-      if (resizeObs) { resizeObs.disconnect(); resizeObs = null; }
-    }
+    function showPopup(bar) {
+      // Hide the native bar immediately (before paint if possible)
+      bar.style.setProperty('display', 'none', 'important');
 
-    function watchBar(bar) {
-      applyBarHeight(bar);
-      if (typeof ResizeObserver !== 'undefined') {
-        resizeObs = new ResizeObserver(function () { applyBarHeight(bar); });
-        resizeObs.observe(bar);
+      // Don't show again this session
+      if (sessionStorage.getItem(SESSION_KEY)) return;
+
+      var msg = getBarText(bar);
+      if (!msg) return; // Nothing to display
+
+      var popup = document.getElementById('announcementPopup');
+      var body = document.getElementById('announcementPopupBody');
+      var backdrop = document.getElementById('announcementPopupBackdrop');
+      var closeBtn = document.getElementById('announcementPopupClose');
+      var dismissBtn = document.getElementById('announcementPopupDismiss');
+
+      if (!popup || !body) return;
+
+      body.innerHTML = msg;
+      popup.classList.add('active');
+      popup.removeAttribute('inert');
+      if (backdrop) backdrop.classList.add('active');
+      document.body.classList.add('announcement-popup-open');
+
+      function closePopup() {
+        // Move focus away before hiding so no descendant is focused while inert
+        if (popup.contains(document.activeElement)) {
+          document.activeElement.blur();
+        }
+        popup.classList.remove('active');
+        popup.setAttribute('inert', '');
+        if (backdrop) backdrop.classList.remove('active');
+        document.body.classList.remove('announcement-popup-open');
+        sessionStorage.setItem(SESSION_KEY, '1');
       }
+
+      if (closeBtn) closeBtn.addEventListener('click', closePopup);
+      if (dismissBtn) dismissBtn.addEventListener('click', closePopup);
+      if (backdrop) backdrop.addEventListener('click', closePopup);
+
+      document.addEventListener('keydown', function onKey(e) {
+        if (e.key === 'Escape') {
+          closePopup();
+          document.removeEventListener('keydown', onKey);
+        }
+      });
     }
 
-    // Check if bar already exists (e.g. cached DOM)
-    var existing = document.querySelector('.gh-announcement-bar');
-    if (existing) { watchBar(existing); }
+    function hideNativeBar(bar) {
+      bar.style.setProperty('display', 'none', 'important');
+    }
 
-    // Watch for Ghost to inject it (or remove it)
+    // Check if bar already exists (cached DOM / pre-rendered)
+    var existing = document.querySelector('.gh-announcement-bar');
+    if (existing) { showPopup(existing); }
+
+    // Watch for Ghost to inject it dynamically
     new MutationObserver(function (mutations) {
       for (var i = 0; i < mutations.length; i++) {
         var added = mutations[i].addedNodes;
@@ -46,17 +88,10 @@
           var node = added[j];
           if (node.nodeType === 1) {
             if (node.classList && node.classList.contains('gh-announcement-bar')) {
-              watchBar(node); return;
+              showPopup(node); return;
             }
             var inner = node.querySelector && node.querySelector('.gh-announcement-bar');
-            if (inner) { watchBar(inner); return; }
-          }
-        }
-        var removed = mutations[i].removedNodes;
-        for (var k = 0; k < removed.length; k++) {
-          var rn = removed[k];
-          if (rn.nodeType === 1 && rn.classList && rn.classList.contains('gh-announcement-bar')) {
-            removeBarHeight(); return;
+            if (inner) { showPopup(inner); return; }
           }
         }
       }

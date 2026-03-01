@@ -241,22 +241,203 @@ button {
 }
 
 /* ==============================================
-   GHOST NATIVE ANNOUNCEMENT BAR SUPPORT
-   JS sets --announcement-bar-height and adds
-   body.has-announcement-bar. :has() is a fallback.
+   GHOST NATIVE ANNOUNCEMENT BAR — HIDDEN
+   The bar is intercepted by JS and displayed
+   as a popup modal instead.
    ============================================== */
 .gh-announcement-bar {
-  z-index: 4001 !important;
+  display: none !important;
 }
 
-/* Fallback: CSS :has() for browsers that support it (sets a default until JS measures) */
-:root:has(.gh-announcement-bar) {
-  --announcement-bar-height: 48px;
+/* ==============================================
+   ANNOUNCEMENT POPUP MODAL
+   ============================================== */
+.announcement-popup-backdrop {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(10, 10, 10, 0.6);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  z-index: 9000;
 }
 
-/* Primary: JS-driven class (always correct, uses measured height) */
-body.has-announcement-bar {
-  --announcement-bar-height: var(--announcement-bar-height-js, 48px);
+.announcement-popup-backdrop.active {
+  display: block;
+  animation: announceFadeIn 0.3s ease forwards;
+}
+
+.announcement-popup {
+  display: none;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  width: min(92vw, 460px);
+  z-index: 9100;
+  border-radius: 1.5rem;
+  background: var(--color-surface);
+  box-shadow:
+    0 32px 72px rgba(0, 0, 0, 0.28),
+    0 4px 16px rgba(0, 0, 0, 0.12),
+    0 0 0 1px rgba(235, 233, 222, 0.8);
+  overflow: hidden;
+}
+
+.announcement-popup.active {
+  display: block;
+  animation: announceSlideUp 0.4s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+@keyframes announceFadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes announceSlideUp {
+  from {
+    opacity: 0;
+    transform: translate(-50%, -44%) scale(0.96);
+  }
+
+  to {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+  }
+}
+
+/* ── Header band ── */
+.announcement-popup-header {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  gap: 0.25rem;
+  padding: 1.375rem 3rem 1.25rem;
+  background: linear-gradient(135deg, #1c1c1c 0%, #2e2e2e 100%);
+}
+
+.announcement-popup-from {
+  display: contents;
+}
+
+.announcement-popup-label {
+  display: block;
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.45);
+  margin-bottom: 0.15rem;
+}
+
+.announcement-popup-site {
+  display: block;
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--color-secondary);
+  font-family: var(--gh-font-heading);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  line-height: 1.2;
+}
+
+/* ── Close button ── */
+.announcement-popup-close {
+  position: absolute;
+  top: 0.875rem;
+  right: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.75rem;
+  height: 1.75rem;
+  border-radius: 50%;
+  font-size: 1.1rem;
+  line-height: 1;
+  color: rgba(255, 255, 255, 0.5);
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  cursor: pointer;
+  transition: background var(--anim-fast), color var(--anim-fast), border-color var(--anim-fast);
+}
+
+.announcement-popup-close:hover {
+  background: rgba(255, 255, 255, 0.18);
+  color: #fff;
+  border-color: rgba(255, 255, 255, 0.28);
+}
+
+/* ── Divider ── */
+.announcement-popup-divider {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--color-stroke) 20%, var(--color-stroke) 80%, transparent);
+  margin: 0;
+}
+
+/* ── Message body ── */
+.announcement-popup-body {
+  padding: 1.375rem 1.5rem 0.75rem;
+  font-size: 0.975rem;
+  line-height: 1.7;
+  color: var(--color-text-primary);
+}
+
+.announcement-popup-body a {
+  color: var(--color-accent-1);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  font-weight: 500;
+}
+
+.announcement-popup-body a:hover {
+  color: var(--color-primary);
+}
+
+/* ── Dismiss button ── */
+.announcement-popup-footer {
+  padding: 0.75rem 1.5rem 1.375rem;
+}
+
+.announcement-popup-dismiss {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  padding: 0.75rem 1.5rem;
+  border-radius: 3rem;
+  background: var(--color-primary);
+  color: var(--color-white);
+  font-size: 0.9rem;
+  font-weight: 700;
+  font-family: var(--gh-font-heading);
+  letter-spacing: 0.01em;
+  border: none;
+  cursor: pointer;
+  transition: transform var(--anim-fast), box-shadow var(--anim-fast), background var(--anim-fast);
+}
+
+.announcement-popup-dismiss:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 20px rgba(28, 28, 28, 0.3);
+  background: #2e2e2e;
+}
+
+.announcement-popup-dismiss:active {
+  transform: translateY(0);
+  box-shadow: none;
+}
+
+/* ── Scroll lock ── */
+body.announcement-popup-open {
+  overflow: hidden;
 }
 
 
