@@ -3,6 +3,14 @@
   document.addEventListener("DOMContentLoaded", function () {
   document.title = "Freelancers/Volunteers";
   });
+document.getElementById("contributorForm").addEventListener("submit", function(e) {
+    const honeypot = document.querySelector('[name="entry.740422033"]');
+
+    if (honeypot && honeypot.value.trim() !== "") {
+        e.preventDefault();
+        alert("Spam detected.");
+    }
+});
   </script>
  <div class="oasis-contributor-form">
     <div class="oasis-form-intro">
@@ -61,6 +69,11 @@
                 <label>How would you like to contribute? *</label>
                 <textarea name="entry.618267979" placeholder="Describe how you'd like to help..." required></textarea>
             </div>
+
+            <div style="position:absolute; left:-9999px;">
+    <label>Bot Protection</label>
+    <input type="text" name="entry.740422033" autocomplete="off" tabindex="-1">
+</div>
 
             <button type="submit">
                 Submit registration

@@ -3,6 +3,14 @@
   document.addEventListener("DOMContentLoaded", function () {
   document.title = "Non-Profits";
   });
+  document.getElementById("contributorForm").addEventListener("submit", function(e) {
+    const honeypot = document.querySelector('[name="entry.1126579970"]');
+
+    if (honeypot && honeypot.value.trim() !== "") {
+        e.preventDefault();
+        alert("Spam detected. Submission blocked.");
+    }
+});
   </script>
 <div class="oasis-org-form">
 
@@ -59,6 +67,11 @@
             <div class="form-group">
                 <label>Point of Contact Mail ID *</label>
                 <input type="email" name="entry.825369272" id="org_email" placeholder="e.g., jane@example.org" required>
+            </div>
+
+            <div style="position:absolute; left:-9999px;">
+                <label>Website</label>
+                <input type="text" name="entry.1126579970" autocomplete="off">
             </div>
 
             <button type="submit">Submit Registration</button>

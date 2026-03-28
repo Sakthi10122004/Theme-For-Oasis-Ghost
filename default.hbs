@@ -8,6 +8,26 @@
   <meta name="x-color-scheme" content="{{@custom.color_scheme}}">
 
   <title>{{meta_title}}</title>
+  <meta name="description" content="{{meta_description}}{{#unless meta_description}}{{@site.description}}{{/unless}}">
+
+  {{!-- Open Graph (Facebook / LinkedIn / Discord previews) --}}
+  <meta property="og:site_name" content="{{@site.title}}">
+  <meta property="og:title" content="{{meta_title}}">
+  <meta property="og:description"
+    content="{{meta_description}}{{#unless meta_description}}{{@site.description}}{{/unless}}">
+  {{#if @site.cover_image}}
+  <meta property="og:image" content="{{@site.cover_image}}">{{/if}}
+  <meta property="og:url" content="{{canonical_url}}">
+  <meta property="og:type" content="website">
+
+  {{!-- Twitter / X Card --}}
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="{{meta_title}}">
+  <meta name="twitter:description"
+    content="{{meta_description}}{{#unless meta_description}}{{@site.description}}{{/unless}}">
+  {{#if @site.cover_image}}
+  <meta name="twitter:image" content="{{@site.cover_image}}">{{/if}}
+
   {{!-- Add header-ready synchronously so content is NEVER hidden during navigation --}}
   <style>
     /* Only prevent FOUC for nav elements that JS must initialise */
@@ -26,9 +46,7 @@
   <script src="{{asset "js/ghost-dropdown.js"}}" defer></script>
   <script src="{{asset "js/forms.js"}}" defer></script>
   {{!--
-  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script> --}}
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.min.js"></script>
-  {{!--
+  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" /> --}}
   {{!--
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"> --}}

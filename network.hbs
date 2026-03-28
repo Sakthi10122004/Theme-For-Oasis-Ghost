@@ -133,12 +133,14 @@
                 {{#get "posts" filter="tag:npo-says" order="published_at desc" limit="99"}}
                 {{#foreach posts}}
                 <div class="testimonial-item" data-slider-slide>
-                  <blockquote onclick="window.location.href='{{url}}'" style="cursor: pointer;">
-                    <p>"{{#if custom_excerpt}}{{custom_excerpt}}{{else}}{{excerpt words="5"}}{{/if}}"</p>
-                    <div class="testimonial-meta">
-                      <cite>{{title}}</cite>
-                      <span class="read-story-link">Read full story →</span>
-                    </div>
+                  <blockquote>
+                    <a href="{{url}}" class="testimonial-link">
+                      <p>"{{#if custom_excerpt}}{{custom_excerpt}}{{else}}{{excerpt words="5"}}{{/if}}"</p>
+                      <div class="testimonial-meta">
+                        <cite>{{title}}</cite>
+                        <span class="read-story-link">Read full story →</span>
+                      </div>
+                    </a>
                   </blockquote>
                 </div>
                 {{/foreach}}
@@ -154,12 +156,14 @@
                 {{#get "posts" filter="tag:tech-experts-says" order="published_at desc" limit="99"}}
                 {{#foreach posts}}
                 <div class="testimonial-item" data-slider-slide>
-                  <blockquote onclick="window.location.href='{{url}}'" style="cursor: pointer;">
-                    <p>"{{#if custom_excerpt}}{{custom_excerpt}}{{else}}{{excerpt words="5"}}{{/if}}"</p>
-                    <div class="testimonial-meta">
-                      <cite>{{title}}</cite>
-                      <span class="read-story-link">Read full story →</span>
-                    </div>
+                  <blockquote>
+                    <a href="{{url}}" class="testimonial-link">
+                      <p>"{{#if custom_excerpt}}{{custom_excerpt}}{{else}}{{excerpt words="5"}}{{/if}}"</p>
+                      <div class="testimonial-meta">
+                        <cite>{{title}}</cite>
+                        <span class="read-story-link">Read full story →</span>
+                      </div>
+                    </a>
                   </blockquote>
                 </div>
                 {{/foreach}}
@@ -172,42 +176,39 @@
       </div>
     </section>
 
+    {{#get "posts" filter="tag:npo" limit="6" include="feature_image"}}
+    {{#if posts.length}}
     <section class="partners-section">
-      {{#get "posts" filter="tag:npo" limit="6" include="feature_image"}}
-      {{#if posts.length}}
-      <section class="partners-section">
-        <div class="container">
+      <div class="container">
 
-          <h2 class="section-title">Our NPO Partners</h2>
+        <h2 class="section-title">Our NPO Partners</h2>
 
-          <div class="partners-marquee">
-            <div class="partners-track">
+        <div class="partners-marquee">
+          <div class="partners-track">
 
-              {{#foreach posts}}
-              <div class="partner-item" title="{{title}}">
-                {{#if feature_image}}
-                <img src="{{img_url feature_image size=" s"}}" srcset="
+            {{#foreach posts}}
+            <div class="partner-item" title="{{title}}">
+              {{#if feature_image}}
+              <img src="{{img_url feature_image size=" s"}}" srcset="
                         {{img_url feature_image size=" xs"}} 200w, {{img_url feature_image size="s" }} 300w, {{img_url
-                  feature_image size="m" }} 600w "
-                    sizes=" (max-width: 768px) 120px, 160px" alt="{{title}}" loading="lazy"
-                  onerror="this.onerror=null;this.src='{{asset " images/partner-placeholder.svg"}}';" />
-                {{else}}
-                <span>{{title}}</span>
-                {{/if}}
-              </div>
-              {{/foreach}}
-
+                feature_image size="m" }} 600w "
+                  sizes=" (max-width: 768px) 120px, 160px" alt="{{title}}" loading="lazy"
+                onerror="this.onerror=null;this.src='{{asset " images/partner-placeholder.svg"}}';" />
+              {{else}}
+              <span>{{title}}</span>
+              {{/if}}
             </div>
+            {{/foreach}}
+
           </div>
-
-          <a href="/tag/npo" class="partners-cta">See All Partners</a>
-
         </div>
-      </section>
-      {{/if}}
-      {{/get}}
 
+        <a href="/tag/npo" class="partners-cta">See All Partners</a>
+
+      </div>
     </section>
+    {{/if}}
+    {{/get}}
 
     <section class="final-cta">
       <div class="container">

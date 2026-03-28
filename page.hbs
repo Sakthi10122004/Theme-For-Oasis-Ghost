@@ -107,12 +107,6 @@
           iconBox.innerHTML = "";
           iconBox.appendChild(canvas);
 
-          // Add PDF label
-          const pdfLabel = document.createElement("div");
-          pdfLabel.className = "pdf-label";
-          pdfLabel.textContent = "PDF";
-          iconBox.appendChild(pdfLabel);
-
         } catch (err) {
           console.error("Error generating PDF preview:", err);
           // Fallback to default icon

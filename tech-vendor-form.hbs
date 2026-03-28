@@ -3,6 +3,14 @@
   document.addEventListener("DOMContentLoaded", function () {
   document.title = "Tech Vendor Registration";
   });
+  document.getElementById("form3").addEventListener("submit", function(e) {
+    const honeypot = this.querySelector('[name="entry.280782125"]');
+
+    if (honeypot && honeypot.value.trim() !== "") {
+        e.preventDefault();
+        alert("Spam detected.");
+    }
+});
   </script>
 <div class="oasis-tech-form">
 
@@ -209,6 +217,11 @@
                 <textarea name="entry.1012315740" placeholder="What kind of support are you looking for?"
                     required></textarea>
             </div>
+
+            <div style="position:absolute; left:-9999px;">
+    <label>Bot Protection</label>
+    <input type="text" name="entry.280782125" autocomplete="off" tabindex="-1">
+</div>
 
             <button type="submit">Submit Registration</button>
         </form>

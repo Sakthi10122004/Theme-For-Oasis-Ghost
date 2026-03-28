@@ -411,6 +411,19 @@
     box-sizing: border-box;
 }
 
+/* <a> wrapper inside blockquote — inherits all blockquote layout, no default link styles */
+.testimonial-link {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    flex: 1;
+    text-decoration: none;
+    color: inherit;
+    cursor: pointer;
+}
+
 .testimonial-item p {
     width: 100%;
     font-size: clamp(0.875rem, 2.2vw, 1.05rem);
