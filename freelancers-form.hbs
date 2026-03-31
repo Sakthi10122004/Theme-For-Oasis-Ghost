@@ -1,94 +1,71 @@
 {{!< default}}
-<script>
-  document.addEventListener("DOMContentLoaded", function () {
-  document.title = "Freelancers/Volunteers";
-  });
-document.getElementById("contributorForm").addEventListener("submit", function(e) {
-    const honeypot = document.querySelector('[name="entry.740422033"]');
 
-    if (honeypot && honeypot.value.trim() !== "") {
-        e.preventDefault();
-        alert("Spam detected.");
-    }
-});
-  </script>
- <div class="oasis-contributor-form">
-    <div class="oasis-form-intro">
-        <p>
-            OASIS is building a trusted network of tech service providers to support nonprofits with open-source
-            solutions.
-            By joining, you’ll get matched with business opportunities from social sector organisations looking for
-            ethical, impact-focused tech support.
-            Fill this quick form so we can understand your skills and match you with the right projects.
-            Let’s power social change through open tech.
-        </p>
+<section class="oasis-form-page">
 
-        <p class="oasis-form-link">
-            Visit us at
-            <a href="https://www.oasishq.org" target="_blank" rel="noopener">
-                www.oasishq.org
-            </a>
-        </p>
-    </div>
-    <div class="container">
+  <!-- Hero -->
+  <div class="oasis-form-hero">
+    <span class="oasis-form-badge">Join the Network</span>
+    <h1>Freelancers & Volunteers</h1>
+    <p>OASIS is building a trusted community of tech contributors to support nonprofits with open-source solutions. Tell us about your skills and how you'd like to help.</p>
+  </div>
 
-        <iframe name="hidden_iframe" id="hidden_iframe" style="display:none;"></iframe>
+  <!-- Form Card -->
+  <div class="oasis-form-card">
+    <form id="freelancerForm" novalidate>
 
-        <h2>
-            Freelancers/Volunteers
-        </h2>
-
-        <form id="contributorForm"
-            action="https://docs.google.com/forms/d/e/1FAIpQLSfIdXLYJF1UDnGH6-Ya4Akylj3ujX_6c_NR-eoPiMJlk22izQ/formResponse"
-            method="POST" target="hidden_iframe">
-
-            <div class="form-group">
-                <label>Name *</label>
-                <input type="text" name="entry.1019023588" id="contributor_name" pattern="[A-Za-z .-]{2,50}"
-                    title="Only letters, spaces, dots and hyphens (2-50 characters)" placeholder="e.g., Alex Johnson"
-                    required>
-            </div>
-
-            <div class="form-group">
-                <label>Phone *</label>
-                <input type="tel" name="entry.1255077368" id="contributor_phone" pattern="[6-9][0-9]{9}" maxlength="10"
-                    inputmode="numeric" placeholder="e.g., 9876543210" required>
-            </div>
-
-            <div class="form-group">
-                <label>Mail *</label>
-                <input type="email" name="entry.1843735612" placeholder="e.g., alex@example.com" required>
-            </div>
-
-            <div class="form-group">
-                <label>Area of expertise *</label>
-                <input name="entry.1613848900" placeholder="e.g., Frontend Development, Data Analysis" required>
-            </div>
-
-            <div class="form-group">
-                <label>How would you like to contribute? *</label>
-                <textarea name="entry.618267979" placeholder="Describe how you'd like to help..." required></textarea>
-            </div>
-
-            <div style="position:absolute; left:-9999px;">
-    <label>Bot Protection</label>
-    <input type="text" name="entry.740422033" autocomplete="off" tabindex="-1">
-</div>
-
-            <button type="submit">
-                Submit registration
-            </button>
-        </form>
-    </div>
-
-    <div class="overlay" id="overlay">
-        <div class="popup">
-            <div class="tick">✓</div>
-            <h3>Response Saved</h3>
-            <p>Thank you for your interest.</p>
-            <div class="countdown">
-                Redirecting in <span id="timer">5</span> seconds
-            </div>
+      <!-- Section 1: Personal Info -->
+      <div class="oasis-form-section">
+        <div class="oasis-form-section-title">Your Details</div>
+        <div class="form-fields cols-2">
+          <div class="form-group">
+            <label for="contributor_name">Full Name <span class="required">*</span></label>
+            <input id="contributor_name" type="text" placeholder="e.g. Alex Johnson" required>
+          </div>
+          <div class="form-group">
+            <label for="contributor_phone">Phone Number <span class="required">*</span></label>
+            <input id="contributor_phone" type="tel" inputmode="numeric" maxlength="10" placeholder="e.g. 9876543210" required>
+          </div>
+          <div class="form-group form-field-full">
+            <label for="contributor_email">Email Address <span class="required">*</span></label>
+            <input id="contributor_email" type="email" placeholder="e.g. alex@example.com" required>
+          </div>
         </div>
-    </div>
-    </div>
+      </div>
+
+      <!-- Section 2: Skills -->
+      <div class="oasis-form-section">
+        <div class="oasis-form-section-title">Skills & Contribution</div>
+        <div class="form-fields">
+          <div class="form-group form-field-full">
+            <label for="contributor_expertise">Area of Expertise <span class="required">*</span></label>
+            <input id="contributor_expertise" type="text" placeholder="e.g. Frontend Development, Data Analysis, Graphic Design" required>
+          </div>
+          <div class="form-group form-field-full">
+            <label for="contributor_contribution">How would you like to contribute? <span class="required">*</span></label>
+            <textarea id="contributor_contribution" placeholder="Describe how you'd like to help nonprofits through OASIS..." required></textarea>
+          </div>
+        </div>
+      </div>
+
+      <!-- Honeypot -->
+      <div class="form-honeypot" aria-hidden="true">
+        <input id="freelancer_bot_field" tabindex="-1" autocomplete="off">
+      </div>
+
+      <!-- Status -->
+      <div id="freelancerStatus" class="form-status"></div>
+
+      <!-- Footer -->
+      <div class="oasis-form-footer">
+        <p class="oasis-form-footer-note">
+          Visit us at <a href="https://www.oasishq.org" target="_blank">oasishq.org</a>
+        </p>
+        <button type="submit" class="oasis-form-submit" id="freelancerSubmitBtn">
+          Submit Registration →
+        </button>
+      </div>
+
+    </form>
+  </div>
+
+</section>

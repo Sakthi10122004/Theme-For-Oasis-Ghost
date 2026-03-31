@@ -1,485 +1,463 @@
-/* OASIS FORMS - MASTER STYLESHEET */
-/* Version: 2.0 | Updated: 2024 */
+/* ============================================================
+   OASIS FORMS — forms.css
+   Shared styles for Tech Vendor, Freelancer & Non-Profit forms
+   + Responses Dashboard
+   ============================================================ */
 
-/* ===== CSS VARIABLES ===== */
-:root {
-    /* Colors */
-    --oasis-bg: #f9faf2;
-    --oasis-surface: #fafafa;
-    --oasis-border: #ebe9de;
-    --oasis-text: #1c1c1c;
-    --oasis-accent: #fd635a;
-    --oasis-highlight: #fbe86b;
-    --oasis-success: #16a34a;
-    --oasis-white: #ffffff;
-    --oasis-black: #000000;
-    --oasis-overlay: rgba(28, 28, 28, 0.6);
-
-    /* Spacing */
-    --oasis-spacing-xs: 4px;
-    --oasis-spacing-sm: 8px;
-    --oasis-spacing-md: 16px;
-    --oasis-spacing-lg: 24px;
-    --oasis-spacing-xl: 32px;
-    --oasis-spacing-2xl: 40px;
-
-    /* Typography */
-    --oasis-font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-    --oasis-font-size-sm: 14px;
-    --oasis-font-size-md: 15px;
-    --oasis-font-size-lg: 16px;
-
-    /* Borders */
-    --oasis-radius-sm: 8px;
-    --oasis-radius-md: 10px;
-    --oasis-radius-lg: 14px;
-
-    /* Transitions */
-    --oasis-transition: 0.2s ease;
-    --oasis-transition-slow: 0.25s ease;
-
-    /* Shadows */
-    --oasis-shadow: 0 0 0 3px rgba(253, 99, 90, 0.15);
-    --oasis-overlay-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+/* ── Page wrapper ─────────────────────────────────────────── */
+.oasis-form-page {
+  min-height: 100vh;
+  background: var(--color-page-bg);
+  /* padding: calc(var(--header-height) + 3rem) 1.25rem 5rem; */
 }
 
-/* ===== BASE STYLES ===== */
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
+/* ── Hero banner ──────────────────────────────────────────── */
+.oasis-form-hero {
+  text-align: center;
+  max-width: 680px;
+  margin: 0 auto 3rem;
 }
 
-/* ===== SHARED UTILITIES ===== */
-.oasis-hidden {
-    display: none !important;
+.oasis-form-badge {
+  display: inline-block;
+  padding: 0.3rem 1rem;
+  border-radius: 50px;
+  background: #1c1c1c;
+  color: #fbe86b;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  margin-bottom: 1.25rem;
 }
 
-.oasis-text-center {
-    text-align: center;
+.oasis-form-hero h1 {
+  font-size: clamp(1.9rem, 4vw, 2.8rem);
+  font-weight: 800;
+  color: var(--color-primary);
+  line-height: 1.2;
+  margin-bottom: 1rem;
 }
 
-/* ===== FORM WRAPPERS ===== */
-.oasis-tech-form,
-.oasis-org-form,
-.oasis-contributor-form {
-    background: var(--oasis-bg);
-    padding: 60px 20px;
-    font-family: var(--oasis-font-family);
-    min-height: 100vh;
+.oasis-form-hero p {
+  font-size: 1rem;
+  color: var(--color-text-secondary);
+  line-height: 1.7;
+  max-width: 560px;
+  margin: 0 auto;
 }
 
-/* ===== INTRO SECTIONS ===== */
-.oasis-tech-form .oasis-tech-intro,
-.oasis-org-form .oasis-org-intro,
-.oasis-contributor-form .oasis-form-intro {
-    max-width: 750px;
-    margin: 0 auto var(--oasis-spacing-2xl);
-    text-align: justify;
-    line-height: 1.8;
-    color: var(--oasis-text);
+/* ── Form card ────────────────────────────────────────────── */
+.oasis-form-card {
+  background: #fff;
+  border: 1px solid var(--color-stroke);
+  border-radius: 24px;
+  box-shadow: 0 4px 32px rgba(28, 28, 28, 0.07);
+  max-width: 780px;
+  margin: 0 auto;
+  overflow: hidden;
 }
 
-/* ===== LINK STYLES ===== */
-.oasis-tech-form .oasis-tech-link a,
-.oasis-org-form .oasis-org-link a,
-.oasis-contributor-form .oasis-form-intro a {
-    color: var(--oasis-accent);
-    text-decoration: none;
-    border-bottom: 2px solid var(--oasis-highlight);
-    padding-bottom: 2px;
-    font-weight: 600;
-    transition: var(--oasis-transition);
+/* ── Section header ───────────────────────────────────────── */
+.oasis-form-section {
+  padding: 2rem 2.5rem 0;
 }
 
-.oasis-tech-form .oasis-tech-link a:hover,
-.oasis-org-form .oasis-org-link a:hover,
-.oasis-contributor-form .oasis-form-intro a:hover {
-    opacity: 0.8;
+.oasis-form-section:first-child {
+  padding-top: 2.5rem;
 }
 
-/* ===== CONTAINERS / CARDS ===== */
-.oasis-tech-form .oasis-tech-container,
-.oasis-org-form .oasis-org-container,
-.oasis-contributor-form .container {
-    max-width: 720px;
-    margin: 0 auto;
-    background: var(--oasis-surface);
-    padding: 45px;
-    border-radius: var(--oasis-radius-lg);
-    border: 1px solid var(--oasis-border);
-    box-shadow: var(--oasis-overlay-shadow);
+.oasis-form-section-title {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+  margin-bottom: 1.25rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid var(--color-stroke);
 }
 
-.oasis-org-form .oasis-org-container {
-    max-width: 560px;
-    padding: 38px;
+.oasis-form-section-title::before {
+  content: '';
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #fbe86b;
+  border: 2px solid #1c1c1c;
+  flex-shrink: 0;
 }
 
-.oasis-contributor-form .container {
-    max-width: 600px;
-    padding: 40px;
+/* ── Field grid ───────────────────────────────────────────── */
+.form-fields {
+  display: grid;
+  gap: 1.25rem;
+  grid-template-columns: 1fr;
 }
 
-/* ===== HEADINGS ===== */
-.oasis-tech-form h2,
-.oasis-org-form h2,
-.oasis-contributor-form h2 {
-    text-align: center;
-    margin-bottom: 35px;
-    color: var(--oasis-text);
-    font-weight: 600;
-    font-size: 1.5rem;
+.form-fields.cols-2 {
+  grid-template-columns: 1fr 1fr;
 }
 
-/* ===== FORM GROUPS ===== */
-.oasis-tech-form .form-group,
-.oasis-org-form .form-group,
-.oasis-contributor-form .form-group {
-    margin-bottom: var(--oasis-spacing-lg);
+.form-fields.cols-3 {
+  grid-template-columns: 1fr 1fr 1fr;
 }
 
-/* ===== LABELS ===== */
-.oasis-tech-form label,
-.oasis-org-form label,
-.oasis-contributor-form label {
-    display: block;
-    margin-bottom: var(--oasis-spacing-sm);
-    font-weight: 600;
-    font-size: var(--oasis-font-size-sm);
-    color: var(--oasis-text);
+.form-field-full {
+  grid-column: 1 / -1;
 }
 
-/* ===== INPUT FIELDS ===== */
-.oasis-tech-form input:not([type="checkbox"]),
-.oasis-tech-form textarea,
-.oasis-tech-form select,
-.oasis-org-form input,
-.oasis-contributor-form input,
-.oasis-contributor-form textarea {
-    width: 100%;
-    padding: 13px 14px;
-    font-size: var(--oasis-font-size-sm);
-    border-radius: var(--oasis-radius-md);
-    border: 1px solid var(--oasis-border);
-    background: var(--oasis-white);
-    transition: var(--oasis-transition);
+/* ── Individual field group ───────────────────────────────── */
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
 }
 
-.oasis-org-form input {
-    padding: 12px;
-    border-radius: var(--oasis-radius-sm);
+.form-group label {
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--color-primary);
+  letter-spacing: 0.01em;
 }
 
-.oasis-contributor-form textarea {
-    min-height: 110px;
-    resize: vertical;
+.form-group label .required {
+  color: #fd635a;
+  margin-left: 2px;
 }
 
-/* ===== FOCUS STATES ===== */
-.oasis-tech-form input:focus,
-.oasis-tech-form textarea:focus,
-.oasis-tech-form select:focus,
-.oasis-org-form input:focus,
-.oasis-contributor-form input:focus,
-.oasis-contributor-form textarea:focus {
-    outline: none;
-    border-color: var(--oasis-accent);
-    box-shadow: var(--oasis-shadow);
+.form-group input,
+.form-group textarea,
+.form-group select {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border: 1.5px solid var(--color-stroke);
+  border-radius: 12px;
+  font-size: 0.95rem;
+  color: var(--color-primary);
+  background: var(--color-surface);
+  transition: border-color 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+  outline: none;
+  appearance: none;
+  -webkit-appearance: none;
 }
 
-/* ===== CHECKBOX STYLES ===== */
-.oasis-tech-form .option-label {
-    font-weight: 400;
-    display: flex;
-    align-items: center;
-    margin-bottom: var(--oasis-spacing-sm);
-    cursor: pointer;
-    font-size: var(--oasis-font-size-sm);
+.form-group input:hover,
+.form-group textarea:hover,
+.form-group select:hover {
+  border-color: rgba(28, 28, 28, 0.35);
 }
 
-.oasis-tech-form .option-label input[type="checkbox"] {
-    width: auto;
-    margin-right: var(--oasis-spacing-sm);
-    transform: scale(1.1);
-    accent-color: var(--oasis-accent);
+.form-group input:focus,
+.form-group textarea:focus,
+.form-group select:focus {
+  border-color: #1c1c1c;
+  background: #fff;
+  box-shadow: 0 0 0 3px rgba(251, 232, 107, 0.45);
 }
 
-/* ===== ERROR MESSAGES ===== */
-.oasis-tech-form .error,
-.oasis-org-form .error,
-.oasis-contributor-form .error-message {
-    color: var(--oasis-accent);
-    font-size: 12px;
-    margin-top: 5px;
-    display: none;
+.form-group input::placeholder,
+.form-group textarea::placeholder {
+  color: #bbb;
 }
 
-.oasis-contributor-form .error-message {
-    margin-top: 6px;
+.form-group textarea {
+  resize: vertical;
+  min-height: 90px;
 }
 
-/* ===== BUTTONS ===== */
-.oasis-tech-form button,
-.oasis-org-form button,
-.oasis-contributor-form button {
-    width: 100%;
-    padding: 15px;
-    background: var(--oasis-text);
-    color: var(--oasis-highlight);
-    border: none;
-    border-radius: var(--oasis-radius-md);
-    font-size: var(--oasis-font-size-md);
-    font-weight: 600;
-    cursor: pointer;
-    transition: var(--oasis-transition-slow);
+/* Select arrow */
+.form-group select {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%231c1c1c' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 1rem center;
+  padding-right: 2.5rem;
+  cursor: pointer;
 }
 
-.oasis-org-form button {
-    padding: 14px;
-    border-radius: var(--oasis-radius-sm);
+/* ── Inline field validation errors ──────────────────────── */
+.form-group.has-error label {
+  color: #c0392b;
 }
 
-.oasis-contributor-form button {
-    background: var(--oasis-text);
-    color: var(--oasis-white);
+.form-group.has-error input.input-error,
+.form-group.has-error textarea.input-error,
+.form-group.has-error select.input-error {
+  border-color: #e74c3c;
+  background: #fff8f8;
+  box-shadow: 0 0 0 3px rgba(231, 76, 60, 0.15);
 }
 
-.oasis-tech-form button:hover,
-.oasis-org-form button:hover,
-.oasis-contributor-form button:hover {
-    background: var(--oasis-black);
+.form-group.has-error input.input-error:focus,
+.form-group.has-error textarea.input-error:focus,
+.form-group.has-error select.input-error:focus {
+  border-color: #c0392b;
+  box-shadow: 0 0 0 3px rgba(192, 57, 43, 0.2);
 }
 
-.oasis-contributor-form button:active {
-    transform: translateY(1px);
+.field-error-msg {
+  display: block;
+  font-size: 0.78rem;
+  font-weight: 500;
+  color: #c0392b;
+  margin-top: 0.25rem;
+  animation: fieldErrIn 0.2s ease;
 }
 
-.oasis-contributor-form button.loading {
-    opacity: 0.6;
-    pointer-events: none;
-    position: relative;
+@keyframes fieldErrIn {
+  from { opacity: 0; transform: translateY(-4px); }
+  to   { opacity: 1; transform: translateY(0); }
 }
 
-.oasis-contributor-form button.loading::after {
-    content: '';
-    position: absolute;
-    width: 20px;
-    height: 20px;
-    border: 2px solid transparent;
-    border-top-color: var(--oasis-highlight);
-    border-radius: 50%;
-    animation: oasisSpin 0.8s linear infinite;
-    right: 20px;
-    top: 50%;
-    transform: translateY(-50%);
+
+/* ── Form footer (submit) ─────────────────────────────────── */
+.oasis-form-footer {
+  padding: 2rem 2.5rem 2.5rem;
+  border-top: 1px solid var(--color-stroke);
+  margin-top: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
 }
 
-/* ===== OVERLAY / POPUP ===== */
-.oasis-tech-form .tech-overlay,
-.oasis-org-form .overlay,
-.oasis-contributor-form .overlay {
-    display: none;
-    position: fixed;
-    inset: 0;
-    background: var(--oasis-overlay);
-    align-items: center;
+.oasis-form-footer-note {
+  font-size: 0.8rem;
+  color: var(--color-text-muted);
+}
+
+.oasis-form-footer-note a {
+  color: var(--color-primary);
+  font-weight: 600;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+/* ── Submit button ────────────────────────────────────────── */
+.oasis-form-submit {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.85rem 2rem;
+  border-radius: 50px;
+  background: #1c1c1c;
+  color: #fbe86b;
+  font-size: 0.95rem;
+  font-weight: 700;
+  border: none;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+  white-space: nowrap;
+}
+
+.oasis-form-submit:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(28, 28, 28, 0.25);
+  background: #2c2c2c;
+}
+
+.oasis-form-submit:active:not(:disabled) {
+  transform: translateY(0);
+  box-shadow: none;
+}
+
+.oasis-form-submit:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* ── Status message ───────────────────────────────────────── */
+.form-status {
+  display: none;
+  padding: 0.85rem 1.25rem;
+  border-radius: 12px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  margin: 0 2.5rem 1.5rem;
+  animation: formStatusIn 0.3s ease;
+}
+
+@keyframes formStatusIn {
+  from { opacity: 0; transform: translateY(-6px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.form-status.success {
+  background: #edfdf4;
+  color: #1a7a43;
+  border: 1px solid #a8e6c3;
+}
+
+.form-status.error {
+  background: #fff0ef;
+  color: #c0392b;
+  border: 1px solid #f5bcb8;
+}
+
+/* ── Honeypot ─────────────────────────────────────────────── */
+.form-honeypot {
+  position: absolute;
+  left: -9999px;
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* ── Responsive ───────────────────────────────────────────── */
+@media (max-width: 640px) {
+  .oasis-form-section {
+    padding: 1.5rem 1.25rem 0;
+  }
+
+  .oasis-form-section:first-child {
+    padding-top: 1.75rem;
+  }
+
+  .form-fields.cols-2,
+  .form-fields.cols-3 {
+    grid-template-columns: 1fr;
+  }
+
+  .oasis-form-footer {
+    padding: 1.5rem 1.25rem 2rem;
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .oasis-form-submit {
     justify-content: center;
-    z-index: 9999;
-    backdrop-filter: blur(4px);
+  }
+
+  .form-status {
+    margin: 0 1.25rem 1.25rem;
+  }
 }
 
-.oasis-tech-form .tech-popup,
-.oasis-org-form .popup,
-.oasis-contributor-form .popup {
-    background: var(--oasis-surface);
-    padding: 40px 45px;
-    border-radius: var(--oasis-radius-lg);
-    border: 1px solid var(--oasis-border);
-    text-align: center;
-    max-width: 400px;
-    width: 90%;
-    animation: oasisFadeIn 0.25s ease;
-    box-shadow: var(--oasis-overlay-shadow);
+/* ══════════════════════════════════════════════════════════════
+   SUCCESS POPUP
+   ══════════════════════════════════════════════════════════════ */
+
+/* Backdrop */
+.form-success-backdrop {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(10, 10, 10, 0.55);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  z-index: 9999;
+  align-items: center;
+  justify-content: center;
 }
 
-.oasis-org-form .popup {
-    padding: 30px 40px;
-    border-radius: var(--oasis-radius-sm);
+.form-success-backdrop.active {
+  display: flex;
+  animation: fsBackdropIn 0.3s ease forwards;
 }
 
-.oasis-contributor-form .popup {
-    padding: 35px 45px;
+@keyframes fsBackdropIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
 }
 
-/* ===== POPUP ICONS ===== */
-.oasis-tech-form .tick,
-.oasis-org-form .tick,
-.oasis-contributor-form .tick {
-    font-size: 48px;
-    color: var(--oasis-success);
-    margin-bottom: 12px;
-    line-height: 1;
+/* Card */
+.form-success-card {
+  background: #fff;
+  border-radius: 28px;
+  padding: 3rem 2.5rem 2.5rem;
+  text-align: center;
+  width: min(92vw, 420px);
+  box-shadow: 0 32px 80px rgba(0, 0, 0, 0.22), 0 4px 16px rgba(0, 0, 0, 0.1);
+  animation: fsCardIn 0.45s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  overflow: hidden;
+  position: relative;
 }
 
-.oasis-org-form .tick {
-    font-size: 40px;
-    margin-bottom: 10px;
+@keyframes fsCardIn {
+  from { opacity: 0; transform: translateY(28px) scale(0.95); }
+  to   { opacity: 1; transform: translateY(0) scale(1); }
 }
 
-.oasis-contributor-form .tick {
-    color: var(--oasis-accent);
-    font-size: 42px;
+/* SVG tick icon */
+.form-success-icon {
+  width: 88px;
+  height: 88px;
+  margin: 0 auto 1.5rem;
 }
 
-/* ===== POPUP TEXT ===== */
-.oasis-tech-form .tech-popup h3,
-.oasis-org-form .popup h3,
-.oasis-contributor-form .popup h3 {
-    margin-bottom: var(--oasis-spacing-sm);
-    color: var(--oasis-text);
-    font-size: 1.25rem;
+.form-success-icon svg {
+  width: 100%;
+  height: 100%;
 }
 
-.oasis-tech-form .tech-popup p,
-.oasis-org-form .popup p {
-    font-size: var(--oasis-font-size-sm);
-    color: #444;
+/* Circle draw animation */
+.fsi-circle {
+  stroke-dasharray: 226;
+  stroke-dashoffset: 226;
+  animation: fsCircleDraw 0.6s ease forwards 0.15s;
 }
 
-.oasis-tech-form .countdown,
-.oasis-contributor-form .countdown {
-    margin-top: 10px;
-    font-size: 13px;
-    color: var(--oasis-accent);
+@keyframes fsCircleDraw {
+  to { stroke-dashoffset: 0; }
 }
 
-.oasis-contributor-form .countdown {
-    font-size: 14px;
-    color: #666;
+/* Checkmark draw animation */
+.fsi-check {
+  stroke-dasharray: 70;
+  stroke-dashoffset: 70;
+  animation: fsCheckDraw 0.4s ease forwards 0.75s;
 }
 
-/* ===== ANIMATIONS ===== */
-@keyframes oasisFadeIn {
-    from {
-        transform: scale(0.95);
-        opacity: 0;
-    }
-
-    to {
-        transform: scale(1);
-        opacity: 1;
-    }
+@keyframes fsCheckDraw {
+  to { stroke-dashoffset: 0; }
 }
 
-@keyframes oasisSpin {
-    to {
-        transform: translateY(-50%) rotate(360deg);
-    }
+/* Text */
+.form-success-title {
+  font-size: 1.4rem;
+  font-weight: 800;
+  color: #1c1c1c;
+  margin-bottom: 0.5rem;
 }
 
-/* ===== RESPONSIVE DESIGN ===== */
-@media (max-width: 768px) {
-    .oasis-tech-form .oasis-tech-container {
-        padding: 30px 20px;
-    }
-
-    .oasis-tech-form .tech-popup,
-    .oasis-org-form .popup,
-    .oasis-contributor-form .popup {
-        padding: 30px 25px;
-        width: 95%;
-    }
-
-    .oasis-tech-form .tick,
-    .oasis-org-form .tick,
-    .oasis-contributor-form .tick {
-        font-size: 40px;
-    }
+.form-success-msg {
+  font-size: 0.95rem;
+  color: #6b6b6b;
+  margin-bottom: 1.5rem;
+  line-height: 1.6;
 }
 
-@media (max-width: 600px) {
-
-    .oasis-contributor-form .container,
-    .oasis-org-form .oasis-org-container,
-    .oasis-tech-form .oasis-tech-container {
-        padding: 25px 15px;
-    }
-
-    .oasis-tech-form,
-    .oasis-org-form,
-    .oasis-contributor-form {
-        padding: 40px 15px;
-    }
-
-    h2 {
-        font-size: 1.3rem;
-        margin-bottom: 25px;
-    }
+.form-success-countdown {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #999;
+  margin-bottom: 1rem;
 }
 
-@media (max-width: 480px) {
-    .oasis-tech-form .option-label {
-        flex-wrap: wrap;
-    }
-
-    .oasis-tech-form .option-label input[type="checkbox"] {
-        margin-right: var(--oasis-spacing-xs);
-    }
-
-    .oasis-tech-form .tech-popup,
-    .oasis-org-form .popup,
-    .oasis-contributor-form .popup {
-        padding: 25px 20px;
-    }
-
-    .oasis-tech-form button,
-    .oasis-org-form button,
-    .oasis-contributor-form button {
-        padding: 12px;
-        font-size: var(--oasis-font-size-sm);
-    }
+.form-success-countdown span {
+  color: #22c55e;
+  font-weight: 700;
 }
 
-/* ===== PRINT STYLES ===== */
-@media print {
-
-    .oasis-tech-form,
-    .oasis-org-form,
-    .oasis-contributor-form {
-        background: white;
-        padding: 20px;
-    }
-
-    .oasis-tech-form .tech-overlay,
-    .oasis-org-form .overlay,
-    .oasis-contributor-form .overlay {
-        display: none !important;
-    }
-
-    button {
-        display: none !important;
-    }
+/* Progress bar */
+.form-success-bar {
+  height: 4px;
+  background: #f0f0f0;
+  border-radius: 4px;
+  overflow: hidden;
+  margin-top: 0.5rem;
 }
 
-/* ===== ACCESSIBILITY ===== */
-@media (prefers-reduced-motion: reduce) {
-
-    *,
-    *::before,
-    *::after {
-        animation-duration: 0.01ms !important;
-        animation-iteration-count: 1 !important;
-        transition-duration: 0.01ms !important;
-    }
+.form-success-bar-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #22c55e, #16a34a);
+  border-radius: 4px;
+  width: 100%;
+  transition: none; /* set dynamically via JS */
 }
 
-.oasis-tech-form button:focus-visible,
-.oasis-org-form button:focus-visible,
-.oasis-contributor-form button:focus-visible,
-.oasis-tech-form input:focus-visible,
-.oasis-org-form input:focus-visible,
-.oasis-contributor-form input:focus-visible {
-    outline: 2px solid var(--oasis-accent);
-    outline-offset: 2px;
-}
+/* ══════════ RESPONSES DASHBOARD ══════════ */

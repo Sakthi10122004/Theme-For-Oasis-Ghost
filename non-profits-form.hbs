@@ -1,93 +1,71 @@
-{{!< default}} 
-<script>
-  document.addEventListener("DOMContentLoaded", function () {
-  document.title = "Non-Profits";
-  });
-  document.getElementById("contributorForm").addEventListener("submit", function(e) {
-    const honeypot = document.querySelector('[name="entry.1126579970"]');
+{{!< default}}
 
-    if (honeypot && honeypot.value.trim() !== "") {
-        e.preventDefault();
-        alert("Spam detected. Submission blocked.");
-    }
-});
-  </script>
-<div class="oasis-org-form">
+<section class="oasis-form-page">
 
-    <!-- Intro Section -->
-    <div class="oasis-org-intro">
-        <p>
-            OASIS is building a trusted network of tech service providers to support nonprofits with open-source
-            solutions.
-            By joining, you’ll get matched with business opportunities from social sector organisations looking for
-            ethical, impact-focused tech support.
-            Fill this quick form so we can understand your organisation and match you with the right tech partners.
-            Let’s power social change through open tech.
-        </p>
-        <p class="oasis-org-link">
-            Visit us at
-            <a href="https://www.oasishq.org" target="_blank" rel="noopener">
-                www.oasishq.org
-            </a>
-        </p>
-    </div>
+  <!-- Hero -->
+  <div class="oasis-form-hero">
+    <span class="oasis-form-badge">Join the Network</span>
+    <h1>Non-Profit Registration</h1>
+    <p>OASIS matches nonprofits with trusted tech partners and open-source solutions. Share your organisation's details so we can connect you with the right support.</p>
+  </div>
 
-    <div class="oasis-org-container">
+  <!-- Form Card -->
+  <div class="oasis-form-card">
+    <form id="nonprofitForm" novalidate>
 
-        <iframe name="org_hidden_iframe" style="display:none;"></iframe>
-
-        <h2>Non-Profits</h2>
-
-        <form id="orgForm"
-            action="https://docs.google.com/forms/d/e/1FAIpQLSdBNgOrQyyUvmD8gcJqSb2XNplWXbtmdHvmPs7JR5vfdtx_QQ/formResponse"
-            method="POST" target="org_hidden_iframe">
-
-            <div class="form-group">
-                <label>Organisation Name *</label>
-                <input type="text" name="entry.360719801" id="org_name" placeholder="e.g., Green Earth NGO" required>
-            </div>
-
-            <div class="form-group">
-                <label>Website Link</label>
-                <input type="url" name="entry.1762102937" id="org_website" placeholder="https://example.org">
-            </div>
-
-            <div class="form-group">
-                <label>Point of Contact Name *</label>
-                <input type="text" name="entry.1979148429" id="org_contact_name" pattern="[A-Za-z ]{2,50}"
-                    placeholder="e.g., Jane Doe" required>
-            </div>
-
-            <div class="form-group">
-                <label>Point of Contact Number *</label>
-                <input type="tel" name="entry.1212591437" id="org_contact_number" pattern="[6-9][0-9]{9}" maxlength="10"
-                    inputmode="numeric" placeholder="e.g., 9876543210" required>
-            </div>
-
-            <div class="form-group">
-                <label>Point of Contact Mail ID *</label>
-                <input type="email" name="entry.825369272" id="org_email" placeholder="e.g., jane@example.org" required>
-            </div>
-
-            <div style="position:absolute; left:-9999px;">
-                <label>Website</label>
-                <input type="text" name="entry.1126579970" autocomplete="off">
-            </div>
-
-            <button type="submit">Submit Registration</button>
-        </form>
-    </div>
-
-    <!-- Success Popup -->
-    <div class="overlay" id="orgOverlay">
-        <div class="popup">
-            <div class="tick">✔</div>
-            <h3>Response Saved</h3>
-            <p>Your details have been submitted successfully.</p>
-            <div class="countdown">
-                Redirecting in <span id="orgTimer">5</span> seconds...
-            </div>
+      <!-- Section 1: Organisation Info -->
+      <div class="oasis-form-section">
+        <div class="oasis-form-section-title">Organisation Details</div>
+        <div class="form-fields cols-2">
+          <div class="form-group form-field-full">
+            <label for="org_name">Organisation Name <span class="required">*</span></label>
+            <input id="org_name" type="text" placeholder="e.g. Green Earth NGO" required>
+          </div>
+          <div class="form-group form-field-full">
+            <label for="org_website">Website Link</label>
+            <input id="org_website" type="url" placeholder="https://example.org">
+          </div>
         </div>
-    </div>
+      </div>
 
-    </div>
+      <!-- Section 2: Point of Contact -->
+      <div class="oasis-form-section">
+        <div class="oasis-form-section-title">Point of Contact</div>
+        <div class="form-fields cols-2">
+          <div class="form-group">
+            <label for="org_contact_name">Contact Name <span class="required">*</span></label>
+            <input id="org_contact_name" type="text" placeholder="e.g. Jane Doe" required>
+          </div>
+          <div class="form-group">
+            <label for="org_contact_number">Contact Number <span class="required">*</span></label>
+            <input id="org_contact_number" type="tel" inputmode="numeric" maxlength="10" placeholder="e.g. 9876543210" required>
+          </div>
+          <div class="form-group form-field-full">
+            <label for="org_email">Contact Email <span class="required">*</span></label>
+            <input id="org_email" type="email" placeholder="e.g. jane@example.org" required>
+          </div>
+        </div>
+      </div>
+
+      <!-- Honeypot -->
+      <div class="form-honeypot" aria-hidden="true">
+        <input id="nonprofit_bot_field" tabindex="-1" autocomplete="off">
+      </div>
+
+      <!-- Status -->
+      <div id="nonprofitStatus" class="form-status"></div>
+
+      <!-- Footer -->
+      <div class="oasis-form-footer">
+        <p class="oasis-form-footer-note">
+          Visit us at <a href="https://www.oasishq.org" target="_blank">oasishq.org</a>
+        </p>
+        <button type="submit" class="oasis-form-submit" id="nonprofitSubmitBtn">
+          Submit Registration →
+        </button>
+      </div>
+
+    </form>
+  </div>
+
+</section>

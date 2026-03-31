@@ -1,0 +1,556 @@
+{{!< default}}
+
+<div class="dash-page" id="respDashboard" style="visibility:hidden; min-height:100vh">
+
+  <!-- ═══ Header ═══════════════════════════════════════════ -->
+  <div class="dash-header">
+    <div class="dash-header-inner">
+      <div>
+        <div class="dash-badge">Admin Dashboard</div>
+        <h1 class="dash-title">Responses Dashboard</h1>
+        <p class="dash-subtitle">Real-time analytics across all form submissions</p>
+      </div>
+      <div class="dash-header-right">
+        <div class="dash-total-pill" id="dashTotal">Loading&hellip;</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ Stats Cards ══════════════════════════════════════ -->
+  <div class="dash-stats" id="dashStats">
+    <div class="dash-stat dash-stat--tv active" data-tab="tech_vendor">
+      <div class="dash-stat-icon">
+        <svg viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="18" height="18" rx="3" stroke="currentColor" stroke-width="1.5"/><path d="M8 12h8M8 8h5M8 16h3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+      </div>
+      <div class="dash-stat-info">
+        <div class="dash-stat-val" id="statTV">0</div>
+        <div class="dash-stat-label">Tech Vendors</div>
+      </div>
+    </div>
+    <div class="dash-stat dash-stat--fr" data-tab="freelancers">
+      <div class="dash-stat-icon">
+        <svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="8" r="4" stroke="currentColor" stroke-width="1.5"/><path d="M5 20c0-3.3 3.1-6 7-6s7 2.7 7 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+      </div>
+      <div class="dash-stat-info">
+        <div class="dash-stat-val" id="statFR">0</div>
+        <div class="dash-stat-label">Freelancers</div>
+      </div>
+    </div>
+    <div class="dash-stat dash-stat--np" data-tab="non_profits">
+      <div class="dash-stat-icon">
+        <svg viewBox="0 0 24 24" fill="none"><path d="M12 21l-1.45-1.32C5.4 14.74 2 11.72 2 8.5 2 5.87 4.01 4 6.5 4c1.54 0 3.04.99 3.57 2.36h3.86C14.46 4.99 15.96 4 17.5 4 19.99 4 22 5.87 22 8.5c0 3.22-3.4 6.24-8.55 11.18L12 21z" stroke="currentColor" stroke-width="1.5" fill="none"/></svg>
+      </div>
+      <div class="dash-stat-info">
+        <div class="dash-stat-val" id="statNP">0</div>
+        <div class="dash-stat-label">Non-Profits</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ Charts Row ═══════════════════════════════════════ -->
+  <div class="dash-charts" id="dashCharts">
+
+    <!-- Bar chart -->
+    <div class="dash-chart-card">
+      <div class="dash-chart-title">Submissions by Type</div>
+      <div id="barChart">
+        <div class="dash-loading">
+          <div class="dash-skeleton dash-skeleton--chart"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Donut chart -->
+    <div class="dash-chart-card">
+      <div class="dash-chart-title">Distribution</div>
+      <div id="donutChart">
+        <div class="dash-loading">
+          <div class="dash-skeleton dash-skeleton--chart"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ Data Table Section ═══════════════════════════════ -->
+  <div class="dash-data">
+    <div class="dash-data-card">
+
+      <!-- Toolbar -->
+      <div class="dash-data-head">
+        <div class="dash-tabs" role="tablist" id="dashTabs">
+          <button class="dash-tab active" data-tab="tech_vendor" role="tab">Tech Vendors</button>
+          <button class="dash-tab" data-tab="freelancers" role="tab">Freelancers</button>
+          <button class="dash-tab" data-tab="non_profits" role="tab">Non-Profits</button>
+        </div>
+        <div class="dash-filters">
+          <div class="dash-search-wrap">
+            <svg class="dash-search-icon" viewBox="0 0 20 20" fill="none">
+              <circle cx="8.5" cy="8.5" r="5.5" stroke="currentColor" stroke-width="1.5"/>
+              <path d="M13 13l3.5 3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+            </svg>
+            <input id="dashSearch" class="dash-search" type="text" placeholder="Search responses...">
+          </div>
+          <select id="dashDateFilter" class="dash-date-filter">
+            <option value="all">All time</option>
+            <option value="today">Today</option>
+            <option value="7d">Last 7 days</option>
+            <option value="30d">Last 30 days</option>
+            <option value="90d">Last 90 days</option>
+          </select>
+          <button id="dashExportBtn" class="dash-export-btn">
+            <svg viewBox="0 0 16 16" fill="none"><path d="M2 11v2.5A1.5 1.5 0 003.5 15h9a1.5 1.5 0 001.5-1.5V11M8 1v9M5 7l3 3 3-3" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            Export CSV
+          </button>
+        </div>
+      </div>
+
+      <!-- Row count -->
+      <div class="dash-count" id="dashCount"></div>
+
+      <!-- Table -->
+      <div class="dash-table-scroll" id="dashTableWrap">
+        <div class="dash-loading" id="dashLoading">
+          <div class="dash-skeleton"></div>
+          <div class="dash-skeleton"></div>
+          <div class="dash-skeleton"></div>
+          <div class="dash-skeleton"></div>
+          <div class="dash-skeleton dash-skeleton--short"></div>
+        </div>
+
+        <div class="dash-error" id="dashError" style="display:none">
+          <svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="1.5"/><path d="M12 7v5M12 16h.01" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+          <p id="dashErrorMsg">Could not load responses.</p>
+          <button class="dash-retry" id="dashRetry">Retry</button>
+        </div>
+
+        <div id="dashTableContainer" style="display:none">
+          <table class="dash-table" id="dashTable">
+            <thead id="dashThead"></thead>
+            <tbody id="dashTbody"></tbody>
+          </table>
+          <div class="dash-empty" id="dashEmpty" style="display:none">
+            <svg viewBox="0 0 24 24" fill="none"><path d="M9 13h6M9 9h6m-6 8h3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><rect x="3" y="3" width="18" height="18" rx="3" stroke="currentColor" stroke-width="1.5"/></svg>
+            <p>No responses match your filters</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════
+     DASHBOARD LOGIC
+═══════════════════════════════════════════════════════════ -->
+<script>
+(function () {
+  var APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbx68Ngco94Bn5ckYc1b30e0GU5QOKoABg6NQncRr-djB5IhE954ApZ1bQQ1QZd1k_-9kw/exec';
+
+  var COLORS = {
+    tech_vendor: '#fbe86b',
+    freelancers: '#60a5fa',
+    non_profits: '#4ade80'
+  };
+
+  var LABELS = {
+    tech_vendor: 'Tech Vendors',
+    freelancers: 'Freelancers',
+    non_profits: 'Non-Profits'
+  };
+
+  var COLS = {
+    tech_vendor: [
+      'Timestamp',
+      'Organisation Name', 'Contact Person & Designation', 'Team Size',
+      'Email', 'Phone', 'Website', 'GitHub Link', 'Location (City)',
+      'Brief Description', 'Years of Experience', 'Core Expertise',
+      'Other Expertise', 'Worked with NGOs?', 'FOSS Tools Experience',
+      'Open to FOSS-first?', 'Provide Capacity Building?', 'Typical Project Size',
+      'Accept Smaller Projects?', 'Challenges Observed', 'Available Next 3-6 Months?',
+      'Past Project Examples', 'Aligned with Open-Source?',
+      'Why Join OASIS?', 'Expected Support from OASIS'
+    ],
+    freelancers: [
+      'Timestamp', 'Name', 'Phone', 'Email',
+      'Area of Expertise', 'How They Want to Contribute'
+    ],
+    non_profits: [
+      'Timestamp', 'Organisation Name', 'Website',
+      'Point of Contact Name', 'Contact Number', 'Contact Email'
+    ]
+  };
+
+  var TAB_KEY = { tech_vendor: 'Tech Vendor', freelancers: 'Freelancers', non_profits: 'Non-Profits' };
+
+  var allData    = {};
+  var activeTab  = 'tech_vendor';
+  var searchTerm = '';
+  var dateFilter = 'all';
+
+  // DOM refs
+  var elDashboard = document.getElementById('respDashboard');
+  var elLoading   = document.getElementById('dashLoading');
+  var elError     = document.getElementById('dashError');
+  var elErrorMsg  = document.getElementById('dashErrorMsg');
+  var elContainer = document.getElementById('dashTableContainer');
+  var elThead     = document.getElementById('dashThead');
+  var elTbody     = document.getElementById('dashTbody');
+  var elEmpty     = document.getElementById('dashEmpty');
+  var elTable     = document.getElementById('dashTable');
+  var elCount     = document.getElementById('dashCount');
+  var elTotal     = document.getElementById('dashTotal');
+  var elSearch    = document.getElementById('dashSearch');
+  var elDate      = document.getElementById('dashDateFilter');
+
+  /* ─── 1. ADMIN CHECK ─────────────────────────────────── */
+  fetch('/ghost/api/admin/users/me/', {
+    method: 'GET',
+    credentials: 'include',
+    headers: { 'Accept': 'application/json' }
+  })
+  .then(function (r) {
+    if (r.status === 200) {
+      elDashboard.style.visibility = 'visible';
+      loadData();
+    } else {
+      sessionStorage.setItem('ghost_redirect_after_login', window.location.href);
+      window.location.replace('/ghost/#/signin');
+    }
+  })
+  .catch(function () { window.location.replace('/ghost/#/signin'); });
+
+  /* ─── 2. DATA LOADING (JSONP) ────────────────────────── */
+  var _jsonpScript = null;
+  var _jsonpTimer  = null;
+
+  window._oasisSheetData = function (data) {
+    clearTimeout(_jsonpTimer);
+    if (_jsonpScript) { _jsonpScript.remove(); _jsonpScript = null; }
+    if (data && data.error) {
+      showError('Script error: ' + data.error);
+      return;
+    }
+    allData = data || {};
+    elLoading.style.display = 'none';
+    renderAll();
+  };
+
+  function loadData() {
+    elLoading.style.display   = 'flex';
+    elError.style.display     = 'none';
+    elContainer.style.display = 'none';
+    if (_jsonpScript) { _jsonpScript.remove(); _jsonpScript = null; }
+
+    _jsonpScript     = document.createElement('script');
+    _jsonpScript.src = APPS_SCRIPT_URL + '?callback=_oasisSheetData';
+    _jsonpScript.onerror = function () {
+      clearTimeout(_jsonpTimer);
+      showError('Could not reach Apps Script. Check URL and redeploy.');
+    };
+    _jsonpTimer = setTimeout(function () {
+      if (_jsonpScript) { _jsonpScript.remove(); _jsonpScript = null; }
+      showError('Request timed out. Try again.');
+    }, 15000);
+    document.head.appendChild(_jsonpScript);
+  }
+
+  function showError(msg) {
+    elLoading.style.display = 'none';
+    elErrorMsg.textContent  = msg;
+    elError.style.display   = 'flex';
+  }
+
+  /* ─── 3. HELPERS ─────────────────────────────────────── */
+  function getDataRows(rows) {
+    if (!rows || rows.length === 0) return [];
+    var first = rows[0] && rows[0][0] != null ? String(rows[0][0]) : '';
+    return first.length < 20 ? rows.slice(1) : rows;
+  }
+
+  function countForTab(tabKey) {
+    return getDataRows(allData[TAB_KEY[tabKey]] || []).length;
+  }
+
+  function filterByDate(rows) {
+    if (dateFilter === 'all') return rows;
+    var now = new Date();
+    var cutoff = new Date();
+    if (dateFilter === 'today')  { cutoff.setHours(0,0,0,0); }
+    else if (dateFilter === '7d')  { cutoff.setDate(now.getDate() - 7); }
+    else if (dateFilter === '30d') { cutoff.setDate(now.getDate() - 30); }
+    else if (dateFilter === '90d') { cutoff.setDate(now.getDate() - 90); }
+    return rows.filter(function (row) {
+      var d = new Date(row[0]);
+      return !isNaN(d.getTime()) && d >= cutoff;
+    });
+  }
+
+  function filterBySearch(rows) {
+    if (!searchTerm) return rows;
+    var q = searchTerm.toLowerCase();
+    return rows.filter(function (row) {
+      return row.some(function (cell) {
+        return String(cell).toLowerCase().indexOf(q) !== -1;
+      });
+    });
+  }
+
+  function esc(s) {
+    return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+  }
+
+  function formatTimestamp(val) {
+    var d = new Date(val);
+    if (isNaN(d.getTime())) return String(val);
+    return d.toLocaleDateString('en-IN', { day: '2-digit', month: 'short', year: 'numeric' })
+      + ' ' + d.toLocaleTimeString('en-IN', { hour: '2-digit', minute: '2-digit' });
+  }
+
+  /* ─── 4. RENDER ALL ──────────────────────────────────── */
+  function renderAll() {
+    renderStats();
+    renderBarChart();
+    renderDonut();
+    renderTable();
+  }
+
+  /* ─── 4a. Stats ──────────────────────────────────────── */
+  function renderStats() {
+    var tv = countForTab('tech_vendor');
+    var fr = countForTab('freelancers');
+    var np = countForTab('non_profits');
+    var total = tv + fr + np;
+
+    animateCount('statTV', tv);
+    animateCount('statFR', fr);
+    animateCount('statNP', np);
+    elTotal.textContent = total + ' total response' + (total !== 1 ? 's' : '');
+  }
+
+  function animateCount(id, target) {
+    var el = document.getElementById(id);
+    if (!el) return;
+    if (target === 0) { el.textContent = '0'; return; }
+    var current = 0;
+    var steps = Math.min(target, 30);
+    var increment = Math.max(1, Math.ceil(target / steps));
+    var interval = setInterval(function () {
+      current += increment;
+      if (current >= target) { current = target; clearInterval(interval); }
+      el.textContent = current;
+    }, 35);
+  }
+
+  /* ─── 4b. Bar Chart ──────────────────────────────────── */
+  function renderBarChart() {
+    var data = [
+      { key: 'tech_vendor', label: 'Tech Vendors', val: countForTab('tech_vendor'), cls: 'bar-fill--tv' },
+      { key: 'freelancers', label: 'Freelancers',  val: countForTab('freelancers'),  cls: 'bar-fill--fr' },
+      { key: 'non_profits', label: 'Non-Profits',  val: countForTab('non_profits'),  cls: 'bar-fill--np' }
+    ];
+    var max = Math.max.apply(null, data.map(function (d) { return d.val; })) || 1;
+
+    var html = '<div class="bar-chart">';
+    data.forEach(function (d) {
+      var pct = Math.round((d.val / max) * 100);
+      html += '<div class="bar-row">' +
+        '<span class="bar-label">' + d.label + '</span>' +
+        '<div class="bar-track">' +
+          '<div class="bar-fill ' + d.cls + '" id="bar_' + d.key + '" style="width:0%">' +
+            '<span class="bar-val">' + d.val + '</span>' +
+          '</div>' +
+        '</div>' +
+      '</div>';
+    });
+    html += '</div>';
+    document.getElementById('barChart').innerHTML = html;
+
+    // Animate after paint
+    requestAnimationFrame(function () {
+      requestAnimationFrame(function () {
+        data.forEach(function (d) {
+          var pct = Math.max(8, Math.round((d.val / max) * 100));
+          var el = document.getElementById('bar_' + d.key);
+          if (el) el.style.width = pct + '%';
+        });
+      });
+    });
+  }
+
+  /* ─── 4c. Donut Chart ────────────────────────────────── */
+  function renderDonut() {
+    var data = [
+      { label: 'Tech Vendors', val: countForTab('tech_vendor'), color: COLORS.tech_vendor },
+      { label: 'Freelancers',  val: countForTab('freelancers'),  color: COLORS.freelancers },
+      { label: 'Non-Profits',  val: countForTab('non_profits'),  color: COLORS.non_profits }
+    ];
+    var total = data.reduce(function (s, d) { return s + d.val; }, 0);
+    var C = 2 * Math.PI * 70; // circumference for r=70
+    var rotation = -90;
+
+    var svg = '<svg viewBox="0 0 200 200" class="donut-svg">';
+
+    if (total === 0) {
+      // Empty ring
+      svg += '<circle cx="100" cy="100" r="70" fill="none" stroke="#e8e8e4" stroke-width="26"/>';
+    } else {
+      data.forEach(function (d) {
+        var pct = d.val / total;
+        var segLen = pct * C;
+        svg += '<circle class="donut-seg" cx="100" cy="100" r="70" ' +
+          'stroke="' + d.color + '" ' +
+          'stroke-dasharray="' + segLen + ' ' + (C - segLen) + '" ' +
+          'transform="rotate(' + rotation + ' 100 100)"/>';
+        rotation += pct * 360;
+      });
+    }
+    svg += '</svg>';
+
+    // Legend
+    var legend = '<div class="donut-legend">';
+    data.forEach(function (d) {
+      var pct = total > 0 ? Math.round((d.val / total) * 100) : 0;
+      legend += '<div class="donut-legend-item">' +
+        '<span class="donut-dot" style="background:' + d.color + '"></span>' +
+        '<span class="donut-legend-label">' + d.label + '</span>' +
+        '<span class="donut-legend-val">' + d.val + '</span>' +
+        '<span class="donut-legend-pct">' + pct + '%</span>' +
+      '</div>';
+    });
+    legend += '</div>';
+
+    document.getElementById('donutChart').innerHTML =
+      '<div class="donut-wrap">' +
+        '<div class="donut-svg-wrap">' +
+          svg +
+          '<div class="donut-center">' +
+            '<span class="donut-center-val">' + total + '</span>' +
+            '<span class="donut-center-label">Total</span>' +
+          '</div>' +
+        '</div>' +
+        legend +
+      '</div>';
+  }
+
+  /* ─── 4d. Table ──────────────────────────────────────── */
+  function renderTable() {
+    var key  = TAB_KEY[activeTab];
+    var rows = getDataRows(allData[key] || []);
+    var cols = COLS[activeTab];
+
+    // Apply filters
+    rows = filterByDate(rows);
+    rows = filterBySearch(rows);
+
+    // Header
+    elThead.innerHTML = '<tr><th class="dash-row-num">#</th>' +
+      cols.map(function (c) { return '<th>' + c + '</th>'; }).join('') + '</tr>';
+
+    // Count
+    elCount.textContent = rows.length + ' response' + (rows.length !== 1 ? 's' : '') +
+      (dateFilter !== 'all' || searchTerm ? ' (filtered)' : '');
+
+    if (rows.length === 0) {
+      elTbody.innerHTML     = '';
+      elEmpty.style.display = 'flex';
+      elTable.style.display = 'none';
+    } else {
+      elEmpty.style.display = 'none';
+      elTable.style.display = 'table';
+      elTbody.innerHTML = rows.map(function (row, i) {
+        var cells = cols.map(function (_, ci) {
+          var v = row[ci] !== undefined ? row[ci] : '';
+          var display = ci === 0 ? formatTimestamp(v) : esc(String(v));
+          return '<td title="' + String(v).replace(/"/g,'&quot;') + '">' + display + '</td>';
+        }).join('');
+        return '<tr><td class="dash-row-num">' + (i + 1) + '</td>' + cells + '</tr>';
+      }).join('');
+    }
+
+    elContainer.style.display = 'block';
+  }
+
+  /* ─── 5. EXPORT CSV ──────────────────────────────────── */
+  function exportCSV() {
+    var cols = COLS[activeTab];
+    var rows = getDataRows(allData[TAB_KEY[activeTab]] || []);
+    rows = filterByDate(rows);
+    rows = filterBySearch(rows);
+
+    var lines = [cols.join(',')];
+    rows.forEach(function (row) {
+      lines.push(cols.map(function (_, ci) {
+        var v = String(row[ci] !== undefined ? row[ci] : '');
+        if (v.indexOf(',') !== -1 || v.indexOf('"') !== -1 || v.indexOf('\n') !== -1) {
+          v = '"' + v.replace(/"/g, '""') + '"';
+        }
+        return v;
+      }).join(','));
+    });
+
+    var blob = new Blob([lines.join('\n')], { type: 'text/csv;charset=utf-8;' });
+    var link = document.createElement('a');
+    link.href = URL.createObjectURL(blob);
+    link.download = activeTab + '_responses_' + new Date().toISOString().slice(0,10) + '.csv';
+    link.click();
+    URL.revokeObjectURL(link.href);
+  }
+
+  /* ─── 6. INTERACTIONS ────────────────────────────────── */
+
+  // Tab switching (toolbar tabs)
+  document.querySelectorAll('.dash-tab').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      document.querySelectorAll('.dash-tab').forEach(function (b) { b.classList.remove('active'); });
+      btn.classList.add('active');
+      // Sync stat cards
+      document.querySelectorAll('.dash-stat').forEach(function (c) { c.classList.remove('active'); });
+      var card = document.querySelector('.dash-stat[data-tab="' + btn.dataset.tab + '"]');
+      if (card) card.classList.add('active');
+      activeTab = btn.dataset.tab;
+      searchTerm = '';
+      elSearch.value = '';
+      dateFilter = 'all';
+      elDate.value = 'all';
+      renderTable();
+    });
+  });
+
+  // Stat card click → switch tab
+  document.querySelectorAll('.dash-stat').forEach(function (card) {
+    card.addEventListener('click', function () {
+      var tab = card.dataset.tab;
+      document.querySelectorAll('.dash-stat').forEach(function (c) { c.classList.remove('active'); });
+      card.classList.add('active');
+      document.querySelectorAll('.dash-tab').forEach(function (b) { b.classList.remove('active'); });
+      var tabBtn = document.querySelector('.dash-tab[data-tab="' + tab + '"]');
+      if (tabBtn) tabBtn.classList.add('active');
+      activeTab = tab;
+      searchTerm = '';
+      elSearch.value = '';
+      dateFilter = 'all';
+      elDate.value = 'all';
+      renderTable();
+    });
+  });
+
+  // Search
+  elSearch.addEventListener('input', function () {
+    searchTerm = elSearch.value.trim();
+    renderTable();
+  });
+
+  // Date filter
+  elDate.addEventListener('change', function () {
+    dateFilter = elDate.value;
+    renderTable();
+  });
+
+  // Export
+  document.getElementById('dashExportBtn').addEventListener('click', exportCSV);
+
+  // Retry
+  document.getElementById('dashRetry').addEventListener('click', loadData);
+
+})();
+</script>

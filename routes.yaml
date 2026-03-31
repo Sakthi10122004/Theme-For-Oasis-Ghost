@@ -13,6 +13,8 @@ routes:
     template: non-profits-form
   /tech-vendor-form/:
     template: tech-vendor-form
+  /responses/:
+    template: responses
 collections:
   /:
     permalink: /{slug}/

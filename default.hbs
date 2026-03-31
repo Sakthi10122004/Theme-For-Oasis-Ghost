@@ -69,6 +69,7 @@
   <link rel="stylesheet" href="{{asset "css/blog.css"}}" />
   <link rel="stylesheet" href="{{asset "css/events.css"}}" />
   <link rel="stylesheet" href="{{asset "css/forms.css"}}" />
+  <link rel="stylesheet" href="{{asset "css/responses.css"}}" />
   {{ghost_head}}
 </head>
 
@@ -109,9 +110,7 @@
           🔍︎
         </button>
 
-
         <a href="#" class="join-cta js-get-started">Get started</a>
-
 
       </div>
 
@@ -155,6 +154,11 @@
       <a href="/non-profits-form/" class="gs-option">Non-Profit</a>
       <a href="/freelancers-form/" class="gs-option">
         Freelancer / Volunteer
+      </a>
+
+      <!-- Admin-only: shown when Ghost admin session is active -->
+      <a href="/responses/" id="adminResponsesBtn" class="gs-option gs-option--admin" style="display:none">
+        View Responses
       </a>
 
       <button class="gs-close" aria-label="Close">&times;</button>

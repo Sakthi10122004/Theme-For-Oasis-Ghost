@@ -1,5 +1,18 @@
 // INDEX PAGE JS
 
+// ── Admin session check: show 'View Responses' button if logged into Ghost admin ──
+(function () {
+  var btn = document.getElementById('adminResponsesBtn');
+  if (!btn) return;
+  fetch('/ghost/api/admin/users/me/', {
+    method: 'GET',
+    credentials: 'include',
+    headers: { 'Accept': 'application/json' }
+  }).then(function (r) {
+    if (r.status === 200) btn.style.display = 'inline-flex';
+  }).catch(function () { /* not an admin, button stays hidden */ });
+})();
+
 // Critical JavaScript (loads immediately)
 
 (function () {

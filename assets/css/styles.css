@@ -1289,6 +1289,42 @@ body.announcement-popup-open {
   border-color: var(--color-primary);
 }
 
+/* Admin-only option inside Get Started popup */
+.gs-option--admin {
+  background: #1c1c1c;
+  color: #fbe86b;
+  border-color: #1c1c1c;
+  font-size: 0.88rem;
+  padding: 0.75rem 1rem;
+  margin-top: 1.25rem;
+  border-top: 1px dashed #ddd;
+  border-radius: 0.875rem;
+  position: relative;
+}
+
+.gs-option--admin::before {
+  content: 'Admin';
+  position: absolute;
+  top: -0.6rem;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #fff;
+  padding: 0 0.5rem;
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #999;
+}
+
+.gs-option--admin:hover {
+  background: #2c2c2c;
+  color: #fbe86b;
+  border-color: #2c2c2c;
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 0 8px 20px rgba(28, 28, 28, 0.25);
+}
+
 .gs-close {
   position: absolute;
   top: 1.25rem;
