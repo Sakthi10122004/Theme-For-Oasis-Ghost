@@ -8,9 +8,6 @@
         {{#if @site.cover_image}}
         <link rel="preload" as="image" href="{{@site.cover_image}}" fetchpriority="high">
         {{/if}}
-        <link rel="preload" as="image" href="{{asset 'images/bridge.webp'}}">
-        <link rel="preload" as="image" href="{{asset 'images/build.webp'}}">
-        <link rel="preload" as="image" href="{{asset 'images/belong.webp'}}">
     </div>
 
     <div class="hero-orbit">
@@ -147,6 +144,9 @@
             <div class="pulse-newsletter pulse-joined">
                 <h3>You're already part of the Network.</h3>
                 <p>Thank you for supporting our work.</p>
+                <div class="pulse-account-actions">
+                    <a href="#/portal/account" data-portal="account" class="pulse-account-btn">Manage Account</a>
+                </div>
             </div>
             {{else}}
             <div class="pulse-newsletter">
@@ -157,10 +157,21 @@
                 <p>Join the movement, stay in the loop.</p>
 
                 <form data-members-form="subscribe" class="pulse-form">
-                    <input data-members-email type="email" placeholder="you@nonprofit.org" required
-                        aria-label="Email address">
-                    <button type="submit">Subscribe</button>
+                    <div class="pulse-form-group">
+                        <input data-members-email type="email" placeholder="you@nonprofit.org" required
+                            aria-label="Email address">
+                        <button type="submit">Subscribe</button>
+                    </div>
+                    
+                    <div class="message-success">
+                        Check your inbox to confirm your subscription!
+                    </div>
+                    <div class="message-error" data-members-error></div>
                 </form>
+                
+                <div class="signin-prompt">
+                    Already part of the Network? <a href="#/portal/signin" data-portal="signin">Sign in &rarr;</a>
+                </div>
             </div>
             {{/if}}
 
@@ -171,8 +182,8 @@
                 <div class="update-content">
                     {{#if feature_image}}
                     <div class="update-img">
-                        <img src="{{img_url feature_image size=" m"}}" alt="{{title}}" loading="lazy" class="lazy-load"
-                            onload="this.classList.add('lazy-loaded')" width="140" height="140">
+                        <img src="{{img_url feature_image size=" l"}}" alt="{{title}}" loading="lazy" class="lazy-load"
+                            onload="this.classList.add('lazy-loaded')">
                     </div>
                     {{/if}}
                     <div class="update-text">

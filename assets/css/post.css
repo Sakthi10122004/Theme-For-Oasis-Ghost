@@ -5,7 +5,7 @@
   line-height: 1.6;
   color: var(--blog-text-dark);
   background: var(--color-page-background);
-  max-width: 800px;
+  max-width: 1100px;
   margin: 0 auto;
   padding: 0 20px;
 }
@@ -64,8 +64,8 @@
 
 .post-feature-image {
   margin: 0 auto 40px;
-  width: 700px;
-  height: 500px;
+  width: 100%;
+  aspect-ratio: 16 / 9;
   overflow: hidden;
   border-radius: 12px;
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
@@ -102,6 +102,8 @@
 
 .gh-content p {
   margin-bottom: 20px;
+  text-align: justify;
+  text-justify: inter-word;
 }
 
 .gh-content a {
@@ -144,7 +146,7 @@
 .article-comments {
   padding: 60px 0;
   border-top: 1px solid var(--blog-border-color);
-  max-width: 800px;
+  max-width: 1100px;
   margin: 0 auto;
   padding-left: 20px;
   padding-right: 20px;
@@ -173,6 +175,54 @@
 
 .article-comments .gh-comment-body {
   color: var(--blog-text-dark);
+}
+
+/* Article Share */
+.article-share {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 30px 0;
+  margin-top: 40px;
+  border-top: 1px solid var(--blog-border-color);
+  flex-wrap: wrap;
+}
+
+.share-label {
+  font-weight: 600;
+  margin-right: 8px;
+  color: var(--blog-text-dark);
+}
+
+.share-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: var(--color-card-background, #fff);
+  border: 1px solid var(--blog-border-color);
+  color: var(--blog-text-dark);
+  transition: all 0.2s ease;
+  cursor: pointer;
+}
+
+.share-btn svg {
+  width: 18px;
+  height: 18px;
+  fill: currentColor;
+}
+
+.share-btn.copy-link svg {
+  fill: none;
+}
+
+.share-btn:hover {
+  background: var(--color-accent-1);
+  color: #fff;
+  border-color: var(--color-accent-1);
+  transform: translateY(-2px);
 }
 
 /* Responsive */
@@ -205,8 +255,8 @@
   }
 
   .post-feature-image {
-    width: 300px;
-    height: 300px;
+    width: 100%;
+    height: auto;
     margin-bottom: 30px;
   }
 

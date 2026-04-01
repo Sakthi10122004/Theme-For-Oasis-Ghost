@@ -1,6 +1,5 @@
 // INDEX PAGE JS
 
-// ── Admin session check: show 'View Responses' button if logged into Ghost admin ──
 (function () {
   var btn = document.getElementById('adminResponsesBtn');
   if (!btn) return;
@@ -244,27 +243,7 @@ window.addEventListener('load', function () {
     const defaultBg = button.style.backgroundColor || "black";
     const defaultColor = button.style.color || "white";
 
-    // Create inline message element
-    let msgEl = form.parentElement.querySelector('.subscribe-msg');
-    if (!msgEl) {
-      msgEl = document.createElement('p');
-      msgEl.className = 'subscribe-msg';
-      msgEl.style.cssText = 'margin-top:0.75rem;font-size:0.9rem;font-weight:600;text-align:center;min-height:1.4em;transition:opacity 0.3s ease;';
-      form.insertAdjacentElement('afterend', msgEl);
-    }
-
     let resetTimer = null;
-
-    const setMsg = (text, color) => {
-      msgEl.textContent = text;
-      msgEl.style.color = color;
-      msgEl.style.opacity = '1';
-    };
-
-    const clearMsg = () => {
-      msgEl.style.opacity = '0';
-      setTimeout(() => { msgEl.textContent = ''; }, 300);
-    };
 
     const resetButton = () => {
       button.textContent = defaultText;
@@ -272,7 +251,6 @@ window.addEventListener('load', function () {
       button.style.backgroundColor = defaultBg;
       button.style.color = defaultColor;
       button.classList.remove("state-checking", "state-success", "state-error");
-      clearMsg();
     };
 
     // Intercept Ghost's magic-link fetch to detect 429 rate limiting
@@ -304,7 +282,6 @@ window.addEventListener('load', function () {
         button.classList.add("state-checking");
         button.style.backgroundColor = "yellow";
         button.style.color = "black";
-        setMsg('', 'transparent');
       }
 
       else if (form.classList.contains("success")) {
@@ -313,7 +290,6 @@ window.addEventListener('load', function () {
         button.classList.add("state-success");
         button.style.backgroundColor = "green";
         button.style.color = "white";
-        setMsg('✓ Check your inbox for a confirmation link!', '#16a34a');
 
         resetTimer = setTimeout(resetButton, 6000);
       }
@@ -323,15 +299,21 @@ window.addEventListener('load', function () {
         button.style.backgroundColor = "red";
         button.style.color = "white";
 
+        const errorDiv = form.querySelector('[data-members-error]');
+
         if (form._rateLimited) {
           button.textContent = "Slow down";
           button.disabled = true;
-          setMsg('Too many attempts — please try again in 10 minutes.', '#dc2626');
+          if (errorDiv) {
+             errorDiv.textContent = "Too many attempts. Please wait 10 seconds before trying again.";
+          }
           resetTimer = setTimeout(resetButton, 10000);
         } else {
           button.textContent = "Try Again";
           button.disabled = false;
-          setMsg('Something went wrong. Please check your email and try again.', '#dc2626');
+          if (errorDiv && errorDiv.textContent.trim() === "Failed to send magic link email") {
+             errorDiv.textContent = "Something went wrong. Please check your email and try again.";
+          }
           resetTimer = setTimeout(resetButton, 5000);
         }
       }
@@ -429,6 +411,23 @@ window.addEventListener('load', function () {
     if (e.key === 'Escape' && modal.classList.contains('active')) {
       closeModal();
     }
+  });
+
+  // Post Share Copy Link
+  const copyLinks = document.querySelectorAll('.copy-link');
+  copyLinks.forEach(button => {
+    button.addEventListener('click', () => {
+      const url = button.dataset.url;
+      if (url) {
+        navigator.clipboard.writeText(url).then(() => {
+          const originalHTML = button.innerHTML;
+          button.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>';
+          setTimeout(() => {
+            button.innerHTML = originalHTML;
+          }, 2000);
+        });
+      }
+    });
   });
 
 });
